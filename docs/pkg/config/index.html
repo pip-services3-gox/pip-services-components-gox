@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>config - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package config
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "config"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Contains implementation of the config design pattern.
+</p>
+<p>
+ConfigReader&#39;s Parameterize method allows us to take a standard configuration, and, using a set of current parameters (e.g. environment variables), parameterize it. When we create the configuration of a container, we can use environment variables to tailor it to the system, dynamically add addresses, ports, etc.
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NewDefaultConfigReaderFactory">func NewDefaultConfigReaderFactory() *build.Factory</a></dd>
+			
+				
+				<dd><a href="index.html#ReadJsonConfig">func ReadJsonConfig(correlationId string, path string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadJsonObject">func ReadJsonObject(correlationId string, path string, parameters *cconfig.ConfigParams) (interface{}, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadYamlConfig">func ReadYamlConfig(correlationId string, path string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)</a></dd>
+			
+				
+				<dd><a href="index.html#ReadYamlObject">func ReadYamlObject(correlationId string, path string, parameters *cconfig.ConfigParams) (interface{}, error)</a></dd>
+			
+			
+				
+				<dd><a href="index.html#ConfigReader">type ConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewConfigReader">func NewConfigReader() *ConfigReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Configure">func (c *ConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Parameterize">func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigParams) (string, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#FileConfigReader">type FileConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyFileConfigReader">func NewEmptyFileConfigReader() *FileConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFileConfigReader">func NewFileConfigReader(path string) *FileConfigReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.Configure">func (c *FileConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.Path">func (c *FileConfigReader) Path() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.SetPath">func (c *FileConfigReader) SetPath(path string)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IConfigReader">type IConfigReader</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#JsonConfigReader">type JsonConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyJsonConfigReader">func NewEmptyJsonConfigReader() *JsonConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewJsonConfigReader">func NewJsonConfigReader(path string) *JsonConfigReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JsonConfigReader.ReadConfig">func (c *JsonConfigReader) ReadConfig(correlationId string, parameters *cconfig.ConfigParams) (result *cconfig.ConfigParams, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#JsonConfigReader.ReadObject">func (c *JsonConfigReader) ReadObject(correlationId string, parameters *cconfig.ConfigParams) (interface{}, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#MemoryConfigReader">type MemoryConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyMemoryConfigReader">func NewEmptyMemoryConfigReader() *MemoryConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryConfigReader">func NewMemoryConfigReader(config *cconfig.ConfigParams) *MemoryConfigReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.Configure">func (c *MemoryConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.ReadConfig">func (c *MemoryConfigReader) ReadConfig(correlationId string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#YamlConfigReader">type YamlConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyYamlConfigReader">func NewEmptyYamlConfigReader() *YamlConfigReader</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewYamlConfigReader">func NewYamlConfigReader(path string) *YamlConfigReader</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#YamlConfigReader.ReadConfig">func (c *YamlConfigReader) ReadConfig(correlationId string, parameters *cconfig.ConfigParams) (result *cconfig.ConfigParams, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#YamlConfigReader.ReadObject">func (c *YamlConfigReader) ReadObject(correlationId string, parameters *cconfig.ConfigParams) (interface{}, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/config/ConfigReader.go">ConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/DefaultConfigReaderFactory.go">DefaultConfigReaderFactory.go</a>
+			
+				<a href="http://localhost:6060/src/config/FileConfigReader.go">FileConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/IConfigReader.go">IConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/JsonConfigReader.go">JsonConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/MemoryConfigReader.go">MemoryConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/YamlConfigReader.go">YamlConfigReader.go</a>
+			
+				<a href="http://localhost:6060/src/config/doc.go">doc.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="JsonConfigReaderDescriptor">JsonConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;json&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+			
+				<p>
+Creates IConfigReader components by their descriptors.
+</p>
+
+				<pre>var <span id="MemoryConfigReaderDescriptor">MemoryConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+			
+				
+				<pre>var <span id="YamlConfigReaderDescriptor">YamlConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;yaml&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewDefaultConfigReaderFactory">func <a href="http://localhost:6060/src/config/DefaultConfigReaderFactory.go?s=604:655#L7">NewDefaultConfigReaderFactory</a>
+				<a class="permalink" href="index.html#NewDefaultConfigReaderFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewDefaultConfigReaderFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
+			<p>
+Create a new instance of the factory.
+Returns *build.Factory
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadJsonConfig">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=4155:4275#L137">ReadJsonConfig</a>
+				<a class="permalink" href="index.html#ReadJsonConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadJsonConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, path <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
+Parameters:
+</p>
+<pre>- correlationId string
+ transaction id to trace execution through call chain.
+- path string
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns *cconfig.ConfigParams, error
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadJsonObject">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=3587:3697#L122">ReadJsonObject</a>
+				<a class="permalink" href="index.html#ReadJsonObject">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadJsonObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, path <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Reads configuration file, parameterizes its content and converts it into JSON object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- path string
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns interface{}, error
+a JSON object with configuration.
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadYamlConfig">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=4311:4431#L148">ReadYamlConfig</a>
+				<a class="permalink" href="index.html#ReadYamlConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadYamlConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, path <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- path string
+- parameters *cconfig.ConfigParams
+values to parameters the configuration or null to skip parameterization.
+</pre>
+<p>
+Returns *cconfig.ConfigParams, error
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadYamlObject">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=3716:3826#L133">ReadYamlObject</a>
+				<a class="permalink" href="index.html#ReadYamlObject">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadYamlObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, path <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Reads configuration file, parameterizes its content and converts it into JSON object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- path string
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns interface{}, error
+a JSON object with configuration.
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=296:358#L4">ConfigReader</a>
+				<a class="permalink" href="index.html#ConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Abstract config reader that supports configuration parameterization.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>parameters: this entire section is used as template parameters
+</pre>
+
+			<pre>type ConfigReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=433:469#L10">NewConfigReader</a>
+					<a class="permalink" href="index.html#NewConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewConfigReader() *<a href="index.html#ConfigReader">ConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Returns *ConfigReader
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=697:759#L20">Configure</a>
+					<a class="permalink" href="index.html#ConfigReader.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1288:1388#L36">Parameterize</a>
+					<a class="permalink" href="index.html#ConfigReader.Parameterize">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Parameterize(config <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Parameterized configuration template given as string with dynamic parameters.
+The method uses Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+Parameters:
+</p>
+<pre>- config string
+a string with configuration template to be parameterized
+- parameters *config.ConfigParams
+dynamic parameters to inject into the template
+</pre>
+<p>
+Returns string, error
+a parameterized configuration string abd error.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FileConfigReader">type <a href="http://localhost:6060/src/config/FileConfigReader.go?s=390:449#L2">FileConfigReader</a>
+				<a class="permalink" href="index.html#FileConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Abstract config reader that reads configuration from a file. Child classes add support for config files in their specific format like JSON, YAML or property files.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>path: path to configuration file
+parameters: this entire section is used as template parameters
+</pre>
+
+			<pre>type FileConfigReader struct {
+    <a href="index.html#ConfigReader">ConfigReader</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=528:577#L9">NewEmptyFileConfigReader</a>
+					<a class="permalink" href="index.html#NewEmptyFileConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyFileConfigReader() *<a href="index.html#FileConfigReader">FileConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Returns *FileConfigReader
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=795:850#L20">NewFileConfigReader</a>
+					<a class="permalink" href="index.html#NewFileConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFileConfigReader(path <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#FileConfigReader">FileConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Parameters:
+</p>
+<pre>- path string
+a path to configuration file.
+</pre>
+<p>
+Returns *FileConfigReader
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="FileConfigReader.Configure">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1097:1163#L31">Configure</a>
+					<a class="permalink" href="index.html#FileConfigReader.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#FileConfigReader">FileConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+Parameters:
+</p>
+<pre>- config *cconfig.ConfigParams
+configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="FileConfigReader.Path">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1352:1392#L39">Path</a>
+					<a class="permalink" href="index.html#FileConfigReader.Path">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#FileConfigReader">FileConfigReader</a>) Path() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Get the path to configuration file..
+Returns string
+the path to configuration file.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="FileConfigReader.SetPath">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1525:1572#L47">SetPath</a>
+					<a class="permalink" href="index.html#FileConfigReader.SetPath">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#FileConfigReader">FileConfigReader</a>) SetPath(path <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Set the path to configuration file.
+Parameters:
+</p>
+<pre>- path string
+a new path to configuration file.
+</pre>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IConfigReader">type <a href="http://localhost:6060/src/config/IConfigReader.go?s=485:667#L1">IConfigReader</a>
+				<a class="permalink" href="index.html#IConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Interface for configuration readers that retrieve configuration from various sources and make it available for other components.
+</p>
+<p>
+Some IConfigReader implementations may support configuration parameterization. The parameterization allows to use configuration as a template and inject there dynamic values. The values may come from application command like arguments or environment variables.
+</p>
+
+			<pre>type IConfigReader interface {
+    <span class="comment">// Reads configuration and parameterize it with given values.</span>
+    ReadConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">c</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">c</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="JsonConfigReader">type <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=883:933#L27">JsonConfigReader</a>
+				<a class="permalink" href="index.html#JsonConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Config reader that reads configuration from JSON file.
+</p>
+<p>
+The reader supports parameterization using Handlebar template engine.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>path: path to configuration file
+parameters: this entire section is used as template parameters
+...
+</pre>
+<p>
+see
+IConfigReader
+</p>
+<p>
+see
+FileConfigReader
+</p>
+<p>
+Example
+</p>
+<pre>======== config.json ======
+{ &#34;key1&#34;: &#34;{{KEY1_VALUE}}&#34;, &#34;key2&#34;: &#34;{{KEY2_VALUE}}&#34; }
+===========================
+
+configReader := NewJsonConfigReader(&#34;config.json&#34;)
+
+parameters := NewConfigParamsFromTuples(&#34;KEY1_VALUE&#34;, 123, &#34;KEY2_VALUE&#34;, &#34;ABC&#34;)
+res, err := configReader.ReadConfig(&#34;123&#34;, parameters)
+</pre>
+
+			<pre>type JsonConfigReader struct {
+    <a href="index.html#FileConfigReader">FileConfigReader</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1012:1061#L33">NewEmptyJsonConfigReader</a>
+					<a class="permalink" href="index.html#NewEmptyJsonConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyJsonConfigReader() *<a href="index.html#JsonConfigReader">JsonConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Returns *JsonConfigReader
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1292:1347#L44">NewJsonConfigReader</a>
+					<a class="permalink" href="index.html#NewJsonConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewJsonConfigReader(path <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#JsonConfigReader">JsonConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Parameters:
+</p>
+<pre>- path string
+a path to configuration file.
+</pre>
+<p>
+Returns *JsonConfigReader
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="JsonConfigReader.ReadConfig">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=2764:2900#L91">ReadConfig</a>
+					<a class="permalink" href="index.html#JsonConfigReader.ReadConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#JsonConfigReader">JsonConfigReader</a>) ReadConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (result *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns *cconfig.ConfigParams, error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="JsonConfigReader.ReadObject">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1788:1903#L58">ReadObject</a>
+					<a class="permalink" href="index.html#JsonConfigReader.ReadObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#JsonConfigReader">JsonConfigReader</a>) ReadObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads configuration file, parameterizes its content and converts it into JSON object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns interface{}, error
+a JSON object with configuration adn error.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=836:900#L23">MemoryConfigReader</a>
+				<a class="permalink" href="index.html#MemoryConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Config reader that stores configuration in memory.
+</p>
+<p>
+The reader supports parameterization using Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+</p>
+<p>
+Configuration parameters
+The configuration parameters are the configuration template
+</p>
+<p>
+see
+IConfigReader
+</p>
+<p>
+Example
+</p>
+<pre>config := NewConfigParamsFromTuples(
+    &#34;connection.host&#34;, &#34;{{SERVICE_HOST}}&#34;,
+    &#34;connection.port&#34;, &#34;{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}&#34;
+);
+
+configReader := NewMemoryConfigReader();
+configReader.Configure(config);
+
+parameters := NewConfigParamsFromValue(process.env);
+
+res, err := configReader.ReadConfig(&#34;123&#34;, parameters);
+// Possible result: connection.host=10.1.1.100;connection.port=8080
+</pre>
+
+			<pre>type MemoryConfigReader struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=977:1030#L29">NewEmptyMemoryConfigReader</a>
+					<a class="permalink" href="index.html#NewEmptyMemoryConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyMemoryConfigReader() *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a></pre>
+				<p>
+Creates a new instance of config reader.
+Returns *MemoryConfigReader
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1276:1352#L40">NewMemoryConfigReader</a>
+					<a class="permalink" href="index.html#NewMemoryConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMemoryConfigReader(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a></pre>
+				<p>
+Creates a new instance of config reader.
+Parameters:
+</p>
+<pre>- config *cconfig.ConfigParams
+component configuration parameters
+</pre>
+<p>
+Returns *MemoryConfigReader
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1561:1629#L50">Configure</a>
+					<a class="permalink" href="index.html#MemoryConfigReader.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+Parameters:
+</p>
+<pre>- config *cconfig.ConfigParams
+configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2003:2130#L62">ReadConfig</a>
+					<a class="permalink" href="index.html#MemoryConfigReader.ReadConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) ReadConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads configuration and parameterize it with given values.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- parameters *cconfig.ConfigParams
+values to parameters the configuration or null to skip parameterization.
+</pre>
+<p>
+Returns *cconfig.ConfigParams, error
+configuration or error.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="YamlConfigReader">type <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=857:907#L30">YamlConfigReader</a>
+				<a class="permalink" href="index.html#YamlConfigReader">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Config reader that reads configuration from YAML file.
+</p>
+<p>
+The reader supports parameterization using Handlebars template engine.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>path: path to configuration file
+parameters: this entire section is used as template parameters
+...
+</pre>
+<p>
+see
+IConfigReader
+</p>
+<p>
+see
+FileConfigReader
+</p>
+<p>
+Example
+</p>
+<pre>======== config.yml ======
+key1: &#34;{{KEY1_VALUE}}&#34;
+key2: &#34;{{KEY2_VALUE}}&#34;
+===========================
+
+configReader := NewYamlConfigReader(&#34;config.yml&#34;)
+
+parameters := NewConfigParamsFromTuples(&#34;KEY1_VALUE&#34;, 123, &#34;KEY2_VALUE&#34;, &#34;ABC&#34;);
+res, err := configReader.ReadConfig(&#34;123&#34;, parameters);
+// Result: key1=123;key2=ABC
+</pre>
+
+			<pre>type YamlConfigReader struct {
+    <a href="index.html#FileConfigReader">FileConfigReader</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=986:1035#L36">NewEmptyYamlConfigReader</a>
+					<a class="permalink" href="index.html#NewEmptyYamlConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyYamlConfigReader() *<a href="index.html#YamlConfigReader">YamlConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Returns *YamlConfigReader
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1266:1321#L47">NewYamlConfigReader</a>
+					<a class="permalink" href="index.html#NewYamlConfigReader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewYamlConfigReader(path <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#YamlConfigReader">YamlConfigReader</a></pre>
+				<p>
+Creates a new instance of the config reader.
+Parameters:
+</p>
+<pre>- path string
+a path to configuration file.
+</pre>
+<p>
+Returns *YamlConfigReader
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="YamlConfigReader.ReadConfig">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=2898:3034#L102">ReadConfig</a>
+					<a class="permalink" href="index.html#YamlConfigReader.ReadConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#YamlConfigReader">YamlConfigReader</a>) ReadConfig(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (result *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- path string
+- parameters *cconfig.ConfigParams
+values to parameters the configuration or null to skip parameterization.
+</pre>
+<p>
+Returns *cconfgi.ConfigParams, error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="YamlConfigReader.ReadObject">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1759:1874#L61">ReadObject</a>
+					<a class="permalink" href="index.html#YamlConfigReader.ReadObject">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#YamlConfigReader">YamlConfigReader</a>) ReadObject(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Reads configuration file, parameterizes its content and converts it into JSON object.
+Parameters:
+</p>
+<pre>- correlationId string
+ transaction id to trace execution through call chain.
+- parameters *cconfig.ConfigParams
+values to parameters the configuration.
+</pre>
+<p>
+Returns interface{}, error
+a JSON object with configuration and error.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

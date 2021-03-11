@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>build - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package build
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "build"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewCreateError">func NewCreateError(correlationId string, message string) *errors.ApplicationError</a></dd>
+			
+				
+				<dd><a href="index.html#NewCreateErrorByLocator">func NewCreateErrorByLocator(correlationId string, locator interface{}) *errors.ApplicationError</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CompositeFactory">type CompositeFactory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeFactory">func NewCompositeFactory() *CompositeFactory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeFactoryFromFactories">func NewCompositeFactoryFromFactories(factories ...IFactory) *CompositeFactory</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeFactory.Add">func (c *CompositeFactory) Add(factory IFactory)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeFactory.CanCreate">func (c *CompositeFactory) CanCreate(locator interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeFactory.Create">func (c *CompositeFactory) Create(locator interface{}) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeFactory.Remove">func (c *CompositeFactory) Remove(factory IFactory)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#Factory">type Factory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewFactory">func NewFactory() *Factory</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.CanCreate">func (c *Factory) CanCreate(locator interface{}) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Create">func (c *Factory) Create(locator interface{}) (interface{}, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Register">func (c *Factory) Register(locator interface{}, factory func() interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.RegisterType">func (c *Factory) RegisterType(locator interface{}, factory interface{})</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IFactory">type IFactory</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/build/CompositeFactory.go">CompositeFactory.go</a>
+			
+				<a href="http://localhost:6060/src/build/CreateError.go">CreateError.go</a>
+			
+				<a href="http://localhost:6060/src/build/Factory.go">Factory.go</a>
+			
+				<a href="http://localhost:6060/src/build/IFactory.go">IFactory.go</a>
+			
+				<a href="http://localhost:6060/src/build/doc.go">doc.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewCreateError">func <a href="http://localhost:6060/src/build/CreateError.go?s=394:476#L8">NewCreateError</a>
+				<a class="permalink" href="index.html#NewCreateError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewCreateError(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ApplicationError">ApplicationError</a></pre>
+			<p>
+Creates an error instance and assigns its values.
+Parameters:
+</p>
+<pre>- correlationId string
+- message string
+human-readable error of the component that cannot be created.
+</pre>
+<p>
+Returns *errors.ApplicationError
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewCreateErrorByLocator">func <a href="http://localhost:6060/src/build/CreateError.go?s=791:887#L19">NewCreateErrorByLocator</a>
+				<a class="permalink" href="index.html#NewCreateErrorByLocator">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewCreateErrorByLocator(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, locator interface{}) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ApplicationError">ApplicationError</a></pre>
+			<p>
+Creates an error instance and assigns its values.
+Parameters:
+</p>
+<pre>- correlationId string
+- locator interface{}
+human-readable locator of the component that cannot be created.
+</pre>
+<p>
+Returns *errors.ApplicationError
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CompositeFactory">type <a href="http://localhost:6060/src/build/CompositeFactory.go?s=688:742#L8">CompositeFactory</a>
+				<a class="permalink" href="index.html#CompositeFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Aggregates multiple factories into a single factory component. When a new component is requested, it iterates through factories to locate the one able to create the requested component.
+</p>
+<p>
+This component is used to conveniently keep all supported factories in a single place.
+</p>
+<p>
+Example
+</p>
+<pre>factory := NewCompositeFactory();
+factory.Add(NewDefaultLoggerFactory());
+factory.Add(NewDefaultCountersFactory());
+
+loggerLocator := NewDescriptor(&#34;*&#34;, &#34;logger&#34;, &#34;*&#34;, &#34;*&#34;, &#34;1.0&#34;);
+factory.CanCreate(loggerLocator);         // Result: Descriptor(&#34;pip-service&#34;, &#34;logger&#34;, &#34;null&#34;, &#34;default&#34;, &#34;1.0&#34;)
+factory.Create(loggerLocator);             // Result: created NullLogger
+</pre>
+
+			<pre>type CompositeFactory struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCompositeFactory">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=815:859#L14">NewCompositeFactory</a>
+					<a class="permalink" href="index.html#NewCompositeFactory">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCompositeFactory() *<a href="index.html#CompositeFactory">CompositeFactory</a></pre>
+				<p>
+Creates a new instance of the factory.
+Returns *CompositeFactory
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCompositeFactoryFromFactories">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1090:1168#L25">NewCompositeFactoryFromFactories</a>
+					<a class="permalink" href="index.html#NewCompositeFactoryFromFactories">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCompositeFactoryFromFactories(factories ...<a href="index.html#IFactory">IFactory</a>) *<a href="index.html#CompositeFactory">CompositeFactory</a></pre>
+				<p>
+Creates a new instance of the factory.
+Parameters:
+</p>
+<pre>- factories ...IFactory
+a list of factories to embed into this factory.
+</pre>
+<p>
+Returns *CompositeFactory
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CompositeFactory.Add">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1350:1398#L35">Add</a>
+					<a class="permalink" href="index.html#CompositeFactory.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeFactory">CompositeFactory</a>) Add(factory <a href="index.html#IFactory">IFactory</a>)</pre>
+				<p>
+Adds a factory into the list of embedded factories.
+Parameters:
+</p>
+<pre>- factory IFactory
+a factory to be added.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeFactory.CanCreate">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2313:2382#L63">CanCreate</a>
+					<a class="permalink" href="index.html#CompositeFactory.CanCreate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeFactory">CompositeFactory</a>) CanCreate(locator interface{}) interface{}</pre>
+				<p>
+Checks if this factory is able to create component by given locator.
+This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+</pre>
+<p>
+Returns interface{}
+a locator for a component that the factory is able to create.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeFactory.Create">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2922:2997#L85">Create</a>
+					<a class="permalink" href="index.html#CompositeFactory.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeFactory">CompositeFactory</a>) Create(locator interface{}) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Creates a component identified by given locator.
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+</pre>
+<p>
+Returns interface{}, error
+the created component and a CreateError if the factory is not able to create the component..
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeFactory.Remove">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1631:1682#L47">Remove</a>
+					<a class="permalink" href="index.html#CompositeFactory.Remove">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeFactory">CompositeFactory</a>) Remove(factory <a href="index.html#IFactory">IFactory</a>)</pre>
+				<p>
+Removes a factory from the list of embedded factories.
+Parameters:
+</p>
+<pre>- factory IFactory
+the factory to remove.
+</pre>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Factory">type <a href="http://localhost:6060/src/build/Factory.go?s=838:892#L25">Factory</a>
+				<a class="permalink" href="index.html#Factory">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Factory struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewFactory">func <a href="http://localhost:6060/src/build/Factory.go?s=935:961#L31">NewFactory</a>
+					<a class="permalink" href="index.html#NewFactory">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewFactory() *<a href="index.html#Factory">Factory</a></pre>
+				<p>
+Create new factory
+Return *Factory
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="Factory.CanCreate">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=2656:2716#L88">CanCreate</a>
+					<a class="permalink" href="index.html#Factory.CanCreate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) CanCreate(locator interface{}) interface{}</pre>
+				<p>
+Checks if this factory is able to create component by given locator.
+This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+</pre>
+<p>
+Returns interface{}
+a locator for a component that the factory is able to create.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.Create">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=3266:3332#L110">Create</a>
+					<a class="permalink" href="index.html#Factory.Create">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) Create(locator interface{}) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Creates a component identified by given locator.
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+</pre>
+<p>
+Returns interface{}, error
+the created component and a CreateError if the factory is not able to create the component.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.Register">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1280:1355#L43">Register</a>
+					<a class="permalink" href="index.html#Factory.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) Register(locator interface{}, factory func() interface{})</pre>
+				<p>
+Registers a component using a factory method.
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+factory func() interface{}
+a factory function that receives a locator and returns a created component.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Factory.RegisterType">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1781:1853#L63">RegisterType</a>
+					<a class="permalink" href="index.html#Factory.RegisterType">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) RegisterType(locator interface{}, factory interface{})</pre>
+				<p>
+Registers a component using its type (a constructor function).
+Parameters:
+</p>
+<pre>- locator interface{}
+a locator to identify component to be created.
+- factory interface{}
+a factory.
+</pre>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IFactory">type <a href="http://localhost:6060/src/build/IFactory.go?s=331:875#L1">IFactory</a>
+				<a class="permalink" href="index.html#IFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Interface for component factories.
+</p>
+<p>
+Factories use locators to identify components to be created.
+</p>
+<p>
+The locators are similar to those used to locate components in references. They can be of any type like strings or integers. However Pip.Services toolkit most often uses Descriptor objects as component locators.
+</p>
+
+			<pre>type IFactory interface {
+    <span class="comment">// Checks if this factory is able to create component by given locator.</span>
+    <span class="comment">// This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.</span>
+    CanCreate(locator interface{}) interface{}
+    <span class="comment">// Creates a component identified by given locator.</span>
+    <span class="comment">// Return a CreateError if the factory is not able to create the component.</span>
+    Create(locator interface{}) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

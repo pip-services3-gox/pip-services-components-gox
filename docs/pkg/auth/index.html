@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>auth - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package auth
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "auth"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="index.html#NewDefaultCredentialStoreFactory">func NewDefaultCredentialStoreFactory() *build.Factory</a></dd>
+			
+			
+				
+				<dd><a href="index.html#CredentialParams">type CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParams">func NewCredentialParams(values map[string]string) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromConfig">func NewCredentialParamsFromConfig(config *config.ConfigParams) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromMaps">func NewCredentialParamsFromMaps(maps ...map[string]string) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromString">func NewCredentialParamsFromString(line string) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromTuples">func NewCredentialParamsFromTuples(tuples ...interface{}) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromTuplesArray">func NewCredentialParamsFromTuplesArray(tuples []interface{}) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialParamsFromValue">func NewCredentialParamsFromValue(value interface{}) *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyCredentialParams">func NewEmptyCredentialParams() *CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewManyCredentialParamsFromConfig">func NewManyCredentialParamsFromConfig(config *config.ConfigParams) []*CredentialParams</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.AccessId">func (c *CredentialParams) AccessId() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.AccessKey">func (c *CredentialParams) AccessKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.Password">func (c *CredentialParams) Password() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.SetAccessId">func (c *CredentialParams) SetAccessId(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.SetAccessKey">func (c *CredentialParams) SetAccessKey(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.SetPassword">func (c *CredentialParams) SetPassword(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.SetStoreKey">func (c *CredentialParams) SetStoreKey(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.SetUsername">func (c *CredentialParams) SetUsername(value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.StoreKey">func (c *CredentialParams) StoreKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.UseCredentialStore">func (c *CredentialParams) UseCredentialStore() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialParams.Username">func (c *CredentialParams) Username() string</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CredentialResolver">type CredentialResolver</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialResolver">func NewCredentialResolver(config *config.ConfigParams, references refer.IReferences) *CredentialResolver</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyCredentialResolver">func NewEmptyCredentialResolver() *CredentialResolver</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Add">func (c *CredentialResolver) Add(credential *CredentialParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Configure">func (c *CredentialResolver) Configure(config *config.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.GetAll">func (c *CredentialResolver) GetAll() []*CredentialParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Lookup">func (c *CredentialResolver) Lookup(correlationId string) (*CredentialParams, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.SetReferences">func (c *CredentialResolver) SetReferences(references refer.IReferences)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#ICredentialStore">type ICredentialStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MemoryCredentialStore">type MemoryCredentialStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyMemoryCredentialStore">func NewEmptyMemoryCredentialStore() *MemoryCredentialStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCredentialStore">func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStore</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Configure">func (c *MemoryCredentialStore) Configure(config *config.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Lookup">func (c *MemoryCredentialStore) Lookup(correlationId string, key string) (result *CredentialParams, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.ReadCredentials">func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Store">func (c *MemoryCredentialStore) Store(correlationId string, key string, credential *CredentialParams) error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/auth/CredentialParams.go">CredentialParams.go</a>
+			
+				<a href="http://localhost:6060/src/auth/CredentialResolver.go">CredentialResolver.go</a>
+			
+				<a href="http://localhost:6060/src/auth/DefaultCredentialStoreFactory.go">DefaultCredentialStoreFactory.go</a>
+			
+				<a href="http://localhost:6060/src/auth/ICredentialStore.go">ICredentialStore.go</a>
+			
+				<a href="http://localhost:6060/src/auth/MemoryCredentialStore.go">MemoryCredentialStore.go</a>
+			
+				<a href="http://localhost:6060/src/auth/doc.go">doc.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+Creates ICredentialStore components by their descriptors.
+</p>
+
+				<pre>var <span id="MemoryCredentialStoreDescriptor">MemoryCredentialStoreDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;credential-store&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+			
+		
+		
+			
+			
+			<h2 id="NewDefaultCredentialStoreFactory">func <a href="http://localhost:6060/src/auth/DefaultCredentialStoreFactory.go?s=401:455#L5">NewDefaultCredentialStoreFactory</a>
+				<a class="permalink" href="index.html#NewDefaultCredentialStoreFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewDefaultCredentialStoreFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
+			<p>
+Create a new instance of the factory.
+Returns *build.Factory
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="CredentialParams">type <a href="http://localhost:6060/src/auth/CredentialParams.go?s=1125:1178#L35">CredentialParams</a>
+				<a class="permalink" href="index.html#CredentialParams">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Contains credentials to authenticate against external services. They are used together with connection parameters, but usually stored in a separate store, protected from unauthorized access.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>store_key: key to retrieve parameters from credential store
+username: user name
+user: alternative to username
+password: user password
+pass: alternative to password
+access_id: application access id
+client_id: alternative to access_id
+access_key: application secret key
+client_key: alternative to access_key
+secret_key: alternative to access_key
+</pre>
+<p>
+In addition to standard parameters CredentialParams may contain any number of custom parameters
+</p>
+<p>
+see
+ConfigParams
+</p>
+<p>
+see
+ConnectionParams
+</p>
+<p>
+see
+CredentialResolver
+</p>
+<p>
+see
+ICredentialStore
+</p>
+<p>
+Example
+</p>
+<pre>credential := NewCredentialParamsFromTuples(
+    &#34;user&#34;, &#34;jdoe&#34;,
+    &#34;pass&#34;, &#34;pass123&#34;,
+    &#34;pin&#34;, &#34;321&#34;
+);
+
+username := credential.Username();             // Result: &#34;jdoe&#34;
+password := credential.Password();             // Result: &#34;pass123&#34;
+</pre>
+
+			<pre>type CredentialParams struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCredentialParams">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=1631:1699#L52">NewCredentialParams</a>
+					<a class="permalink" href="index.html#NewCredentialParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParams(values map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Creates a new credential parameters and fills it with values.
+Parameters:
+</p>
+<pre>- values map[string]string
+an object to be converted into key-value pairs to initialize these credentials.
+</pre>
+<p>
+Returns *CredentialParams
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromConfig">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=5439:5520#L150">NewCredentialParamsFromConfig</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Retrieves a single CredentialParams from configuration parameters from &#34;credential&#34; section. If &#34;credentials&#34; section is present instead, then is returns only the first credential element.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+ConfigParams, containing a section named &#34;credential(s)&#34;.
+</pre>
+<p>
+Returns []*CredentialParams
+the generated CredentialParams object.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromMaps">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=3961:4038#L112">NewCredentialParamsFromMaps</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromMaps">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromMaps(maps ...map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Static method for creating a CredentialParams using the maps passed as parameters.
+Parameters:
+</p>
+<pre>- maps ...map[string]string
+the maps passed to this method to create a StringValueMap with.
+</pre>
+<p>
+Returns *CredentialParams
+the CredentialParams created.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromString">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=3538:3603#L100">NewCredentialParamsFromString</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromString(line <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Creates a new CredentialParams object filled with key-value pairs serialized as a string.
+Parameters:
+</p>
+<pre>- line string
+a string with serialized key-value pairs as &#34;key1=value1;key2=value2;...&#34; Example: &#34;Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z&#34;
+</pre>
+<p>
+Returns *CredentialParams
+a new CredentialParams object.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromTuples">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=2562:2637#L76">NewCredentialParamsFromTuples</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromTuples">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromTuples(tuples ...interface{}) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Creates a new CredentialParams object filled with provided key-value pairs called tuples. Tuples parameters contain a sequence of key1, value1, key2, value2, ... pairs.
+Parameters:
+</p>
+<pre>- tuples ...interface{}
+the tuples to fill a new CredentialParams object.
+</pre>
+<p>
+Returns *CredentialParams
+a new CredentialParams object.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromTuplesArray">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=3032:3111#L88">NewCredentialParamsFromTuplesArray</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromTuplesArray">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromTuplesArray(tuples []interface{}) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Static method for creating a CredentialParams from an array of tuples.
+Parameters:
+</p>
+<pre>- tuples []interface{}
+the key-value tuples array to initialize the new StringValueMap with.
+</pre>
+<p>
+Returns CredentialParams
+the CredentialParams created and filled by the &#39;tuples&#39; array provided.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewCredentialParamsFromValue">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=2065:2135#L64">NewCredentialParamsFromValue</a>
+					<a class="permalink" href="index.html#NewCredentialParamsFromValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialParamsFromValue(value interface{}) *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Method that creates a ConfigParams object based on the values that are stored in the &#39;value&#39; object&#39;s properties.
+Parameters:
+</p>
+<pre>- value interface{}
+configuration parameters in the form of an object with properties.
+</pre>
+<p>
+Returns *ConfigParams
+generated ConfigParams.
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewEmptyCredentialParams">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=1274:1323#L41">NewEmptyCredentialParams</a>
+					<a class="permalink" href="index.html#NewEmptyCredentialParams">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyCredentialParams() *<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Creates a new credential parameters and fills it with values.
+Returns *CredentialParams
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewManyCredentialParamsFromConfig">func <a href="http://localhost:6060/src/auth/CredentialParams.go?s=4500:4587#L124">NewManyCredentialParamsFromConfig</a>
+					<a class="permalink" href="index.html#NewManyCredentialParamsFromConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewManyCredentialParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) []*<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Retrieves all CredentialParams from configuration parameters from &#34;credentials&#34; section. If &#34;credential&#34; section is present instead, than it returns a list with only one CredentialParams.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+a configuration parameters to retrieve credentials
+</pre>
+<p>
+Returns []*CredentialParams
+a list of retrieved CredentialParams
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CredentialParams.AccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7564:7608#L221">AccessId</a>
+					<a class="permalink" href="index.html#CredentialParams.AccessId">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) AccessId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets the application access id. The value can be stored in parameters &#34;access_id&#34; pr &#34;client_id&#34;
+Returns string
+the application access id.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.AccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8092:8137#L240">AccessKey</a>
+					<a class="permalink" href="index.html#CredentialParams.AccessKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) AccessKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets the application secret key. The value can be stored in parameters &#34;access_key&#34;, &#34;client_key&#34; or &#34;secret_key&#34;.
+Returns string
+the application secret key.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.Password">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7079:7123#L202">Password</a>
+					<a class="permalink" href="index.html#CredentialParams.Password">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) Password() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Get the user password. The value can be stored in parameters &#34;password&#34; or &#34;pass&#34;.
+Returns string
+the user password.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.SetAccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7840:7892#L233">SetAccessId</a>
+					<a class="permalink" href="index.html#CredentialParams.SetAccessId">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetAccessId(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets the application access id.
+Parameters:
+</p>
+<pre>- value: string
+a new application access id.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.SetAccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8375:8428#L252">SetAccessKey</a>
+					<a class="permalink" href="index.html#CredentialParams.SetAccessKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetAccessKey(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets the application secret key.
+Parameters
+</p>
+<pre>- value string
+a new application secret key.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.SetPassword">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7332:7384#L214">SetPassword</a>
+					<a class="permalink" href="index.html#CredentialParams.SetPassword">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetPassword(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets the user password.
+Parameters:
+</p>
+<pre>- value string
+a new user password.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.SetStoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6420:6472#L176">SetStoreKey</a>
+					<a class="permalink" href="index.html#CredentialParams.SetStoreKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetStoreKey(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets the key to retrieve these parameters from CredentialStore.
+Parameters:
+</p>
+<pre>- value string
+a new key to retrieve credentials.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.SetUsername">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6869:6921#L195">SetUsername</a>
+					<a class="permalink" href="index.html#CredentialParams.SetUsername">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetUsername(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Sets the user name.
+Parameters:
+</p>
+<pre>- value string
+a new user name.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.StoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6193:6237#L168">StoreKey</a>
+					<a class="permalink" href="index.html#CredentialParams.StoreKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) StoreKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets the key to retrieve these credentials from CredentialStore. If this key is null, than all parameters are already present.
+Returns string
+the store key to retrieve credentials.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.UseCredentialStore">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=5904:5956#L161">UseCredentialStore</a>
+					<a class="permalink" href="index.html#CredentialParams.UseCredentialStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) UseCredentialStore() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Checks if these credential parameters shall be retrieved from CredentialStore. The credential parameters are redirected to CredentialStore when store_key parameter is set.
+Returns bool
+true if credentials shall be retrieved from CredentialStore
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialParams.Username">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6624:6668#L183">Username</a>
+					<a class="permalink" href="index.html#CredentialParams.Username">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) Username() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Gets the user name. The value can be stored in parameters &#34;username&#34; or &#34;user&#34;.
+Returns string
+the user name.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CredentialResolver">type <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1314:1412#L37">CredentialResolver</a>
+				<a class="permalink" href="index.html#CredentialResolver">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Helper class to retrieve component credentials.
+</p>
+<p>
+If credentials are configured to be retrieved from ICredentialStore, it automatically locates ICredentialStore in component references and retrieve credentials from there using store_key parameter.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>credential:
+
+  store_key: (optional) a key to retrieve the credentials from ICredentialStore
+    ... other credential parameters
+  credentials: alternative to credential
+
+    [credential params 1]: first credential parameters
+    ... credential parameters for key 1
+    ...
+    [credential params N]: Nth credential parameters
+    ... credential parameters for key N
+</pre>
+<p>
+References
+*:credential-store:*:*:1.0 (optional) Credential stores to resolve credentials
+see
+CredentialParams
+</p>
+<p>
+see
+ICredentialStore
+</p>
+<p>
+Example
+</p>
+<pre>config := NewConfigParamsFromTuples(
+    &#34;credential.user&#34;, &#34;jdoe&#34;,
+    &#34;credential.pass&#34;,  &#34;pass123&#34;
+);
+
+credentialResolver := NewCredentialResolver();
+credentialResolver.Configure(config);
+credentialResolver.SetReferences(references);
+
+credentialResolver.Lookup(&#34;123&#34;, (err, credential) =&gt; {
+    // Now use credential...
+});
+</pre>
+
+			<pre>type CredentialResolver struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1879:1985#L58">NewCredentialResolver</a>
+					<a class="permalink" href="index.html#NewCredentialResolver">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCredentialResolver(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>,
+    references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>) *<a href="index.html#CredentialResolver">CredentialResolver</a></pre>
+				<p>
+Creates a new instance of credentials resolver.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+component configuration parameters
+- references refer.IReferences
+component references
+</pre>
+<p>
+Returns *CredentialResolver
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewEmptyCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1496:1549#L44">NewEmptyCredentialResolver</a>
+					<a class="permalink" href="index.html#NewEmptyCredentialResolver">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyCredentialResolver() *<a href="index.html#CredentialResolver">CredentialResolver</a></pre>
+				<p>
+Creates a new instance of credentials resolver.
+Returns *CredentialResolver
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CredentialResolver.Add">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3261:3323#L104">Add</a>
+					<a class="permalink" href="index.html#CredentialResolver.Add">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) Add(credential *<a href="index.html#CredentialParams">CredentialParams</a>)</pre>
+				<p>
+Adds a new credential to component credentials
+Parameters:
+</p>
+<pre>- credential *CredentialParams
+new credential parameters to be added
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialResolver.Configure">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2295:2362#L76">Configure</a>
+					<a class="permalink" href="index.html#CredentialResolver.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialResolver.GetAll">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3032:3089#L96">GetAll</a>
+					<a class="permalink" href="index.html#CredentialResolver.GetAll">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) GetAll() []*<a href="index.html#CredentialParams">CredentialParams</a></pre>
+				<p>
+Gets all credentials configured in component configuration.
+Redirect to CredentialStores is not done at this point. If you need fully fleshed credential use lookup method instead.
+Returns []*CredentialParams
+a list with credential parameters
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialResolver.Lookup">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=4491:4575#L145">Lookup</a>
+					<a class="permalink" href="index.html#CredentialResolver.Lookup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) Lookup(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (*<a href="index.html#CredentialParams">CredentialParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Looks up component credential parameters. If credentials are configured to be retrieved from Credential store it finds a ICredentialStore and lookups credentials there.
+Parameters:
+</p>
+<pre>- correlationId string
+</pre>
+<p>
+(optional) transaction id to trace execution through call chain.
+Returns *CredentialParams? error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CredentialResolver.SetReferences">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2673:2745#L88">SetReferences</a>
+					<a class="permalink" href="index.html#CredentialResolver.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+Sets references to dependent components.
+Parameters:
+</p>
+<pre>- references refer.IReferences
+references to locate the component dependencies.
+</pre>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ICredentialStore">type <a href="http://localhost:6060/src/auth/ICredentialStore.go?s=142:418#L1">ICredentialStore</a>
+				<a class="permalink" href="index.html#ICredentialStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Interface for credential stores which are used to store and lookup credentials to authenticate against external services.
+</p>
+
+			<pre>type ICredentialStore interface {
+    <span class="comment">// Stores credential parameters into the store.</span>
+    Store(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, credential *<a href="index.html#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+    <span class="comment">// Lookups credential parameters by its key.</span>
+    Lookup(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (*<a href="index.html#CredentialParams">CredentialParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MemoryCredentialStore">type <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=661:734#L24">MemoryCredentialStore</a>
+				<a class="permalink" href="index.html#MemoryCredentialStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Credential store that keeps credentials in memory.
+</p>
+<p>
+Configuration parameters
+</p>
+<pre>[credential key 1]:
+... credential parameters for key 1
+[credential key 2]:
+... credential parameters for key N
+...
+</pre>
+<p>
+see
+ICredentialStore
+</p>
+<p>
+see
+CredentialParams
+</p>
+<p>
+Example
+</p>
+<pre>config := NewConfigParamsFromTuples(
+    &#34;key1.user&#34;, &#34;jdoe&#34;,
+    &#34;key1.pass&#34;, &#34;pass123&#34;,
+    &#34;key2.user&#34;, &#34;bsmith&#34;,
+    &#34;key2.pass&#34;, &#34;mypass&#34;
+);
+
+credentialStore := NewEmptyMemoryCredentialStore();
+credentialStore.ReadCredentials(config);
+res, err := credentialStore.Lookup(&#34;123&#34;, &#34;key1&#34;);
+</pre>
+
+			<pre>type MemoryCredentialStore struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyMemoryCredentialStore">func <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=821:880#L30">NewEmptyMemoryCredentialStore</a>
+					<a class="permalink" href="index.html#NewEmptyMemoryCredentialStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyMemoryCredentialStore() *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a></pre>
+				<p>
+Creates a new instance of the credential store.
+Returns *MemoryCredentialStore
+</p>
+
+				
+				
+			
+				
+				<h3 id="NewMemoryCredentialStore">func <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1144:1225#L41">NewMemoryCredentialStore</a>
+					<a class="permalink" href="index.html#NewMemoryCredentialStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewMemoryCredentialStore(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a></pre>
+				<p>
+Creates a new instance of the credential store.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+configuration with credential parameters.
+</pre>
+<p>
+Returns *MemoryCredentialStore
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="MemoryCredentialStore.Configure">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1512:1582#L57">Configure</a>
+					<a class="permalink" href="index.html#MemoryCredentialStore.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+</pre>
+<p>
+configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryCredentialStore.Lookup">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=2955:3066#L105">Lookup</a>
+					<a class="permalink" href="index.html#MemoryCredentialStore.Lookup">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) Lookup(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#CredentialParams">CredentialParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Lookups credential parameters by its key.
+Parameters:
+</p>
+<pre>- correlationId string
+ transaction id to trace execution through call chain.
+- key string
+a key to uniquely identify the credential parameters.
+</pre>
+<p>
+Return result *CredentialParams, err error
+result of lookup and error message
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryCredentialStore.ReadCredentials">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1813:1889#L65">ReadCredentials</a>
+					<a class="permalink" href="index.html#MemoryCredentialStore.ReadCredentials">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) ReadCredentials(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Reads credentials from configuration parameters. Each section represents an individual CredentialParams
+Parameters:
+</p>
+<pre>- config *config.ConfigParams
+configuration parameters to be read
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryCredentialStore.Store">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=2430:2538#L85">Store</a>
+					<a class="permalink" href="index.html#MemoryCredentialStore.Store">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) Store(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    credential *<a href="index.html#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+Stores credential parameters into the store.
+Parameters:
+</p>
+<pre>- correlationId string
+transaction id to trace execution through call chain.
+- key string
+a key to uniquely identify the credential parameters.
+- credential *CredentialParams
+a credential parameters to be stored.
+</pre>
+<p>
+Return error
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
