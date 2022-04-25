@@ -1,56 +1,52 @@
 package build
 
-/*
-Basic component factory that creates components using registered types and factory functions.
-
-Example
-  factory := NewFactory();
-  factory.RegisterAsType(
-      NewDescriptor("mygroup", "mycomponent1", "default", "*", "1.0"),
-      MyComponent1
-  );
-  factory.Register(
-      NewDescriptor("mygroup", "mycomponent2", "default", "*", "1.0"),
-      (locator){
-          return NewMyComponent2();
-      }
-  );
-
-  factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
-  factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
-*/
+// Basic component factory that creates components using registered types and factory functions.
+//	Example:
+//		factory := NewFactory();
+//		factory.RegisterAsType(
+//			NewDescriptor("mygroup", "mycomponent1", "default", "*", "1.0"),
+//			MyComponent1
+//		);
+//		factory.Register(
+//			NewDescriptor("mygroup", "mycomponent2", "default", "*", "1.0"),
+//			(locator){
+//				return NewMyComponent2();
+//			}
+//		);
+//
+//		factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
+//		factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
 
 import (
 	refl "reflect"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/convert"
-	"github.com/pip-services3-go/pip-services3-commons-go/data"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/convert"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/data"
 )
 
 type registration struct {
-	locator interface{}
-	factory func() interface{}
+	locator any
+	factory func() any
 }
 
 type Factory struct {
-	registrations []*registration
+	_registrations []*registration
 }
 
-// Create new factory
-// Return *Factory
+// NewFactory create new factory
+// Returns: *Factory
 func NewFactory() *Factory {
 	return &Factory{
-		registrations: []*registration{},
+		_registrations: []*registration{},
 	}
 }
 
-// Registers a component using a factory method.
-// Parameters:
-//   - locator interface{}
-//   a locator to identify component to be created.
-//   factory func() interface{}
-//   a factory function that receives a locator and returns a created component.
-func (c *Factory) Register(locator interface{}, factory func() interface{}) {
+// Register registers a component using a factory method.
+//	Parameters:
+//		- locator any a locator to identify component to be created.
+//		- factory func() any a factory function that receives a
+//			locator and returns a created component.
+func (c *Factory) Register(locator any, factory func() any) {
 	if locator == nil {
 		panic("Locator cannot be nil")
 	}
@@ -58,19 +54,17 @@ func (c *Factory) Register(locator interface{}, factory func() interface{}) {
 		panic("Factory cannot be nil")
 	}
 
-	c.registrations = append(c.registrations, &registration{
+	c._registrations = append(c._registrations, &registration{
 		locator: locator,
 		factory: factory,
 	})
 }
 
-// Registers a component using its type (a constructor function).
-// Parameters:
-//   - locator interface{}
-//   a locator to identify component to be created.
-//   - factory interface{}
-//   a factory.
-func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
+// RegisterType registers a component using its type (a constructor function).
+//	Parameters:
+//		- locator any a locator to identify component to be created.
+//		- factory any a factory.
+func (c *Factory) RegisterType(locator any, factory any) {
 	if locator == nil {
 		panic("Locator cannot be nil")
 	}
@@ -83,24 +77,22 @@ func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
 		panic("Factory must be parameterless function")
 	}
 
-	c.Register(locator, func() interface{} {
+	c.Register(locator, func() any {
 		return val.Call([]refl.Value{})[0].Interface()
 	})
 }
 
-// Checks if this factory is able to create component by given locator.
-// This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
-// Parameters:
-//   - locator interface{}
-//   a locator to identify component to be created.
-// Returns interface{}
-// a locator for a component that the factory is able to create.
-func (c *Factory) CanCreate(locator interface{}) interface{} {
-	for _, registration := range c.registrations {
+// CanCreate checks if this factory is able to create component by given locator.
+// This method searches for all registered components and returns a locator for
+// component it is able to create that matches the given locator.
+// If the factory is not able to create a requested component is returns null.
+//	Parameters: locator any a locator to identify component to be created.
+//	Returns: any a locator for a component that the factory is able to create.
+func (c *Factory) CanCreate(locator any) any {
+	for _, registration := range c._registrations {
 		thisLocator := registration.locator
 
-		equatable, ok := thisLocator.(data.IEquatable)
-		if ok && equatable.Equals(locator) {
+		if equatable, ok := thisLocator.(data.IEquatable); ok && equatable.Equals(locator) {
 			return thisLocator
 		}
 
@@ -113,18 +105,17 @@ func (c *Factory) CanCreate(locator interface{}) interface{} {
 
 // Creates a component identified by given locator.
 // Parameters:
-//   - locator interface{}
+//   - locator any
 //   a locator to identify component to be created.
-// Returns interface{}, error
+// Returns any, error
 // the created component and a CreateError if the factory is not able to create the component.
-func (c *Factory) Create(locator interface{}) (interface{}, error) {
-	var factory func() interface{}
+func (c *Factory) Create(locator any) (any, error) {
+	var factory func() any
 
-	for _, registration := range c.registrations {
+	for _, registration := range c._registrations {
 		thisLocator := registration.locator
 
-		equatable, ok := thisLocator.(data.IEquatable)
-		if ok && equatable.Equals(locator) {
+		if equatable, ok := thisLocator.(data.IEquatable); ok && equatable.Equals(locator) {
 			factory = registration.factory
 			break
 		}
@@ -141,15 +132,14 @@ func (c *Factory) Create(locator interface{}) (interface{}, error) {
 
 	var err error
 
-	obj := func() interface{} {
+	obj := func() any {
 		defer func() {
 			if r := recover(); r != nil {
 				tempMessage := convert.StringConverter.ToString(r)
 				tempError := NewCreateError("", tempMessage)
 
-				cause, ok := r.(error)
-				if ok {
-					tempError.WithCause(cause)
+				if cause, ok := r.(error); ok {
+					_ = tempError.WithCause(cause)
 				}
 
 				err = tempError

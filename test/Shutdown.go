@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
 type Shutdown struct {
