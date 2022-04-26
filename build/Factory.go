@@ -103,12 +103,10 @@ func (c *Factory) CanCreate(locator any) any {
 	return nil
 }
 
-// Creates a component identified by given locator.
-// Parameters:
-//   - locator any
-//   a locator to identify component to be created.
-// Returns any, error
-// the created component and a CreateError if the factory is not able to create the component.
+// Create a component identified by given locator.
+//	Parameters: locator any a locator to identify component to be created.
+//	Returns: any, error the created component and a CreateError if the factory
+//		is not able to create the component.
 func (c *Factory) Create(locator any) (any, error) {
 	var factory func() any
 

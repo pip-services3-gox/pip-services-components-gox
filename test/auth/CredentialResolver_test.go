@@ -1,9 +1,10 @@
 package test_auth
 
 import (
+	"context"
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-components-gox/auth"
 	"github.com/stretchr/testify/assert"
 )
@@ -29,8 +30,8 @@ func TestCredentialResolverConfigure(t *testing.T) {
 func TestCredentialResolverLookup(t *testing.T) {
 	credentialResolver := auth.NewEmptyCredentialResolver()
 
-	credential, err := credentialResolver.Lookup("")
-	assert.Nil(t, err)
+	credential, err := credentialResolver.Lookup(context.Background(), "")
+	assert.NotNil(t, err)
 	assert.Nil(t, credential)
 
 	restConfigWithoutStoreKey := config.NewConfigParamsFromTuples(
@@ -40,7 +41,7 @@ func TestCredentialResolverLookup(t *testing.T) {
 	)
 	credentialResolver = auth.NewCredentialResolver(restConfigWithoutStoreKey, nil)
 
-	credential, err = credentialResolver.Lookup("")
+	credential, err = credentialResolver.Lookup(context.Background(), "")
 	assert.Nil(t, err)
 	assert.NotNil(t, credential)
 	assert.Equal(t, "Negrienko", credential.Username())
@@ -56,7 +57,7 @@ func TestCredentialResolverLookup(t *testing.T) {
 	)
 	credentialResolver = auth.NewCredentialResolver(restConfig, nil)
 
-	credential, err = credentialResolver.Lookup("")
-	assert.Nil(t, err)
+	credential, err = credentialResolver.Lookup(context.Background(), "")
+	assert.NotNil(t, err)
 	assert.Nil(t, credential)
 }

@@ -1,11 +1,13 @@
 package auth
 
-/*
-Interface for credential stores which are used to store and lookup credentials to authenticate against external services.
-*/
+import "context"
+
+// ICredentialStore Interface for credential stores which are used to store and lookup
+// credentials to authenticate against external services.
 type ICredentialStore interface {
-	// Stores credential parameters into the store.
-	Store(correlationId string, key string, credential *CredentialParams) error
-	// Lookups credential parameters by its key.
-	Lookup(correlationId string, key string) (*CredentialParams, error)
+	// Store stores credential parameters into the store.
+	Store(ctx context.Context, correlationId string, key string, credential *CredentialParams) error
+
+	// Lookup lookups credential parameters by its key.
+	Lookup(ctx context.Context, correlationId string, key string) (*CredentialParams, error)
 }

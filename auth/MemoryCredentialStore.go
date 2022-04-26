@@ -1,56 +1,49 @@
 package auth
 
 import (
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"context"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 )
 
-/*
-Credential store that keeps credentials in memory.
-
-Configuration parameters
-  [credential key 1]:
-  ... credential parameters for key 1
-  [credential key 2]:
-  ... credential parameters for key N
-  ...
-see
-ICredentialStore
-
-see
-CredentialParams
-
-Example
-  config := NewConfigParamsFromTuples(
-      "key1.user", "jdoe",
-      "key1.pass", "pass123",
-      "key2.user", "bsmith",
-      "key2.pass", "mypass"
-  );
-
-  credentialStore := NewEmptyMemoryCredentialStore();
-  credentialStore.ReadCredentials(config);
-  res, err := credentialStore.Lookup("123", "key1");
-*/
+// MemoryCredentialStore Credential store that keeps credentials in memory.
+//	Configuration parameters:
+//		[credential key 1]:
+//		... credential parameters for key 1
+//		[credential key 2]:
+//		... credential parameters for key N
+//		...
+//	see ICredentialStore
+//	see CredentialParams
+//
+//	Example:
+//		config := NewConfigParamsFromTuples(
+//			"key1.user", "jdoe",
+//			"key1.pass", "pass123",
+//			"key2.user", "bsmith",
+//			"key2.pass", "mypass"
+//		);
+//		credentialStore := NewEmptyMemoryCredentialStore();
+//		credentialStore.ReadCredentials(config);
+//		res, err := credentialStore.Lookup("123", "key1");
 type MemoryCredentialStore struct {
 	items map[string]*CredentialParams
 }
 
-// Creates a new instance of the credential store.
-// Returns *MemoryCredentialStore
+// NewEmptyMemoryCredentialStore creates a new instance of the credential store.
+//	Returns: *MemoryCredentialStore
 func NewEmptyMemoryCredentialStore() *MemoryCredentialStore {
 	return &MemoryCredentialStore{
-		items: map[string]*CredentialParams{},
+		items: make(map[string]*CredentialParams),
 	}
 }
 
-// Creates a new instance of the credential store.
-// Parameters:
-//   - config *config.ConfigParams
-//   configuration with credential parameters.
-// Returns *MemoryCredentialStore
+// NewMemoryCredentialStore creates a new instance of the credential store.
+//	Parameters: config *config.ConfigParams configuration with credential parameters.
+//	Returns: *MemoryCredentialStore
 func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStore {
 	c := &MemoryCredentialStore{
-		items: map[string]*CredentialParams{},
+		items: make(map[string]*CredentialParams),
 	}
 
 	if config != nil {
@@ -60,20 +53,17 @@ func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStor
 	return c
 }
 
-// Configures component by passing configuration parameters.
-// Parameters:
-//   - config *config.ConfigParams
-// configuration parameters to be set.
+// Configure configures component by passing configuration parameters.
+//	Parameters: config *config.ConfigParams configuration parameters to be set.
 func (c *MemoryCredentialStore) Configure(config *config.ConfigParams) {
 	c.ReadCredentials(config)
 }
 
-// Reads credentials from configuration parameters. Each section represents an individual CredentialParams
-// Parameters:
-//   - config *config.ConfigParams
-//   configuration parameters to be read
+// ReadCredentials reads credentials from configuration parameters.
+// Each section represents an individual CredentialParams
+//	Parameters: config *config.ConfigParams configuration parameters to be read
 func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams) {
-	c.items = map[string]*CredentialParams{}
+	c.items = make(map[string]*CredentialParams)
 
 	keys := config.Keys()
 	for _, key := range keys {
@@ -83,16 +73,14 @@ func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams) {
 	}
 }
 
-// Stores credential parameters into the store.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - key string
-//   a key to uniquely identify the credential parameters.
-//   - credential *CredentialParams
-//   a credential parameters to be stored.
-// Return error
-func (c *MemoryCredentialStore) Store(correlationId string, key string,
+// Store credential parameters into the store.
+//	Parameters:
+//		- ctx context.Context.
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a key to uniquely identify the credential parameters.
+//		- credential *CredentialParams a credential parameters to be stored.
+//	Returns: error
+func (c *MemoryCredentialStore) Store(ctx context.Context, correlationId string, key string,
 	credential *CredentialParams) error {
 
 	if credential != nil {
@@ -104,16 +92,19 @@ func (c *MemoryCredentialStore) Store(correlationId string, key string,
 	return nil
 }
 
-// Lookups credential parameters by its key.
-// Parameters:
-//   - correlationId string
-//    transaction id to trace execution through call chain.
-//   - key string
-//   a key to uniquely identify the credential parameters.
-// Return result *CredentialParams, err error
-// result of lookup and error message
-func (c *MemoryCredentialStore) Lookup(correlationId string,
+// Lookup credential parameters by its key.
+//	Parameters:
+//		- ctx context.Context.
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a key to uniquely identify the credential parameters.
+//	Returns: result *CredentialParams, err error result of lookup and error message
+func (c *MemoryCredentialStore) Lookup(ctx context.Context, correlationId string,
 	key string) (result *CredentialParams, err error) {
-	credential, _ := c.items[key]
-	return credential, nil
+
+	if credential, ok := c.items[key]; ok && credential != nil {
+		return credential, nil
+	}
+
+	return nil, errors.NewConfigError(
+		correlationId, "MISSING_CREDENTIALS", "missing credential param: "+key)
 }
