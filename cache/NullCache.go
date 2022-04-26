@@ -1,62 +1,57 @@
 package cache
 
-/*
-Dummy cache implementation that doesn't do anything.
+import "context"
 
-It can be used in testing or in situations when cache is required but shall be disabled.
-*/
-type NullCache struct{}
+// NullCache Dummy cache implementation that doesn't do anything.
+// It can be used in testing or in situations when cache is required but shall be disabled.
+type NullCache[T any] struct{}
 
-// Creates a new instance of the cache.
-// Returns *NullCache
-func NewNullCache() *NullCache {
-	return &NullCache{}
+// NewNullCache creates a new instance of the cache.
+//	Returns: *NullCache
+func NewNullCache[T any]() *NullCache[T] {
+	return &NullCache[T]{}
 }
 
-// Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - key string
-//   a unique value key.
-// Returns interface{}, error
-func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, error) {
-	return nil, nil
+// Retrieve retrieves cached value from the cache using its key.
+// If value is missing in the cache or expired it returns null.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a unique value key.
+//	Returns: T, error
+func (c *NullCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error) {
+	var defaultValue T
+	return defaultValue, nil
 }
 
-// Retrieve cached value from the cache using its key and restore into reference object. If value is missing in the cache or expired it returns false.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - key string   a unique value key.
-//   - refObj       pointer to object for restore
-// Returns bool, error
-func (c *NullCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
-	return false, nil
-}
-
-// Stores value in the cache with expiration time, if success return stored value.
-// Parameters:
-//   - correlationId string
-//    transaction id to trace execution through call chain.
-//   - key string
-//   a unique value key.
-//   - value interface{}
-//   a value to store.
-//   - timeout int64
-//   expiration timeout in milliseconds.
-// Returns interface{}, error
-func (c *NullCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error) {
+// Store value in the cache with expiration time, if success return stored value.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a unique value key.
+//		- value T a value to store.
+//		- timeout int64 expiration timeout in milliseconds.
+//	Returns T, error
+func (c *NullCache[T]) Store(ctx context.Context, correlationId string, key string, value T, timeout int64) (T, error) {
 	return value, nil
 }
 
-// Removes a value from the cache by its key.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.\
-//   - key string
-//   a unique value key.
-// Returns error
-func (c *NullCache) Remove(correlationId string, key string) error {
+// Remove a value from the cache by its key.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.\
+//		- key string a unique value key.
+//	Returns: error
+func (c *NullCache[T]) Remove(ctx context.Context, correlationId string, key string) error {
 	return nil
+}
+
+// Contains check is value contains in cache and time not expire.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.\
+//		- key string a unique value key.
+//	Returns: bool
+func (c *NullCache[T]) Contains(ctx context.Context, correlationId string, key string) bool {
+	return false
 }

@@ -1,6 +1,7 @@
 package test_cache
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,19 +10,13 @@ import (
 )
 
 func TestNullCache(t *testing.T) {
-	cache := cache.NewNullCache()
+	_cache := cache.NewNullCache[any]()
 
-	value, err := cache.Retrieve("", "key1")
+	value, err := _cache.Retrieve(context.Background(), "", "key1")
 	assert.Nil(t, value)
 	assert.Nil(t, err)
 
-	var str string
-	ok, err := cache.RetrieveAs("", "key1", &str)
-	assert.False(t, ok)
-	assert.Equal(t, str, "")
-	assert.Nil(t, err)
-
-	value, err = cache.Store("", "key1", "value1", 0)
+	value, err = _cache.Store(context.Background(), "", "key1", "value1", 0)
 	assert.Equal(t, "value1", value)
 	assert.Nil(t, err)
 }

@@ -1,73 +1,70 @@
 package cache
 
 import (
+	"context"
 	"encoding/json"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
+	"strings"
 	"sync"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
-/*
-Cache that stores values in the process memory.
-
-Remember: This implementation is not suitable for synchronization of distributed processes.
-
-Configuration parameters
-  options:
-    timeout: default caching timeout in milliseconds (default: 1 minute)
-    max_size: maximum number of values stored in this cache (default: 1000)
-see
-ICache
-
-Example
-  cache := NewMemoryCache();
-  res, err := cache.Store("123", "key1", "ABC", 10000);
-*/
-type MemoryCache struct {
-	cache   map[string]*CacheEntry
-	lock    *sync.Mutex
+// MemoryCache that stores values in the process memory.
+//	Configuration parameters:
+//		options:
+//		timeout: default caching timeout in milliseconds (default: 1 minute)
+//		max_size: maximum number of values stored in this cache (default: 1000)
+//	see ICache
+//	Example:
+//		cache := NewMemoryCache[string]();
+//		res, err := cache.Store("123", "key1", "ABC", 10000);
+type MemoryCache[T any] struct {
+	cache   map[string]*CacheEntry[string]
+	mtx     *sync.Mutex
 	timeout int64
 	maxSize int
 }
 
-// Creates a new instance of the cache.
-// Returns *MemoryCache
-func NewMemoryCache() *MemoryCache {
-	return &MemoryCache{
-		cache:   map[string]*CacheEntry{},
-		lock:    &sync.Mutex{},
+// NewMemoryCache creates a new instance of the cache.
+//	Returns: *MemoryCache
+func NewMemoryCache[T any]() *MemoryCache[T] {
+	return &MemoryCache[T]{
+		cache:   map[string]*CacheEntry[string]{},
+		mtx:     &sync.Mutex{},
 		timeout: 60000,
 		maxSize: 1000,
 	}
 }
 
-// Creates a new instance of the cache.
-// Parameters
-//   - cfg *config.ConfigParams
-//   configuration parameters to be set.
-// Returns *MemoryCache
-func NewMemoryCacheFromConfig(cfg *config.ConfigParams) *MemoryCache {
-	c := NewMemoryCache()
+// NewMemoryCacheFromConfig creates a new instance of the cache.
+//	Parameters: cfg *config.ConfigParams configuration parameters to be set.
+//	Returns: *MemoryCache
+func NewMemoryCacheFromConfig[T any](cfg *config.ConfigParams) *MemoryCache[T] {
+	c := NewMemoryCache[T]()
 	c.Configure(cfg)
 	return c
 }
 
-// Configures component by passing configuration parameters.
-// Parameters:
-//   - config *config.ConfigParams
-//   configuration parameters to be set.
-func (c *MemoryCache) Configure(cfg *config.ConfigParams) {
+// Configure configures component by passing configuration parameters.
+//	Parameters: config *config.ConfigParams configuration parameters to be set.
+func (c *MemoryCache[T]) Configure(cfg *config.ConfigParams) {
 	c.timeout = cfg.GetAsLongWithDefault("timeout", c.timeout)
 	c.maxSize = cfg.GetAsIntegerWithDefault("max_size", c.maxSize)
 }
 
-// Cleanup memory cache
-func (c *MemoryCache) Cleanup() {
-	var oldest *CacheEntry
-	var keysToRemove = []string{}
+// Cleanup memory cache, public thread save method
+func (c *MemoryCache[T]) Cleanup() {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
 
-	c.lock.Lock()
-	defer c.lock.Unlock()
+	c.cleanup()
+}
+
+// Cleanup memory cache, not thread save
+func (c *MemoryCache[T]) cleanup() {
+	var oldest *CacheEntry[string]
+	var keysToRemove = make([]string, 0)
 
 	for key, value := range c.cache {
 		if value.IsExpired() {
@@ -87,147 +84,146 @@ func (c *MemoryCache) Cleanup() {
 	}
 }
 
-// Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
+// Retrieve cached value from the cache using its key.
+// If value is missing in the cache or expired it returns null.
 // Parameters:
-//   - correlationId string
-//    transaction id to trace execution through call chain.
-//   - key string
-//   a unique value key.
-// Returns interface{}, error
-func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, error) {
-	if key == "" {
-		panic("Key cannot be empty")
-	}
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a unique value key.
+//	Returns T, error
+func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error) {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+	var defaultValue T
 
-	c.lock.Lock()
-	defer c.lock.Unlock()
+	key = strings.Trim(key, " ")
+
+	if key == "" {
+		return defaultValue, errors.NewInvalidStateError(
+			correlationId,
+			"INVALID_KEY",
+			"key can not be empty string",
+		)
+	}
 
 	entry := c.cache[key]
 	if entry != nil {
 		if entry.IsExpired() {
 			delete(c.cache, key)
-			return nil, nil
+			return defaultValue, nil
 		}
-		var value interface{}
-		err := json.Unmarshal((entry.Value()).([]byte), &value)
+		var value T
+		err := json.Unmarshal([]byte(entry.Value()), &value)
 		if err != nil {
-			return nil, err
+			return defaultValue, err
 		}
 		return value, nil
 	}
-	return nil, nil
+	return defaultValue, nil
 }
 
-// Retrive cached value from the cache using its key and restore into reference object. If value is missing in the cache or expired it returns false.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - key string   a unique value key.
-//   - refObj       pointer to object for restore
-// Returns bool, error
-func (c *MemoryCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
+// Store value in the cache with expiration time, if success return stored value.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- key string a unique value key.
+//		- value T a value to store.
+//		- timeout int64 expiration timeout in milliseconds.
+//	Returns T, error
+func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string,
+	key string, value T, timeout int64) (T, error) {
+
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+
+	var defaultValue T
+
+	key = strings.Trim(key, " ")
 	if key == "" {
-		panic("Key cannot be empty")
+		return value, errors.NewInvalidStateError(
+			correlationId,
+			"INVALID_KEY",
+			"key can not be empty string",
+		)
 	}
-
-	c.lock.Lock()
-	defer c.lock.Unlock()
-
-	entry := c.cache[key]
-	if entry != nil {
-		if entry.IsExpired() {
-			delete(c.cache, key)
-			return false, nil
-		}
-		err := json.Unmarshal((entry.Value()).([]byte), refObj)
-		if err != nil {
-			return false, err
-		}
-		return true, nil
-	}
-	return false, nil
-}
-
-// Stores value in the cache with expiration time, if success return stored value.
-// Parameters:
-//   - correlationId string
-//    transaction id to trace execution through call chain.
-//   - key string
-//   a unique value key.
-//   - value interface{}
-//   a value to store.
-//   - timeout int64
-//   expiration timeout in milliseconds.
-// Returns interface{}, error
-func (c *MemoryCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error) {
-	if key == "" {
-		panic("Key cannot be empty")
-	}
-
-	c.lock.Lock()
-	defer c.lock.Unlock()
 
 	entry := c.cache[key]
 	if timeout <= 0 {
 		timeout = c.timeout
 	}
 
-	// if value == nil {
-	// 	if entry != nil {
-	// 		delete(c.cache, key)
-	// 	}
-	// 	return nil, nil
-	// }
-
 	jsonVal, err := json.Marshal(value)
-
 	if err != nil {
-		return nil, err
+		return defaultValue, err
 	}
 
 	if entry != nil {
-		entry.SetValue(jsonVal, timeout)
+		entry.SetValue(string(jsonVal), timeout)
 	} else {
-		c.cache[key] = NewCacheEntry(key, jsonVal, timeout)
+		c.cache[key] = NewCacheEntry[string](key, string(jsonVal), timeout)
 	}
 
 	// cleanup
 	if c.maxSize > 0 && len(c.cache) > c.maxSize {
-		c.Cleanup()
+		c.cleanup()
 	}
 
 	return value, nil
 }
 
-// Removes a value from the cache by its key.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - key string
-//   a unique value key.
-// Returns error
-func (c *MemoryCache) Remove(correlationId string, key string) error {
-	if key == "" {
-		panic("Key cannot be empty")
-	}
+// Remove a value from the cache by its key.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.\
+//		- key string a unique value key.
+//	Returns: error
+func (c *MemoryCache[T]) Remove(correlationId string, key string) error {
 
-	c.lock.Lock()
-	defer c.lock.Unlock()
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+
+	key = strings.Trim(key, " ")
+	if key == "" {
+		return errors.NewInvalidStateError(
+			correlationId,
+			"INVALID_KEY",
+			"key can not be empty string",
+		)
+	}
 
 	delete(c.cache, key)
 
 	return nil
 }
 
+// Contains check is value contains in cache and time not expire.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.\
+//		- key string a unique value key.
+//	Returns: bool
+func (c *MemoryCache[T]) Contains(ctx context.Context, correlationId string, key string) bool {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+	if entry, ok := c.cache[key]; ok {
+		if entry.IsExpired() {
+			delete(c.cache, key)
+			return false
+		}
+		return true
+	}
+	return false
+}
+
 // Clear a value from the cache.
 // Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-func (c *MemoryCache) Clear(correlationId string) error {
-	c.lock.Lock()
-	defer c.lock.Unlock()
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+func (c *MemoryCache[T]) Clear(ctx context.Context, correlationId string) error {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
 
-	c.cache = map[string]*CacheEntry{}
+	c.cache = make(map[string]*CacheEntry[string])
 
 	return nil
 }
