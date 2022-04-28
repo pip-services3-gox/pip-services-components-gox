@@ -1,21 +1,18 @@
 package info
 
 import (
-	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 	"github.com/pip-services3-gox/pip-services3-components-gox/build"
 )
 
-/*
-Creates information components by their descriptors.
-*/
+// Creates information components by their descriptors.
 
 var ContextInfoDescriptor = refer.NewDescriptor("pip-services", "context-info", "default", "*", "1.0")
 var ContainerInfoDescriptor = refer.NewDescriptor("pip-services", "container-info", "default", "*", "1.0")
 var ContainerInfoDescriptor2 = refer.NewDescriptor("pip-services-container", "container-info", "default", "*", "1.0")
 
-// Create a new instance of the factory.
-// Returns *build.Factory
-
+// NewDefaultInfoFactory create a new instance of the factory.
+//	Returns: *build.Factory
 func NewDefaultInfoFactory() *build.Factory {
 	factory := build.NewFactory()
 

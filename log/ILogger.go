@@ -1,33 +1,34 @@
 package log
 
-/*
-Interface for logger components that capture execution log messages.
-*/
+import "context"
+
+// ILogger for logger components that capture execution log messages.
 type ILogger interface {
 
-	// Gets the maximum log level. Messages with higher log level are filtered out.
-	Level() int
+	// Level gets the maximum log level. Messages with higher log level are filtered out.
+	Level() LevelType
 
-	// Set the maximum log level.
-	SetLevel(value int)
+	// SetLevel set the maximum log level.
+	SetLevel(value LevelType)
 
-	// Logs a message at specified log level.
-	Log(level int, correlationId string, err error, message string, args ...interface{})
+	// Log logs a message at specified log level.
+	Log(ctx context.Context, level LevelType, correlationId string, err error, message string, args ...any)
 
-	// Logs fatal (unrecoverable) message that caused the process to crash.
-	Fatal(correlationId string, err error, message string, args ...interface{})
+	// Fatal logs fatal (unrecoverable) message that caused the process to crash.
+	Fatal(ctx context.Context, correlationId string, err error, message string, args ...any)
 
-	// Logs recoverable application error.
-	Error(correlationId string, err error, message string, args ...interface{})
-	// Logs a warning that may or may not have a negative impact.
-	Warn(correlationId string, message string, args ...interface{})
+	// Error logs recoverable application error.
+	Error(ctx context.Context, correlationId string, err error, message string, args ...any)
 
-	// Logs an important information message
-	Info(correlationId string, message string, args ...interface{})
+	// Warn logs a warning that may or may not have a negative impact.
+	Warn(ctx context.Context, correlationId string, message string, args ...any)
 
-	// Logs a high-level debug information for troubleshooting.
-	Debug(correlationId string, message string, args ...interface{})
+	// Info logs an important information message
+	Info(ctx context.Context, correlationId string, message string, args ...any)
 
-	// Logs a low-level debug information for troubleshooting.
-	Trace(correlationId string, message string, args ...interface{})
+	// Debug logs a high-level debug information for troubleshooting.
+	Debug(ctx context.Context, correlationId string, message string, args ...any)
+
+	// Trace logs a low-level debug information for troubleshooting.
+	Trace(ctx context.Context, correlationId string, message string, args ...any)
 }

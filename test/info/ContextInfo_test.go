@@ -3,7 +3,7 @@ package test_info
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-components-gox/info"
 	"github.com/stretchr/testify/assert"
 )
@@ -11,7 +11,7 @@ import (
 func TestContextInfo(t *testing.T) {
 	contextInfo := info.NewContextInfo()
 
-	assert.Equal(t, "unknown", contextInfo.Name)
+	assert.Equal(t, info.ContextInfoNameUnknown, contextInfo.Name)
 	assert.Equal(t, "", contextInfo.Description)
 	assert.True(t, len(contextInfo.ContextId) > 0)
 
@@ -26,10 +26,10 @@ func TestContextInfo(t *testing.T) {
 
 func TestContextInfoFromConfig(t *testing.T) {
 	cfg := config.NewConfigParamsFromTuples(
-		"info.name", "new name",
-		"info.description", "new description",
-		"properties.access_key", "key",
-		"properties.store_key", "store key",
+		info.ContextInfoParameterInfoName, "new name",
+		info.ContextInfoParameterInfoDescription, "new description",
+		info.ContextInfoSectionNameProperties+".access_key", "key",
+		info.ContextInfoSectionNameProperties+".store_key", "store key",
 	)
 
 	contextInfo := info.NewContextInfoFromConfig(cfg)

@@ -6,90 +6,73 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/convert"
 )
 
-/*
-Helper class to convert log level values.
-*/
-type TLogLevelConverter struct{}
+// LevelConverter Helper class to convert log level values.
+var LevelConverter = &_TLogLevelConverter{}
 
-var LogLevelConverter *TLogLevelConverter = &TLogLevelConverter{}
+type _TLogLevelConverter struct{}
 
-// Converts numbers and strings to standard log level values.
-// Parameters:
-//   - value interface{}
-//   a value to be converted
-// Returns int
-// converted log level
-func (c *TLogLevelConverter) ToLogLevel(value interface{}) int {
-	return LogLevelFromString(value)
+// ToLogLevel converts numbers and strings to standard log level values.
+//	Parameters: value any a value to be converted
+//	Returns LevelType converted log level
+func (c *_TLogLevelConverter) ToLogLevel(value any) LevelType {
+	return logLevelFromString(value)
 }
 
-// Converts log level to a string.
-// see
-// LogLevel
-// Parameters:
-//   - level int
-//   a log level to convert
-// Returns string
-// log level name string.
-func (c *TLogLevelConverter) ToString(level int) string {
-	return LogLevelToString(level)
+// ToString converts log level to a string.
+// see LevelType
+//	Parameters: level int a log level to convert
+//	Returns: string log level name string.
+func (c *_TLogLevelConverter) ToString(level LevelType) string {
+	return logLevelToString(level)
 }
 
-// Converts log level to a LogLevel.
-// see
-// LogLevel
-// Parameters:
-//   - value interface{}
-//   a log level string to convert
-// Returns int
-// log level value.
-func LogLevelFromString(value interface{}) int {
+// LogLevelFromString converts log level to a LogLevel.
+// see LevelType
+//	Parameters: value any a log level string to convert
+//	Returns: int log level value.
+func logLevelFromString(value any) LevelType {
 	if value == nil {
-		return Info
+		return LevelInfo
 	}
 
 	str := convert.StringConverter.ToString(value)
 	str = strings.ToUpper(str)
 	if "0" == str || "NOTHING" == str || "NONE" == str {
-		return None
+		return LevelNone
 	} else if "1" == str || "FATAL" == str {
-		return Fatal
+		return LevelFatal
 	} else if "2" == str || "ERROR" == str {
-		return Error
+		return LevelError
 	} else if "3" == str || "WARN" == str || "WARNING" == str {
-		return Warn
+		return LevelWarn
 	} else if "4" == str || "INFO" == str {
-		return Info
+		return LevelInfo
 	} else if "5" == str || "DEBUG" == str {
-		return Debug
+		return LevelDebug
 	} else if "6" == str || "TRACE" == str {
-		return Trace
+		return LevelTrace
 	} else {
-		return Info
+		return LevelInfo
 	}
 }
 
-// Converts log level to a string.
-// see
-// LogLevel
-// Parameters:
-//   - level int
-//   a log level to convert
-// Returns string
-// log level name string.
-func LogLevelToString(level int) string {
+// LogLevelToString converts log level to a string.
+//	see LogLevel
+//	Parameters: level LevelType a log level to convert
+//	Returns string log level name string.
+func logLevelToString(level LevelType) string {
 	switch level {
-	case Fatal:
+	case LevelFatal:
 		return "FATAL"
-	case Error:
+	case LevelError:
 		return "ERROR"
-	case Warn:
+	case LevelWarn:
 		return "WARN"
-	case Info:
+	case LevelInfo:
 		return "INFO"
-	case Debug:
+	case LevelDebug:
 		return "DEBUG"
-	case Trace:
+	case LevelTrace:
 		return "TRACE"
 	default:
 		return "UNDEF"

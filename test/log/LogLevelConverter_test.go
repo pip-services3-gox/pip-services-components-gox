@@ -8,12 +8,12 @@ import (
 )
 
 func TestLogLevelConverter(t *testing.T) {
-	level := log.LogLevelConverter.ToLogLevel("info")
-	assert.Equal(t, log.Info, level)
+	level := log.LevelConverter.ToLogLevel("info")
+	assert.Equal(t, log.LevelInfo, level)
 
-	level = log.LogLevelConverter.ToLogLevel("4")
-	assert.Equal(t, log.Info, level)
+	level = log.LevelConverter.ToLogLevel("4")
+	assert.Equal(t, log.LevelInfo, level)
 
-	str := log.LogLevelConverter.ToString(level)
+	str := log.LevelConverter.ToString(level)
 	assert.Equal(t, "INFO", str)
 }

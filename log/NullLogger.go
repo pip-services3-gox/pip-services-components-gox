@@ -1,115 +1,92 @@
 package log
 
-/*
+import "context"
 
-Dummy implementation of logger that doesn't do anything.
-
-It can be used in testing or in situations when logger is required but shall be disabled.
-*/
+// NullLogger dummy implementation of logger that doesn't do anything.
+// It can be used in testing or in situations when logger is required but shall be disabled.
 type NullLogger struct{}
 
-// Creates a new instance of the logger.
-// Returns *NullLogger
+// NewNullLogger creates a new instance of the logger.
+//	Returns *NullLogger
 func NewNullLogger() *NullLogger {
 	c := &NullLogger{}
 	return c
 }
 
-// Gets the maximum log level. Messages with higher log level are filtered out.
-// Returns int
-// the maximum log level.
-func (c *NullLogger) Level() int {
-	return None
+// Level gets the maximum log level. Messages with higher log level are filtered out.
+//	Returns: LevelType the maximum log level.
+func (c *NullLogger) Level() LevelType {
+	return LevelNone
 }
 
-// Set the maximum log level.
-// Parameters:
-//   - value int
-// a new maximum log level.
-func (c *NullLogger) SetLevel(value int) {
+// SetLevel set the maximum log level.
+//	Parameters: value int a new maximum log level.
+func (c *NullLogger) SetLevel(value LevelType) {
 }
 
-// Logs a message at specified log level.
-// Parameters:
-//   - level int
-//   a log level.
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - err error
-//   an error object associated with this message.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message.
-func (c *NullLogger) Log(level int, correlationId string, err error, message string, args ...interface{}) {
+// Log a message at specified log level.
+//	Parameters:
+//		- ctx context.Context
+//		- level LevelType a log level.
+//		- correlationId string transaction id to trace execution through call chain.
+//		- err error an error object associated with this message.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Log(ctx context.Context, level LevelType, correlationId string, err error, message string, args ...any) {
 }
 
-// Logs fatal (unrecoverable) message that caused the process to crash.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - err error
-//   an error object associated with this message.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message.
-func (c *NullLogger) Fatal(correlationId string, err error, message string, args ...interface{}) {
+// Fatal logs fatal (unrecoverable) message that caused the process to crash.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- err error an error object associated with this message.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Fatal(ctx context.Context, correlationId string, err error, message string, args ...any) {
 }
 
 // Logs recoverable application error.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - err error
-//   an error object associated with this message.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message.
-func (c *NullLogger) Error(correlationId string, err error, message string, args ...interface{}) {
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- err error an error object associated with this message.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Error(ctx context.Context, correlationId string, err error, message string, args ...any) {
 }
 
-// Logs a warning that may or may not have a negative impact.
-// Parameters:
-//  - correlationId string
-//  transaction id to trace execution through call chain.
-//  - message string
-//  a human-readable message to log.
-//  - args ...interface{}
-//  arguments to parameterize the message
-func (c *NullLogger) Warn(correlationId string, message string, args ...interface{}) {
+// Warn logs a warning that may or may not have a negative impact.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Warn(ctx context.Context, correlationId string, message string, args ...any) {
 }
 
-// Logs an important information message
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message
-func (c *NullLogger) Info(correlationId string, message string, args ...interface{}) {
+// Info logs an important information message
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Info(ctx context.Context, correlationId string, message string, args ...any) {
 }
 
-// Logs a high-level debug information for troubleshooting.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message
-func (c *NullLogger) Debug(correlationId string, message string, args ...interface{}) {
+// Debug logs a high-level debug information for troubleshooting.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Debug(ctx context.Context, correlationId string, message string, args ...any) {
 }
 
-// Logs a low-level debug information for troubleshooting.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - message string
-//   a human-readable message to log.
-//   - args ...interface{}
-//   arguments to parameterize the message
-func (c *NullLogger) Trace(correlationId string, message string, args ...interface{}) {
+// Trace logs a low-level debug information for troubleshooting.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- message string a human-readable message to log.
+//		- args ...any arguments to parameterize the message.
+func (c *NullLogger) Trace(ctx context.Context, correlationId string, message string, args ...any) {
 }

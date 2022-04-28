@@ -1,70 +1,86 @@
 package log
 
 import (
+	"context"
 	"sync"
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/errors"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 )
 
-/*
-Abstract logger that caches captured log messages in memory and periodically dumps them. Child classes implement saving cached messages to their specified destinations.
-
-Configuration parameters
-  level: maximum log level to capture
-  source: source (context) name
-  options:
-    interval: interval in milliseconds to save log messages (default: 10 seconds)
-    max_cache_size: maximum number of messages stored in this cache (default: 100)
-References
-*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
-*/
+// ICachedLogSaver abstract logger that caches captured log messages
+// in memory and periodically dumps them. Child classes implement
+// saving cached messages to their specified destinations.
+//	Configuration parameters
+//		level: maximum log level to capture
+//		source: source (context) name
+//		options:
+//			interval: interval in milliseconds to save log messages (default: 10 seconds)
+//			max_cache_size: maximum number of messages stored in this cache (default: 100)
+//	References:
+//		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 type ICachedLogSaver interface {
-	Save(messages []*LogMessage) error
+	Save(ctx context.Context, messages []LogMessage) error
 }
 
 type CachedLogger struct {
 	Logger
-	Cache        []*LogMessage
+	Cache        []LogMessage
 	Updated      bool
 	LastDumpTime time.Time
 	MaxCacheSize int
 	Interval     int
-	Lock         *sync.Mutex
+	mtx          *sync.Mutex
 	saver        ICachedLogSaver
 }
 
-// Creates a new instance of the logger from ICachedLogSaver
-// Parameters:
-//  - saver ICachedLogSaver
-// Returns CachedLogger
+const (
+	DefaultMaxCacheSize                = 100
+	DefaultInterval                    = 10000
+	ConfigParameterOptionsInterval     = "options.interval"
+	ConfigParameterOptionsMaxCacheSize = "options.max_cache_size"
+)
+
+// InheritCachedLogger creates a new instance of the logger from ICachedLogSaver
+//	Parameters: saver ICachedLogSaver
+//	Returns: CachedLogger
 func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 	c := &CachedLogger{
-		Cache:        []*LogMessage{},
+		Cache:        make([]LogMessage, 0, DefaultMaxCacheSize),
 		Updated:      false,
 		LastDumpTime: time.Now(),
-		MaxCacheSize: 100,
-		Interval:     10000,
-		Lock:         &sync.Mutex{},
+		MaxCacheSize: DefaultMaxCacheSize,
+		Interval:     DefaultInterval,
+		mtx:          &sync.Mutex{},
 		saver:        saver,
 	}
 	c.Logger = *InheritLogger(c)
 	return c
 }
 
+// Configure configures component by passing configuration parameters.
+//	Parameters: config *config.ConfigParams configuration parameters to be set.
+func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
+	c.Logger.Configure(cfg)
+
+	c.Interval = cfg.GetAsIntegerWithDefault(ConfigParameterOptionsInterval, c.Interval)
+	c.MaxCacheSize = cfg.GetAsIntegerWithDefault(ConfigParameterOptionsMaxCacheSize, c.MaxCacheSize)
+	c.Cache = make([]LogMessage, 0, c.MaxCacheSize)
+}
+
 // Writes a log message to the logger destination.
 // Parameters:
-//   - level LogLevel
-//   a log level.
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - err error
-//   an error object associated with this message.
-//   - message string
-//   a human-readable message to log.
-func (c *CachedLogger) Write(level int, correlationId string, err error, message string) {
-	logMessage := &LogMessage{
+//		- ctx context.Context
+//		- level LogLevel a log level.
+//		- correlationId string transaction id to trace execution through call chain.
+//		- err error an error object associated with this message.
+//		- message string a human-readable message to log.
+func (c *CachedLogger) Write(ctx context.Context, level LevelType, correlationId string, err error, message string) {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+
+	logMessage := LogMessage{
 		Time:          time.Now().UTC(),
 		Level:         level,
 		Source:        c.source,
@@ -77,50 +93,61 @@ func (c *CachedLogger) Write(level int, correlationId string, err error, message
 		logMessage.Error = *errorDescription
 	}
 
-	c.Lock.Lock()
 	c.Cache = append(c.Cache, logMessage)
-	c.Lock.Unlock()
 
-	c.Update()
+	c.update(ctx)
 }
 
-// Configures component by passing configuration parameters.
-// Parameters:
-//   - config *config.ConfigParams
-//   configuration parameters to be set.
-func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
-	c.Logger.Configure(cfg)
+// Clear (removes) all cached log messages.
+//	Parameters: ctx context.Context
+func (c *CachedLogger) Clear(ctx context.Context) {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
 
-	c.Interval = cfg.GetAsIntegerWithDefault("options.interval", c.Interval)
-	c.MaxCacheSize = cfg.GetAsIntegerWithDefault("options.max_cache_size", c.MaxCacheSize)
-}
-
-// Clears (removes) all cached log messages.
-func (c *CachedLogger) Clear() {
-	c.Lock.Lock()
-	c.Cache = []*LogMessage{}
+	c.Cache = make([]LogMessage, 0, c.MaxCacheSize)
 	c.Updated = false
-	c.Lock.Unlock()
 }
 
-// Dumps (writes) the currently cached log messages.
-func (c *CachedLogger) Dump() error {
+// Dump (writes) the currently cached log messages.
+//	Parameters: ctx context.Context
+func (c *CachedLogger) Dump(ctx context.Context) error {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+
+	return c.dump(ctx)
+}
+
+// Update makes message cache as updated and dumps it when timeout expires.
+//	Parameters: ctx context.Context
+func (c *CachedLogger) Update(ctx context.Context) {
+	c.mtx.Lock()
+	defer c.mtx.Unlock()
+
+	c.update(ctx)
+}
+
+func (c *CachedLogger) update(ctx context.Context) {
+	c.Updated = true
+
+	elapsed := int(time.Since(c.LastDumpTime).Seconds() * 1000)
+
+	if elapsed > c.Interval {
+		// Todo: Decide what to do with the error
+		_ = c.dump(ctx)
+	}
+}
+
+func (c *CachedLogger) dump(ctx context.Context) error {
 	if c.Updated {
 		if !c.Updated {
 			return nil
 		}
 
-		var messages []*LogMessage
-		c.Lock.Lock()
+		messages := c.Cache
+		c.Cache = make([]LogMessage, 0, c.MaxCacheSize)
 
-		messages = c.Cache
-		c.Cache = []*LogMessage{}
-
-		c.Lock.Unlock()
-
-		err := c.saver.Save(messages)
+		err := c.saver.Save(ctx, messages)
 		if err != nil {
-			c.Lock.Lock()
 
 			// Put failed messages back to cache
 			c.Cache = append(messages, c.Cache...)
@@ -130,7 +157,6 @@ func (c *CachedLogger) Dump() error {
 				c.Cache = c.Cache[len(c.Cache)-c.MaxCacheSize:]
 			}
 
-			c.Lock.Unlock()
 		}
 
 		c.Updated = false
@@ -138,16 +164,4 @@ func (c *CachedLogger) Dump() error {
 		return err
 	}
 	return nil
-}
-
-// Makes message cache as updated and dumps it when timeout expires.
-func (c *CachedLogger) Update() {
-	c.Updated = true
-
-	elapsed := int(time.Since(c.LastDumpTime).Seconds() * 1000)
-
-	if elapsed > c.Interval {
-		// Todo: Decide what to do with the error
-		c.Dump()
-	}
 }
