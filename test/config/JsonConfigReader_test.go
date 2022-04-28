@@ -1,19 +1,20 @@
 package test_config
 
 import (
+	"context"
 	"testing"
 
-	pconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-components-gox/config"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestJsonConfigReader(t *testing.T) {
-	parameters := pconfig.NewConfigParamsFromTuples(
+	parameters := cconfig.NewConfigParamsFromTuples(
 		"param1", "Test Param 1",
 		"param2", "Test Param 2",
 	)
-	config, err := config.ReadJsonConfig("", "./config.json", parameters)
+	config, err := config.ReadJsonConfig(context.Background(), "", "./config.json", parameters)
 
 	assert.Nil(t, err)
 	assert.Equal(t, 9, config.Len())

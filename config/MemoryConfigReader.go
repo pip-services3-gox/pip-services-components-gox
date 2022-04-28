@@ -1,75 +1,60 @@
 package config
 
 import (
+	"context"
 	"github.com/aymerick/raymond"
-	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
-/*
-Config reader that stores configuration in memory.
-
-The reader supports parameterization using Handlebars template engine: https://handlebarsjs.com
-
-Configuration parameters
-The configuration parameters are the configuration template
-
-see
-IConfigReader
-
-Example
-  config := NewConfigParamsFromTuples(
-      "connection.host", "{{SERVICE_HOST}}",
-      "connection.port", "{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}"
-  );
-
-  configReader := NewMemoryConfigReader();
-  configReader.Configure(config);
-
-  parameters := NewConfigParamsFromValue(process.env);
-
-  res, err := configReader.ReadConfig("123", parameters);
-  // Possible result: connection.host=10.1.1.100;connection.port=8080
-*/
+// MemoryConfigReader is a config reader that stores configuration in memory.
+// The reader supports parameterization using Handlebars template engine: https://handlebarsjs.com
+// Configuration parameters: The configuration parameters are the configuration template
+//	see IConfigReader
+//	Example
+//		config := NewConfigParamsFromTuples(
+//			"connection.host", "{{SERVICE_HOST}}",
+//			"connection.port", "{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}"
+//		);
+//		configReader := NewMemoryConfigReader();
+//		configReader.Configure(config);
+//		parameters := NewConfigParamsFromValue(process.env);
+//		res, err := configReader.ReadConfig("123", parameters);
+//			Possible result: connection.host=10.1.1.100;connection.port=8080
 type MemoryConfigReader struct {
 	config *cconfig.ConfigParams
 }
 
-// Creates a new instance of config reader.
-// Returns *MemoryConfigReader
+// NewEmptyMemoryConfigReader creates a new instance of config reader.
+//	Returns: *MemoryConfigReader
 func NewEmptyMemoryConfigReader() *MemoryConfigReader {
 	return &MemoryConfigReader{
 		config: cconfig.NewEmptyConfigParams(),
 	}
 }
 
-// Creates a new instance of config reader.
-// Parameters:
-//   - config *cconfig.ConfigParams
-//   component configuration parameters
-// Returns *MemoryConfigReader
+// NewMemoryConfigReader creates a new instance of config reader.
+//	Parameters: config *cconfig.ConfigParams component configuration parameters
+//	Returns: *MemoryConfigReader
 func NewMemoryConfigReader(config *cconfig.ConfigParams) *MemoryConfigReader {
 	return &MemoryConfigReader{
 		config: config,
 	}
 }
 
-// Configures component by passing configuration parameters.
-// Parameters:
-//   - config *cconfig.ConfigParams
-//   configuration parameters to be set.
+// Configure component by passing configuration parameters.
+//	Parameters: config *cconfig.ConfigParams configuration parameters to be set.
 func (c *MemoryConfigReader) Configure(config *cconfig.ConfigParams) {
 	c.config = config
 }
 
-// Reads configuration and parameterize it with given values.
-// Parameters:
-//   - correlationId string
-//   transaction id to trace execution through call chain.
-//   - parameters *cconfig.ConfigParams
-//   values to parameters the configuration or null to skip parameterization.
-// Returns *cconfig.ConfigParams, error
-// configuration or error.
-func (c *MemoryConfigReader) ReadConfig(correlationId string,
+// ReadConfig reads configuration and parameterize it with given values.
+//	Parameters:
+//		- ctx context.Context
+//		- correlationId string transaction id to trace execution through call chain.
+//		- parameters *cconfig.ConfigParams values to parameters
+//			the configuration or null to skip parameterization.
+//	Returns: *cconfig.ConfigParams, error configuration or error.
+func (c *MemoryConfigReader) ReadConfig(ctx context.Context, correlationId string,
 	parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error) {
 
 	if parameters != nil {

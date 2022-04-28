@@ -2,7 +2,7 @@ package cache
 
 import (
 	"context"
-	"encoding/json"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/convert"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 	"strings"
 	"sync"
@@ -112,12 +112,13 @@ func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key
 			delete(c.cache, key)
 			return defaultValue, nil
 		}
-		var value T
-		err := json.Unmarshal([]byte(entry.Value()), &value)
+		value, err := convert.JsonConverter.FromJson(entry.Value())
 		if err != nil {
 			return defaultValue, err
 		}
-		return value, nil
+		if v, ok := value.(T); ok {
+			return v, nil
+		}
 	}
 	return defaultValue, nil
 }
@@ -152,7 +153,7 @@ func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string,
 		timeout = c.timeout
 	}
 
-	jsonVal, err := json.Marshal(value)
+	jsonVal, err := convert.JsonConverter.ToJson(value)
 	if err != nil {
 		return defaultValue, err
 	}

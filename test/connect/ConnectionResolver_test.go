@@ -1,10 +1,11 @@
 package test_connect
 
 import (
+	"context"
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 	"github.com/pip-services3-gox/pip-services3-components-gox/connect"
 	"github.com/stretchr/testify/assert"
 )
@@ -29,20 +30,20 @@ func TestConnectionResolverRegister(t *testing.T) {
 	connection := connect.NewEmptyConnectionParams()
 	connectionResolver := connect.NewEmptyConnectionResolver()
 
-	err := connectionResolver.Register("", connection)
+	err := connectionResolver.Register(context.Background(), "", connection)
 	assert.Nil(t, err)
 
 	connections := connectionResolver.GetAll()
 	assert.Len(t, connections, 0)
 
-	err = connectionResolver.Register("", connection)
+	err = connectionResolver.Register(context.Background(), "", connection)
 	assert.Nil(t, err)
 
 	connections = connectionResolver.GetAll()
 	assert.Len(t, connections, 0)
 
 	connection.SetDiscoveryKey("Discovery key")
-	err = connectionResolver.Register("", connection)
+	err = connectionResolver.Register(context.Background(), "", connection)
 	assert.Nil(t, err)
 
 	connections = connectionResolver.GetAll()
@@ -57,7 +58,7 @@ func TestConnectionResolverResolve(t *testing.T) {
 	)
 	connectionResolver := connect.NewConnectionResolver(restConfig, nil)
 
-	connection, err := connectionResolver.Resolve("")
+	connection, err := connectionResolver.Resolve(context.Background(), "")
 	assert.Nil(t, err)
 	assert.NotNil(t, connection)
 
@@ -70,7 +71,7 @@ func TestConnectionResolverResolve(t *testing.T) {
 	references := refer.NewEmptyReferences()
 	connectionResolver = connect.NewConnectionResolver(restConfigDiscovery, references)
 
-	connection, err = connectionResolver.Resolve("")
+	connection, err = connectionResolver.Resolve(context.Background(), "")
 	assert.NotNil(t, err)
 	assert.Nil(t, connection)
 }

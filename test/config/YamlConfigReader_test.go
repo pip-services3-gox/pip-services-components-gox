@@ -1,19 +1,20 @@
 package test_config
 
 import (
+	"context"
 	"testing"
 
-	pconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-components-gox/config"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestYamlConfigReader(t *testing.T) {
-	parameters := pconfig.NewConfigParamsFromTuples(
+	parameters := cconfig.NewConfigParamsFromTuples(
 		"param1", "Test Param 1",
 		"param2", "Test Param 2",
 	)
-	config, err := config.ReadYamlConfig("", "./config.yml", parameters)
+	config, err := config.ReadYamlConfig(context.Background(), "", "./config.yml", parameters)
 
 	assert.Nil(t, err)
 	assert.Equal(t, 9, config.Len())
@@ -29,7 +30,7 @@ func TestYamlConfigReader(t *testing.T) {
 }
 
 func TestYamlConfigReaderReadArray(t *testing.T) {
-	config, err := config.ReadYamlConfig("", "./dummy.yml", nil)
+	config, err := config.ReadYamlConfig(context.Background(), "", "./dummy.yml", nil)
 
 	assert.Nil(t, err)
 	assert.True(t, config.Len() > 0)
