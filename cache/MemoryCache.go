@@ -20,20 +20,22 @@ import (
 //		cache := NewMemoryCache[string]();
 //		res, err := cache.Store("123", "key1", "ABC", 10000);
 type MemoryCache[T any] struct {
-	cache   map[string]*CacheEntry[string]
-	mtx     *sync.Mutex
-	timeout int64
-	maxSize int
+	cache     map[string]*CacheEntry[string]
+	mtx       *sync.Mutex
+	timeout   int64
+	maxSize   int
+	convertor convert.IJSONEngine[T]
 }
 
 // NewMemoryCache creates a new instance of the cache.
 //	Returns: *MemoryCache
 func NewMemoryCache[T any]() *MemoryCache[T] {
 	return &MemoryCache[T]{
-		cache:   map[string]*CacheEntry[string]{},
-		mtx:     &sync.Mutex{},
-		timeout: 60000,
-		maxSize: 1000,
+		cache:     map[string]*CacheEntry[string]{},
+		mtx:       &sync.Mutex{},
+		timeout:   60000,
+		maxSize:   1000,
+		convertor: convert.NewDefaultCustomTypeJsonConvertor[T](),
 	}
 }
 
@@ -94,8 +96,10 @@ func (c *MemoryCache[T]) cleanup() {
 func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error) {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
+
 	var defaultValue T
 
+	// TODO:: remove trim from all components
 	key = strings.Trim(key, " ")
 
 	if key == "" {
@@ -112,13 +116,11 @@ func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key
 			delete(c.cache, key)
 			return defaultValue, nil
 		}
-		value, err := convert.JsonConverter.FromJson(entry.Value())
+		value, err := c.convertor.FromJson(entry.Value())
 		if err != nil {
 			return defaultValue, err
 		}
-		if v, ok := value.(T); ok {
-			return v, nil
-		}
+		return value, nil
 	}
 	return defaultValue, nil
 }
@@ -153,15 +155,15 @@ func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string,
 		timeout = c.timeout
 	}
 
-	jsonVal, err := convert.JsonConverter.ToJson(value)
+	jsonVal, err := c.convertor.ToJson(value)
 	if err != nil {
 		return defaultValue, err
 	}
 
 	if entry != nil {
-		entry.SetValue(string(jsonVal), timeout)
+		entry.SetValue(jsonVal, timeout)
 	} else {
-		c.cache[key] = NewCacheEntry[string](key, string(jsonVal), timeout)
+		c.cache[key] = NewCacheEntry[string](key, jsonVal, timeout)
 	}
 
 	// cleanup

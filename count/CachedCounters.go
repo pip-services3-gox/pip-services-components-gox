@@ -1,23 +1,22 @@
 package count
 
 import (
-	"math"
+	"context"
 	"sync"
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
-/*
-Abstract implementation of performance counters that measures and stores counters in memory. Child classes implement saving of the counters into various destinations.
-
-Configuration parameters
-  options:
-    interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-    reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
-*/
+// CachedCounters abstract implementation of performance counters that measures and
+// stores counters in memory. Child classes implement saving of the counters
+// into various destinations.
+//	Configuration parameters:
+//		options:
+//		interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+//		reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 type CachedCounters struct {
-	cache         map[string]*Counter
+	cache         map[string]*AtomicCounter
 	updated       bool
 	lastDumpTime  time.Time
 	lastResetTime time.Time
@@ -28,61 +27,69 @@ type CachedCounters struct {
 }
 
 type ICountersSaver interface {
-	Save(counters []*Counter) error
+	Save(ctx context.Context, counters []Counter) error
 }
 
-// Inherit cache counters from saver
-// Parameters:
-//  - save ICountersSaver
-// Returns *CachedCounters
+const (
+	DefaultInterval             int64 = 300000
+	DefaultResetTimeout         int64 = 300000
+	ConfigParameterInterval           = "interval"
+	ConfigParameterResetTimeout       = "reset_timeout"
+)
+
+// InheritCacheCounters inherit cache counters from saver
+//	Parameters:
+//		- save ICountersSaver
+//	Returns: *CachedCounters
 func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
 	return &CachedCounters{
-		cache:         map[string]*Counter{},
+		cache:         make(map[string]*AtomicCounter),
 		updated:       false,
 		lastDumpTime:  time.Now(),
 		lastResetTime: time.Now(),
-		interval:      300000,
-		resetTimeout:  0,
+		interval:      DefaultInterval,
+		resetTimeout:  DefaultResetTimeout,
 		saver:         saver,
 	}
 }
 
-// Configures component by passing configuration parameters.
-// Parameters:
-//   - config *config.ConfigParams
-//   configuration parameters to be set.
+// Configure configures component by passing configuration parameters.
+//	Parameters:
+//		- config *config.ConfigParams configuration parameters to be set.
 func (c *CachedCounters) Configure(config *config.ConfigParams) {
-	c.interval = config.GetAsLongWithDefault("interval", c.interval)
-	c.resetTimeout = config.GetAsLongWithDefault("reset_timeout", c.resetTimeout)
+	c.interval = config.GetAsLongWithDefault(ConfigParameterInterval, c.interval)
+	c.resetTimeout = config.GetAsLongWithDefault(ConfigParameterResetTimeout, c.resetTimeout)
 }
 
-// Clears (resets) a counter specified by its name.
-// Parameters:
-//   - name string
-//   a counter name to clear.
-func (c *CachedCounters) Clear(name string) {
+// Clear clears (resets) a counter specified by its name.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name to clear.
+func (c *CachedCounters) Clear(ctx context.Context, name string) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
 	delete(c.cache, name)
 }
 
-//Clears (resets) all counters.
-func (c *CachedCounters) ClearAll() {
+// ClearAll clears (resets) all counters.
+//	Parameters: ctx context.Context
+func (c *CachedCounters) ClearAll(ctx context.Context) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	c.cache = map[string]*Counter{}
+	c.cache = make(map[string]*AtomicCounter)
 }
 
-// Dumps (saves) the current values of counters.
-func (c *CachedCounters) Dump() error {
+// Dump (saves) the current values of counters.
+//	Parameters: ctx context.Context
+func (c *CachedCounters) Dump(ctx context.Context) error {
 	if !c.updated {
 		return nil
 	}
 
-	counters := c.GetAll()
-	err := c.saver.Save(counters)
+	counters := c.GetAllCountersStats()
+	err := c.saver.Save(ctx, counters)
 	if err != nil {
 		return err
 	}
@@ -96,35 +103,40 @@ func (c *CachedCounters) Dump() error {
 	return nil
 }
 
-func (c *CachedCounters) update() error {
+func (c *CachedCounters) update(ctx context.Context) error {
+	c.mux.Lock()
 	c.updated = true
 	newDumpTime := c.lastDumpTime.Add(time.Duration(c.interval) * time.Millisecond)
+	c.mux.Unlock()
 	if time.Now().After(newDumpTime) {
-		return c.Dump()
+		return c.Dump(ctx)
 	}
 	return nil
 }
 
-func (c *CachedCounters) resetIfNeeded() {
+func (c *CachedCounters) resetIfNeeded(ctx context.Context) {
+	c.mux.Lock()
+	defer c.mux.Unlock()
+
 	if c.resetTimeout == 0 {
 		return
 	}
 
 	newResetTime := c.lastResetTime.Add(time.Duration(c.resetTimeout) * time.Millisecond)
 	if time.Now().After(newResetTime) {
-		c.cache = map[string]*Counter{}
+		c.cache = make(map[string]*AtomicCounter)
 		c.updated = false
 		c.lastDumpTime = time.Now()
 	}
 }
 
-//Gets all captured counters.
-//Returns []*Counter
-func (c *CachedCounters) GetAll() []*Counter {
+// GetAll gets all captured counters.
+//	Returns: []*AtomicCounter
+func (c *CachedCounters) GetAll() []*AtomicCounter {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	result := []*Counter{}
+	result := make([]*AtomicCounter, 0, len(c.cache))
 	for _, v := range c.cache {
 		result = append(result, v)
 	}
@@ -132,130 +144,131 @@ func (c *CachedCounters) GetAll() []*Counter {
 	return result
 }
 
-// Gets a counter specified by its name. It counter does not exist or its type doesn't match the specified type it creates a new one.
-// Parameters:
-//   - name string
-//   a counter name to retrieve.
-//   - typ int
-//   a counter type.
-// Returns *Counter
-// an existing or newly created counter of the specified type.
-func (c *CachedCounters) Get(name string, typ int) *Counter {
-	if name == "" {
-		panic("Counter name cannot be nil")
+// GetAllCountersStats gets all captured counters stats.
+//	Returns: []Counter
+func (c *CachedCounters) GetAllCountersStats() []Counter {
+	c.mux.Lock()
+	defer c.mux.Unlock()
+
+	result := make([]Counter, 0, len(c.cache))
+	for _, v := range c.cache {
+		result = append(result, v.GetCounter())
 	}
+
+	return result
+}
+
+// Get a counter specified by its name. It counter does not exist or its type doesn't match the
+// specified type it creates a new one.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name to retrieve.
+//		- typ int a counter type.
+//	Returns: *Counter an existing or newly created counter of the specified type.
+func (c *CachedCounters) Get(ctx context.Context, name string, typ int) (*AtomicCounter, bool) {
+	if name == "" {
+		return nil, false
+	}
+
+	c.resetIfNeeded(ctx)
 
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	c.resetIfNeeded()
-
 	counter, ok := c.cache[name]
-	if !ok || counter.Type != typ {
-		counter = NewCounter(name, typ)
+	if !ok || counter.Type() != typ {
+		counter = NewAtomicCounter(name, typ)
 		c.cache[name] = counter
 	}
 
-	return counter
+	return counter, true
 }
 
-func (c *CachedCounters) calculateStats(counter *Counter, value float32) {
-	if counter == nil {
-		panic("Counter cannot be nil")
-	}
-
-	counter.Last = value
-	counter.Count++
-	counter.Max = float32(math.Max(float64(counter.Max), float64(value)))
-	counter.Min = float32(math.Min(float64(counter.Min), float64(value)))
-	counter.Average = ((counter.Average * float32(counter.Count-1)) + value) / float32(counter.Count)
-}
-
-// Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
-// Parameters
-//   - name string
-//   a counter name of Interval type.
-// Returns *Timing
-// a Timing callback object to end timing.
-func (c *CachedCounters) BeginTiming(name string) *Timing {
+// BeginTiming begins measurement of execution time interval.
+// It returns Timing object which has to be called at
+// Timing.EndTiming to end the measurement and update the counter.
+//	Parameters
+//		- ctx context.Context
+//		- name string a counter name of Interval type.
+//	Returns: *Timing a Timing callback object to end timing.
+func (c *CachedCounters) BeginTiming(ctx context.Context, name string) *Timing {
 	return NewTiming(name, c)
 }
 
-// Ends measurement of execution elapsed time and updates specified counter.
-// see
-// Timing.endTiming
-// Parameters:
-//   - name string
-//   a counter name
-//   elapsed float32
-//   execution elapsed time in milliseconds to update the counter.
-func (c *CachedCounters) EndTiming(name string, elapsed float32) {
-	counter := c.Get(name, Interval)
-	c.calculateStats(counter, elapsed)
-	c.update()
+// EndTiming ends measurement of execution elapsed time and updates specified counter.
+//	see Timing.EndTiming
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name
+//		- elapsed float64 execution elapsed time in milliseconds to update the counter.
+func (c *CachedCounters) EndTiming(ctx context.Context, name string, elapsed float64) {
+	if counter, ok := c.Get(ctx, name, Interval); ok {
+		counter.CalculateStats(elapsed)
+		_ = c.update(ctx)
+	}
 }
 
-// Calculates min/average/max statistics based on the current and previous values.
-// Parameters:
-//   - name string
-//   a counter name of Statistics type
-//   - value float32
-//   a value to update statistics
-func (c *CachedCounters) Stats(name string, value float32) {
-	counter := c.Get(name, Statistics)
-	c.calculateStats(counter, value)
-	c.update()
+// Stats calculates min/average/max statistics based on the current and previous values.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Statistics type
+//		- value float32 a value to update statistics
+func (c *CachedCounters) Stats(ctx context.Context, name string, value float64) {
+	if counter, ok := c.Get(ctx, name, Statistics); ok {
+		counter.CalculateStats(value)
+		_ = c.update(ctx)
+	}
 }
 
-// Records the last calculated measurement value.
+// Last records the last calculated measurement value.
 // Usually this method is used by metrics calculated externally.
-// Parameters:
-//   - name string
-//   a counter name of Last type.
-//   - value number
-//   a last value to record.
-func (c *CachedCounters) Last(name string, value float32) {
-	counter := c.Get(name, LastValue)
-	counter.Last = value
-	c.update()
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Last type.
+//		- value number a last value to record.
+func (c *CachedCounters) Last(ctx context.Context, name string, value float64) {
+	if counter, ok := c.Get(ctx, name, LastValue); ok {
+		counter.SetLast(value)
+		_ = c.update(ctx)
+	}
 }
 
-// Records the current time as a timestamp.
-// Parameters:
-//   - name string
-//   a counter name of Timestamp type.
-func (c *CachedCounters) TimestampNow(name string) {
-	c.Timestamp(name, time.Now())
+// TimestampNow records the current time as a timestamp.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Timestamp type.
+func (c *CachedCounters) TimestampNow(ctx context.Context, name string) {
+	c.Timestamp(ctx, name, time.Now())
 }
 
-// Records the given timestamp.
-// Parameters:
-//   - name string
-//   a counter name of Timestamp type.
-//   value time.Time
-//   a timestamp to record.
-func (c *CachedCounters) Timestamp(name string, value time.Time) {
-	counter := c.Get(name, Timestamp)
-	counter.Time = value
-	c.update()
+// Timestamp records the given timestamp.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Timestamp type.
+//		- value time.Time a timestamp to record.
+func (c *CachedCounters) Timestamp(ctx context.Context, name string, value time.Time) {
+	if counter, ok := c.Get(ctx, name, Timestamp); ok {
+		counter.SetTime(value)
+		_ = c.update(ctx)
+	}
 }
 
-// Increments counter by 1.
-// Parameters:
-//   - name string
-//   a counter name of Increment type.
-func (c *CachedCounters) IncrementOne(name string) {
-	c.Increment(name, 1)
+// IncrementOne increments counter by 1.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Increment type.
+func (c *CachedCounters) IncrementOne(ctx context.Context, name string) {
+	c.Increment(ctx, name, 1)
 }
 
-// Increments counter by given value.
-// Parameters:
-//   - name string
-//   a counter name of Increment type.
-//   - value int
-//   a value to add to the counter.
-func (c *CachedCounters) Increment(name string, value int) {
-	counter := c.Get(name, Increment)
-	counter.Count = counter.Count + value
-	c.update()
+// Increment increments counter by given value.
+//	Parameters:
+//		- ctx context.Context
+//		- name string a counter name of Increment type.
+//		- value int a value to add to the counter.
+func (c *CachedCounters) Increment(ctx context.Context, name string, value int64) {
+	if counter, ok := c.Get(ctx, name, Increment); ok {
+		counter.Inc(value)
+		_ = c.update(ctx)
+	}
 }

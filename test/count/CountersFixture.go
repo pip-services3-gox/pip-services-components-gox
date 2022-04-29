@@ -1,6 +1,7 @@
 package test_count
 
 import (
+	"context"
 	"testing"
 	"time"
 
@@ -19,49 +20,54 @@ func NewCountersFixture(counters *count.CachedCounters) *CountersFixture {
 }
 
 func (c *CountersFixture) TestSimpleCounters(t *testing.T) {
-	c.counters.Last("Test.LastValue", 123)
-	c.counters.Last("Test.LastValue", 123456)
+	c.counters.Last(context.Background(), "Test.LastValue", 123)
+	c.counters.Last(context.Background(), "Test.LastValue", 123456)
 
-	var counter = c.counters.Get("Test.LastValue", count.LastValue)
+	counter, ok := c.counters.Get(context.Background(), "Test.LastValue", count.LastValue)
+	assert.True(t, ok)
 	assert.NotNil(t, counter)
-	assert.Equal(t, float32(123456), counter.Last)
+	assert.Equal(t, float64(123456), counter.Last())
 
-	c.counters.IncrementOne("Test.Increment")
-	c.counters.Increment("Test.Increment", 3)
+	c.counters.IncrementOne(context.Background(), "Test.Increment")
+	c.counters.Increment(context.Background(), "Test.Increment", 3)
 
-	counter = c.counters.Get("Test.Increment", count.Increment)
+	counter, ok = c.counters.Get(context.Background(), "Test.Increment", count.Increment)
+	assert.True(t, ok)
 	assert.NotNil(t, counter)
-	assert.Equal(t, 4, counter.Count)
+	assert.Equal(t, int64(4), counter.Count())
 
-	c.counters.TimestampNow("Test.Timestamp")
-	c.counters.TimestampNow("Test.Timestamp")
+	c.counters.TimestampNow(context.Background(), "Test.Timestamp")
+	c.counters.TimestampNow(context.Background(), "Test.Timestamp")
 
-	counter = c.counters.Get("Test.Timestamp", count.Timestamp)
+	counter, ok = c.counters.Get(context.Background(), "Test.Timestamp", count.Timestamp)
+	assert.True(t, ok)
 	assert.NotNil(t, counter)
-	assert.NotNil(t, counter.Time)
+	assert.NotNil(t, counter.Time())
 
-	c.counters.Stats("Test.Statistics", 1)
-	c.counters.Stats("Test.Statistics", 2)
-	c.counters.Stats("Test.Statistics", 3)
+	c.counters.Stats(context.Background(), "Test.Statistics", 1)
+	c.counters.Stats(context.Background(), "Test.Statistics", 2)
+	c.counters.Stats(context.Background(), "Test.Statistics", 3)
 
-	counter = c.counters.Get("Test.Statistics", count.Statistics)
+	counter, ok = c.counters.Get(context.Background(), "Test.Statistics", count.Statistics)
+	assert.True(t, ok)
 	assert.NotNil(t, counter)
-	assert.Equal(t, float32(2), counter.Average)
+	assert.Equal(t, float64(2), counter.Average())
 
-	c.counters.Dump()
+	_ = c.counters.Dump(context.Background())
 }
 
 func (c *CountersFixture) TestMeasureElapsedTime(t *testing.T) {
-	timing := c.counters.BeginTiming("Test.Elapsed")
+	timing := c.counters.BeginTiming(context.Background(), "Test.Elapsed")
 
 	time.Sleep(100 * time.Millisecond)
 
-	timing.EndTiming()
+	timing.EndTiming(context.Background())
 
-	counter := c.counters.Get("Test.Elapsed", count.Interval)
+	counter, ok := c.counters.Get(context.Background(), "Test.Elapsed", count.Interval)
+	assert.True(t, ok)
 	assert.NotNil(t, counter)
-	assert.True(t, counter.Last > 50)
-	assert.True(t, counter.Last < 5000)
+	assert.True(t, counter.Last() > 50)
+	assert.True(t, counter.Last() < 5000)
 
-	c.counters.Dump()
+	c.counters.Dump(context.Background())
 }
