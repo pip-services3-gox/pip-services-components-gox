@@ -56,7 +56,7 @@ func (c *LogCounters) SetReferences(references refer.IReferences) {
 
 func (c *LogCounters) counterToString(counter Counter) string {
 	result := "Counter " + counter.Name + " { "
-	result = result + "\"type\": " + TypeToString(counter.Type)
+	result = result + "\"type\": " + counter.Type.ToString()
 
 	switch counter.Type {
 	case Increment:

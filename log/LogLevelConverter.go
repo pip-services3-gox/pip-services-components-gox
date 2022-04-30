@@ -3,7 +3,7 @@ package log
 import (
 	"strings"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/convert"
+	"github.com/pip-services3-gox/pip-services3-commons-gox/convert"
 )
 
 // LevelConverter Helper class to convert log level values.

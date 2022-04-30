@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.1";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -93,35 +93,7 @@
 			</div>
 			<div class="expanded">
 				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
-				<p>
-Contains implementation of connection parameters, using various connection strings, which are stripped of all credentials. If we need to configure a service, the port, ip address, protocol, and other parameters – we use the ConnectionParams object, and relevant helper classes (like ConnectionResolver), for acquiring these parameters, and for discovery of objects, components (which store and retrieve connection parameters).
-</p>
-<p>
-Discovery
-Service that store a registry of various end-points (what services are where, and how to connect to them). It knows the end-points, but doesn&#39;t have the credentials to connect to them. Separated for security reasons.
-</p>
-<p>
-IDiscovery – interface for creating registries.
-</p>
-<p>
-MemoryDiscovery – registry that is stored in memory.
-</p>
-<p>
-There exist 2 types of discovery:
-</p>
-<p>
-Static discovery: all services have static IP addresses (like DNS, which also works using static discovery) that are configured from the start and don&#39;t change along the way. As of lately, used more often than dynamic, because it is simpler to use and more reliable.
-</p>
-<p>
-Proxy (or reverse proxy) is created with a dns name, and all the dynamics of starting/restarting/switching from one host to another – everything is nice and clear for the clients. Infrastructure does all the hard work out of the box.
-Configure sets the static registry.
-Dynamic discovery: every time a service starts, it registers its address in the discovery service (&#34;Service name&#34; at the following address &#34;IP&#34;). Clients then ask to resolve the address by which the requested service can be reached. The service has a general name, by which other services can resolve it.
-</p>
-<p>
-If a service stops working, you need to refresh its address, clean stale addresses, heartbeats must be used – lots of problems and challenges.
-One service can have more than one address.
-</p>
-
+				
 				
 			</div>
 		</div>
@@ -136,6 +108,8 @@ One service can have more than one address.
 		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
 			<div id="manual-nav">
 			<dl>
+			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
 			
 			
 				<dd><a href="index.html#pkg-variables">Variables</a></dd>
@@ -161,13 +135,13 @@ One service can have more than one address.
 					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromString">func NewConnectionParamsFromString(line string) *ConnectionParams</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromTuples">func NewConnectionParamsFromTuples(tuples ...interface{}) *ConnectionParams</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromTuples">func NewConnectionParamsFromTuples(tuples ...any) *ConnectionParams</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromTuplesArray">func NewConnectionParamsFromTuplesArray(tuples []interface{}) *ConnectionParams</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromTuplesArray">func NewConnectionParamsFromTuplesArray(tuples []any) *ConnectionParams</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromValue">func NewConnectionParamsFromValue(value interface{}) *ConnectionParams</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewConnectionParamsFromValue">func NewConnectionParamsFromValue(value any) *ConnectionParams</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyConnectionParams">func NewEmptyConnectionParams() *ConnectionParams</a></dd>
@@ -236,13 +210,13 @@ One service can have more than one address.
 					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.GetAll">func (c *ConnectionResolver) GetAll() []*ConnectionParams</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.Register">func (c *ConnectionResolver) Register(correlationId string, connection *ConnectionParams) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.Register">func (c *ConnectionResolver) Register(ctx context.Context, correlationId string, connection *ConnectionParams) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.Resolve">func (c *ConnectionResolver) Resolve(correlationId string) (*ConnectionParams, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.Resolve">func (c *ConnectionResolver) Resolve(ctx context.Context, correlationId string) (*ConnectionParams, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.ResolveAll">func (c *ConnectionResolver) ResolveAll(correlationId string) ([]*ConnectionParams, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.ResolveAll">func (c *ConnectionResolver) ResolveAll(ctx context.Context, correlationId string) ([]*ConnectionParams, error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ConnectionResolver.SetReferences">func (c *ConnectionResolver) SetReferences(references refer.IReferences)</a></dd>
@@ -270,13 +244,13 @@ One service can have more than one address.
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.ReadConnections">func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.Register">func (c *MemoryDiscovery) Register(correlationId string, key string, connection *ConnectionParams) (result *ConnectionParams, err error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.Register">func (c *MemoryDiscovery) Register(ctx context.Context, correlationId string, key string, connection *ConnectionParams) (result *ConnectionParams, err error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.ResolveAll">func (c *MemoryDiscovery) ResolveAll(correlationId string, key string) (result []*ConnectionParams, err error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.ResolveAll">func (c *MemoryDiscovery) ResolveAll(ctx context.Context, correlationId string, key string) (result []*ConnectionParams, err error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.ResolveOne">func (c *MemoryDiscovery) ResolveOne(correlationId string, key string) (result *ConnectionParams, err error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryDiscovery.ResolveOne">func (c *MemoryDiscovery) ResolveOne(ctx context.Context, correlationId string, key string) (result *ConnectionParams, err error)</a></dd>
 				
 			
 			
@@ -311,29 +285,46 @@ One service can have more than one address.
 		
 
 		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="SectionNameConnections">SectionNameConnections</span>      = &#34;connections&#34;
+    <span id="SectionNameConnection">SectionNameConnection</span>       = &#34;connection&#34;
+    <span id="ConnectionParamDiscoveryKey">ConnectionParamDiscoveryKey</span> = &#34;discovery_key&#34;
+    <span id="ConnectionParamProtocol">ConnectionParamProtocol</span>     = &#34;protocol&#34;
+    <span id="ConnectionParamHost">ConnectionParamHost</span>         = &#34;host&#34;
+    <span id="ConnectionParamIp">ConnectionParamIp</span>           = &#34;ip&#34;
+    <span id="ConnectionParamPort">ConnectionParamPort</span>         = &#34;port&#34;
+    <span id="ConnectionParamURI">ConnectionParamURI</span>          = &#34;uri&#34;
+    <span id="ConnectionParamCluster">ConnectionParamCluster</span>      = &#34;cluster&#34;
+)</pre>
+			
+		
 		
 			<h2 id="pkg-variables">Variables</h2>
 			
 				<p>
-Creates IDiscovery components by their descriptors.
+MemoryDiscoveryDescriptor creates IDiscovery components by their descriptors.
 </p>
 
-				<pre>var <span id="MemoryDiscoveryDescriptor">MemoryDiscoveryDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;discovery&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="MemoryDiscoveryDescriptor">MemoryDiscoveryDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;discovery&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 		
 		
 			
 			
-			<h2 id="NewDefaultDiscoveryFactory">func <a href="http://localhost:6060/src/connect/DefaultDiscoveryFactory.go?s=385:433#L5">NewDefaultDiscoveryFactory</a>
+			<h2 id="NewDefaultDiscoveryFactory">func <a href="http://localhost:6060/src/connect/DefaultDiscoveryFactory.go?s=440:488#L3">NewDefaultDiscoveryFactory</a>
 				<a class="permalink" href="index.html#NewDefaultDiscoveryFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<pre>func NewDefaultDiscoveryFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
 			<p>
-Create a new instance of the factory.
-Returns *build.Factory
+NewDefaultDiscoveryFactory create a new instance of the factory.
 </p>
+<pre>Returns: *build.Factory
+</pre>
 
 			
 			
@@ -342,60 +333,44 @@ Returns *build.Factory
 		
 			
 			
-			<h2 id="ConnectionParams">type <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=1174:1227#L34">ConnectionParams</a>
+			<h2 id="ConnectionParams">type <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=1286:1339#L21">ConnectionParams</a>
 				<a class="permalink" href="index.html#ConnectionParams">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Contains connection parameters to connect to external services. They are used together with credential parameters, but usually stored separately from more protected sensitive values.
+ConnectionParams contains connection parameters to connect to external services.
+They are used together with credential parameters, but usually stored separately
+from more protected sensitive values.
 </p>
-<p>
-Configuration parameters
-</p>
-<pre>discovery_key: key to retrieve parameters from discovery service
-protocol: connection protocol like http, https, tcp, udp
-host: host name or IP address
-port: port number
-uri: resource URI or connection string with all parameters in it
+<pre>Configuration parameters:
+	discovery_key: key to retrieve parameters from discovery service
+	protocol: connection protocol like http, https, tcp, udp
+	host: host name or IP address
+	port: port number
+	uri: resource URI or connection string with all parameters in it
 </pre>
 <p>
 In addition to standard parameters ConnectionParams may contain any number of custom parameters
 </p>
-<p>
-see
-ConfigParams
-</p>
-<p>
-see
-CredentialParams
-</p>
-<p>
-see
-ConnectionResolver
-</p>
-<p>
-see
-IDiscovery
-</p>
-<p>
-Example
+<pre>see ConfigParams
+see CredentialParams
+see ConnectionResolver
+see IDiscovery
 Example ConnectionParams object usage:
-</p>
-<pre>connection := NewConnectionParamsFromTuples(
-    &#34;protocol&#34;, &#34;http&#34;,
-    &#34;host&#34;, &#34;10.1.1.100&#34;,
-    &#34;port&#34;, &#34;8080&#34;,
-    &#34;cluster&#34;, &#34;mycluster&#34;
-);
-
-host := connection.Host();                             // Result: &#34;10.1.1.100&#34;
-port := connection.Port();                             // Result: 8080
-cluster := connection.GetAsNullableString(&#34;cluster&#34;);     // Result: &#34;mycluster&#34;
+	connection := NewConnectionParamsFromTuples(
+		ConnectionParamProtocol, &#34;http&#34;,
+		ConnectionParamHost, &#34;10.1.1.100&#34;,
+		ConnectionParamPort, &#34;8080&#34;,
+		ConnectionParamCluster, &#34;mycluster&#34;
+	);
+	host := connection.Host();                             				// Result: &#34;10.1.1.100&#34;
+	port := connection.Port();                             				// Result: 8080
+	cluster := connection.GetAsNullableString(ConnectionParamCluster);  // Result: &#34;mycluster&#34;
 </pre>
 
 			<pre>type ConnectionParams struct {
-    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
 }
 </pre>
 
@@ -409,193 +384,164 @@ cluster := connection.GetAsNullableString(&#34;cluster&#34;);     // Result: &#3
 
 			
 				
-				<h3 id="NewConnectionParams">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=1680:1748#L51">NewConnectionParams</a>
+				<h3 id="NewConnectionParams">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=2210:2278#L49">NewConnectionParams</a>
 					<a class="permalink" href="index.html#NewConnectionParams">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewConnectionParams(values map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Creates a new connection parameters and fills it with values.
-Parameters:
+NewConnectionParams creates a new connection parameters and fills it with values.
 </p>
-<pre>- values map[string]string
-an object to be converted into key-value pairs to initialize this connection.
+<pre>Parameters: values map[string]string an object to be
+	converted into key-value pairs to initialize this connection.
+Returns: *ConnectionParams
 </pre>
-<p>
-Returns *ConnectionParams
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromConfig">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=5532:5613#L151">NewConnectionParamsFromConfig</a>
+				<h3 id="NewConnectionParamsFromConfig">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6183:6264#L136">NewConnectionParamsFromConfig</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewConnectionParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
+				<pre>func NewConnectionParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Retrieves a single ConnectionParams from configuration parameters from &#34;connection&#34; section. If &#34;connections&#34; section is present instead, then is returns only the first connection element.
-Parameters:
+NewConnectionParamsFromConfig retrieves a single ConnectionParams from configuration parameters
+from &#34;connection&#34; section. If &#34;connections&#34; section is present instead,
+then is returns only the first connection element.
 </p>
-<pre>- config *config.ConfigParams
-ConnectionParams, containing a section named &#34;connection(s)&#34;.
+<pre>Parameters: config *config.ConfigParams ConnectionParams, containing a section named &#34;connection(s)&#34;.
+Returns: *ConnectionParams the generated ConnectionParams object.
 </pre>
-<p>
-Returns *ConnectionParams
-the generated ConnectionParams object.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromMaps">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=4052:4129#L113">NewConnectionParamsFromMaps</a>
+				<h3 id="NewConnectionParamsFromMaps">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=4630:4707#L100">NewConnectionParamsFromMaps</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromMaps">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewConnectionParamsFromMaps(maps ...map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Static method for creating a StringValueMap using the maps passed as parameters.
-Parameters:
+NewConnectionParamsFromMaps static method for creating a StringValueMap using the maps passed as parameters.
 </p>
-<pre>- maps ...map[string]string
-the maps passed to this method to create a StringValueMap with.
+<pre>Parameters:  maps ...map[string]string the maps passed to this method to create a StringValueMap with.
+Returns: ConnectionParams the ConnectionParams created.
 </pre>
-<p>
-Returns ConnectionParams
-the ConnectionParams created.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromString">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=3632:3697#L101">NewConnectionParamsFromString</a>
+				<h3 id="NewConnectionParamsFromString">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=4195:4260#L91">NewConnectionParamsFromString</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromString">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewConnectionParamsFromString(line <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Creates a new ConnectionParams object filled with key-value pairs serialized as a string.
-Parameters:
+NewConnectionParamsFromString creates a new ConnectionParams object filled with
+key-value pairs serialized as a string.
 </p>
-<pre>- line string
-a string with serialized key-value pairs as &#34;key1=value1;key2=value2;...&#34; Example: &#34;Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z&#34;
+<pre>Parameters: line string a string with serialized key-value pairs as
+	&#34;key1=value1;key2=value2;...&#34; Example: &#34;Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z&#34;
+Returns: *ConnectionParams a new ConnectionParams object.
 </pre>
-<p>
-Returns *ConnectionParams
-a new ConnectionParams object.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromTuples">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=2664:2739#L77">NewConnectionParamsFromTuples</a>
+				<h3 id="NewConnectionParamsFromTuples">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=3207:3274#L71">NewConnectionParamsFromTuples</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromTuples">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewConnectionParamsFromTuples(tuples ...interface{}) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
+				<pre>func NewConnectionParamsFromTuples(tuples ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Creates a new ConnectionParams object filled with provided key-value pairs called tuples. Tuples parameters contain a sequence of key1, value1, key2, value2, ... pairs.
-Parameters:
+NewConnectionParamsFromTuples creates a new ConnectionParams object filled with provided key-value
+pairs called tuples. Tuples parameters contain a sequence of
+key1, value1, key2, value2, ... pairs.
 </p>
-<pre>- tuples ...interface{}
-the tuples to fill a new ConnectionParams object.
+<pre>Parameters: tuples ...any the tuples to fill a new ConnectionParams object.
+Returns: *ConnectionParams a new ConnectionParams object.
 </pre>
-<p>
-Returns *ConnectionParams
-a new ConnectionParams object.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromTuplesArray">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=3126:3205#L89">NewConnectionParamsFromTuplesArray</a>
+				<h3 id="NewConnectionParamsFromTuplesArray">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=3674:3745#L80">NewConnectionParamsFromTuplesArray</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromTuplesArray">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewConnectionParamsFromTuplesArray(tuples []interface{}) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
+				<pre>func NewConnectionParamsFromTuplesArray(tuples []<a href="http://localhost:6060/pkg/builtin/#any">any</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Method for creating a StringValueMap from an array of tuples.
-Parameters:
+NewConnectionParamsFromTuplesArray method for creating a StringValueMap from an array of tuples.
 </p>
-<pre>- tuples []interface{}
-the key-value tuples array to initialize the new StringValueMap with.
+<pre>Parameters: tuples []any the key-value tuples array to initialize the new StringValueMap with.
+Returns: *ConnectionParams the ConnectionParams created and filled by the &#39;tuples&#39; array provided.
 </pre>
-<p>
-Returns *ConnectionParams
-the ConnectionParams created and filled by the &#39;tuples&#39; array provided.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewConnectionParamsFromValue">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=2167:2237#L65">NewConnectionParamsFromValue</a>
+				<h3 id="NewConnectionParamsFromValue">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=2704:2766#L60">NewConnectionParamsFromValue</a>
 					<a class="permalink" href="index.html#NewConnectionParamsFromValue">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewConnectionParamsFromValue(value interface{}) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
+				<pre>func NewConnectionParamsFromValue(value <a href="http://localhost:6060/pkg/builtin/#any">any</a>) *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Method that creates a ConfigParams object based on the values that are stored in the &#39;value&#39; object&#39;s properties.
-see
-RecursiveObjectReader.getProperties
-Parameters:
+NewConnectionParamsFromValue method that creates a ConfigParams object based on the values that
+are stored in the &#39;value&#39; object&#39;s properties.
 </p>
-<pre>- value interface{}
-configuration parameters in the form of an object with properties.
+<pre>see RecursiveObjectReader.GetProperties
+Parameters: value any configuration parameters in the form of an object with properties.
+Returns: ConnectionParams generated ConnectionParams.
 </pre>
-<p>
-Returns ConnectionParams
-generated ConnectionParams.
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewEmptyConnectionParams">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=1323:1372#L40">NewEmptyConnectionParams</a>
+				<h3 id="NewEmptyConnectionParams">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=1840:1889#L39">NewEmptyConnectionParams</a>
 					<a class="permalink" href="index.html#NewEmptyConnectionParams">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewEmptyConnectionParams() *<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Creates a new connection parameters and fills it with values.
-Returns *ConnectionParams
+NewEmptyConnectionParams creates a new connection parameters and fills it with values.
 </p>
+<pre>Returns: *ConnectionParams
+</pre>
 
 				
 				
 			
 				
-				<h3 id="NewManyConnectionParamsFromConfig">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=4591:4678#L125">NewManyConnectionParamsFromConfig</a>
+				<h3 id="NewManyConnectionParamsFromConfig">func <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=5195:5282#L111">NewManyConnectionParamsFromConfig</a>
 					<a class="permalink" href="index.html#NewManyConnectionParamsFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewManyConnectionParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) []*<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
+				<pre>func NewManyConnectionParamsFromConfig(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) []*<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Retrieves all ConnectionParams from configuration parameters from &#34;connections&#34; section. If &#34;connection&#34; section is present instead, than it returns a list with only one ConnectionParams.
-Parameters:
+NewManyConnectionParamsFromConfig retrieves all ConnectionParams from configuration parameters
+from &#34;connections&#34; section. If &#34;connection&#34; section is present instead, than it returns a
+list with only one ConnectionParams.
 </p>
-<pre>- config *config.ConfigParams
-a configuration parameters to retrieve connections
+<pre>Parameters: config *config.ConfigParams a configuration parameters to retrieve connections
+Returns: []*ConnectionParams a list of retrieved ConnectionParams
 </pre>
-<p>
-Returns []*ConnectionParams
-a list of retrieved ConnectionParams
-</p>
 
 				
 				
@@ -603,134 +549,122 @@ a list of retrieved ConnectionParams
 
 			
 				
-				<h3 id="ConnectionParams.DiscoveryKey">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6318:6366#L172">DiscoveryKey</a>
+				<h3 id="ConnectionParams.DiscoveryKey">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7003:7051#L155">DiscoveryKey</a>
 					<a class="permalink" href="index.html#ConnectionParams.DiscoveryKey">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) DiscoveryKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the key to retrieve this connection from DiscoveryService. If this key is null, than all parameters are already present.
-see
-UseDiscovery
-Returns string
-the discovery key to retrieve connection.
+DiscoveryKey gets the key to retrieve this connection from DiscoveryService.
+If this key is null, then all parameters are already present.
 </p>
+<pre>see UseDiscovery
+Returns: string the discovery key to retrieve connection.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.Host">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7440:7480#L212">Host</a>
+				<h3 id="ConnectionParams.Host">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8208:8248#L186">Host</a>
 					<a class="permalink" href="index.html#ConnectionParams.Host">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) Host() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the host name or IP address.
-Returns string
-the host name or IP address.
+Host gets the host name or IP address.
 </p>
+<pre>Returns: string the host name or IP address.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.Port">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7823:7860#L231">Port</a>
+				<h3 id="ConnectionParams.Port">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8628:8665#L202">Port</a>
 					<a class="permalink" href="index.html#ConnectionParams.Port">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) Port() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
 				<p>
-Gets the port number.
-Returns int
-the port number.
+Port gets the port number.
 </p>
+<pre>Returns int the port number.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.PortWithDefault">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8019:8083#L241">PortWithDefault</a>
+				<h3 id="ConnectionParams.PortWithDefault">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8841:8905#L209">PortWithDefault</a>
 					<a class="permalink" href="index.html#ConnectionParams.PortWithDefault">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) PortWithDefault(defaultValue <a href="http://localhost:6060/pkg/builtin/#int">int</a>) <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
 				<p>
-Gets the port number.
-Parameters:
+PortWithDefault gets the port number.
 </p>
-<pre>- defaultValue int
-default port number
+<pre>Parameters: defaultValue int default port number
+Returns: int the port number.
 </pre>
-<p>
-Returns int
-the port number.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.Protocol">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6762:6806#L187">Protocol</a>
+				<h3 id="ConnectionParams.Protocol">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7482:7526#L167">Protocol</a>
 					<a class="permalink" href="index.html#ConnectionParams.Protocol">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) Protocol() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the connection protocol.
-Returns string
-the connection protocol or the default value if it&#39;s not set.
+Protocol gets the connection protocol.
 </p>
+<pre>Returns: string the connection protocol or the default value if it&#39;s not set.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.ProtocolWithDefault">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7030:7104#L197">ProtocolWithDefault</a>
+				<h3 id="ConnectionParams.ProtocolWithDefault">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7769:7843#L174">ProtocolWithDefault</a>
 					<a class="permalink" href="index.html#ConnectionParams.ProtocolWithDefault">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) ProtocolWithDefault(defaultValue <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the connection protocol.
-Parameters:
+ProtocolWithDefault gets the connection protocol.
 </p>
-<pre>- defaultValue string
-the default protocol
+<pre>Parameters: defaultValue string the default protocol
+Returns: string the connection protocol or the default value if it&#39;s not set.
 </pre>
-<p>
-Returns string
-the connection protocol or the default value if it&#39;s not set.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.SetDiscoveryKey">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6553:6609#L180">SetDiscoveryKey</a>
+				<h3 id="ConnectionParams.SetDiscoveryKey">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7254:7310#L161">SetDiscoveryKey</a>
 					<a class="permalink" href="index.html#ConnectionParams.SetDiscoveryKey">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) SetDiscoveryKey(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the key to retrieve these parameters from DiscoveryService.
-Parameters:
+SetDiscoveryKey sets the key to retrieve these parameters from DiscoveryService.
 </p>
-<pre>- value string
-a new key to retrieve connection.
+<pre>Parameters: value string a new key to retrieve connection.
 </pre>
 
 				
@@ -738,18 +672,16 @@ a new key to retrieve connection.
 				
 			
 				
-				<h3 id="ConnectionParams.SetHost">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7687:7735#L224">SetHost</a>
+				<h3 id="ConnectionParams.SetHost">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8477:8525#L196">SetHost</a>
 					<a class="permalink" href="index.html#ConnectionParams.SetHost">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) SetHost(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the host name or IP address.
-Parameters:
+SetHost sets the host name or IP address.
 </p>
-<pre>- value string
-a new host name or IP address.
+<pre>Parameters: value string a new host name or IP address.
 </pre>
 
 				
@@ -757,20 +689,17 @@ a new host name or IP address.
 				
 			
 				
-				<h3 id="ConnectionParams.SetPort">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8241:8286#L251">SetPort</a>
+				<h3 id="ConnectionParams.SetPort">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=9069:9114#L216">SetPort</a>
 					<a class="permalink" href="index.html#ConnectionParams.SetPort">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) SetPort(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
 				<p>
-Sets the port number.
-see
-Host
-Parameters:
+SetPort sets the port number.
 </p>
-<pre>- value int
-a new port number.
+<pre>see Host
+Parameters: value int a new port number.
 </pre>
 
 				
@@ -778,18 +707,16 @@ a new port number.
 				
 			
 				
-				<h3 id="ConnectionParams.SetProtocol">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=7269:7321#L205">SetProtocol</a>
+				<h3 id="ConnectionParams.SetProtocol">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8021:8073#L180">SetProtocol</a>
 					<a class="permalink" href="index.html#ConnectionParams.SetProtocol">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) SetProtocol(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the connection protocol.
-Parameters:
+SetProtocol sets the connection protocol.
 </p>
-<pre>- value string
-a new connection protocol.
+<pre>Parameters: value string a new connection protocol.
 </pre>
 
 				
@@ -797,18 +724,16 @@ a new connection protocol.
 				
 			
 				
-				<h3 id="ConnectionParams.SetUri">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8676:8723#L266">SetUri</a>
+				<h3 id="ConnectionParams.SetUri">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=9527:9574#L228">SetUri</a>
 					<a class="permalink" href="index.html#ConnectionParams.SetUri">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) SetUri(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the resource URI or connection string.
-Parameters:
+SetUri sets the resource URI or connection string.
 </p>
-<pre>- value string
-a new resource URI or connection string.
+<pre>Parameters: value string a new resource URI or connection string.
 </pre>
 
 				
@@ -816,35 +741,35 @@ a new resource URI or connection string.
 				
 			
 				
-				<h3 id="ConnectionParams.Uri">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=8474:8513#L258">Uri</a>
+				<h3 id="ConnectionParams.Uri">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=9317:9356#L222">Uri</a>
 					<a class="permalink" href="index.html#ConnectionParams.Uri">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) Uri() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the resource URI or connection string. Usually it includes all connection parameters in it.
-Returns string
-the resource URI or connection string.
+Uri gets the resource URI or connection string. Usually it includes all connection parameters in it.
 </p>
+<pre>Returns: string the resource URI or connection string.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionParams.UseDiscovery">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6006:6052#L163">UseDiscovery</a>
+				<h3 id="ConnectionParams.UseDiscovery">func (*ConnectionParams) <a href="http://localhost:6060/src/connect/ConnectionParams.go?s=6668:6714#L147">UseDiscovery</a>
 					<a class="permalink" href="index.html#ConnectionParams.UseDiscovery">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionParams">ConnectionParams</a>) UseDiscovery() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
 				<p>
-Checks if these connection parameters shall be retrieved from DiscoveryService.
+UseDiscovery checks if these connection parameters shall be retrieved from DiscoveryService.
 The connection parameters are redirected to DiscoveryService when discovery_key parameter is set.
-Returns bool
-true if connection shall be retrieved from DiscoveryService
 </p>
+<pre>Returns: bool true if connection shall be retrieved from DiscoveryService
+</pre>
 
 				
 				
@@ -853,54 +778,38 @@ true if connection shall be retrieved from DiscoveryService
 		
 			
 			
-			<h2 id="ConnectionResolver">type <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1236:1334#L34">ConnectionResolver</a>
+			<h2 id="ConnectionResolver">type <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1280:1378#L24">ConnectionResolver</a>
 				<a class="permalink" href="index.html#ConnectionResolver">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Helper class to retrieve component connections.
+ConnectionResolver helper class to retrieve component connections.
+If connections are configured to be retrieved from IDiscovery, it automatically locates
+IDiscovery in component references and retrieve connections from there using discovery_key parameter.
 </p>
-<p>
-If connections are configured to be retrieved from IDiscovery, it automatically locates IDiscovery in component references and retrieve connections from there using discovery_key parameter.
-</p>
-<p>
-Configuration parameters
-</p>
-<pre>connection:
-
-  discovery_key: (optional) a key to retrieve the connection from IDiscovery
-    ... other connection parameters
-  connections: alternative to connection
-
-    [connection params 1]: first connection parameters
-    ... connection parameters for key 1
-    [connection params N]: Nth connection parameters
-    ... connection parameters for key N
-</pre>
-<p>
-References
-*:discovery:*:*:1.0 (optional) IDiscovery services to resolve connections
-see
-ConnectionParams
-</p>
-<p>
-see
-IDiscovery
-</p>
-<p>
-Example
-</p>
-<pre>config = NewConfigParamsFromTuples(
-    &#34;connection.host&#34;, &#34;10.1.1.100&#34;,
-    &#34;connection.port&#34;, 8080
-);
-
-connectionResolver := NewConnectionResolver();
-connectionResolver.Configure(config);
-connectionResolver.SetReferences(references);
-
-res, err := connectionResolver.Resolve(&#34;123&#34;);
+<pre>Configuration parameters
+	connection:
+	discovery_key: (optional) a key to retrieve the connection from IDiscovery
+	... other connection parameters
+	connections: alternative to connection
+	[connection params 1]: first connection parameters
+	... connection parameters for key 1
+	[connection params N]: Nth connection parameters
+	... connection parameters for key N
+References:
+	*:discovery:*:*:1.0 (optional) IDiscovery services to resolve connections
+see ConnectionParams
+see IDiscovery
+Example:
+	config = NewConfigParamsFromTuples(
+		&#34;connection.host&#34;, &#34;10.1.1.100&#34;,
+		&#34;connection.port&#34;, 8080
+	);
+	connectionResolver := NewConnectionResolver();
+	connectionResolver.Configure(config);
+	connectionResolver.SetReferences(references);
+	res, err := connectionResolver.Resolve(&#34;123&#34;);
 </pre>
 
 			<pre>type ConnectionResolver struct {
@@ -918,40 +827,36 @@ res, err := connectionResolver.Resolve(&#34;123&#34;);
 
 			
 				
-				<h3 id="NewConnectionResolver">func <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1799:1905#L55">NewConnectionResolver</a>
+				<h3 id="NewConnectionResolver">func <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1882:1987#L43">NewConnectionResolver</a>
 					<a class="permalink" href="index.html#NewConnectionResolver">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewConnectionResolver(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>,
-    references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>) *<a href="index.html#ConnectionResolver">ConnectionResolver</a></pre>
+				<pre>func NewConnectionResolver(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#ConnectionResolver">ConnectionResolver</a></pre>
 				<p>
-Creates a new instance of connection resolver.
-Parameters:
+NewConnectionResolver Creates a new instance of connection resolver.
 </p>
-<pre>- config *config.ConfigParams
-component configuration parameters
-- references refer.IReferences
-component references
+<pre>Parameters:
+	- config *config.ConfigParams component configuration parameters
+	- references refer.IReferences component references
+Returns: *ConnectionResolver
 </pre>
-<p>
-Returns *ConnectionResolver
-</p>
 
 				
 				
 			
 				
-				<h3 id="NewEmptyConnectionResolver">func <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1417:1470#L41">NewEmptyConnectionResolver</a>
+				<h3 id="NewEmptyConnectionResolver">func <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=1489:1542#L31">NewEmptyConnectionResolver</a>
 					<a class="permalink" href="index.html#NewEmptyConnectionResolver">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewEmptyConnectionResolver() *<a href="index.html#ConnectionResolver">ConnectionResolver</a></pre>
 				<p>
-Creates a new instance of connection resolver.
-Returns *ConnectionResolver
+NewEmptyConnectionResolver creates a new instance of connection resolver.
 </p>
+<pre>Returns: *ConnectionResolver
+</pre>
 
 				
 				
@@ -959,18 +864,16 @@ Returns *ConnectionResolver
 
 			
 				
-				<h3 id="ConnectionResolver.Add">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=3184:3246#L101">Add</a>
+				<h3 id="ConnectionResolver.Add">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=3261:3323#L82">Add</a>
 					<a class="permalink" href="index.html#ConnectionResolver.Add">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Add(connection *<a href="index.html#ConnectionParams">ConnectionParams</a>)</pre>
 				<p>
-Adds a new connection to component connections
-Parameters:
+Add a new connection to component connections
 </p>
-<pre>- connection *ConnectionParams
-new connection parameters to be added
+<pre>Parameters: connection *ConnectionParams new connection parameters to be added
 </pre>
 
 				
@@ -978,18 +881,16 @@ new connection parameters to be added
 				
 			
 				
-				<h3 id="ConnectionResolver.Configure">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=2215:2282#L73">Configure</a>
+				<h3 id="ConnectionResolver.Configure">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=2295:2362#L58">Configure</a>
 					<a class="permalink" href="index.html#ConnectionResolver.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure Configures component by passing configuration parameters.
 </p>
-<pre>- config *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -997,112 +898,102 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="ConnectionResolver.GetAll">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=2955:3012#L93">GetAll</a>
+				<h3 id="ConnectionResolver.GetAll">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=3045:3102#L76">GetAll</a>
 					<a class="permalink" href="index.html#ConnectionResolver.GetAll">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) GetAll() []*<a href="index.html#ConnectionParams">ConnectionParams</a></pre>
 				<p>
-Gets all connections configured in component configuration.
-Redirect to Discovery services is not done at this point. If you need fully fleshed connection use resolve method instead.
-Returns []*ConnectionParams
-a list with connection parameters
+GetAll gets all connections configured in component configuration.
+Redirect to Discovery services is not done at this point.
+If you need fully fleshed connection use resolve method instead.
 </p>
+<pre>Returns: []*ConnectionParams a list with connection parameters
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionResolver.Register">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=8244:8339#L286">Register</a>
+				<h3 id="ConnectionResolver.Register">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=8557:8673#L261">Register</a>
 					<a class="permalink" href="index.html#ConnectionResolver.Register">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Register(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Register(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Registers the given connection in all referenced discovery services. This method can be used for dynamic service discovery.
-see
-IDiscovery
+Register the given connection in all referenced discovery services.
+This method can be used for dynamic service discovery.
+</p>
+<pre>see IDiscovery
 Parameters:
-</p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- connection *ConnectionParams
-a connection to register.
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- connection *ConnectionParams a connection to register.
+Returns: error
 </pre>
-<p>
-Returns error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionResolver.Resolve">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=4474:4559#L145">Resolve</a>
+				<h3 id="ConnectionResolver.Resolve">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=4600:4706#L124">Resolve</a>
 					<a class="permalink" href="index.html#ConnectionResolver.Resolve">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Resolve(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (*<a href="index.html#ConnectionParams">ConnectionParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) Resolve(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (*<a href="index.html#ConnectionParams">ConnectionParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Resolves a single component connection. If connections are configured to be retrieved from Discovery service it finds a IDiscovery and resolves the connection there.
-see
-IDiscovery
+Resolve a single component connection. If connections are configured to be retrieved
+from Discovery service it finds a IDiscovery and resolves the connection there.
+</p>
+<pre>see IDiscovery
 Parameters:
-</p>
-<pre>- correlationId: string
-transaction id to trace execution through call chain.
+	- ctx context.Context
+	- correlationId: string transaction id to trace execution through call chain.
+Returns: *ConnectionParams, error resolved connection or error.
 </pre>
-<p>
-Returns *ConnectionParams, error
-resolved connection or error.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionResolver.ResolveAll">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=6382:6472#L217">ResolveAll</a>
+				<h3 id="ConnectionResolver.ResolveAll">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=6609:6720#L194">ResolveAll</a>
 					<a class="permalink" href="index.html#ConnectionResolver.ResolveAll">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) ResolveAll(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) ([]*<a href="index.html#ConnectionParams">ConnectionParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) ResolveAll(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) ([]*<a href="index.html#ConnectionParams">ConnectionParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Resolves all component connection. If connections are configured to be retrieved from Discovery service it finds a IDiscovery and resolves the connection there.
-see
-IDiscovery
+ResolveAll resolves all component connection. If connections are configured to be
+retrieved from Discovery service it finds a IDiscovery and resolves the connection there.
+</p>
+<pre>see IDiscovery
 Parameters:
-</p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+Returns: []*ConnectionParams, error resolved connections or error.
 </pre>
-<p>
-Returns []*ConnectionParams, error
-resolved connections or error.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="ConnectionResolver.SetReferences">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=2593:2665#L85">SetReferences</a>
+				<h3 id="ConnectionResolver.SetReferences">func (*ConnectionResolver) <a href="http://localhost:6060/src/connect/ConnectionResolver.go?s=2675:2747#L68">SetReferences</a>
 					<a class="permalink" href="index.html#ConnectionResolver.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#ConnectionResolver">ConnectionResolver</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
-Sets references to dependent components.
-Parameters:
+SetReferences sets references to dependent components.
 </p>
-<pre>- references refer.IReferences
-references to locate the component dependencies.
+<pre>Parameters: references refer.IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -1112,23 +1003,27 @@ references to locate the component dependencies.
 		
 			
 			
-			<h2 id="IDiscovery">type <a href="http://localhost:6060/src/connect/IDiscovery.go?s=147:633#L1">IDiscovery</a>
+			<h2 id="IDiscovery">type <a href="http://localhost:6060/src/connect/IDiscovery.go?s=176:731#L1">IDiscovery</a>
 				<a class="permalink" href="index.html#IDiscovery">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Interface for discovery services which are used to store and resolve connection parameters to connect to external services.
+IDiscovery interface for discovery services which are used to store and resolve
+connection parameters to connect to external services.
 </p>
 
 			<pre>type IDiscovery interface {
-    <span class="comment">// Registers connection parameters into the discovery service.</span>
-    Register(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+
+    <span class="comment">// Register connection parameters into the discovery service.</span>
+    Register(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
         connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) (result *<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
-    <span class="comment">// Resolves a single connection parameters by its key.</span>
-    ResolveOne(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
-    <span class="comment">// Resolves all connection parameters by their key.</span>
-    ResolveAll(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result []*<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// ResolveOne a single connection parameters by its key.</span>
+    ResolveOne(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// ResolveAll all connection parameters by their key.</span>
+    ResolveAll(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result []*<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 }</pre>
 
 			
@@ -1145,46 +1040,33 @@ Interface for discovery services which are used to store and resolve connection 
 		
 			
 			
-			<h2 id="MemoryDiscovery">type <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=692:761#L26">MemoryDiscovery</a>
+			<h2 id="MemoryDiscovery">type <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=736:805#L18">MemoryDiscovery</a>
 				<a class="permalink" href="index.html#MemoryDiscovery">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Discovery service that keeps connections in memory.
+MemoryDiscovery discovery service that keeps connections in memory.
 </p>
-<p>
-Configuration parameters
-</p>
-<pre>[connection key 1]:
-... connection parameters for key 1
-[connection key 2]:
-... connection parameters for key N
-</pre>
-<p>
-see
-IDiscovery
-</p>
-<p>
-see
-ConnectionParams
-</p>
-<p>
+<pre>Configuration parameters
+	[connection key 1]:
+	... connection parameters for key 1
+	[connection key 2]:
+	... connection parameters for key N
+see IDiscovery
+see ConnectionParams
 Example
-</p>
-<pre>config := NewConfigParamsFromTuples(
-    &#34;key1.host&#34;, &#34;10.1.1.100&#34;,
-    &#34;key1.port&#34;, &#34;8080&#34;,
-    &#34;key2.host&#34;, &#34;10.1.1.100&#34;,
-    &#34;key2.port&#34;, &#34;8082&#34;
-);
-
-discovery := NewMemoryDiscovery();
-discovery.ReadConnections(config);
-
-discovery.Resolve(&#34;123&#34;, &#34;key1&#34;, (err, connection) =&gt; {
-    // Result: host=10.1.1.100;port=8080
-});
+	config := NewConfigParamsFromTuples(
+		&#34;key1.host&#34;, &#34;10.1.1.100&#34;,
+		&#34;key1.port&#34;, &#34;8080&#34;,
+		&#34;key2.host&#34;, &#34;10.1.1.100&#34;,
+		&#34;key2.port&#34;, &#34;8082&#34;
+	);
+	discovery := NewMemoryDiscovery();
+	discovery.ReadConnections(config);
+	discovery.Resolve(&#34;123&#34;, &#34;key1&#34;, (err, connection) =&gt; {
+		// Result: host=10.1.1.100;port=8080
+	});
 </pre>
 
 			<pre>type MemoryDiscovery struct {
@@ -1202,37 +1084,34 @@ discovery.Resolve(&#34;123&#34;, &#34;key1&#34;, (err, connection) =&gt; {
 
 			
 				
-				<h3 id="NewEmptyMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=839:886#L32">NewEmptyMemoryDiscovery</a>
+				<h3 id="NewEmptyMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=908:955#L24">NewEmptyMemoryDiscovery</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryDiscovery">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewEmptyMemoryDiscovery() *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a></pre>
 				<p>
-Creates a new instance of discovery service.
-Returns *MemoryDiscovery
+NewEmptyMemoryDiscovery creates a new instance of discovery service.
 </p>
+<pre>Returns: *MemoryDiscovery
+</pre>
 
 				
 				
 			
 				
-				<h3 id="NewMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1139:1208#L43">NewMemoryDiscovery</a>
+				<h3 id="NewMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1214:1283#L33">NewMemoryDiscovery</a>
 					<a class="permalink" href="index.html#NewMemoryDiscovery">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMemoryDiscovery(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a></pre>
+				<pre>func NewMemoryDiscovery(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a></pre>
 				<p>
-Creates a new instance of discovery service.
-Parameters:
+NewMemoryDiscovery creates a new instance of discovery service.
 </p>
-<pre>- config *config.ConfigParams
-configuration with connection parameters.
+<pre>Parameters: config *config.ConfigParams configuration with connection parameters.
+Returns: *MemoryDiscovery
 </pre>
-<p>
-Returns *MemoryDiscovery
-</p>
 
 				
 				
@@ -1240,108 +1119,101 @@ Returns *MemoryDiscovery
 
 			
 				
-				<h3 id="MemoryDiscovery.Configure">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1492:1556#L59">Configure</a>
+				<h3 id="MemoryDiscovery.Configure">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1555:1619#L47">Configure</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure component by passing configuration parameters.
 </p>
-<pre>- config *config.ConfigParams
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
 </pre>
-<p>
-configuration parameters to be set.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryDiscovery.ReadConnections">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1789:1859#L67">ReadConnections</a>
+				<h3 id="MemoryDiscovery.ReadConnections">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1839:1909#L53">ReadConnections</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ReadConnections">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ReadConnections(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ReadConnections(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Reads connections from configuration parameters. Each section represents an individual Connectionparams
-Parameters:
+ReadConnections from configuration parameters. Each section represents an individual Connectionparams
 </p>
-<pre>- config *configure.ConfigParams
+<pre>Parameters: config *configure.ConfigParams configuration parameters to be read
 </pre>
-<p>
-configuration parameters to be read
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryDiscovery.Register">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=2456:2593#L87">Register</a>
+				<h3 id="MemoryDiscovery.Register">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=2514:2672#L71">Register</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.Register">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) Register(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) Register(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) (result *<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Registers connection parameters into the discovery service.
-Parameters:
+Register connection parameters into the discovery service.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- key string
-a key to uniquely identify the connection parameters.
-- connection *ConnectionParams
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a key to uniquely identify the connection parameters.
+	- connection *ConnectionParams
+Returns: *ConnectionParams, error registered connection or error.
 </pre>
-<p>
-Returns  *ConnectionParams, error
-registered connection or error.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryDiscovery.ResolveAll">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3405:3516#L122">ResolveAll</a>
+				<h3 id="MemoryDiscovery.ResolveAll">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3829:3961#L109">ResolveAll</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ResolveAll">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ResolveAll(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ResolveAll(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result []*<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+ResolveAll connection parameters by its key.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId: string transaction id to trace execution through call chain.
+	- key: string a key to uniquely identify the connection.
+Returns: *ConnectionParams, error receives found connection or error.
+</pre>
+
 				
 				
 				
 			
 				
-				<h3 id="MemoryDiscovery.ResolveOne">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3160:3269#L111">ResolveOne</a>
+				<h3 id="MemoryDiscovery.ResolveOne">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3253:3383#L92">ResolveOne</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ResolveOne">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ResolveOne(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#MemoryDiscovery">MemoryDiscovery</a>) ResolveOne(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (result *<a href="index.html#ConnectionParams">ConnectionParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Resolves a single connection parameters by its key.
-Parameters:
+ResolveOne a single connection parameters by its key.
 </p>
-<pre>- correlationId: string
- transaction id to trace execution through call chain.
-- key: string
-a key to uniquely identify the connection.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId: string transaction id to trace execution through call chain.
+	- key: string a key to uniquely identify the connection.
+Returns: *ConnectionParams, error receives found connection or error.
 </pre>
-<p>
-Returns  *ConnectionParams, error
-receives found connection or error.
-</p>
 
 				
 				
@@ -1359,13 +1231,13 @@ receives found connection or error.
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.1.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

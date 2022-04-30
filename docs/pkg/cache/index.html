@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.1";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -93,10 +93,7 @@
 			</div>
 			<div class="expanded">
 				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
-				<p>
-Abstract implementation of various distributed caches. We can save an object to cache and retrieve it object by its key, using various implementations.
-</p>
-
+				
 				
 			</div>
 		</div>
@@ -124,23 +121,23 @@ Abstract implementation of various distributed caches. We can save an object to 
 				<dd><a href="index.html#CacheEntry">type CacheEntry</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCacheEntry">func NewCacheEntry(key string, value interface{}, timeout int64) *CacheEntry</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCacheEntry">func NewCacheEntry[T any](key string, value T, timeout int64) *CacheEntry[T]</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Expiration">func (c *CacheEntry) Expiration() time.Time</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Expiration">func (c *CacheEntry[T]) Expiration() time.Time</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.IsExpired">func (c *CacheEntry) IsExpired() bool</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.IsExpired">func (c *CacheEntry[T]) IsExpired() bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Key">func (c *CacheEntry) Key() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Key">func (c *CacheEntry[T]) Key() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.SetValue">func (c *CacheEntry) SetValue(value interface{}, timeout int64)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.SetValue">func (c *CacheEntry[T]) SetValue(value T, timeout int64)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Value">func (c *CacheEntry) Value() interface{}</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CacheEntry.Value">func (c *CacheEntry[T]) Value() T</a></dd>
 				
 			
 				
@@ -152,46 +149,52 @@ Abstract implementation of various distributed caches. We can save an object to 
 				<dd><a href="index.html#MemoryCache">type MemoryCache</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCache">func NewMemoryCache() *MemoryCache</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCache">func NewMemoryCache[T any]() *MemoryCache[T]</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCacheFromConfig">func NewMemoryCacheFromConfig(cfg *config.ConfigParams) *MemoryCache</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCacheFromConfig">func NewMemoryCacheFromConfig[T any](cfg *config.ConfigParams) *MemoryCache[T]</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Cleanup">func (c *MemoryCache) Cleanup()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Cleanup">func (c *MemoryCache[T]) Cleanup()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Clear">func (c *MemoryCache) Clear(correlationId string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Clear">func (c *MemoryCache[T]) Clear(ctx context.Context, correlationId string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Configure">func (c *MemoryCache) Configure(cfg *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Configure">func (c *MemoryCache[T]) Configure(cfg *config.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Remove">func (c *MemoryCache) Remove(correlationId string, key string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Contains">func (c *MemoryCache[T]) Contains(ctx context.Context, correlationId string, key string) bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Retrieve">func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Remove">func (c *MemoryCache[T]) Remove(correlationId string, key string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Store">func (c *MemoryCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Retrieve">func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Store">func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string, key string, value T, timeout int64) (T, error)</a></dd>
 				
 			
 				
 				<dd><a href="index.html#NullCache">type NullCache</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewNullCache">func NewNullCache() *NullCache</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNullCache">func NewNullCache[T any]() *NullCache[T]</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Remove">func (c *NullCache) Remove(correlationId string, key string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Contains">func (c *NullCache[T]) Contains(ctx context.Context, correlationId string, key string) bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Retrieve">func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Remove">func (c *NullCache[T]) Remove(ctx context.Context, correlationId string, key string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Store">func (c *NullCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Retrieve">func (c *NullCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullCache.Store">func (c *NullCache[T]) Store(ctx context.Context, correlationId string, key string, value T, timeout int64) (T, error)</a></dd>
 				
 			
 			
@@ -230,28 +233,26 @@ Abstract implementation of various distributed caches. We can save an object to 
 			<h2 id="pkg-variables">Variables</h2>
 			
 				
-				<pre>var <span id="MemoryCacheDescriptor">MemoryCacheDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;cache&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="MemoryCacheDescriptor">MemoryCacheDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;cache&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
-				<p>
-Creates ICache components by their descriptors.
-</p>
-
-				<pre>var <span id="NullCacheDescriptor">NullCacheDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;cache&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				
+				<pre>var <span id="NullCacheDescriptor">NullCacheDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;cache&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 		
 		
 			
 			
-			<h2 id="NewDefaultCacheFactory">func <a href="http://localhost:6060/src/cache/DefaultCacheFactory.go?s=462:506#L6">NewDefaultCacheFactory</a>
+			<h2 id="NewDefaultCacheFactory">func <a href="http://localhost:6060/src/cache/DefaultCacheFactory.go?s=488:532#L5">NewDefaultCacheFactory</a>
 				<a class="permalink" href="index.html#NewDefaultCacheFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<pre>func NewDefaultCacheFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
 			<p>
-Create a new instance of the factory.
-Returns *build.Factory
+NewDefaultCacheFactory create a new instance of the factory.
 </p>
+<pre>Returns: *build.Factory
+</pre>
 
 			
 			
@@ -260,16 +261,16 @@ Returns *build.Factory
 		
 			
 			
-			<h2 id="CacheEntry">type <a href="http://localhost:6060/src/cache/CacheEntry.go?s=112:203#L1">CacheEntry</a>
+			<h2 id="CacheEntry">type <a href="http://localhost:6060/src/cache/CacheEntry.go?s=120:208#L1">CacheEntry</a>
 				<a class="permalink" href="index.html#CacheEntry">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Data object to store cached values with their keys used by MemoryCache
+CacheEntry Data object to store cached values with their keys used by MemoryCache
 </p>
 
-			<pre>type CacheEntry struct {
+			<pre>type CacheEntry[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] struct {
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -284,22 +285,19 @@ Data object to store cached values with their keys used by MemoryCache
 
 			
 				
-				<h3 id="NewCacheEntry">func <a href="http://localhost:6060/src/cache/CacheEntry.go?s=483:559#L15">NewCacheEntry</a>
+				<h3 id="NewCacheEntry">func <a href="http://localhost:6060/src/cache/CacheEntry.go?s=474:550#L10">NewCacheEntry</a>
 					<a class="permalink" href="index.html#NewCacheEntry">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCacheEntry(key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) *<a href="index.html#CacheEntry">CacheEntry</a></pre>
+				<pre>func NewCacheEntry[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>](key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) *<a href="index.html#CacheEntry">CacheEntry</a>[T]</pre>
 				<p>
-Creates a new instance of the cache entry and assigns its values.
-Parameters:
+NewCacheEntry creates a new instance of the cache entry and assigns its values.
 </p>
-<pre>- key string
-a unique key to locate the value.
-- value interface{]
-a value to be stored.
-- timeout int64
-expiration timeout in milliseconds.
+<pre>Parameters:
+	- key string a unique key to locate the value.
+	- value T a value to be stored.
+	- timeout int64 expiration timeout in milliseconds.
 </pre>
 <p>
 Returns *CacheEntry
@@ -311,71 +309,16 @@ Returns *CacheEntry
 
 			
 				
-				<h3 id="CacheEntry.Expiration">func (*CacheEntry) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1063:1106#L40">Expiration</a>
+				<h3 id="CacheEntry.Expiration">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1059:1105#L32">Expiration</a>
 					<a class="permalink" href="index.html#CacheEntry.Expiration">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>) Expiration() <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a></pre>
+				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) Expiration() <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a></pre>
 				<p>
-Gets the expiration timeout.
-Returns time.Time
-the expiration timeout in milliseconds.
+Expiration gets the expiration timeout.
 </p>
-
-				
-				
-				
-			
-				
-				<h3 id="CacheEntry.IsExpired">func (*CacheEntry) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1585:1622#L58">IsExpired</a>
-					<a class="permalink" href="index.html#CacheEntry.IsExpired">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>) IsExpired() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
-				<p>
-Checks if this value already expired.
-Returns bool
-true if the value already expires and false otherwise.
-</p>
-
-				
-				
-				
-			
-				
-				<h3 id="CacheEntry.Key">func (*CacheEntry) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=782:815#L26">Key</a>
-					<a class="permalink" href="index.html#CacheEntry.Key">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>) Key() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				<p>
-Gets the key to locate the cached value.
-Returns string
-the value key.
-</p>
-
-				
-				
-				
-			
-				
-				<h3 id="CacheEntry.SetValue">func (*CacheEntry) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1310:1373#L50">SetValue</a>
-					<a class="permalink" href="index.html#CacheEntry.SetValue">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>) SetValue(value interface{}, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
-				<p>
-Sets a new value and extends its expiration.
-Parameters:
-</p>
-<pre>- value interface{}
-a new cached value.
-- timeout int64
-a expiration timeout in milliseconds.
+<pre>Returns time.Time the expiration timeout in milliseconds.
 </pre>
 
 				
@@ -383,17 +326,70 @@ a expiration timeout in milliseconds.
 				
 			
 				
-				<h3 id="CacheEntry.Value">func (*CacheEntry) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=905:945#L33">Value</a>
+				<h3 id="CacheEntry.IsExpired">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1570:1610#L47">IsExpired</a>
+					<a class="permalink" href="index.html#CacheEntry.IsExpired">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) IsExpired() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+IsExpired checks if this value already expired.
+</p>
+<pre>Returns: bool true if the value already expires and false otherwise.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CacheEntry.Key">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=778:814#L20">Key</a>
+					<a class="permalink" href="index.html#CacheEntry.Key">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) Key() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+Key gets the key to locate the cached value.
+</p>
+<pre>Returns: string the value key.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CacheEntry.SetValue">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1294:1350#L40">SetValue</a>
+					<a class="permalink" href="index.html#CacheEntry.SetValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) SetValue(value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+SetValue a new value and extends its expiration.
+Parameters:
+</p>
+<pre>- value any a new cached value.
+- timeout int64 an expiration timeout in milliseconds.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CacheEntry.Value">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=900:933#L26">Value</a>
 					<a class="permalink" href="index.html#CacheEntry.Value">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>) Value() interface{}</pre>
+				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) Value() T</pre>
 				<p>
-Gets the cached value.
-Returns interface{}
-the value object.
+Value gets the cached value.
 </p>
+<pre>Returns: any the value object.
+</pre>
 
 				
 				
@@ -402,22 +398,30 @@ the value object.
 		
 			
 			
-			<h2 id="ICache">type <a href="http://localhost:6060/src/cache/ICache.go?s=96:546#L1">ICache</a>
+			<h2 id="ICache">type <a href="http://localhost:6060/src/cache/ICache.go?s=121:721#L1">ICache</a>
 				<a class="permalink" href="index.html#ICache">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Interface for caches that are used to cache values to improve performance.
+ICache interface for caches that are used to cache
+values to improve performance.
 </p>
 
-			<pre>type ICache interface {
-    <span class="comment">// Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns nil.</span>
-    Retrieve(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
-    <span class="comment">// Stores value in the cache with expiration time.</span>
-    Store(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
-    <span class="comment">// Removes a value from the cache by its key.</span>
-    Remove(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+			<pre>type ICache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] interface {
+
+    <span class="comment">// Retrieve cached value from the cache using its key.</span>
+    <span class="comment">// If value is missing in the cache or expired it returns nil.</span>
+    Retrieve(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Store value in the cache with expiration time.</span>
+    Store(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">// Remove a value from the cache by its key.</span>
+    Remove(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    <span class="comment">// Contains check is value stores</span>
+    Contains(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>
 }</pre>
 
 			
@@ -434,36 +438,25 @@ Interface for caches that are used to cache values to improve performance.
 		
 			
 			
-			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=537:645#L15">MemoryCache</a>
+			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=625:790#L12">MemoryCache</a>
 				<a class="permalink" href="index.html#MemoryCache">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Cache that stores values in the process memory.
+MemoryCache that stores values in the process memory.
 </p>
-<p>
-Remember: This implementation is not suitable for synchronization of distributed processes.
-</p>
-<p>
-Configuration parameters
-</p>
-<pre>options:
-  timeout: default caching timeout in milliseconds (default: 1 minute)
-  max_size: maximum number of values stored in this cache (default: 1000)
-</pre>
-<p>
-see
-ICache
-</p>
-<p>
-Example
-</p>
-<pre>cache := NewMemoryCache();
-res, err := cache.Store(&#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;, 10000);
+<pre>Configuration parameters:
+	options:
+	timeout: default caching timeout in milliseconds (default: 1 minute)
+	max_size: maximum number of values stored in this cache (default: 1000)
+see ICache
+Example:
+	cache := NewMemoryCache[string]();
+	res, err := cache.Store(&#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;, 10000);
 </pre>
 
-			<pre>type MemoryCache struct {
+			<pre>type MemoryCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] struct {
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -478,37 +471,34 @@ res, err := cache.Store(&#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;, 10000);
 
 			
 				
-				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=711:745#L24">NewMemoryCache</a>
+				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=872:916#L22">NewMemoryCache</a>
 					<a class="permalink" href="index.html#NewMemoryCache">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMemoryCache() *<a href="index.html#MemoryCache">MemoryCache</a></pre>
+				<pre>func NewMemoryCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>]() *<a href="index.html#MemoryCache">MemoryCache</a>[T]</pre>
 				<p>
-Creates a new instance of the cache.
-Returns *MemoryCache
+NewMemoryCache creates a new instance of the cache.
 </p>
+<pre>Returns: *MemoryCache
+</pre>
 
 				
 				
 			
 				
-				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1025:1093#L38">NewMemoryCacheFromConfig</a>
+				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1291:1369#L35">NewMemoryCacheFromConfig</a>
 					<a class="permalink" href="index.html#NewMemoryCacheFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMemoryCacheFromConfig(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCache">MemoryCache</a></pre>
+				<pre>func NewMemoryCacheFromConfig[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>](cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCache">MemoryCache</a>[T]</pre>
 				<p>
-Creates a new instance of the cache.
-Parameters
+NewMemoryCacheFromConfig creates a new instance of the cache.
 </p>
-<pre>- cfg *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: cfg *config.ConfigParams configuration parameters to be set.
+Returns: *MemoryCache
 </pre>
-<p>
-Returns *MemoryCache
-</p>
 
 				
 				
@@ -516,14 +506,14 @@ Returns *MemoryCache
 
 			
 				
-				<h3 id="MemoryCache.Cleanup">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1513:1544#L54">Cleanup</a>
+				<h3 id="MemoryCache.Cleanup">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1820:1854#L49">Cleanup</a>
 					<a class="permalink" href="index.html#MemoryCache.Cleanup">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Cleanup()</pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Cleanup()</pre>
 				<p>
-Cleanup memory cache
+Cleanup memory cache, public thread save method
 </p>
 
 				
@@ -531,18 +521,18 @@ Cleanup memory cache
 				
 			
 				
-				<h3 id="MemoryCache.Clear">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4146:4201#L176">Clear</a>
+				<h3 id="MemoryCache.Clear">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5661:5740#L215">Clear</a>
 					<a class="permalink" href="index.html#MemoryCache.Clear">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Clear(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Clear(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
 Clear a value from the cache.
 Parameters:
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
+<pre>- ctx context.Context
+- correlationId string transaction id to trace execution through call chain.
 </pre>
 
 				
@@ -550,18 +540,16 @@ transaction id to trace execution through call chain.
 				
 			
 				
-				<h3 id="MemoryCache.Configure">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1302:1359#L48">Configure</a>
+				<h3 id="MemoryCache.Configure">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1579:1639#L43">Configure</a>
 					<a class="permalink" href="index.html#MemoryCache.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure configures component by passing configuration parameters.
 </p>
-<pre>- config *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -569,76 +557,88 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="MemoryCache.Remove">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3812:3880#L159">Remove</a>
+				<h3 id="MemoryCache.Contains">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5235:5328#L198">Contains</a>
+					<a class="permalink" href="index.html#MemoryCache.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Contains(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Contains check is value contains in cache and time not expire.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.\
+	- key string a unique value key.
+Returns: bool
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryCache.Remove">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4680:4751#L173">Remove</a>
 					<a class="permalink" href="index.html#MemoryCache.Remove">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Remove(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Remove(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Removes a value from the cache by its key.
-Parameters:
+Remove a value from the cache by its key.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- key string
-a unique value key.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.\
+	- key string a unique value key.
+Returns: error
 </pre>
-<p>
-Returns error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryCache.Retrieve">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2288:2373#L86">Retrieve</a>
+				<h3 id="MemoryCache.Retrieve">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2710:2809#L86">Retrieve</a>
 					<a class="permalink" href="index.html#MemoryCache.Retrieve">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Retrieve(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Retrieve(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
+Retrieve cached value from the cache using its key.
+If value is missing in the cache or expired it returns null.
 Parameters:
 </p>
-<pre>- correlationId string
- transaction id to trace execution through call chain.
-- key string
-a unique value key.
+<pre>	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique value key.
+Returns T, error
 </pre>
-<p>
-Returns interface{}, error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryCache.Store">func (*MemoryCache) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3002:3118#L118">Store</a>
+				<h3 id="MemoryCache.Store">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3716:3837#L126">Store</a>
 					<a class="permalink" href="index.html#MemoryCache.Store">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>) Store(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Store(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Stores value in the cache with expiration time, if success return stored value.
-Parameters:
+Store value in the cache with expiration time, if success return stored value.
 </p>
-<pre>- correlationId string
- transaction id to trace execution through call chain.
-- key string
-a unique value key.
-- value interface{}
-a value to store.
-- timeout int64
-expiration timeout in milliseconds.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique value key.
+	- value T a value to store.
+	- timeout int64 expiration timeout in milliseconds.
+Returns T, error
 </pre>
-<p>
-Returns interface{}, error
-</p>
 
 				
 				
@@ -647,19 +647,17 @@ Returns interface{}, error
 		
 			
 			
-			<h2 id="NullCache">type <a href="http://localhost:6060/src/cache/NullCache.go?s=164:187#L1">NullCache</a>
+			<h2 id="NullCache">type <a href="http://localhost:6060/src/cache/NullCache.go?s=191:221#L1">NullCache</a>
 				<a class="permalink" href="index.html#NullCache">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Dummy cache implementation that doesn&#39;t do anything.
-</p>
-<p>
+NullCache Dummy cache implementation that doesn&#39;t do anything.
 It can be used in testing or in situations when cache is required but shall be disabled.
 </p>
 
-			<pre>type NullCache struct{}
+			<pre>type NullCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] struct{}
 </pre>
 
 			
@@ -672,16 +670,17 @@ It can be used in testing or in situations when cache is required but shall be d
 
 			
 				
-				<h3 id="NewNullCache">func <a href="http://localhost:6060/src/cache/NullCache.go?s=251:281#L2">NewNullCache</a>
+				<h3 id="NewNullCache">func <a href="http://localhost:6060/src/cache/NullCache.go?s=299:339#L1">NewNullCache</a>
 					<a class="permalink" href="index.html#NewNullCache">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewNullCache() *<a href="index.html#NullCache">NullCache</a></pre>
+				<pre>func NewNullCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>]() *<a href="index.html#NullCache">NullCache</a>[T]</pre>
 				<p>
-Creates a new instance of the cache.
-Returns *NullCache
+NewNullCache creates a new instance of the cache.
 </p>
+<pre>Returns: *NullCache
+</pre>
 
 				
 				
@@ -689,76 +688,87 @@ Returns *NullCache
 
 			
 				
-				<h3 id="NullCache.Remove">func (*NullCache) <a href="http://localhost:6060/src/cache/NullCache.go?s=1423:1489#L39">Remove</a>
+				<h3 id="NullCache.Contains">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1893:1984#L45">Contains</a>
+					<a class="permalink" href="index.html#NullCache.Contains">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullCache">NullCache</a>[T]) Contains(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+Contains check is value contains in cache and time not expire.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.\
+	- key string a unique value key.
+Returns: bool
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="NullCache.Remove">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1542:1632#L35">Remove</a>
 					<a class="permalink" href="index.html#NullCache.Remove">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullCache">NullCache</a>) Remove(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#NullCache">NullCache</a>[T]) Remove(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Removes a value from the cache by its key.
-Parameters:
+Remove a value from the cache by its key.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.\
-- key string
-a unique value key.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.\
+	- key string a unique value key.
+Returns: error
 </pre>
-<p>
-Returns error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="NullCache.Retrieve">func (*NullCache) <a href="http://localhost:6060/src/cache/NullCache.go?s=600:683#L13">Retrieve</a>
+				<h3 id="NullCache.Retrieve">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=678:775#L12">Retrieve</a>
 					<a class="permalink" href="index.html#NullCache.Retrieve">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullCache">NullCache</a>) Retrieve(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#NullCache">NullCache</a>[T]) Retrieve(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
-Parameters:
+Retrieve retrieves cached value from the cache using its key.
+If value is missing in the cache or expired it returns null.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- key string
-a unique value key.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique value key.
+Returns: T, error
 </pre>
-<p>
-Returns interface{}, error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="NullCache.Store">func (*NullCache) <a href="http://localhost:6060/src/cache/NullCache.go?s=1075:1189#L28">Store</a>
+				<h3 id="NullCache.Store">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1176:1294#L25">Store</a>
 					<a class="permalink" href="index.html#NullCache.Store">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullCache">NullCache</a>) Store(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (c *<a href="index.html#NullCache">NullCache</a>[T]) Store(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (T, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Stores value in the cache with expiration time, if success return stored value.
-Parameters:
+Store value in the cache with expiration time, if success return stored value.
 </p>
-<pre>- correlationId string
- transaction id to trace execution through call chain.
-- key string
-a unique value key.
-- value interface{}
-a value to store.
-- timeout int64
-expiration timeout in milliseconds.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique value key.
+	- value T a value to store.
+	- timeout int64 expiration timeout in milliseconds.
+Returns T, error
 </pre>
-<p>
-Returns interface{}, error
-</p>
 
 				
 				
@@ -776,13 +786,13 @@ Returns interface{}, error
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.1.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

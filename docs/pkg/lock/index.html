@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.1";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -109,6 +109,8 @@
 			<div id="manual-nav">
 			<dl>
 			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
 			
 				<dd><a href="index.html#pkg-variables">Variables</a></dd>
 			
@@ -130,7 +132,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Lock.AcquireLock">func (c *Lock) AcquireLock(correlationId string, key string, ttl int64, timeout int64) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Lock.AcquireLock">func (c *Lock) AcquireLock(ctx context.Context, correlationId string, key string, ttl int64, timeout int64) error</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Lock.Configure">func (c *Lock) Configure(config *config.ConfigParams)</a></dd>
@@ -144,10 +146,10 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryLock.ReleaseLock">func (c *MemoryLock) ReleaseLock(correlationId string, key string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryLock.ReleaseLock">func (c *MemoryLock) ReleaseLock(ctx context.Context, correlationId string, key string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryLock.TryAcquireLock">func (c *MemoryLock) TryAcquireLock(correlationId string, key string, ttl int64) (bool, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryLock.TryAcquireLock">func (c *MemoryLock) TryAcquireLock(ctx context.Context, correlationId string, key string, ttl int64) (bool, error)</a></dd>
 				
 			
 				
@@ -158,13 +160,13 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.AcquireLock">func (c *NullLock) AcquireLock(correlationId string, key string, ttl int, timeout int) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.AcquireLock">func (c *NullLock) AcquireLock(ctx context.Context, correlationId string, key string, ttl int, timeout int) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.ReleaseLock">func (c *NullLock) ReleaseLock(correlationId string, key string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.ReleaseLock">func (c *NullLock) ReleaseLock(ctx context.Context, correlationId string, key string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.TryAcquireLock">func (c *NullLock) TryAcquireLock(correlationId string, key string, ttl int) (bool, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLock.TryAcquireLock">func (c *NullLock) TryAcquireLock(ctx context.Context, correlationId string, key string, ttl int) (bool, error)</a></dd>
 				
 			
 			
@@ -199,32 +201,39 @@
 		
 
 		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="DefaultRetryTimeout">DefaultRetryTimeout</span>            <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>  = 100
+    <span id="ConfigParamOptionsRetryTimeout">ConfigParamOptionsRetryTimeout</span> <a href="http://localhost:6060/pkg/builtin/#string">string</a> = &#34;options.retry_timeout&#34;
+)</pre>
+			
+		
 		
 			<h2 id="pkg-variables">Variables</h2>
 			
 				
-				<pre>var <span id="MemoryLockDescriptor">MemoryLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="MemoryLockDescriptor">MemoryLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
-				<p>
-Creates ILock components by their descriptors.
-</p>
-
-				<pre>var <span id="NullLockDescriptor">NullLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				
+				<pre>var <span id="NullLockDescriptor">NullLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 		
 		
 			
 			
-			<h2 id="NewDefaultLockFactory">func <a href="http://localhost:6060/src/lock/DefaultLockFactory.go?s=456:499#L6">NewDefaultLockFactory</a>
+			<h2 id="NewDefaultLockFactory">func <a href="http://localhost:6060/src/lock/DefaultLockFactory.go?s=481:524#L5">NewDefaultLockFactory</a>
 				<a class="permalink" href="index.html#NewDefaultLockFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<pre>func NewDefaultLockFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
 			<p>
-Create a new instance of the factory.
-Returns *build.Factory
+NewDefaultLockFactory create a new instance of the factory.
 </p>
+<pre>Returns: *build.Factory
+</pre>
 
 			
 			
@@ -233,27 +242,27 @@ Returns *build.Factory
 		
 			
 			
-			<h2 id="ILock">type <a href="http://localhost:6060/src/lock/ILock.go?s=178:655#L1">ILock</a>
+			<h2 id="ILock">type <a href="http://localhost:6060/src/lock/ILock.go?s=200:788#L1">ILock</a>
 				<a class="permalink" href="index.html#ILock">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Interface for locks to synchronize work or parallel processes and to prevent collisions.
-</p>
-<p>
-The lock allows to manage multiple locks identified by unique keys.
+ILock Interface for locks to synchronize work or parallel processes and to prevent collisions.
+The lock allows managing multiple locks identified by unique keys.
 </p>
 
 			<pre>type ILock interface {
-    <span class="comment">// Makes a single attempt to acquire a lock by its key. It returns immediately a positive or negative result.</span>
-    TryAcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (<a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    <span class="comment">// TryAcquireLock Makes a single attempt to acquire a lock by its key.</span>
+    <span class="comment">// It returns immediately a positive or negative result.</span>
+    TryAcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (<a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 
-    <span class="comment">// Makes multiple attempts to acquire a lock by its key within give time interval.</span>
-    AcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+    <span class="comment">// AcquireLock makes multiple attempts to acquire a lock by its key within</span>
+    <span class="comment">// give time interval.</span>
+    AcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
 
-    <span class="comment">// Releases prevously acquired lock by its key.</span>
-    ReleaseLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+    <span class="comment">// ReleaseLock releases previously acquired lock by its key.</span>
+    ReleaseLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
 }</pre>
 
 			
@@ -270,19 +279,17 @@ The lock allows to manage multiple locks identified by unique keys.
 		
 			
 			
-			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=353:413#L7">Lock</a>
+			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=375:435#L5">Lock</a>
 				<a class="permalink" href="index.html#Lock">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Abstract lock that implements default lock acquisition routine.
+Lock abstract lock that implements default lock acquisition routine.
 </p>
-<p>
-Configuration parameters
-</p>
-<pre>options:
-  retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
+<pre>Configuration parameters:
+	options:
+	retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
 </pre>
 
 			<pre>type Lock struct {
@@ -300,16 +307,17 @@ Configuration parameters
 
 			
 				
-				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=459:495#L14">InheritLock</a>
+				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=615:651#L17">InheritLock</a>
 					<a class="permalink" href="index.html#InheritLock">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func InheritLock(locker <a href="index.html#ILock">ILock</a>) *<a href="index.html#Lock">Lock</a></pre>
 				<p>
-Inherit lock fron ILock
-Returns *Lock
+InheritLock inherit lock fron ILock
 </p>
+<pre>Returns: *Lock
+</pre>
 
 				
 				
@@ -317,25 +325,22 @@ Returns *Lock
 
 			
 				
-				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1238:1331#L40">AcquireLock</a>
+				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1420:1534#L38">AcquireLock</a>
 					<a class="permalink" href="index.html#Lock.AcquireLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Lock">Lock</a>) AcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#Lock">Lock</a>) AcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Makes multiple attempts to acquire a lock by its key within give time interval.
-Parameters:
+AcquireLock makes multiple attempts to acquire a lock by its key within give time interval.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- key string
-a unique lock key to acquire.
-ttl int64
-a lock timeout (time to live) in milliseconds.
-timeout int64
-a lock acquisition timeout.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique lock key to acquire.
+	- ttl int64 a lock timeout (time to live) in milliseconds.
+	- timeout int64 a lock acquisition timeout.
 </pre>
 <p>
 Returns error
@@ -346,18 +351,16 @@ Returns error
 				
 			
 				
-				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=718:771#L25">Configure</a>
+				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=875:928#L26">Configure</a>
 					<a class="permalink" href="index.html#Lock.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Lock">Lock</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#Lock">Lock</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure component by passing configuration parameters.
 </p>
-<pre>- config *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -367,40 +370,26 @@ configuration parameters to be set.
 		
 			
 			
-			<h2 id="MemoryLock">type <a href="http://localhost:6060/src/lock/MemoryLock.go?s=546:624#L20">MemoryLock</a>
+			<h2 id="MemoryLock">type <a href="http://localhost:6060/src/lock/MemoryLock.go?s=470:548#L12">MemoryLock</a>
 				<a class="permalink" href="index.html#MemoryLock">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Lock that is used to synchronize execution within one process using shared memory.
+MemoryLock Lock that is used to synchronize execution within one process using shared memory.
 </p>
-<p>
-Remember: This implementation is not suitable for synchronization of distributed processes.
-</p>
-<p>
-Configuration parameters
-</p>
-<pre>options:
-  retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
-</pre>
-<p>
-see
-ILock
-</p>
-<p>
-see
-Lock
-</p>
-<p>
-Example
-</p>
-<pre>lock := NewMemoryLock()
-err = lock.Acquire(&#34;123&#34;, &#34;key1&#34;)
-    if err == nil {
-        defer _ = lock.ReleaseLock(&#34;123&#34;, &#34;key1&#34;)
-        // Processing...
-    }
+<pre>Configuration parameters:
+	options:
+	retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
+see ILock
+see Lock
+Example:
+	lock := NewMemoryLock()
+	err = lock.Acquire(&#34;123&#34;, &#34;key1&#34;)
+	if err == nil {
+		 _ = lock.ReleaseLock(&#34;123&#34;, &#34;key1&#34;)
+		// Processing...
+	}
 </pre>
 
 			<pre>type MemoryLock struct {
@@ -419,16 +408,17 @@ err = lock.Acquire(&#34;123&#34;, &#34;key1&#34;)
 
 			
 				
-				<h3 id="NewMemoryLock">func <a href="http://localhost:6060/src/lock/MemoryLock.go?s=673:705#L28">NewMemoryLock</a>
+				<h3 id="NewMemoryLock">func <a href="http://localhost:6060/src/lock/MemoryLock.go?s=614:646#L20">NewMemoryLock</a>
 					<a class="permalink" href="index.html#NewMemoryLock">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewMemoryLock() *<a href="index.html#MemoryLock">MemoryLock</a></pre>
 				<p>
-Create new memory lock
-Returns *MemoryLock
+NewMemoryLock create new memory lock
 </p>
+<pre>Returns: *MemoryLock
+</pre>
 
 				
 				
@@ -436,53 +426,46 @@ Returns *MemoryLock
 
 			
 				
-				<h3 id="MemoryLock.ReleaseLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1734:1807#L73">ReleaseLock</a>
+				<h3 id="MemoryLock.ReleaseLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1745:1839#L62">ReleaseLock</a>
 					<a class="permalink" href="index.html#MemoryLock.ReleaseLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryLock">MemoryLock</a>) ReleaseLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#MemoryLock">MemoryLock</a>) ReleaseLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Releases the lock with the given key.
-Parameters:
+ReleaseLock releases the lock with the given key.
 </p>
-<pre>- correlationId string
-not used.
-- key string
-the key of the lock that is to be released.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string not used.
+	- key string the key of the lock that is to be released.
+Return: error
 </pre>
-<p>
-Return error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="MemoryLock.TryAcquireLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1193:1288#L47">TryAcquireLock</a>
+				<h3 id="MemoryLock.TryAcquireLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1156:1272#L37">TryAcquireLock</a>
 					<a class="permalink" href="index.html#MemoryLock.TryAcquireLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryLock">MemoryLock</a>) TryAcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#MemoryLock">MemoryLock</a>) TryAcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>) (<a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Makes a single attempt to acquire a lock by its key. It returns immediately a positive or negative result.
-Parameters:
+TryAcquireLock makes a single attempt to acquire a lock by its key.
+It returns immediately a positive or negative result.
 </p>
-<pre>- correlationId string
- transaction id to trace execution through call chain.
-- key string
-a unique lock key to acquire.
-- ttl int64
-a lock timeout (time to live) in milliseconds.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique lock key to acquire.
+	- ttl int64 a lock timeout (time to live) in milliseconds.
+Returns bool, error true if locked. Error object
 </pre>
-<p>
-Returns bool, error
-true if locked. Error object
-</p>
 
 				
 				
@@ -491,13 +474,13 @@ true if locked. Error object
 		
 			
 			
-			<h2 id="NullLock">type <a href="http://localhost:6060/src/lock/NullLock.go?s=160:182#L1">NullLock</a>
+			<h2 id="NullLock">type <a href="http://localhost:6060/src/lock/NullLock.go?s=186:208#L1">NullLock</a>
 				<a class="permalink" href="index.html#NullLock">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Dummy lock implementation that doesn&#39;t do anything.
+NullLock Dummy lock implementation that doesn&#39;t do anything.
 It can be used in testing or in situations when lock is required but shall be disabled.
 </p>
 
@@ -514,7 +497,7 @@ It can be used in testing or in situations when lock is required but shall be di
 
 			
 				
-				<h3 id="NewNullLock">func <a href="http://localhost:6060/src/lock/NullLock.go?s=184:212#L1">NewNullLock</a>
+				<h3 id="NewNullLock">func <a href="http://localhost:6060/src/lock/NullLock.go?s=210:238#L1">NewNullLock</a>
 					<a class="permalink" href="index.html#NewNullLock">&#xb6;</a>
 					
 					
@@ -527,82 +510,70 @@ It can be used in testing or in situations when lock is required but shall be di
 
 			
 				
-				<h3 id="NullLock.AcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1117:1210#L29">AcquireLock</a>
+				<h3 id="NullLock.AcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1205:1319#L24">AcquireLock</a>
 					<a class="permalink" href="index.html#NullLock.AcquireLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) AcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) AcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int">int</a>, timeout <a href="http://localhost:6060/pkg/builtin/#int">int</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Makes multiple attempts to acquire a lock by its key within give time interval.
-Parameters:
+AcquireLock makes multiple attempts to acquire a lock by its key within give time interval.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- key string
-a unique lock key to acquire.
-ttl int64
-a lock timeout (time to live) in milliseconds.
-timeout int64
-a lock acquisition timeout.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique lock key to acquire.
+	- ttl int64 a lock timeout (time to live) in milliseconds.
+	- timeout int64 a lock acquisition timeout.
+Returns: error
 </pre>
-<p>
-Returns error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="NullLock.ReleaseLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1410:1481#L41">ReleaseLock</a>
+				<h3 id="NullLock.ReleaseLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1546:1638#L35">ReleaseLock</a>
 					<a class="permalink" href="index.html#NullLock.ReleaseLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) ReleaseLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) ReleaseLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Releases the lock with the given key.
-Parameters:
+ReleaseLock releases the lock with the given key.
 </p>
-<pre>- correlationId string
-not used.
-- key string
-the key of the lock that is to be released.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string not used.
+	- key string the key of the lock that is to be released.
+Return: error
 </pre>
-<p>
-Return error
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="NullLock.TryAcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=628:719#L13">TryAcquireLock</a>
+				<h3 id="NullLock.TryAcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=676:788#L11">TryAcquireLock</a>
 					<a class="permalink" href="index.html#NullLock.TryAcquireLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) TryAcquireLock(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+				<pre>func (c *<a href="index.html#NullLock">NullLock</a>) TryAcquireLock(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
     key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, ttl <a href="http://localhost:6060/pkg/builtin/#int">int</a>) (<a href="http://localhost:6060/pkg/builtin/#bool">bool</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
-Makes a single attempt to acquire a lock by its key. It returns immediately a positive or negative result.
-Parameters:
+TryAcquireLock makes a single attempt to acquire a lock by its key.
+It returns immediately a positive or negative result.
 </p>
-<pre>- correlationId string
- transaction id to trace execution through call chain.
-- key string
-a unique lock key to acquire.
-- ttl int64
-a lock timeout (time to live) in milliseconds.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- key string a unique lock key to acquire.
+	- ttl int64 a lock timeout (time to live) in milliseconds.
+Returns bool, error true if locked. Error object
 </pre>
-<p>
-Returns bool, error
-true if locked. Error object
-</p>
 
 				
 				
@@ -620,13 +591,13 @@ true if locked. Error object
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.1.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

@@ -20,7 +20,7 @@ type CachedCounters struct {
 	updated       bool
 	lastDumpTime  time.Time
 	lastResetTime time.Time
-	mux           sync.Mutex
+	mux           sync.RWMutex
 	interval      int64
 	resetTimeout  int64
 	saver         ICountersSaver
@@ -81,10 +81,16 @@ func (c *CachedCounters) ClearAll(ctx context.Context) {
 	c.cache = make(map[string]*AtomicCounter)
 }
 
+func (c *CachedCounters) isUpdated() bool {
+	c.mux.RLock()
+	defer c.mux.RUnlock()
+	return c.updated
+}
+
 // Dump (saves) the current values of counters.
 //	Parameters: ctx context.Context
 func (c *CachedCounters) Dump(ctx context.Context) error {
-	if !c.updated {
+	if !c.isUpdated() {
 		return nil
 	}
 
@@ -95,10 +101,9 @@ func (c *CachedCounters) Dump(ctx context.Context) error {
 	}
 
 	c.mux.Lock()
-	defer c.mux.Unlock()
-
 	c.updated = false
 	c.lastDumpTime = time.Now()
+	c.mux.Unlock()
 
 	return nil
 }
@@ -133,8 +138,8 @@ func (c *CachedCounters) resetIfNeeded(ctx context.Context) {
 // GetAll gets all captured counters.
 //	Returns: []*AtomicCounter
 func (c *CachedCounters) GetAll() []*AtomicCounter {
-	c.mux.Lock()
-	defer c.mux.Unlock()
+	c.mux.RLock()
+	defer c.mux.RUnlock()
 
 	result := make([]*AtomicCounter, 0, len(c.cache))
 	for _, v := range c.cache {
@@ -147,8 +152,13 @@ func (c *CachedCounters) GetAll() []*AtomicCounter {
 // GetAllCountersStats gets all captured counters stats.
 //	Returns: []Counter
 func (c *CachedCounters) GetAllCountersStats() []Counter {
-	c.mux.Lock()
-	defer c.mux.Unlock()
+	c.mux.RLock()
+	defer c.mux.RUnlock()
+
+	return c.getAllCountersStats()
+}
+
+func (c *CachedCounters) getAllCountersStats() []Counter {
 
 	result := make([]Counter, 0, len(c.cache))
 	for _, v := range c.cache {
@@ -165,7 +175,7 @@ func (c *CachedCounters) GetAllCountersStats() []Counter {
 //		- name string a counter name to retrieve.
 //		- typ int a counter type.
 //	Returns: *Counter an existing or newly created counter of the specified type.
-func (c *CachedCounters) Get(ctx context.Context, name string, typ int) (*AtomicCounter, bool) {
+func (c *CachedCounters) Get(ctx context.Context, name string, typ CounterType) (*AtomicCounter, bool) {
 	if name == "" {
 		return nil, false
 	}

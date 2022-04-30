@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.1";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -109,6 +109,8 @@
 			<div id="manual-nav">
 			<dl>
 			
+				<dd><a href="index.html#pkg-constants">Constants</a></dd>
+			
 			
 				<dd><a href="index.html#pkg-variables">Variables</a></dd>
 			
@@ -160,29 +162,47 @@
 		
 
 		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="ContextInfoNameUnknown">ContextInfoNameUnknown</span>              = &#34;unknown&#34;
+    <span id="ContextInfoParameterName">ContextInfoParameterName</span>            = &#34;name&#34;
+    <span id="ContextInfoParameterInfoName">ContextInfoParameterInfoName</span>        = &#34;info.name&#34;
+    <span id="ContextInfoParameterDescription">ContextInfoParameterDescription</span>     = &#34;description&#34;
+    <span id="ContextInfoParameterInfoDescription">ContextInfoParameterInfoDescription</span> = &#34;info.description&#34;
+    <span id="ContextInfoSectionNameProperties">ContextInfoSectionNameProperties</span>    = &#34;properties&#34;
+)</pre>
+			
+		
 		
 			<h2 id="pkg-variables">Variables</h2>
 			
 				
-				<pre>var <span id="ContainerInfoDescriptor">ContainerInfoDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;container-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="ContainerInfoDescriptor">ContainerInfoDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;container-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 				
-				<pre>var <span id="ContainerInfoDescriptor2">ContainerInfoDescriptor2</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services-container&#34;, &#34;container-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="ContainerInfoDescriptor2">ContainerInfoDescriptor2</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services-container&#34;, &#34;container-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 				
-				<pre>var <span id="ContextInfoDescriptor">ContextInfoDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;context-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="ContextInfoDescriptor">ContextInfoDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;context-info&#34;, &#34;default&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 		
 		
 			
 			
-			<h2 id="NewDefaultInfoFactory">func <a href="http://localhost:6060/src/info/DefaultInfoFactory.go?s=610:653#L9">NewDefaultInfoFactory</a>
+			<h2 id="NewDefaultInfoFactory">func <a href="http://localhost:6060/src/info/DefaultInfoFactory.go?s=633:676#L6">NewDefaultInfoFactory</a>
 				<a class="permalink" href="index.html#NewDefaultInfoFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<pre>func NewDefaultInfoFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
-			
+			<p>
+NewDefaultInfoFactory create a new instance of the factory.
+</p>
+<pre>Returns: *build.Factory
+</pre>
+
 			
 			
 
@@ -190,37 +210,32 @@
 		
 			
 			
-			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=915:1192#L21">ContextInfo</a>
+			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=975:1252#L19">ContextInfo</a>
 				<a class="permalink" href="index.html#ContextInfo">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Context information component that provides detail information about execution context: container or/and process.
+ContextInfo Context information component that provides detail information
+about execution context: container or/and process.
+Most often ContextInfo is used by logging and performance counters to identify
+source of the collected logs and metrics.
 </p>
-<p>
-Most often ContextInfo is used by logging and performance counters to identify source of the collected logs and metrics.
-</p>
-<p>
-Configuration parameters
-</p>
-<pre>name: the context (container or process) name
-description: human-readable description of the context
-properties: entire section of additional descriptive properties
-...
-</pre>
-<p>
-Example
-</p>
-<pre>contextInfo := NewContextInfo();
-contextInfo.Configure(NewConfigParamsFromTuples(
-    &#34;name&#34;, &#34;MyMicroservice&#34;,
-    &#34;description&#34;, &#34;My first microservice&#34;
-));
+<pre>Configuration parameters:
+	name: the context (container or process) name
+	description: human-readable description of the context
+	properties: entire section of additional descriptive properties
+	...
+Example:
+	contextInfo := NewContextInfo();
+	contextInfo.Configure(NewConfigParamsFromTuples(
+		ContextInfoParameterName, &#34;MyMicroservice&#34;,
+		ContextInfoParameterDescription, &#34;My first microservice&#34;
+	));
 
-context.Name;            // Result: &#34;MyMicroservice&#34;
-context.ContextId;        // Possible result: &#34;mylaptop&#34;
-context.StartTime;        // Possible result: 2018-01-01:22:12:23.45Z
+	context.Name;     	// Result: &#34;MyMicroservice&#34;
+	context.ContextId;	// Possible result: &#34;mylaptop&#34;
+	context.StartTime;	// Possible result: 2018-01-01:22:12:23.45Z
 </pre>
 
 			<pre>type ContextInfo struct {
@@ -242,37 +257,34 @@ context.StartTime;        // Possible result: 2018-01-01:22:12:23.45Z
 
 			
 				
-				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1266:1300#L31">NewContextInfo</a>
+				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1662:1696#L38">NewContextInfo</a>
 					<a class="permalink" href="index.html#NewContextInfo">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewContextInfo() *<a href="index.html#ContextInfo">ContextInfo</a></pre>
 				<p>
-Creates a new instance of this context info.
-Returns *ContextInfo
+NewContextInfo creates a new instance of this context info.
 </p>
+<pre>Returns: *ContextInfo
+</pre>
 
 				
 				
 			
 				
-				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=2395:2463#L67">NewContextInfoFromConfig</a>
+				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=2935:3003#L71">NewContextInfoFromConfig</a>
 					<a class="permalink" href="index.html#NewContextInfoFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewContextInfoFromConfig(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ContextInfo">ContextInfo</a></pre>
+				<pre>func NewContextInfoFromConfig(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ContextInfo">ContextInfo</a></pre>
 				<p>
-Creates a new instance of this context info.
-Parameters:
+NewContextInfoFromConfig creates a new instance of this context info.
 </p>
-<pre>- ncfg *config.ConfigParams
-a context configuration parameters.
+<pre>Parameters: cfg *config.ConfigParams a context configuration parameters.
+Returns: *ContextInfo
 </pre>
-<p>
-Returns *ContextInfo
-</p>
 
 				
 				
@@ -280,18 +292,16 @@ Returns *ContextInfo
 
 			
 				
-				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=1827:1884#L52">Configure</a>
+				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2239:2296#L56">Configure</a>
 					<a class="permalink" href="index.html#ContextInfo.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ContextInfo">ContextInfo</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#ContextInfo">ContextInfo</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure configures component by passing configuration parameters.
 </p>
-<pre>- config *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -299,17 +309,17 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=1586:1622#L44">Uptime</a>
+				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2000:2036#L50">Uptime</a>
 					<a class="permalink" href="index.html#ContextInfo.Uptime">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#ContextInfo">ContextInfo</a>) Uptime() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
 				<p>
-Calculates the context uptime as from the start time.
-Returns int64
-number of milliseconds from the context start time.
+Uptime calculates the context uptime as from the start time.
 </p>
+<pre>Returns: int64 number of milliseconds from the context start time.
+</pre>
 
 				
 				
@@ -327,13 +337,13 @@ number of milliseconds from the context start time.
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.1.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

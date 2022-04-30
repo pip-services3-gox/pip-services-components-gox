@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.18.1";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -116,12 +116,6 @@
 			
 			
 				
-				<dd><a href="index.html#LogLevelFromString">func LogLevelFromString(value interface{}) int</a></dd>
-			
-				
-				<dd><a href="index.html#LogLevelToString">func LogLevelToString(level int) string</a></dd>
-			
-				
 				<dd><a href="index.html#NewDefaultLoggerFactory">func NewDefaultLoggerFactory() *build.Factory</a></dd>
 			
 			
@@ -133,19 +127,19 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Clear">func (c *CachedLogger) Clear()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Clear">func (c *CachedLogger) Clear(ctx context.Context)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Configure">func (c *CachedLogger) Configure(cfg *config.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Dump">func (c *CachedLogger) Dump() error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Dump">func (c *CachedLogger) Dump(ctx context.Context) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Update">func (c *CachedLogger) Update()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Update">func (c *CachedLogger) Update(ctx context.Context)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Write">func (c *CachedLogger) Write(level int, correlationId string, err error, message string)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Write">func (c *CachedLogger) Write(ctx context.Context, level LevelType, correlationId string, err error, message string)</a></dd>
 				
 			
 				
@@ -162,7 +156,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.SetReferences">func (c *CompositeLogger) SetReferences(references refer.IReferences)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.Write">func (c *CompositeLogger) Write(level int, correlationId string, err error, message string)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.Write">func (c *CompositeLogger) Write(ctx context.Context, level LevelType, correlationId string, err error, message string)</a></dd>
 				
 			
 				
@@ -173,7 +167,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ConsoleLogger.Write">func (c *ConsoleLogger) Write(level int, correlationId string, err error, message string)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ConsoleLogger.Write">func (c *ConsoleLogger) Write(ctx context.Context, level LevelType, correlationId string, err error, message string)</a></dd>
 				
 			
 				
@@ -192,10 +186,21 @@
 				
 			
 				
+				<dd><a href="index.html#LevelType">type LevelType</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LevelType.MarshalJSON">func (l LevelType) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LevelType.UnmarshalJSON">func (l *LevelType) UnmarshalJSON(data []byte) (err error)</a></dd>
+				
+			
+				
 				<dd><a href="index.html#LogMessage">type LogMessage</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewLogMessage">func NewLogMessage(level int, source string, correlationId string, err errors.ErrorDescription, message string) LogMessage</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLogMessage">func NewLogMessage(level LevelType, source string, correlationId string, err errors.ErrorDescription, message string) LogMessage</a></dd>
 				
 				
 			
@@ -213,28 +218,28 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Configure">func (c *Logger) Configure(cfg *config.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Debug">func (c *Logger) Debug(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Debug">func (c *Logger) Debug(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Error">func (c *Logger) Error(correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Error">func (c *Logger) Error(ctx context.Context, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Fatal">func (c *Logger) Fatal(correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Fatal">func (c *Logger) Fatal(ctx context.Context, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.FormatAndWrite">func (c *Logger) FormatAndWrite(level int, correlationId string, err error, message string, args []interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.FormatAndWrite">func (c *Logger) FormatAndWrite(ctx context.Context, level LevelType, correlationId string, err error, message string, args []any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Info">func (c *Logger) Info(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Info">func (c *Logger) Info(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Level">func (c *Logger) Level() int</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Level">func (c *Logger) Level() LevelType</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Log">func (c *Logger) Log(level int, correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Log">func (c *Logger) Log(ctx context.Context, level LevelType, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetLevel">func (c *Logger) SetLevel(value int)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetLevel">func (c *Logger) SetLevel(value LevelType)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetReferences">func (c *Logger) SetReferences(references refer.IReferences)</a></dd>
@@ -246,10 +251,10 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Source">func (c *Logger) Source() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Trace">func (c *Logger) Trace(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Trace">func (c *Logger) Trace(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Warn">func (c *Logger) Warn(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Warn">func (c *Logger) Warn(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 			
 				
@@ -260,42 +265,31 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Debug">func (c *NullLogger) Debug(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Debug">func (c *NullLogger) Debug(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Error">func (c *NullLogger) Error(correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Error">func (c *NullLogger) Error(ctx context.Context, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Fatal">func (c *NullLogger) Fatal(correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Fatal">func (c *NullLogger) Fatal(ctx context.Context, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Info">func (c *NullLogger) Info(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Info">func (c *NullLogger) Info(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Level">func (c *NullLogger) Level() int</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Level">func (c *NullLogger) Level() LevelType</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Log">func (c *NullLogger) Log(level int, correlationId string, err error, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Log">func (c *NullLogger) Log(ctx context.Context, level LevelType, correlationId string, err error, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.SetLevel">func (c *NullLogger) SetLevel(value int)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.SetLevel">func (c *NullLogger) SetLevel(value LevelType)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Trace">func (c *NullLogger) Trace(correlationId string, message string, args ...interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Trace">func (c *NullLogger) Trace(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Warn">func (c *NullLogger) Warn(correlationId string, message string, args ...interface{})</a></dd>
-				
-			
-				
-				<dd><a href="index.html#TLogLevelConverter">type TLogLevelConverter</a></dd>
-				
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#TLogLevelConverter.ToLogLevel">func (c *TLogLevelConverter) ToLogLevel(value interface{}) int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#TLogLevelConverter.ToString">func (c *TLogLevelConverter) ToString(level int) string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullLogger.Warn">func (c *NullLogger) Warn(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
 				
 			
 			
@@ -342,30 +336,12 @@
 		
 			<h2 id="pkg-constants">Constants</h2>
 			
-				<p>
-Standard log levels.
-</p>
-<p>
-Logs at debug and trace levels are usually captured only locally for troubleshooting and never sent to consolidated log services.
-</p>
-<p>
-None  = 0 Nothing to log
-Fatal = 1 Log only fatal errors that cause processes to crash
-Error = 2 Log all errors.
-Warn  = 3 Log errors and warnings
-Info  = 4 Log errors and important information messages
-Debug = 5 Log everything except traces
-Trace = 6 Log everything.
-</p>
-
+				
 				<pre>const (
-    <span id="None">None</span>  = 0
-    <span id="Fatal">Fatal</span> = 1
-    <span id="Error">Error</span> = 2
-    <span id="Warn">Warn</span>  = 3
-    <span id="Info">Info</span>  = 4
-    <span id="Debug">Debug</span> = 5
-    <span id="Trace">Trace</span> = 6
+    <span id="DefaultMaxCacheSize">DefaultMaxCacheSize</span>                = 100
+    <span id="DefaultInterval">DefaultInterval</span>                    = 10000
+    <span id="ConfigParameterOptionsInterval">ConfigParameterOptionsInterval</span>     = &#34;options.interval&#34;
+    <span id="ConfigParameterOptionsMaxCacheSize">ConfigParameterOptionsMaxCacheSize</span> = &#34;options.max_cache_size&#34;
 )</pre>
 			
 		
@@ -373,83 +349,35 @@ Trace = 6 Log everything.
 			<h2 id="pkg-variables">Variables</h2>
 			
 				
-				<pre>var <span id="CompositeLoggerDescriptor">CompositeLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;composite&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="CompositeLoggerDescriptor">CompositeLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;composite&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 				
-				<pre>var <span id="ConsoleLoggerDescriptor">ConsoleLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;console&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="ConsoleLoggerDescriptor">ConsoleLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;console&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 				<p>
-Creates ILogger components by their descriptors.
+LevelConverter Helper class to convert log level values.
 </p>
 
-				<pre>var <span id="NullLoggerDescriptor">NullLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
+				<pre>var <span id="LevelConverter">LevelConverter</span> = &amp;_TLogLevelConverter{}</pre>
+			
+				
+				<pre>var <span id="NullLoggerDescriptor">NullLoggerDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;logger&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
 			
 		
 		
 			
 			
-			<h2 id="LogLevelFromString">func <a href="http://localhost:6060/src/log/LogLevelConverter.go?s=938:984#L36">LogLevelFromString</a>
-				<a class="permalink" href="index.html#LogLevelFromString">&#xb6;</a>
-				
-				
-			</h2>
-			<pre>func LogLevelFromString(value interface{}) <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-			<p>
-Converts log level to a LogLevel.
-see
-LogLevel
-Parameters:
-</p>
-<pre>- value interface{}
-a log level string to convert
-</pre>
-<p>
-Returns int
-log level value.
-</p>
-
-			
-			
-
-		
-			
-			
-			<h2 id="LogLevelToString">func <a href="http://localhost:6060/src/log/LogLevelConverter.go?s=1714:1753#L70">LogLevelToString</a>
-				<a class="permalink" href="index.html#LogLevelToString">&#xb6;</a>
-				
-				
-			</h2>
-			<pre>func LogLevelToString(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-			<p>
-Converts log level to a string.
-see
-LogLevel
-Parameters:
-</p>
-<pre>- level int
-a log level to convert
-</pre>
-<p>
-Returns string
-log level name string.
-</p>
-
-			
-			
-
-		
-			
-			
-			<h2 id="NewDefaultLoggerFactory">func <a href="http://localhost:6060/src/log/DefaultLoggerFactory.go?s=570:615#L7">NewDefaultLoggerFactory</a>
+			<h2 id="NewDefaultLoggerFactory">func <a href="http://localhost:6060/src/log/DefaultLoggerFactory.go?s=597:642#L6">NewDefaultLoggerFactory</a>
 				<a class="permalink" href="index.html#NewDefaultLoggerFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<pre>func NewDefaultLoggerFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/build/#Factory">Factory</a></pre>
 			<p>
-Create a new instance of the factory.
-Returns *build.Factory
+NewDefaultLoggerFactory create a new instance of the factory.
 </p>
+<pre>Returns: *build.Factory
+</pre>
 
 			
 			
@@ -458,7 +386,7 @@ Returns *build.Factory
 		
 			
 			
-			<h2 id="CachedLogger">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=797:996#L17">CachedLogger</a>
+			<h2 id="CachedLogger">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=869:1067#L17">CachedLogger</a>
 				<a class="permalink" href="index.html#CachedLogger">&#xb6;</a>
 				
 				
@@ -466,12 +394,11 @@ Returns *build.Factory
 			
 			<pre>type CachedLogger struct {
     <a href="index.html#Logger">Logger</a>
-<span id="CachedLogger.Cache"></span>    Cache        []*<a href="index.html#LogMessage">LogMessage</a>
+<span id="CachedLogger.Cache"></span>    Cache        []<a href="index.html#LogMessage">LogMessage</a>
 <span id="CachedLogger.Updated"></span>    Updated      <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>
 <span id="CachedLogger.LastDumpTime"></span>    LastDumpTime <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>
 <span id="CachedLogger.MaxCacheSize"></span>    MaxCacheSize <a href="http://localhost:6060/pkg/builtin/#int">int</a>
 <span id="CachedLogger.Interval"></span>    Interval     <a href="http://localhost:6060/pkg/builtin/#int">int</a>
-<span id="CachedLogger.Lock"></span>    Lock         *<a href="http://localhost:6060/pkg/sync/">sync</a>.<a href="http://localhost:6060/pkg/sync/#Mutex">Mutex</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -486,21 +413,18 @@ Returns *build.Factory
 
 			
 				
-				<h3 id="InheritCachedLogger">func <a href="http://localhost:6060/src/log/CachedLogger.go?s=1126:1187#L32">InheritCachedLogger</a>
+				<h3 id="InheritCachedLogger">func <a href="http://localhost:6060/src/log/CachedLogger.go?s=1429:1490#L38">InheritCachedLogger</a>
 					<a class="permalink" href="index.html#InheritCachedLogger">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func InheritCachedLogger(saver <a href="index.html#ICachedLogSaver">ICachedLogSaver</a>) *<a href="index.html#CachedLogger">CachedLogger</a></pre>
 				<p>
-Creates a new instance of the logger from ICachedLogSaver
-Parameters:
+InheritCachedLogger creates a new instance of the logger from ICachedLogSaver
 </p>
-<pre>- saver ICachedLogSaver
+<pre>Parameters: saver ICachedLogSaver
+Returns: CachedLogger
 </pre>
-<p>
-Returns CachedLogger
-</p>
 
 				
 				
@@ -508,33 +432,16 @@ Returns CachedLogger
 
 			
 				
-				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2677:2707#L89">Clear</a>
+				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3172:3221#L93">Clear</a>
 					<a class="permalink" href="index.html#CachedLogger.Clear">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Clear()</pre>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Clear(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>)</pre>
 				<p>
-Clears (removes) all cached log messages.
+Clear (removes) all cached log messages.
 </p>
-
-				
-				
-				
-			
-				
-				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2380:2438#L81">Configure</a>
-					<a class="permalink" href="index.html#CachedLogger.Configure">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
-				<p>
-Configures component by passing configuration parameters.
-Parameters:
-</p>
-<pre>- config *config.ConfigParams
-configuration parameters to be set.
+<pre>Parameters: ctx context.Context
 </pre>
 
 				
@@ -542,54 +449,72 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2844:2879#L97">Dump</a>
+				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=1945:2003#L54">Configure</a>
+					<a class="permalink" href="index.html#CachedLogger.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure configures component by passing configuration parameters.
+</p>
+<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3419:3473#L103">Dump</a>
 					<a class="permalink" href="index.html#CachedLogger.Dump">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Dump() <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Dump(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
-Dumps (writes) the currently cached log messages.
+Dump (writes) the currently cached log messages.
 </p>
+<pre>Parameters: ctx context.Context
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3504:3535#L134">Update</a>
+				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3647:3697#L112">Update</a>
 					<a class="permalink" href="index.html#CachedLogger.Update">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Update()</pre>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Update(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>)</pre>
 				<p>
-Makes message cache as updated and dumps it when timeout expires.
+Update makes message cache as updated and dumps it when timeout expires.
 </p>
+<pre>Parameters: ctx context.Context
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=1760:1848#L56">Write</a>
+				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2591:2706#L69">Write</a>
 					<a class="permalink" href="index.html#CachedLogger.Write">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Write(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Write(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
 Writes a log message to the logger destination.
 Parameters:
 </p>
-<pre>- level LogLevel
-a log level.
-- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
+<pre>- ctx context.Context
+- level LogLevel a log level.
+- correlationId string transaction id to trace execution through call chain.
+- err error an error object associated with this message.
+- message string a human-readable message to log.
 </pre>
 
 				
@@ -599,45 +524,38 @@ a human-readable message to log.
 		
 			
 			
-			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=926:984#L26">CompositeLogger</a>
+			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=981:1039#L23">CompositeLogger</a>
 				<a class="permalink" href="index.html#CompositeLogger">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Aggregates all loggers from component references under a single component.
+CompositeLogger aggregates all loggers from component references under a single component.
+It allows logging messages and conveniently send them to multiple destinations.
 </p>
-<p>
-It allows to log messages and conveniently send them to multiple destinations.
-</p>
-<p>
-References
-*:logger:*:*:1.0 (optional) ILogger components to pass log messages
-see
-ILogger
-</p>
-<p>
-Example
-</p>
-<pre>type MyComponent {
-    _logger CompositeLogger
-}
-    func (mc* MyComponent) Configure(config: ConfigParams): void {
-        mc._logger.Configure(config);
-        ...
-    }
+<pre>References:
+	*:logger:*:*:1.0 (optional) ILogger components to pass log messages
+see ILogger
+Example:
+	type MyComponent {
+		_logger CompositeLogger
+	}
+	func (mc* MyComponent) Configure(config: ConfigParams): void {
+		mc._logger.Configure(config);
+		...
+	}
 
-    func (mc* MyComponent) SetReferences(references: IReferences): void {
-        mc._logger.SetReferences(references);
-        ...
-    }
+	func (mc* MyComponent) SetReferences(references: IReferences): void {
+		mc._logger.SetReferences(references);
+		...
+	}
 
-    func (mc* MyComponent)myMethod(string correlationId): void {
-        mc._logger.Debug(correlationId, &#34;Called method mycomponent.mymethod&#34;);
-        ...
-    }
-var mc MyComponent = MyComponent{}
-mc._logger = NewCompositeLogger();
+	func (mc* MyComponent) myMethod(ctx context.Context, string correlationId): void {
+		mc._logger.Debug(ctx context.Context, correlationId, &#34;Called method mycomponent.mymethod&#34;);
+		...
+	}
+	var mc MyComponent = MyComponent{}
+	mc._logger = NewCompositeLogger();
 </pre>
 
 			<pre>type CompositeLogger struct {
@@ -656,37 +574,34 @@ mc._logger = NewCompositeLogger();
 
 			
 				
-				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1055:1097#L33">NewCompositeLogger</a>
+				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1130:1172#L30">NewCompositeLogger</a>
 					<a class="permalink" href="index.html#NewCompositeLogger">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewCompositeLogger() *<a href="index.html#CompositeLogger">CompositeLogger</a></pre>
 				<p>
-Creates a new instance of the logger.
-Returns *CompositeLogger
+NewCompositeLogger creates a new instance of the logger.
 </p>
+<pre>Returns: *CompositeLogger
+</pre>
 
 				
 				
 			
 				
-				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1386:1470#L47">NewCompositeLoggerFromReferences</a>
+				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1477:1561#L42">NewCompositeLoggerFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeLoggerFromReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCompositeLoggerFromReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeLogger">CompositeLogger</a></pre>
+				<pre>func NewCompositeLoggerFromReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeLogger">CompositeLogger</a></pre>
 				<p>
-Creates a new instance of the logger.
-Parameters:
+NewCompositeLoggerFromReferences creates a new instance of the logger.
 </p>
-<pre>- references refer.IReferences
-references to locate the component dependencies.
+<pre>Parameters: refer.IReferences references to locate the component dependencies.
+Returns: CompositeLogger
 </pre>
-<p>
-Returns CompositeLogger
-</p>
 
 				
 				
@@ -694,18 +609,16 @@ Returns CompositeLogger
 
 			
 				
-				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1685:1754#L57">SetReferences</a>
+				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1773:1842#L50">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeLogger.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
-Sets references to dependent components.
-Parameters:
+SetReferences sets references to dependent components.
 </p>
-<pre>- references IReferences
-references to locate the component dependencies.
+<pre>Parameters: refer.IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -713,24 +626,21 @@ references to locate the component dependencies.
 				
 			
 				
-				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2401:2492#L87">Write</a>
+				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2495:2613#L76">Write</a>
 					<a class="permalink" href="index.html#CompositeLogger.Write">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) Write(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) Write(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
 Writes a log message to the logger destination(s).
 Parameters:
 </p>
-<pre>- level int
-a log level.
-- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
+<pre>- ctx context.Context
+- level LogLevel a log level.
+- correlationId string transaction id to trace execution through call chain.
+- err error an error object associated with this message.
+- message string a human-readable message to log.
 </pre>
 
 				
@@ -740,36 +650,26 @@ a human-readable message to log.
 		
 			
 			
-			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=658:695#L21">ConsoleLogger</a>
+			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=762:799#L16">ConsoleLogger</a>
 				<a class="permalink" href="index.html#ConsoleLogger">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Logger that writes log messages to console.
-</p>
-<p>
+ConsoleLogger is a logger that writes log messages to console.
 Errors are written to standard err stream and all other messages to standard out stream.
 </p>
-<p>
-Configuration parameters
-</p>
-<pre>level: maximum log level to capture
-source: source (context) name
-</pre>
-<p>
-References
-*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
-see
-Logger
-</p>
-<p>
-Example
-</p>
-<pre>logger = NewConsoleLogger();
-logger.SetLevel(LogLevel.Debug);
-logger.Error(&#34;123&#34;, ex, &#34;Error occured: %s&#34;, ex.message);
-logger.Debug(&#34;123&#34;, &#34;Everything is OK.&#34;);
+<pre>Configuration parameters:
+	level: maximum log level to capture
+	source: source (context) name
+References:
+	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+see Logger
+Example:
+	logger = NewConsoleLogger();
+	logger.SetLevel(LogLevel.Debug);
+	logger.Error(context.Background(), &#34;123&#34;, ex, &#34;Error occured: %s&#34;, ex.message);
+	logger.Debug(context.Background(), &#34;123&#34;, &#34;Everything is OK.&#34;);
 </pre>
 
 			<pre>type ConsoleLogger struct {
@@ -787,16 +687,17 @@ logger.Debug(&#34;123&#34;, &#34;Everything is OK.&#34;);
 
 			
 				
-				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=763:801#L27">NewConsoleLogger</a>
+				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=885:923#L22">NewConsoleLogger</a>
 					<a class="permalink" href="index.html#NewConsoleLogger">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewConsoleLogger() *<a href="index.html#ConsoleLogger">ConsoleLogger</a></pre>
 				<p>
-Creates a new instance of the logger.
-Returns ConsoleLogger
+NewConsoleLogger creates a new instance of the logger.
 </p>
+<pre>Returns: ConsoleLogger
+</pre>
 
 				
 				
@@ -804,24 +705,21 @@ Returns ConsoleLogger
 
 			
 				
-				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1184:1273#L43">Write</a>
+				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1315:1431#L35">Write</a>
 					<a class="permalink" href="index.html#ConsoleLogger.Write">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConsoleLogger">ConsoleLogger</a>) Write(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
+				<pre>func (c *<a href="index.html#ConsoleLogger">ConsoleLogger</a>) Write(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Writes a log message to the logger destination.
-Parameters:
+Write a log message to the logger destination.
 </p>
-<pre>- level int
-a log level.
-correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
+<pre>Parameters:
+	- ctx context.Context
+	- level LevelType a log level.
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
 </pre>
 
 				
@@ -831,30 +729,28 @@ a human-readable message to log.
 		
 			
 			
-			<h2 id="ICachedLogSaver">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=725:795#L13">ICachedLogSaver</a>
+			<h2 id="ICachedLogSaver">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=777:867#L13">ICachedLogSaver</a>
 				<a class="permalink" href="index.html#ICachedLogSaver">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Abstract logger that caches captured log messages in memory and periodically dumps them. Child classes implement saving cached messages to their specified destinations.
+ICachedLogSaver abstract logger that caches captured log messages
+in memory and periodically dumps them. Child classes implement
+saving cached messages to their specified destinations.
 </p>
-<p>
-Configuration parameters
-</p>
-<pre>level: maximum log level to capture
-source: source (context) name
-options:
-  interval: interval in milliseconds to save log messages (default: 10 seconds)
-  max_cache_size: maximum number of messages stored in this cache (default: 100)
+<pre>Configuration parameters
+	level: maximum log level to capture
+	source: source (context) name
+	options:
+		interval: interval in milliseconds to save log messages (default: 10 seconds)
+		max_cache_size: maximum number of messages stored in this cache (default: 100)
+References:
+	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 </pre>
-<p>
-References
-*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
-</p>
 
 			<pre>type ICachedLogSaver interface {
-    Save(messages []*<a href="index.html#LogMessage">LogMessage</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+    Save(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, messages []<a href="index.html#LogMessage">LogMessage</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
 }</pre>
 
 			
@@ -871,28 +767,24 @@ References
 		
 			
 			
-			<h2 id="ILogWriter">type <a href="http://localhost:6060/src/log/Logger.go?s=736:832#L15">ILogWriter</a>
+			<h2 id="ILogWriter">type <a href="http://localhost:6060/src/log/Logger.go?s=757:880#L11">ILogWriter</a>
 				<a class="permalink" href="index.html#ILogWriter">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Abstract logger that captures and formats log messages. Child classes take the captured messages and write them to their specific destinations.
+ILogWriter Abstract logger that captures and formats log messages.
+Child classes take the captured messages and write them to their specific destinations.
 </p>
-<p>
-Configuration parameters
-Parameters to pass to the configure method for component configuration:
-</p>
-<pre>level: maximum log level to capture
-source: source (context) name
+<pre>Configuration parameters to pass to the configure method for component configuration:
+	level: maximum log level to capture
+	source: source (context) name
+References:
+	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 </pre>
-<p>
-References
-*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
-</p>
 
 			<pre>type ILogWriter interface {
-    Write(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
+    Write(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>)
 }</pre>
 
 			
@@ -909,42 +801,43 @@ References
 		
 			
 			
-			<h2 id="ILogger">type <a href="http://localhost:6060/src/log/ILogger.go?s=88:1152#L1">ILogger</a>
+			<h2 id="ILogger">type <a href="http://localhost:6060/src/log/ILogger.go?s=101:1328#L1">ILogger</a>
 				<a class="permalink" href="index.html#ILogger">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Interface for logger components that capture execution log messages.
+ILogger for logger components that capture execution log messages.
 </p>
 
 			<pre>type ILogger interface {
 
-    <span class="comment">// Gets the maximum log level. Messages with higher log level are filtered out.</span>
-    Level() <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+    <span class="comment">// Level gets the maximum log level. Messages with higher log level are filtered out.</span>
+    Level() <a href="index.html#LevelType">LevelType</a>
 
-    <span class="comment">// Set the maximum log level.</span>
-    SetLevel(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)
+    <span class="comment">// SetLevel set the maximum log level.</span>
+    SetLevel(value <a href="index.html#LevelType">LevelType</a>)
 
-    <span class="comment">// Logs a message at specified log level.</span>
-    Log(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Log logs a message at specified log level.</span>
+    Log(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 
-    <span class="comment">// Logs fatal (unrecoverable) message that caused the process to crash.</span>
-    Fatal(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Fatal logs fatal (unrecoverable) message that caused the process to crash.</span>
+    Fatal(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 
-    <span class="comment">// Logs recoverable application error.</span>
-    Error(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
-    <span class="comment">// Logs a warning that may or may not have a negative impact.</span>
-    Warn(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Error logs recoverable application error.</span>
+    Error(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 
-    <span class="comment">// Logs an important information message</span>
-    Info(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Warn logs a warning that may or may not have a negative impact.</span>
+    Warn(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 
-    <span class="comment">// Logs a high-level debug information for troubleshooting.</span>
-    Debug(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Info logs an important information message</span>
+    Info(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 
-    <span class="comment">// Logs a low-level debug information for troubleshooting.</span>
-    Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})
+    <span class="comment">// Debug logs a high-level debug information for troubleshooting.</span>
+    Debug(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
+
+    <span class="comment">// Trace logs a low-level debug information for troubleshooting.</span>
+    Trace(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)
 }</pre>
 
 			
@@ -961,21 +854,96 @@ Interface for logger components that capture execution log messages.
 		
 			
 			
-			<h2 id="LogMessage">type <a href="http://localhost:6060/src/log/LogMessage.go?s=184:545#L2">LogMessage</a>
+			<h2 id="LevelType">type <a href="http://localhost:6060/src/log/LogLevel.go?s=758:778#L19">LevelType</a>
+				<a class="permalink" href="index.html#LevelType">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+LevelType is a type to represent log level names
+</p>
+
+			<pre>type LevelType <a href="http://localhost:6060/pkg/builtin/#uint8">uint8</a></pre>
+
+			
+				<p>
+Standard log levels.
+Logs at debug and trace levels are usually captured only locally for
+troubleshooting and never sent to consolidated log services.
+</p>
+<pre>Log levels:
+	None  = 0 Nothing to log
+	Fatal = 1 Log only fatal errors that cause processes to crash
+	Error = 2 Log all errors.
+	Warn  = 3 Log errors and warnings
+	Info  = 4 Log errors and important information messages
+	Debug = 5 Log everything except traces
+	Trace = 6 Log everything.
+</pre>
+
+				<pre>const (
+    <span id="LevelNone">LevelNone</span>  <a href="index.html#LevelType">LevelType</a> = 0
+    <span id="LevelFatal">LevelFatal</span> <a href="index.html#LevelType">LevelType</a> = 1
+    <span id="LevelError">LevelError</span> <a href="index.html#LevelType">LevelType</a> = 2
+    <span id="LevelWarn">LevelWarn</span>  <a href="index.html#LevelType">LevelType</a> = 3
+    <span id="LevelInfo">LevelInfo</span>  <a href="index.html#LevelType">LevelType</a> = 4
+    <span id="LevelDebug">LevelDebug</span> <a href="index.html#LevelType">LevelType</a> = 5
+    <span id="LevelTrace">LevelTrace</span> <a href="index.html#LevelType">LevelType</a> = 6
+)</pre>
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="LevelType.MarshalJSON">func (LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=974:1022#L31">MarshalJSON</a>
+					<a class="permalink" href="index.html#LevelType.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l <a href="index.html#LevelType">LevelType</a>) MarshalJSON() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="LevelType.UnmarshalJSON">func (*LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=780:838#L21">UnmarshalJSON</a>
+					<a class="permalink" href="index.html#LevelType.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (l *<a href="index.html#LevelType">LevelType</a>) UnmarshalJSON(data []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="LogMessage">type <a href="http://localhost:6060/src/log/LogMessage.go?s=197:558#L1">LogMessage</a>
 				<a class="permalink" href="index.html#LogMessage">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Data object to store captured log messages. This object is used by CachedLogger.
+LogMessage Data object to store captured log messages.
+This object is used by CachedLogger.
 </p>
 
 			<pre>type LogMessage struct {
 <span id="LogMessage.Time"></span>    Time          <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>               `json:&#34;time&#34;`
 <span id="LogMessage.Source"></span>    Source        <a href="http://localhost:6060/pkg/builtin/#string">string</a>                  `json:&#34;source&#34;`
-<span id="LogMessage.Level"></span>    Level         <a href="http://localhost:6060/pkg/builtin/#int">int</a>                     `json:&#34;level&#34;`
+<span id="LogMessage.Level"></span>    Level         <a href="index.html#LevelType">LevelType</a>               `json:&#34;level&#34;`
 <span id="LogMessage.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>                  `json:&#34;correlation_id&#34;`
-<span id="LogMessage.Error"></span>    Error         <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ErrorDescription">ErrorDescription</a> `json:&#34;error&#34;`
+<span id="LogMessage.Error"></span>    Error         <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/#ErrorDescription">ErrorDescription</a> `json:&#34;error&#34;`
 <span id="LogMessage.Message"></span>    Message       <a href="http://localhost:6060/pkg/builtin/#string">string</a>                  `json:&#34;message&#34;`
 }
 </pre>
@@ -990,31 +958,24 @@ Data object to store captured log messages. This object is used by CachedLogger.
 
 			
 				
-				<h3 id="NewLogMessage">func <a href="http://localhost:6060/src/log/LogMessage.go?s=921:1044#L24">NewLogMessage</a>
+				<h3 id="NewLogMessage">func <a href="http://localhost:6060/src/log/LogMessage.go?s=923:1052#L18">NewLogMessage</a>
 					<a class="permalink" href="index.html#NewLogMessage">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewLogMessage(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, source <a href="http://localhost:6060/pkg/builtin/#string">string</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
-    err <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ErrorDescription">ErrorDescription</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="index.html#LogMessage">LogMessage</a></pre>
+				<pre>func NewLogMessage(level <a href="index.html#LevelType">LevelType</a>, source <a href="http://localhost:6060/pkg/builtin/#string">string</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>,
+    err <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/">errors</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/#ErrorDescription">ErrorDescription</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="index.html#LogMessage">LogMessage</a></pre>
 				<p>
-Create new log message object
-Parameters:
+NewLogMessage create new log message object
 </p>
-<pre>- level int
-an log level
-- source string
-an source
-- correletionId string
-transaction id to trace execution through call chain.
-- err errors.ErrorDescription
-an error object associated with this message.
-- message string
-a human-readable message to log.
+<pre>Parameters:
+	- level LevelType a log level
+	- source string a source
+	- correlationId string transaction id to trace execution through call chain.
+	- err errors.ErrorDescription an error object associated with this message.
+	- message string a human-readable message to log.
+Returns: LogMessage
 </pre>
-<p>
-Returns LogMessage
-</p>
 
 				
 				
@@ -1024,7 +985,7 @@ Returns LogMessage
 		
 			
 			
-			<h2 id="Logger">type <a href="http://localhost:6060/src/log/Logger.go?s=834:902#L19">Logger</a>
+			<h2 id="Logger">type <a href="http://localhost:6060/src/log/Logger.go?s=882:956#L15">Logger</a>
 				<a class="permalink" href="index.html#Logger">&#xb6;</a>
 				
 				
@@ -1045,22 +1006,18 @@ Returns LogMessage
 
 			
 				
-				<h3 id="InheritLogger">func <a href="http://localhost:6060/src/log/Logger.go?s=1054:1099#L30">InheritLogger</a>
+				<h3 id="InheritLogger">func <a href="http://localhost:6060/src/log/Logger.go?s=1107:1152#L24">InheritLogger</a>
 					<a class="permalink" href="index.html#InheritLogger">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func InheritLogger(writer <a href="index.html#ILogWriter">ILogWriter</a>) *<a href="index.html#Logger">Logger</a></pre>
 				<p>
-Creates a new instance of the logger and inherite from ILogerWriter.
-Parameters:
+InheritLogger creates a new instance of the logger and inherit from ILogWriter.
 </p>
-<pre>- writer ILogWriter
-inherite from
+<pre>Parameters: writer ILogWriter inherit from
+Returns: *Logger
 </pre>
-<p>
-Returns *Logger
-</p>
 
 				
 				
@@ -1068,41 +1025,34 @@ Returns *Logger
 
 			
 				
-				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2727:2774#L95">ComposeError</a>
+				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2800:2847#L75">ComposeError</a>
 					<a class="permalink" href="index.html#Logger.ComposeError">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#Logger">Logger</a>) ComposeError(err <a href="http://localhost:6060/pkg/builtin/#error">error</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Composes an human-readable error description
-Parameters:
+ComposeError composes an human-readable error description
+Parameters: err error an error to format.
 </p>
-<pre>- err error
-an error to format.
+<pre>Returns string a human-readable error description.
 </pre>
-<p>
-Returns string
-a human-reable error description.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1943:1995#L72">Configure</a>
+				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2016:2068#L58">Configure</a>
 					<a class="permalink" href="index.html#Logger.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
-Configures component by passing configuration parameters.
-Parameters:
+Configure configures component by passing configuration parameters.
 </p>
-<pre>- config ConfigParams
-configuration parameters to be set.
+<pre>Parameters: config ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -1110,22 +1060,20 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6606:6687#L214">Debug</a>
+				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6830:6924#L175">Debug</a>
 					<a class="permalink" href="index.html#Logger.Debug">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Debug(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Debug(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a high-level debug information for troubleshooting.
-Parameters:
+Debug logs a high-level debug information for troubleshooting.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1133,24 +1081,21 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5299:5391#L178">Error</a>
+				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5435:5540#L145">Error</a>
 					<a class="permalink" href="index.html#Logger.Error">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Error(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Error(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
 Logs recoverable application error.
-Parameters:
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1158,24 +1103,21 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4801:4893#L164">Fatal</a>
+				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4920:5025#L134">Fatal</a>
 					<a class="permalink" href="index.html#Logger.Fatal">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Fatal(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Fatal(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs fatal (unrecoverable) message that caused the process to crash.
-Parameters:
+Fatal logs fatal (unrecoverable) message that caused the process to crash.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1183,26 +1125,23 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3607:3718#L128">FormatAndWrite</a>
+				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3683:3814#L103">FormatAndWrite</a>
 					<a class="permalink" href="index.html#Logger.FormatAndWrite">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) FormatAndWrite(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args []interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) FormatAndWrite(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>,
+    correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args []<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Formats the log message and writes it to the logger destination.
+FormatAndWrite formats the log message and writes it to the logger destination.
 Parameters:
 </p>
-<pre>- level int
-a log level.
-- correlationId: string
- transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args []interface{}
-arguments to parameterize the message.
+<pre>- ctx context.Context
+- level LevelType a log level
+- correlationId: string transaction id to trace execution through call chain
+- err error an error object associated with this message
+- message string a human-readable message to log
+- args []any arguments to parameterize the message
 </pre>
 
 				
@@ -1210,22 +1149,20 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6169:6249#L202">Info</a>
+				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6363:6456#L165">Info</a>
 					<a class="permalink" href="index.html#Logger.Info">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Info(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Info(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs an important information message
-Parameters:
+Info logs an important information message
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1233,43 +1170,39 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="Logger.Level">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1294:1322#L41">Level</a>
+				<h3 id="Logger.Level">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1355:1389#L34">Level</a>
 					<a class="permalink" href="index.html#Logger.Level">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Level() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Level() <a href="index.html#LevelType">LevelType</a></pre>
 				<p>
-Gets the maximum log level. Messages with higher log level are filtered out.
-Returns int
-the maximum log level.
+Level gets the maximum log level. Messages with higher log level are filtered out.
 </p>
+<pre>Returns int the maximum log level.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4261:4362#L150">Log</a>
+				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4356:4476#L123">Log</a>
 					<a class="permalink" href="index.html#Logger.Log">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Log(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Log(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a message at specified log level.
-Parameters:
+Log a message at specified log level.
 </p>
-<pre>- level int
-a log level.
-- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- level LevelType a log level.
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1277,39 +1210,33 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="Logger.SetLevel">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1434:1470#L49">SetLevel</a>
+				<h3 id="Logger.SetLevel">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1500:1542#L40">SetLevel</a>
 					<a class="permalink" href="index.html#Logger.SetLevel">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetLevel(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetLevel(value <a href="index.html#LevelType">LevelType</a>)</pre>
 				<p>
-Set the maximum log level.
-Parameters:
+SetLevel set the maximum log level.
 </p>
-<pre>- value int
+<pre>Parameters: value int a new maximum log level.
 </pre>
-<p>
-a new maximum log level.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2303:2363#L81">SetReferences</a>
+				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2363:2423#L65">SetReferences</a>
 					<a class="permalink" href="index.html#Logger.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
-Sets references to dependent components.
-Parameters:
+SetReferences to dependent components.
 </p>
-<pre>- references IReferences
-references to locate the component dependencies.
+<pre>Parameters: references IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -1317,18 +1244,16 @@ references to locate the component dependencies.
 				
 			
 				
-				<h3 id="Logger.SetSource">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1735:1775#L64">SetSource</a>
+				<h3 id="Logger.SetSource">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1810:1850#L52">SetSource</a>
 					<a class="permalink" href="index.html#Logger.SetSource">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetSource(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the source (context) name.
-Parameters:
+SetSource sets the source (context) name.
 </p>
-<pre>- value string
-a new source (context) name.
+<pre>Parameters: value string a new source (context) name.
 </pre>
 
 				
@@ -1336,39 +1261,16 @@ a new source (context) name.
 				
 			
 				
-				<h3 id="Logger.Source">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1576:1608#L56">Source</a>
+				<h3 id="Logger.Source">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1653:1685#L46">Source</a>
 					<a class="permalink" href="index.html#Logger.Source">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#Logger">Logger</a>) Source() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the source (context) name.
-Returns string
-the source (context) name.
+Source gets the source (context) name.
 </p>
-
-				
-				
-				
-			
-				
-				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7044:7125#L226">Trace</a>
-					<a class="permalink" href="index.html#Logger.Trace">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
-				<p>
-Logs a low-level debug information for troubleshooting.
-Parameters:
-</p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Returns: string the source (context) name.
 </pre>
 
 				
@@ -1376,22 +1278,41 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5751:5831#L190">Warn</a>
+				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7298:7392#L185">Trace</a>
+					<a class="permalink" href="index.html#Logger.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Trace(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
+				<p>
+Trace logs a low-level debug information for troubleshooting.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5916:6009#L155">Warn</a>
 					<a class="permalink" href="index.html#Logger.Warn">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Warn(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Warn(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a warning that may or may not have a negative impact.
-Parameters:
+Warn logs a warning that may or may not have a negative impact.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1401,15 +1322,13 @@ arguments to parameterize the message
 		
 			
 			
-			<h2 id="NullLogger">type <a href="http://localhost:6060/src/log/NullLogger.go?s=168:192#L1">NullLogger</a>
+			<h2 id="NullLogger">type <a href="http://localhost:6060/src/log/NullLogger.go?s=195:219#L1">NullLogger</a>
 				<a class="permalink" href="index.html#NullLogger">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-Dummy implementation of logger that doesn&#39;t do anything.
-</p>
-<p>
+NullLogger dummy implementation of logger that doesn&#39;t do anything.
 It can be used in testing or in situations when logger is required but shall be disabled.
 </p>
 
@@ -1426,16 +1345,17 @@ It can be used in testing or in situations when logger is required but shall be 
 
 			
 				
-				<h3 id="NewNullLogger">func <a href="http://localhost:6060/src/log/NullLogger.go?s=258:290#L3">NewNullLogger</a>
+				<h3 id="NewNullLogger">func <a href="http://localhost:6060/src/log/NullLogger.go?s=299:331#L1">NewNullLogger</a>
 					<a class="permalink" href="index.html#NewNullLogger">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func NewNullLogger() *<a href="index.html#NullLogger">NullLogger</a></pre>
 				<p>
-Creates a new instance of the logger.
-Returns *NullLogger
+NewNullLogger creates a new instance of the logger.
 </p>
+<pre>Returns *NullLogger
+</pre>
 
 				
 				
@@ -1443,22 +1363,20 @@ Returns *NullLogger
 
 			
 				
-				<h3 id="NullLogger.Debug">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3073:3158#L93">Debug</a>
+				<h3 id="NullLogger.Debug">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3223:3321#L72">Debug</a>
 					<a class="permalink" href="index.html#NullLogger.Debug">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Debug(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Debug(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a high-level debug information for troubleshooting.
-Parameters:
+Debug logs a high-level debug information for troubleshooting.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1466,24 +1384,21 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="NullLogger.Error">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1938:2034#L60">Error</a>
+				<h3 id="NullLogger.Error">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2024:2133#L45">Error</a>
 					<a class="permalink" href="index.html#NullLogger.Error">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Error(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Error(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
 Logs recoverable application error.
-Parameters:
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1491,24 +1406,21 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="NullLogger.Fatal">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1496:1592#L47">Fatal</a>
+				<h3 id="NullLogger.Fatal">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1575:1684#L35">Fatal</a>
 					<a class="permalink" href="index.html#NullLogger.Fatal">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Fatal(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Fatal(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs fatal (unrecoverable) message that caused the process to crash.
-Parameters:
+Fatal logs fatal (unrecoverable) message that caused the process to crash.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1516,22 +1428,20 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="NullLogger.Info">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2691:2775#L82">Info</a>
+				<h3 id="NullLogger.Info">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2821:2918#L63">Info</a>
 					<a class="permalink" href="index.html#NullLogger.Info">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Info(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Info(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs an important information message
-Parameters:
+Info logs an important information message
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1539,43 +1449,39 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="NullLogger.Level">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=447:479#L11">Level</a>
+				<h3 id="NullLogger.Level">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=498:536#L8">Level</a>
 					<a class="permalink" href="index.html#NullLogger.Level">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Level() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Level() <a href="index.html#LevelType">LevelType</a></pre>
 				<p>
-Gets the maximum log level. Messages with higher log level are filtered out.
-Returns int
-the maximum log level.
+Level gets the maximum log level. Messages with higher log level are filtered out.
 </p>
+<pre>Returns: LevelType the maximum log level.
+</pre>
 
 				
 				
 				
 			
 				
-				<h3 id="NullLogger.Log">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1012:1117#L34">Log</a>
+				<h3 id="NullLogger.Log">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1072:1196#L25">Log</a>
 					<a class="permalink" href="index.html#NullLogger.Log">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Log(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Log(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, level <a href="index.html#LevelType">LevelType</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a message at specified log level.
-Parameters:
+Log a message at specified log level.
 </p>
-<pre>- level int
-a log level.
-- correlationId string
-transaction id to trace execution through call chain.
-- err error
-an error object associated with this message.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message.
+<pre>Parameters:
+	- ctx context.Context
+	- level LevelType a log level.
+	- correlationId string transaction id to trace execution through call chain.
+	- err error an error object associated with this message.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1583,43 +1489,37 @@ arguments to parameterize the message.
 				
 			
 				
-				<h3 id="NullLogger.SetLevel">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=588:628#L19">SetLevel</a>
+				<h3 id="NullLogger.SetLevel">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=649:695#L14">SetLevel</a>
 					<a class="permalink" href="index.html#NullLogger.SetLevel">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) SetLevel(value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) SetLevel(value <a href="index.html#LevelType">LevelType</a>)</pre>
 				<p>
-Set the maximum log level.
-Parameters:
+SetLevel set the maximum log level.
 </p>
-<pre>- value int
+<pre>Parameters: value int a new maximum log level.
 </pre>
-<p>
-a new maximum log level.
-</p>
 
 				
 				
 				
 			
 				
-				<h3 id="NullLogger.Trace">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3455:3540#L104">Trace</a>
+				<h3 id="NullLogger.Trace">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3625:3723#L81">Trace</a>
 					<a class="permalink" href="index.html#NullLogger.Trace">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Trace(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a low-level debug information for troubleshooting.
-Parameters:
+Trace logs a low-level debug information for troubleshooting.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
 
 				
@@ -1627,100 +1527,21 @@ arguments to parameterize the message
 				
 			
 				
-				<h3 id="NullLogger.Warn">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2328:2412#L71">Warn</a>
+				<h3 id="NullLogger.Warn">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2439:2536#L54">Warn</a>
 					<a class="permalink" href="index.html#NullLogger.Warn">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Warn(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				<pre>func (c *<a href="index.html#NullLogger">NullLogger</a>) Warn(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, message <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args ...<a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
-Logs a warning that may or may not have a negative impact.
-Parameters:
+Warn logs a warning that may or may not have a negative impact.
 </p>
-<pre>- correlationId string
-transaction id to trace execution through call chain.
-- message string
-a human-readable message to log.
-- args ...interface{}
-arguments to parameterize the message
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
+	- message string a human-readable message to log.
+	- args ...any arguments to parameterize the message.
 </pre>
-
-				
-				
-				
-			
-		
-			
-			
-			<h2 id="TLogLevelConverter">type <a href="http://localhost:6060/src/log/LogLevelConverter.go?s=149:181#L2">TLogLevelConverter</a>
-				<a class="permalink" href="index.html#TLogLevelConverter">&#xb6;</a>
-				
-				
-			</h2>
-			<p>
-Helper class to convert log level values.
-</p>
-
-			<pre>type TLogLevelConverter struct{}
-</pre>
-
-			
-
-			
-				
-				<pre>var <span id="LogLevelConverter">LogLevelConverter</span> *<a href="index.html#TLogLevelConverter">TLogLevelConverter</a> = &amp;<a href="index.html#TLogLevelConverter">TLogLevelConverter</a>{}</pre>
-			
-
-			
-			
-			
-
-			
-
-			
-				
-				<h3 id="TLogLevelConverter.ToLogLevel">func (*TLogLevelConverter) <a href="http://localhost:6060/src/log/LogLevelConverter.go?s=419:481#L12">ToLogLevel</a>
-					<a class="permalink" href="index.html#TLogLevelConverter.ToLogLevel">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#TLogLevelConverter">TLogLevelConverter</a>) ToLogLevel(value interface{}) <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				<p>
-Converts numbers and strings to standard log level values.
-Parameters:
-</p>
-<pre>- value interface{}
-a value to be converted
-</pre>
-<p>
-Returns int
-converted log level
-</p>
-
-				
-				
-				
-			
-				
-				<h3 id="TLogLevelConverter.ToString">func (*TLogLevelConverter) <a href="http://localhost:6060/src/log/LogLevelConverter.go?s=679:734#L24">ToString</a>
-					<a class="permalink" href="index.html#TLogLevelConverter.ToString">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#TLogLevelConverter">TLogLevelConverter</a>) ToString(level <a href="http://localhost:6060/pkg/builtin/#int">int</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				<p>
-Converts log level to a string.
-see
-LogLevel
-Parameters:
-</p>
-<pre>- level int
-a log level to convert
-</pre>
-<p>
-Returns string
-log level name string.
-</p>
 
 				
 				
@@ -1738,13 +1559,13 @@ log level name string.
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.18.1.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->
