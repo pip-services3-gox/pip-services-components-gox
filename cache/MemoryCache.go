@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/convert"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
-	"strings"
 	"sync"
 
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
@@ -99,9 +98,6 @@ func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key
 
 	var defaultValue T
 
-	// TODO:: remove trim from all components
-	key = strings.Trim(key, " ")
-
 	if key == "" {
 		return defaultValue, errors.NewInvalidStateError(
 			correlationId,
@@ -141,7 +137,6 @@ func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string,
 
 	var defaultValue T
 
-	key = strings.Trim(key, " ")
 	if key == "" {
 		return value, errors.NewInvalidStateError(
 			correlationId,
@@ -185,7 +180,6 @@ func (c *MemoryCache[T]) Remove(correlationId string, key string) error {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 
-	key = strings.Trim(key, " ")
 	if key == "" {
 		return errors.NewInvalidStateError(
 			correlationId,
