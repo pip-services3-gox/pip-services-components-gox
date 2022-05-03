@@ -10,8 +10,9 @@ package build
 //		factory.Add(NewDefaultCountersFactory());
 //
 //		loggerLocator := NewDescriptor("*", "logger", "*", "*", "1.0");
-//		factory.CanCreate(loggerLocator); // Result: Descriptor("pip-service", "logger", "null", "default", "1.0")
-//		factory.Create(loggerLocator);    // Result: created NullLogger
+//		factory.CanCreate(context.Background(), loggerLocator);
+//			Result: Descriptor("pip-service", "logger", "null", "default", "1.0")
+//		factory.Create(context.Background(), loggerLocator);    // Result: created NullLogger
 type CompositeFactory struct {
 	_factories []IFactory
 }
@@ -34,7 +35,8 @@ func NewCompositeFactoryFromFactories(factories ...IFactory) *CompositeFactory {
 }
 
 // Add a factory into the list of embedded factories.
-//	Parameters: factory IFactory a factory to be added.
+//	Parameters:
+//		- factory IFactory a factory to be added.
 func (c *CompositeFactory) Add(factory IFactory) {
 	if factory == nil {
 		panic("Factory cannot be nil")
@@ -44,7 +46,8 @@ func (c *CompositeFactory) Add(factory IFactory) {
 }
 
 // Remove removes a factory from the list of embedded factories.
-//	Parameters: factory IFactory the factory to remove.
+//	Parameters:
+//		- factory IFactory the factory to remove.
 func (c *CompositeFactory) Remove(factory IFactory) {
 	removeIndex := -1
 	for i, thisFactory := range c._factories {
@@ -62,7 +65,8 @@ func (c *CompositeFactory) Remove(factory IFactory) {
 // This method searches for all registered components and returns a locator for component
 // it is able to create that matches the given locator. If the factory is not able
 // to create a requested component is returns null.
-//	Parameters: locator any a locator to identify component to be created.
+//	Parameters:
+//		- locator any a locator to identify component to be created.
 //	Returns: any  a locator for a component that the factory is able to create.
 func (c *CompositeFactory) CanCreate(locator any) any {
 	if locator == nil {

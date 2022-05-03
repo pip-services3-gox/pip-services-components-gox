@@ -1,6 +1,7 @@
 package config
 
 import (
+	"context"
 	"github.com/aymerick/raymond"
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
@@ -24,8 +25,10 @@ func NewConfigReader() *ConfigReader {
 }
 
 // Configure configures component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *ConfigReader) Configure(config *cconfig.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration parameters to be set.
+func (c *ConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams) {
 	parameters := config.GetSection(SectionNameParameters)
 	if parameters.Len() > 0 {
 		c.parameters = parameters

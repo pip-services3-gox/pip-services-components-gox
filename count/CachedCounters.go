@@ -55,8 +55,9 @@ func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
 
 // Configure configures component by passing configuration parameters.
 //	Parameters:
+//		- ctx context.Context
 //		- config *config.ConfigParams configuration parameters to be set.
-func (c *CachedCounters) Configure(config *config.ConfigParams) {
+func (c *CachedCounters) Configure(ctx context.Context, config *config.ConfigParams) {
 	c.interval = config.GetAsLongWithDefault(ConfigParameterInterval, c.interval)
 	c.resetTimeout = config.GetAsLongWithDefault(ConfigParameterResetTimeout, c.resetTimeout)
 }

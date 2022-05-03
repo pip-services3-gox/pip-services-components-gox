@@ -38,28 +38,34 @@ func NewEmptyMemoryDiscovery() *MemoryDiscovery {
 }
 
 // NewMemoryDiscovery creates a new instance of discovery service.
-//	Parameters: config *config.ConfigParams configuration with connection parameters.
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration with connection parameters.
 //	Returns: *MemoryDiscovery
-func NewMemoryDiscovery(config *config.ConfigParams) *MemoryDiscovery {
+func NewMemoryDiscovery(ctx context.Context, config *config.ConfigParams) *MemoryDiscovery {
 	c := &MemoryDiscovery{
 		items: map[string][]*ConnectionParams{},
 	}
 
 	if config != nil {
-		c.Configure(config)
+		c.Configure(ctx, config)
 	}
 
 	return c
 }
 
 // Configure component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *MemoryDiscovery) Configure(config *config.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration parameters to be set.
+func (c *MemoryDiscovery) Configure(ctx context.Context, config *config.ConfigParams) {
 	c.ReadConnections(config)
 }
 
 // ReadConnections from configuration parameters. Each section represents an individual Connectionparams
-//	Parameters: config *configure.ConfigParams configuration parameters to be read
+//	Parameters:
+//		- ctx context.Context
+//		- config *configure.ConfigParams configuration parameters to be read
 func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams) {
 	c.items = make(map[string][]*ConnectionParams)
 
@@ -73,12 +79,11 @@ func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams) {
 
 // Register connection parameters into the discovery service.
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId string transaction id to trace execution through call chain.
 //		- key string a key to uniquely identify the connection parameters.
 //		- connection *ConnectionParams
 //	Returns: *ConnectionParams, error registered connection or error.
-func (c *MemoryDiscovery) Register(ctx context.Context, correlationId string, key string,
+func (c *MemoryDiscovery) Register(correlationId string, key string,
 	connection *ConnectionParams) (result *ConnectionParams, err error) {
 
 	if connection != nil {
@@ -95,14 +100,13 @@ func (c *MemoryDiscovery) Register(ctx context.Context, correlationId string, ke
 
 // ResolveOne a single connection parameters by its key.
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId: string transaction id to trace execution through call chain.
 //		- key: string a key to uniquely identify the connection.
 //	Returns: *ConnectionParams, error receives found connection or error.
-func (c *MemoryDiscovery) ResolveOne(ctx context.Context, correlationId string,
+func (c *MemoryDiscovery) ResolveOne(correlationId string,
 	key string) (result *ConnectionParams, err error) {
 
-	connections, _ := c.ResolveAll(ctx, correlationId, key)
+	connections, _ := c.ResolveAll(correlationId, key)
 	if len(connections) > 0 {
 		return connections[0], nil
 	}
@@ -112,11 +116,10 @@ func (c *MemoryDiscovery) ResolveOne(ctx context.Context, correlationId string,
 
 // ResolveAll connection parameters by its key.
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId: string transaction id to trace execution through call chain.
 //		- key: string a key to uniquely identify the connection.
 //	Returns: *ConnectionParams, error receives found connection or error.
-func (c *MemoryDiscovery) ResolveAll(ctx context.Context, correlationId string,
+func (c *MemoryDiscovery) ResolveAll(correlationId string,
 	key string) (result []*ConnectionParams, err error) {
 	connections, _ := c.items[key]
 

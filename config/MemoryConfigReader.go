@@ -42,8 +42,10 @@ func NewMemoryConfigReader(config *cconfig.ConfigParams) *MemoryConfigReader {
 }
 
 // Configure component by passing configuration parameters.
-//	Parameters: config *cconfig.ConfigParams configuration parameters to be set.
-func (c *MemoryConfigReader) Configure(config *cconfig.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config *cconfig.ConfigParams configuration parameters to be set.
+func (c *MemoryConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams) {
 	c.config = config
 }
 

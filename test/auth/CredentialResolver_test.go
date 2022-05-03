@@ -16,7 +16,7 @@ func TestCredentialResolverConfigure(t *testing.T) {
 		"credential.access_key", "key",
 		"credential.store_key", "store key",
 	)
-	credentialResolver := auth.NewCredentialResolver(restConfig, nil)
+	credentialResolver := auth.NewCredentialResolver(context.Background(), restConfig, nil)
 	credentials := credentialResolver.GetAll()
 	assert.Len(t, credentials, 1)
 
@@ -39,7 +39,7 @@ func TestCredentialResolverLookup(t *testing.T) {
 		"credential.password", "qwerty",
 		"credential.access_key", "key",
 	)
-	credentialResolver = auth.NewCredentialResolver(restConfigWithoutStoreKey, nil)
+	credentialResolver = auth.NewCredentialResolver(context.Background(), restConfigWithoutStoreKey, nil)
 
 	credential, err = credentialResolver.Lookup(context.Background(), "")
 	assert.Nil(t, err)
@@ -55,7 +55,7 @@ func TestCredentialResolverLookup(t *testing.T) {
 		"credential.access_key", "key",
 		"credential.store_key", "store key",
 	)
-	credentialResolver = auth.NewCredentialResolver(restConfig, nil)
+	credentialResolver = auth.NewCredentialResolver(context.Background(), restConfig, nil)
 
 	credential, err = credentialResolver.Lookup(context.Background(), "")
 	assert.NotNil(t, err)

@@ -21,10 +21,13 @@ var saver = &cachedLoggerSaver{}
 
 func newCustomCachedLogger() *log.CachedLogger {
 	logger := log.InheritCachedLogger(saver)
-	logger.Configure(config.NewConfigParamsFromTuples(
-		log.ConfigParameterOptionsInterval, 100,
-		log.ConfigParameterOptionsMaxCacheSize, 1,
-	))
+	logger.Configure(
+		context.Background(),
+		config.NewConfigParamsFromTuples(
+			log.ConfigParameterOptionsInterval, 100,
+			log.ConfigParameterOptionsMaxCacheSize, 1,
+		),
+	)
 	return logger
 }
 

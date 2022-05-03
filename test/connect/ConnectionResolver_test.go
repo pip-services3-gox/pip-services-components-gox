@@ -16,7 +16,7 @@ func TestConnectionResolverConfigure(t *testing.T) {
 		"connection.host", "localhost",
 		"connection.port", 3000,
 	)
-	connectionResolver := connect.NewConnectionResolver(restConfig, nil)
+	connectionResolver := connect.NewConnectionResolver(context.Background(), restConfig, nil)
 	connections := connectionResolver.GetAll()
 	assert.Len(t, connections, 1)
 
@@ -30,20 +30,20 @@ func TestConnectionResolverRegister(t *testing.T) {
 	connection := connect.NewEmptyConnectionParams()
 	connectionResolver := connect.NewEmptyConnectionResolver()
 
-	err := connectionResolver.Register(context.Background(), "", connection)
+	err := connectionResolver.Register("", connection)
 	assert.Nil(t, err)
 
 	connections := connectionResolver.GetAll()
 	assert.Len(t, connections, 0)
 
-	err = connectionResolver.Register(context.Background(), "", connection)
+	err = connectionResolver.Register("", connection)
 	assert.Nil(t, err)
 
 	connections = connectionResolver.GetAll()
 	assert.Len(t, connections, 0)
 
 	connection.SetDiscoveryKey("Discovery key")
-	err = connectionResolver.Register(context.Background(), "", connection)
+	err = connectionResolver.Register("", connection)
 	assert.Nil(t, err)
 
 	connections = connectionResolver.GetAll()
@@ -56,9 +56,9 @@ func TestConnectionResolverResolve(t *testing.T) {
 		"connection.host", "localhost",
 		"connection.port", 3000,
 	)
-	connectionResolver := connect.NewConnectionResolver(restConfig, nil)
+	connectionResolver := connect.NewConnectionResolver(context.Background(), restConfig, nil)
 
-	connection, err := connectionResolver.Resolve(context.Background(), "")
+	connection, err := connectionResolver.Resolve("")
 	assert.Nil(t, err)
 	assert.NotNil(t, connection)
 
@@ -69,9 +69,9 @@ func TestConnectionResolverResolve(t *testing.T) {
 		"connection.discovery_key", "Discovery key",
 	)
 	references := refer.NewEmptyReferences()
-	connectionResolver = connect.NewConnectionResolver(restConfigDiscovery, references)
+	connectionResolver = connect.NewConnectionResolver(context.Background(), restConfigDiscovery, references)
 
-	connection, err = connectionResolver.Resolve(context.Background(), "")
+	connection, err = connectionResolver.Resolve("")
 	assert.NotNil(t, err)
 	assert.Nil(t, connection)
 }

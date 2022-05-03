@@ -32,8 +32,8 @@ import (
 //		);
 //
 //		credentialResolver := NewCredentialResolver();
-//		credentialResolver.Configure(config);
-//		credentialResolver.SetReferences(references);
+//		credentialResolver.Configure(context.Background(), config);
+//		credentialResolver.SetReferences(context.Background(), references);
 //
 //		credentialResolver.Lookup("123", (err, credential) => {
 //			// Now use credential...
@@ -54,17 +54,18 @@ func NewEmptyCredentialResolver() *CredentialResolver {
 
 // NewCredentialResolver creates a new instance of credentials resolver.
 //	Parameters:
+//		- ctx context.Context
 //		- config *config.ConfigParams component configuration parameters
 //		- references refer.IReferences component references
 //	Returns: *CredentialResolver
-func NewCredentialResolver(config *config.ConfigParams, references refer.IReferences) *CredentialResolver {
+func NewCredentialResolver(ctx context.Context, config *config.ConfigParams, references refer.IReferences) *CredentialResolver {
 	c := &CredentialResolver{
 		credentials: make([]*CredentialParams, 0),
 		references:  references,
 	}
 
 	if config != nil {
-		c.Configure(config)
+		c.Configure(ctx, config)
 	}
 
 	return c
@@ -72,7 +73,7 @@ func NewCredentialResolver(config *config.ConfigParams, references refer.IRefere
 
 // Configure configures component by passing configuration parameters.
 // Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *CredentialResolver) Configure(config *config.ConfigParams) {
+func (c *CredentialResolver) Configure(ctx context.Context, config *config.ConfigParams) {
 	credentials := NewManyCredentialParamsFromConfig(config)
 
 	for _, credential := range credentials {
@@ -82,7 +83,7 @@ func (c *CredentialResolver) Configure(config *config.ConfigParams) {
 
 // SetReferences sets references to dependent components.
 // Parameters: references refer.IReferences references to locate the component dependencies.
-func (c *CredentialResolver) SetReferences(references refer.IReferences) {
+func (c *CredentialResolver) SetReferences(ctx context.Context, references refer.IReferences) {
 	c.references = references
 }
 

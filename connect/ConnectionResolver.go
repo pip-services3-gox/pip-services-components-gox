@@ -28,7 +28,7 @@ import (
 //			"connection.port", 8080
 //		);
 //		connectionResolver := NewConnectionResolver();
-//		connectionResolver.Configure(config);
+//		connectionResolver.Configure(context.Background(), config);
 //		connectionResolver.SetReferences(references);
 //		res, err := connectionResolver.Resolve("123");
 type ConnectionResolver struct {
@@ -47,25 +47,28 @@ func NewEmptyConnectionResolver() *ConnectionResolver {
 
 // NewConnectionResolver Creates a new instance of connection resolver.
 //	Parameters:
+//		- ctx context.Context
 //		- config *config.ConfigParams component configuration parameters
 //		- references refer.IReferences component references
 //	Returns: *ConnectionResolver
-func NewConnectionResolver(config *config.ConfigParams, references refer.IReferences) *ConnectionResolver {
+func NewConnectionResolver(ctx context.Context, config *config.ConfigParams, references refer.IReferences) *ConnectionResolver {
 	c := &ConnectionResolver{
 		connections: []*ConnectionParams{},
 		references:  references,
 	}
 
 	if config != nil {
-		c.Configure(config)
+		c.Configure(ctx, config)
 	}
 
 	return c
 }
 
 // Configure Configures component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *ConnectionResolver) Configure(config *config.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration parameters to be set.
+func (c *ConnectionResolver) Configure(ctx context.Context, config *config.ConfigParams) {
 	connections := NewManyConnectionParamsFromConfig(config)
 
 	for _, connection := range connections {
@@ -74,8 +77,10 @@ func (c *ConnectionResolver) Configure(config *config.ConfigParams) {
 }
 
 // SetReferences sets references to dependent components.
-//	Parameters: references refer.IReferences references to locate the component dependencies.
-func (c *ConnectionResolver) SetReferences(references refer.IReferences) {
+//	Parameters:
+//		- ctx context.Context
+//		- references refer.IReferences references to locate the component dependencies.
+func (c *ConnectionResolver) SetReferences(ctx context.Context, references refer.IReferences) {
 	c.references = references
 }
 
@@ -93,7 +98,7 @@ func (c *ConnectionResolver) Add(connection *ConnectionParams) {
 	c.connections = append(c.connections, connection)
 }
 
-func (c *ConnectionResolver) resolveInDiscovery(ctx context.Context, correlationId string,
+func (c *ConnectionResolver) resolveInDiscovery(correlationId string,
 	connection *ConnectionParams) (result *ConnectionParams, err error) {
 
 	if !connection.UseDiscovery() {
@@ -114,7 +119,7 @@ func (c *ConnectionResolver) resolveInDiscovery(ctx context.Context, correlation
 
 	for _, component := range components {
 		if discovery, ok := component.(IDiscovery); ok && discovery != nil {
-			connection, err = discovery.ResolveOne(ctx, correlationId, key)
+			connection, err = discovery.ResolveOne(correlationId, key)
 			if connection != nil || err != nil {
 				return connection, err
 			}
@@ -128,10 +133,9 @@ func (c *ConnectionResolver) resolveInDiscovery(ctx context.Context, correlation
 // from Discovery service it finds a IDiscovery and resolves the connection there.
 //	see IDiscovery
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId: string transaction id to trace execution through call chain.
 //	Returns: *ConnectionParams, error resolved connection or error.
-func (c *ConnectionResolver) Resolve(ctx context.Context, correlationId string) (*ConnectionParams, error) {
+func (c *ConnectionResolver) Resolve(correlationId string) (*ConnectionParams, error) {
 	if len(c.connections) == 0 {
 		return nil, nil
 	}
@@ -147,7 +151,7 @@ func (c *ConnectionResolver) Resolve(ctx context.Context, correlationId string) 
 	}
 
 	for _, connection := range resolveConnections {
-		c, err := c.resolveInDiscovery(ctx, correlationId, connection)
+		c, err := c.resolveInDiscovery(correlationId, connection)
 		if c != nil || err != nil {
 			return c, err
 		}
@@ -156,7 +160,7 @@ func (c *ConnectionResolver) Resolve(ctx context.Context, correlationId string) 
 	return nil, nil
 }
 
-func (c *ConnectionResolver) resolveAllInDiscovery(ctx context.Context, correlationId string,
+func (c *ConnectionResolver) resolveAllInDiscovery(correlationId string,
 	connection *ConnectionParams) (result []*ConnectionParams, err error) {
 
 	if !connection.UseDiscovery() {
@@ -179,7 +183,7 @@ func (c *ConnectionResolver) resolveAllInDiscovery(ctx context.Context, correlat
 
 	for _, component := range components {
 		if discovery, ok := component.(IDiscovery); ok && discovery != nil {
-			connections, err := discovery.ResolveAll(ctx, correlationId, key)
+			connections, err := discovery.ResolveAll(correlationId, key)
 			if err != nil {
 				return nil, err
 			}
@@ -198,10 +202,9 @@ func (c *ConnectionResolver) resolveAllInDiscovery(ctx context.Context, correlat
 // retrieved from Discovery service it finds a IDiscovery and resolves the connection there.
 //	see IDiscovery
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId string transaction id to trace execution through call chain.
 //	Returns: []*ConnectionParams, error resolved connections or error.
-func (c *ConnectionResolver) ResolveAll(ctx context.Context, correlationId string) ([]*ConnectionParams, error) {
+func (c *ConnectionResolver) ResolveAll(correlationId string) ([]*ConnectionParams, error) {
 	resolvedConnections := make([]*ConnectionParams, 0)
 	resolveConnections := make([]*ConnectionParams, 0)
 
@@ -214,7 +217,7 @@ func (c *ConnectionResolver) ResolveAll(ctx context.Context, correlationId strin
 	}
 
 	for _, connection := range resolveConnections {
-		connections, err := c.resolveAllInDiscovery(ctx, correlationId, connection)
+		connections, err := c.resolveAllInDiscovery(correlationId, connection)
 		if err != nil {
 			return nil, err
 		}
@@ -226,7 +229,7 @@ func (c *ConnectionResolver) ResolveAll(ctx context.Context, correlationId strin
 	return resolvedConnections, nil
 }
 
-func (c *ConnectionResolver) registerInDiscovery(ctx context.Context, correlationId string,
+func (c *ConnectionResolver) registerInDiscovery(correlationId string,
 	connection *ConnectionParams) (result bool, err error) {
 
 	if !connection.UseDiscovery() {
@@ -249,7 +252,7 @@ func (c *ConnectionResolver) registerInDiscovery(ctx context.Context, correlatio
 
 	for _, component := range components {
 		if discovery, ok := component.(IDiscovery); ok && discovery != nil {
-			_, err = discovery.Register(ctx, correlationId, key, connection)
+			_, err = discovery.Register(correlationId, key, connection)
 			if err != nil {
 				return false, err
 			}
@@ -264,12 +267,11 @@ func (c *ConnectionResolver) registerInDiscovery(ctx context.Context, correlatio
 // This method can be used for dynamic service discovery.
 //	see IDiscovery
 //	Parameters:
-//		- ctx context.Context
 //		- correlationId string transaction id to trace execution through call chain.
 //		- connection *ConnectionParams a connection to register.
 //	Returns: error
-func (c *ConnectionResolver) Register(ctx context.Context, correlationId string, connection *ConnectionParams) error {
-	registered, err := c.registerInDiscovery(ctx, correlationId, connection)
+func (c *ConnectionResolver) Register(correlationId string, connection *ConnectionParams) error {
+	registered, err := c.registerInDiscovery(correlationId, connection)
 	if registered {
 		c.connections = append(c.connections, connection)
 	}

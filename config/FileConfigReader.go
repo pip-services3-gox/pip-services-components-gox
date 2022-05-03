@@ -1,6 +1,9 @@
 package config
 
-import cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
+import (
+	"context"
+	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
+)
 
 // FileConfigReader is an abstract config reader that reads configuration from a file.
 // Child classes add support for config files in their specific format like JSON, YAML or property files.
@@ -34,9 +37,11 @@ func NewFileConfigReader(path string) *FileConfigReader {
 }
 
 // Configure component by passing configuration parameters.
-//	Parameters: config *cconfig.ConfigParams configuration parameters to be set.
-func (c *FileConfigReader) Configure(config *cconfig.ConfigParams) {
-	c.ConfigReader.Configure(config)
+//	Parameters:
+//		- ctx context.Context
+//		- config *cconfig.ConfigParams configuration parameters to be set.
+func (c *FileConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams) {
+	c.ConfigReader.Configure(ctx, config)
 	c.path = config.GetAsStringWithDefault(FileConfigReaderPathKey, c.path)
 }
 

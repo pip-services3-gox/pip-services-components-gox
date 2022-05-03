@@ -1,6 +1,7 @@
 package components
 
 import (
+	"context"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 	"github.com/pip-services3-gox/pip-services3-components-gox/count"
@@ -21,13 +22,13 @@ func InheritComponent() *Component {
 	}
 }
 
-func (c *Component) Configure(config *config.ConfigParams) {
-	c.dependencyResolver.Configure(config)
-	c.logger.Configure(config)
+func (c *Component) Configure(ctx context.Context, config *config.ConfigParams) {
+	c.dependencyResolver.Configure(ctx, config)
+	c.logger.Configure(ctx, config)
 }
 
-func (c *Component) SetReferences(references refer.IReferences) {
-	c.dependencyResolver.SetReferences(references)
-	c.logger.SetReferences(references)
-	c.counters.SetReferences(references)
+func (c *Component) SetReferences(ctx context.Context, references refer.IReferences) {
+	c.dependencyResolver.SetReferences(ctx, references)
+	c.logger.SetReferences(ctx, references)
+	c.counters.SetReferences(ctx, references)
 }

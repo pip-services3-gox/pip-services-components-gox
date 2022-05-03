@@ -42,22 +42,28 @@ func NewCompositeCounters() *CompositeCounters {
 }
 
 // NewCompositeCountersFromReferences creates a new instance of the counters.
-//	Parameters: references is a refer.IReferences to locate the component dependencies.
+//	Parameters:
+//		- ctx context.Context
+//		- references is a refer.IReferences to locate the component dependencies.
 //	Returns: *CompositeCounters
-func NewCompositeCountersFromReferences(references refer.IReferences) *CompositeCounters {
+func NewCompositeCountersFromReferences(ctx context.Context, references refer.IReferences) *CompositeCounters {
 	c := NewCompositeCounters()
-	c.SetReferences(references)
+	c.SetReferences(ctx, references)
 	return c
 }
 
 // SetReferences references to dependent components.
-//	Parameters: references refer.IReferences references to locate the component dependencies.
-func (c *CompositeCounters) SetReferences(references refer.IReferences) {
+//	Parameters:
+//		- ctx context.Context
+//		- references refer.IReferences references to locate the component dependencies.
+func (c *CompositeCounters) SetReferences(ctx context.Context, references refer.IReferences) {
 	if c.counters == nil {
 		c.counters = []ICounters{}
 	}
 
-	counters := references.GetOptional(refer.NewDescriptor("*", "counters", "*", "*", "*"))
+	counters := references.GetOptional(
+		refer.NewDescriptor("*", "counters", "*", "*", "*"),
+	)
 	for _, l := range counters {
 		if l == c {
 			continue

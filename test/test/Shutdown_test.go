@@ -1,6 +1,7 @@
 package test_test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/pip-services3-gox/pip-services3-components-gox/test"
@@ -15,5 +16,5 @@ func TestShutdown(t *testing.T) {
 		assert.NotNil(t, err)
 	}()
 
-	sd.Shutdown()
+	sd.Shutdown(context.Background())
 }

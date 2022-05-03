@@ -32,8 +32,10 @@ func InheritLock(locker ILock) *Lock {
 }
 
 // Configure component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *Lock) Configure(config *config.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration parameters to be set.
+func (c *Lock) Configure(ctx context.Context, config *config.ConfigParams) {
 	c.retryTimeout = config.GetAsLongWithDefault(ConfigParamOptionsRetryTimeout, c.retryTimeout)
 }
 

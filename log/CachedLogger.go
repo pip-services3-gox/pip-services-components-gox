@@ -60,9 +60,11 @@ func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 }
 
 // Configure configures component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
-	c.Logger.Configure(cfg)
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration parameters to be set.
+func (c *CachedLogger) Configure(ctx context.Context, cfg *config.ConfigParams) {
+	c.Logger.Configure(ctx, cfg)
 
 	c.Interval = cfg.GetAsIntegerWithDefault(ConfigParameterOptionsInterval, c.Interval)
 	c.MaxCacheSize = cfg.GetAsIntegerWithDefault(ConfigParameterOptionsMaxCacheSize, c.MaxCacheSize)

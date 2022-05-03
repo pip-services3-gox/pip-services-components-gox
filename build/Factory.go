@@ -86,7 +86,8 @@ func (c *Factory) RegisterType(locator any, factory any) {
 // This method searches for all registered components and returns a locator for
 // component it is able to create that matches the given locator.
 // If the factory is not able to create a requested component is returns null.
-//	Parameters: locator any a locator to identify component to be created.
+//	Parameters:
+//		- locator any a locator to identify component to be created.
 //	Returns: any a locator for a component that the factory is able to create.
 func (c *Factory) CanCreate(locator any) any {
 	for _, registration := range c._registrations {
@@ -104,7 +105,8 @@ func (c *Factory) CanCreate(locator any) any {
 }
 
 // Create a component identified by given locator.
-//	Parameters: locator any a locator to identify component to be created.
+//	Parameters:
+//		- locator any a locator to identify component to be created.
 //	Returns: any, error the created component and a CreateError if the factory
 //		is not able to create the component.
 func (c *Factory) Create(locator any) (any, error) {

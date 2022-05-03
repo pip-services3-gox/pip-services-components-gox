@@ -39,15 +39,17 @@ func NewEmptyMemoryCredentialStore() *MemoryCredentialStore {
 }
 
 // NewMemoryCredentialStore creates a new instance of the credential store.
-//	Parameters: config *config.ConfigParams configuration with credential parameters.
+//	Parameters:
+//		- ctx context.Context
+//		- config *config.ConfigParams configuration with credential parameters.
 //	Returns: *MemoryCredentialStore
-func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStore {
+func NewMemoryCredentialStore(ctx context.Context, config *config.ConfigParams) *MemoryCredentialStore {
 	c := &MemoryCredentialStore{
 		items: make(map[string]*CredentialParams),
 	}
 
 	if config != nil {
-		c.Configure(config)
+		c.Configure(ctx, config)
 	}
 
 	return c
@@ -55,7 +57,7 @@ func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStor
 
 // Configure configures component by passing configuration parameters.
 //	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *MemoryCredentialStore) Configure(config *config.ConfigParams) {
+func (c *MemoryCredentialStore) Configure(ctx context.Context, config *config.ConfigParams) {
 	c.ReadCredentials(config)
 }
 

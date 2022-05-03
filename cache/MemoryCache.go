@@ -41,15 +41,15 @@ func NewMemoryCache[T any]() *MemoryCache[T] {
 // NewMemoryCacheFromConfig creates a new instance of the cache.
 //	Parameters: cfg *config.ConfigParams configuration parameters to be set.
 //	Returns: *MemoryCache
-func NewMemoryCacheFromConfig[T any](cfg *config.ConfigParams) *MemoryCache[T] {
+func NewMemoryCacheFromConfig[T any](ctx context.Context, cfg *config.ConfigParams) *MemoryCache[T] {
 	c := NewMemoryCache[T]()
-	c.Configure(cfg)
+	c.Configure(ctx, cfg)
 	return c
 }
 
 // Configure configures component by passing configuration parameters.
 //	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *MemoryCache[T]) Configure(cfg *config.ConfigParams) {
+func (c *MemoryCache[T]) Configure(ctx context.Context, cfg *config.ConfigParams) {
 	c.timeout = cfg.GetAsLongWithDefault("timeout", c.timeout)
 	c.maxSize = cfg.GetAsIntegerWithDefault("max_size", c.maxSize)
 }
@@ -175,7 +175,7 @@ func (c *MemoryCache[T]) Store(ctx context.Context, correlationId string,
 //		- correlationId string transaction id to trace execution through call chain.\
 //		- key string a unique value key.
 //	Returns: error
-func (c *MemoryCache[T]) Remove(correlationId string, key string) error {
+func (c *MemoryCache[T]) Remove(ctx context.Context, correlationId string, key string) error {
 
 	c.mtx.Lock()
 	defer c.mtx.Unlock()

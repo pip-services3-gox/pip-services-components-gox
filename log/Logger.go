@@ -64,15 +64,19 @@ func (c *Logger) SetSource(value string) {
 }
 
 // Configure configures component by passing configuration parameters.
-//	Parameters: config ConfigParams configuration parameters to be set.
-func (c *Logger) Configure(cfg *config.ConfigParams) {
+//	Parameters:
+//		- ctx context.Context
+//		- config ConfigParams configuration parameters to be set.
+func (c *Logger) Configure(ctx context.Context, cfg *config.ConfigParams) {
 	c.level = LevelConverter.ToLogLevel(cfg.GetAsStringWithDefault("level", logLevelToString(c.level)))
 	c.source = cfg.GetAsStringWithDefault("source", c.source)
 }
 
 // SetReferences to dependent components.
-//	Parameters: references IReferences references to locate the component dependencies.
-func (c *Logger) SetReferences(references refer.IReferences) {
+//	Parameters:
+//		- ctx context.Context
+//		- references IReferences references to locate the component dependencies.
+func (c *Logger) SetReferences(ctx context.Context, references refer.IReferences) {
 	descr := refer.NewDescriptor("pip-services", "context-info", "*", "*", "1.0")
 	if contextInfo, ok := references.GetOneOptional(descr).(info.ContextInfo); ok && c.source == "" {
 		c.source = contextInfo.Name

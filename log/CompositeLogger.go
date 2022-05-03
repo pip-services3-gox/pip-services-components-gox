@@ -14,17 +14,17 @@ import (
 //		type MyComponent {
 //			_logger CompositeLogger
 //		}
-//		func (mc* MyComponent) Configure(config: ConfigParams): void {
-//			mc._logger.Configure(config);
+//		func (mc* MyComponent) Configure(ctx context.Context, config: ConfigParams) {
+//			mc._logger.Configure(ctx, config);
 //			...
 //		}
 //
-//		func (mc* MyComponent) SetReferences(references: IReferences): void {
-//			mc._logger.SetReferences(references);
+//		func (mc* MyComponent) SetReferences(ctx context.Context, references: IReferences) {
+//			mc._logger.SetReferences(ctx, references);
 //			...
 //		}
 //
-//		func (mc* MyComponent) myMethod(ctx context.Context, string correlationId): void {
+//		func (mc* MyComponent) myMethod(ctx context.Context, string correlationId) {
 //			mc._logger.Debug(ctx context.Context, correlationId, "Called method mycomponent.mymethod");
 //			...
 //		}
@@ -47,24 +47,30 @@ func NewCompositeLogger() *CompositeLogger {
 }
 
 // NewCompositeLoggerFromReferences creates a new instance of the logger.
-//	Parameters: refer.IReferences references to locate the component dependencies.
+//	Parameters:
+//		- ctx context.Context
+//		- refer.IReferences references to locate the component dependencies.
 //	Returns: CompositeLogger
-func NewCompositeLoggerFromReferences(references refer.IReferences) *CompositeLogger {
+func NewCompositeLoggerFromReferences(ctx context.Context, references refer.IReferences) *CompositeLogger {
 	c := NewCompositeLogger()
-	c.SetReferences(references)
+	c.SetReferences(ctx, references)
 	return c
 }
 
 // SetReferences sets references to dependent components.
-//	Parameters: refer.IReferences references to locate the component dependencies.
-func (c *CompositeLogger) SetReferences(references refer.IReferences) {
-	c.Logger.SetReferences(references)
+//	Parameters:
+//		- ctx context.Context
+//		- refer.IReferences references to locate the component dependencies.
+func (c *CompositeLogger) SetReferences(ctx context.Context, references refer.IReferences) {
+	c.Logger.SetReferences(ctx, references)
 
 	if c.loggers == nil {
 		c.loggers = []ILogger{}
 	}
 
-	loggers := references.GetOptional(refer.NewDescriptor("*", "logger", "*", "*", "*"))
+	loggers := references.GetOptional(
+		refer.NewDescriptor("*", "logger", "*", "*", "*"),
+	)
 	for _, l := range loggers {
 		if l == c {
 			continue

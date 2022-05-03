@@ -11,7 +11,8 @@ import (
 )
 
 func TestMemoryCache(t *testing.T) {
-	_cache := cache.NewMemoryCache[any]()
+	var _cache cache.ICache[any]
+	_cache = cache.NewMemoryCache[any]()
 
 	value, err := _cache.Retrieve(context.Background(), "", "key1")
 	assert.Nil(t, value)

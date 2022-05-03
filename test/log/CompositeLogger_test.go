@@ -1,6 +1,7 @@
 package test_log
 
 import (
+	"context"
 	"testing"
 
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
@@ -11,10 +12,11 @@ func newCompositeLoggerFixture() *LoggerFixture {
 	logger := log.NewCompositeLogger()
 
 	refs := refer.NewReferencesFromTuples(
+		context.Background(),
 		log.ConsoleLoggerDescriptor, log.NewConsoleLogger(),
 		log.CompositeLoggerDescriptor, logger,
 	)
-	logger.SetReferences(refs)
+	logger.SetReferences(context.Background(), refs)
 
 	fixture := NewLoggerFixture(logger)
 	return fixture

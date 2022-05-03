@@ -50,8 +50,8 @@ func NewLogCounters() *LogCounters {
 // SetReferences sets references to dependent components.
 //	Parameters:
 //		- references refer.IReferences references to locate the component dependencies.
-func (c *LogCounters) SetReferences(references refer.IReferences) {
-	c.logger.SetReferences(references)
+func (c *LogCounters) SetReferences(ctx context.Context, references refer.IReferences) {
+	c.logger.SetReferences(ctx, references)
 }
 
 func (c *LogCounters) counterToString(counter Counter) string {
