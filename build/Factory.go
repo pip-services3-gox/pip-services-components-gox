@@ -26,7 +26,7 @@ import (
 
 type registration struct {
 	locator any
-	factory func() any
+	factory func(any) any
 }
 
 type Factory struct {
@@ -44,9 +44,9 @@ func NewFactory() *Factory {
 // Register registers a component using a factory method.
 //	Parameters:
 //		- locator any a locator to identify component to be created.
-//		- factory func() any a factory function that receives a
+//		- factory func(locator any) any a factory function that receives a
 //			locator and returns a created component.
-func (c *Factory) Register(locator any, factory func() any) {
+func (c *Factory) Register(locator any, factory func(locator any) any) {
 	if locator == nil {
 		panic("Locator cannot be nil")
 	}
@@ -77,7 +77,7 @@ func (c *Factory) RegisterType(locator any, factory any) {
 		panic("Factory must be parameterless function")
 	}
 
-	c.Register(locator, func() any {
+	c.Register(locator, func(locator any) any {
 		return val.Call([]refl.Value{})[0].Interface()
 	})
 }
@@ -110,7 +110,7 @@ func (c *Factory) CanCreate(locator any) any {
 //	Returns: any, error the created component and a CreateError if the factory
 //		is not able to create the component.
 func (c *Factory) Create(locator any) (any, error) {
-	var factory func() any
+	var factory func(any) any
 
 	for _, registration := range c._registrations {
 		thisLocator := registration.locator
@@ -146,7 +146,7 @@ func (c *Factory) Create(locator any) (any, error) {
 			}
 		}()
 
-		return factory()
+		return factory(locator)
 	}()
 
 	return obj, err

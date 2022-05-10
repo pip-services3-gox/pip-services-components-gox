@@ -13,7 +13,7 @@ func TestCompositeFactory(t *testing.T) {
 
 	subFactory := build.NewFactory()
 	descriptor := refer.NewDescriptor("test", "object", "default", "*", "1.0")
-	subFactory.Register(descriptor, newObject)
+	subFactory.RegisterType(descriptor, newObject)
 
 	factory.Add(subFactory)
 

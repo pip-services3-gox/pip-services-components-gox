@@ -8,15 +8,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func newObject() any {
+func newObject() interface{} {
 	return "ABC"
 }
 
-func TestFactory(t *testing.T) {
+func TestFactoryByType(t *testing.T) {
 	factory := build.NewFactory()
 	descriptor := refer.NewDescriptor("test", "object", "default", "*", "1.0")
 
-	factory.Register(descriptor, newObject)
+	factory.RegisterType(descriptor, newObject)
 
 	locator := factory.CanCreate(descriptor)
 	assert.NotNil(t, locator)
@@ -29,4 +29,28 @@ func TestFactory(t *testing.T) {
 	obj, err = factory.Create("123")
 	assert.NotNil(t, err)
 	assert.Nil(t, obj)
+}
+
+func TestFactory(t *testing.T) {
+	factory := build.NewFactory()
+	descriptor := refer.NewDescriptor("test", "object", "default", "*", "1.0")
+
+	factory.Register(descriptor, func(locator any) any {
+		name := ""
+		descriptor, ok := locator.(*refer.Descriptor)
+		if ok {
+			name = descriptor.String()
+		}
+		t.Log("Factory component name:", name)
+		return newObject()
+	},
+	)
+
+	locator := factory.CanCreate(descriptor)
+	assert.NotNil(t, locator)
+
+	obj, err := factory.Create(descriptor)
+	assert.Nil(t, err)
+	assert.Equal(t, "ABC", obj)
+
 }
