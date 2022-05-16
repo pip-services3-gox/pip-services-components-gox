@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -188,7 +188,7 @@
 				<dd><a href="index.html#CredentialResolver">type CredentialResolver</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialResolver">func NewCredentialResolver(config *config.ConfigParams, references refer.IReferences) *CredentialResolver</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCredentialResolver">func NewCredentialResolver(ctx context.Context, config *config.ConfigParams, references refer.IReferences) *CredentialResolver</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyCredentialResolver">func NewEmptyCredentialResolver() *CredentialResolver</a></dd>
@@ -198,7 +198,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Add">func (c *CredentialResolver) Add(credential *CredentialParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Configure">func (c *CredentialResolver) Configure(config *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Configure">func (c *CredentialResolver) Configure(ctx context.Context, config *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.GetAll">func (c *CredentialResolver) GetAll() []*CredentialParams</a></dd>
@@ -207,7 +207,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.Lookup">func (c *CredentialResolver) Lookup(ctx context.Context, correlationId string) (*CredentialParams, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.SetReferences">func (c *CredentialResolver) SetReferences(references refer.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CredentialResolver.SetReferences">func (c *CredentialResolver) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
 				
 			
 				
@@ -222,11 +222,11 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyMemoryCredentialStore">func NewEmptyMemoryCredentialStore() *MemoryCredentialStore</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCredentialStore">func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStore</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCredentialStore">func NewMemoryCredentialStore(ctx context.Context, config *config.ConfigParams) *MemoryCredentialStore</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Configure">func (c *MemoryCredentialStore) Configure(config *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Configure">func (c *MemoryCredentialStore) Configure(ctx context.Context, config *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCredentialStore.Lookup">func (c *MemoryCredentialStore) Lookup(ctx context.Context, correlationId string, key string) (result *CredentialParams, err error)</a></dd>
@@ -735,7 +735,7 @@ Username gets the user name. The value can be stored in parameters &#34;username
 		
 			
 			
-			<h2 id="CredentialResolver">type <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1434:1532#L31">CredentialResolver</a>
+			<h2 id="CredentialResolver">type <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1478:1576#L31">CredentialResolver</a>
 				<a class="permalink" href="index.html#CredentialResolver">&#xb6;</a>
 				
 				
@@ -767,8 +767,8 @@ Example:
 	);
 
 	credentialResolver := NewCredentialResolver();
-	credentialResolver.Configure(config);
-	credentialResolver.SetReferences(references);
+	credentialResolver.Configure(context.Background(), config);
+	credentialResolver.SetReferences(context.Background(), references);
 
 	credentialResolver.Lookup(&#34;123&#34;, (err, credential) =&gt; {
 		// Now use credential...
@@ -790,16 +790,17 @@ Example:
 
 			
 				
-				<h3 id="NewCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2045:2150#L50">NewCredentialResolver</a>
+				<h3 id="NewCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2115:2241#L51">NewCredentialResolver</a>
 					<a class="permalink" href="index.html#NewCredentialResolver">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCredentialResolver(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CredentialResolver">CredentialResolver</a></pre>
+				<pre>func NewCredentialResolver(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CredentialResolver">CredentialResolver</a></pre>
 				<p>
 NewCredentialResolver creates a new instance of credentials resolver.
 </p>
 <pre>Parameters:
+	- ctx context.Context
 	- config *config.ConfigParams component configuration parameters
 	- references refer.IReferences component references
 Returns: *CredentialResolver
@@ -809,7 +810,7 @@ Returns: *CredentialResolver
 				
 			
 				
-				<h3 id="NewEmptyCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1644:1697#L38">NewEmptyCredentialResolver</a>
+				<h3 id="NewEmptyCredentialResolver">func <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=1688:1741#L38">NewEmptyCredentialResolver</a>
 					<a class="permalink" href="index.html#NewEmptyCredentialResolver">&#xb6;</a>
 					
 					
@@ -827,7 +828,7 @@ NewEmptyCredentialResolver creates a new instance of credentials resolver.
 
 			
 				
-				<h3 id="CredentialResolver.Add">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3428:3490#L89">Add</a>
+				<h3 id="CredentialResolver.Add">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3566:3628#L90">Add</a>
 					<a class="permalink" href="index.html#CredentialResolver.Add">&#xb6;</a>
 					
 					
@@ -843,12 +844,12 @@ Parameters: credential *CredentialParams new credential parameters to be added
 				
 			
 				
-				<h3 id="CredentialResolver.Configure">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2465:2532#L65">Configure</a>
+				<h3 id="CredentialResolver.Configure">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2561:2649#L66">Configure</a>
 					<a class="permalink" href="index.html#CredentialResolver.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 Parameters: config *config.ConfigParams configuration parameters to be set.
@@ -859,7 +860,7 @@ Parameters: config *config.ConfigParams configuration parameters to be set.
 				
 			
 				
-				<h3 id="CredentialResolver.GetAll">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3212:3269#L83">GetAll</a>
+				<h3 id="CredentialResolver.GetAll">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=3350:3407#L84">GetAll</a>
 					<a class="permalink" href="index.html#CredentialResolver.GetAll">&#xb6;</a>
 					
 					
@@ -878,7 +879,7 @@ If you need fully fleshed credential use lookup method instead.
 				
 			
 				
-				<h3 id="CredentialResolver.Lookup">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=4856:4961#L132">Lookup</a>
+				<h3 id="CredentialResolver.Lookup">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=4994:5099#L133">Lookup</a>
 					<a class="permalink" href="index.html#CredentialResolver.Lookup">&#xb6;</a>
 					
 					
@@ -900,12 +901,12 @@ Returns: *CredentialParams? error
 				
 			
 				
-				<h3 id="CredentialResolver.SetReferences">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2845:2917#L75">SetReferences</a>
+				<h3 id="CredentialResolver.SetReferences">func (*CredentialResolver) <a href="http://localhost:6060/src/auth/CredentialResolver.go?s=2962:3055#L76">SetReferences</a>
 					<a class="permalink" href="index.html#CredentialResolver.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#CredentialResolver">CredentialResolver</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
 SetReferences sets references to dependent components.
 Parameters: references refer.IReferences references to locate the component dependencies.
@@ -1010,16 +1011,18 @@ NewEmptyMemoryCredentialStore creates a new instance of the credential store.
 				
 			
 				
-				<h3 id="NewMemoryCredentialStore">func <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1317:1398#L34">NewMemoryCredentialStore</a>
+				<h3 id="NewMemoryCredentialStore">func <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1349:1451#L36">NewMemoryCredentialStore</a>
 					<a class="permalink" href="index.html#NewMemoryCredentialStore">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMemoryCredentialStore(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a></pre>
+				<pre>func NewMemoryCredentialStore(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a></pre>
 				<p>
 NewMemoryCredentialStore creates a new instance of the credential store.
 </p>
-<pre>Parameters: config *config.ConfigParams configuration with credential parameters.
+<pre>Parameters:
+	- ctx context.Context
+	- config *config.ConfigParams configuration with credential parameters.
 Returns: *MemoryCredentialStore
 </pre>
 
@@ -1029,12 +1032,12 @@ Returns: *MemoryCredentialStore
 
 			
 				
-				<h3 id="MemoryCredentialStore.Configure">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1689:1759#L48">Configure</a>
+				<h3 id="MemoryCredentialStore.Configure">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1747:1838#L50">Configure</a>
 					<a class="permalink" href="index.html#MemoryCredentialStore.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryCredentialStore">MemoryCredentialStore</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
@@ -1046,7 +1049,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryCredentialStore.Lookup">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=3186:3318#L91">Lookup</a>
+				<h3 id="MemoryCredentialStore.Lookup">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=3265:3397#L93">Lookup</a>
 					<a class="permalink" href="index.html#MemoryCredentialStore.Lookup">&#xb6;</a>
 					
 					
@@ -1068,7 +1071,7 @@ Returns: result *CredentialParams, err error result of lookup and error message
 				
 			
 				
-				<h3 id="MemoryCredentialStore.ReadCredentials">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=1997:2073#L55">ReadCredentials</a>
+				<h3 id="MemoryCredentialStore.ReadCredentials">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=2076:2152#L57">ReadCredentials</a>
 					<a class="permalink" href="index.html#MemoryCredentialStore.ReadCredentials">&#xb6;</a>
 					
 					
@@ -1086,7 +1089,7 @@ Each section represents an individual CredentialParams
 				
 			
 				
-				<h3 id="MemoryCredentialStore.Store">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=2628:2757#L73">Store</a>
+				<h3 id="MemoryCredentialStore.Store">func (*MemoryCredentialStore) <a href="http://localhost:6060/src/auth/MemoryCredentialStore.go?s=2707:2836#L75">Store</a>
 					<a class="permalink" href="index.html#MemoryCredentialStore.Store">&#xb6;</a>
 					
 					
@@ -1120,7 +1123,7 @@ Returns: error
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

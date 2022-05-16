@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -139,7 +139,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Configure">func (c *ConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Configure">func (c *ConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Parameterize">func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigParams) (string, error)</a></dd>
@@ -156,7 +156,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.Configure">func (c *FileConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.Configure">func (c *FileConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#FileConfigReader.Path">func (c *FileConfigReader) Path() string</a></dd>
@@ -198,7 +198,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.Configure">func (c *MemoryConfigReader) Configure(config *cconfig.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.Configure">func (c *MemoryConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.ReadConfig">func (c *MemoryConfigReader) ReadConfig(ctx context.Context, correlationId string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)</a></dd>
@@ -405,7 +405,7 @@ Returns: any, error a JSON object with configuration.
 		
 			
 			
-			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=312:374#L1">ConfigReader</a>
+			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=323:385#L2">ConfigReader</a>
 				<a class="permalink" href="index.html#ConfigReader">&#xb6;</a>
 				
 				
@@ -432,7 +432,7 @@ ConfigReader abstract config reader that supports configuration parameterization
 
 			
 				
-				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=569:605#L10">NewConfigReader</a>
+				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=580:616#L11">NewConfigReader</a>
 					<a class="permalink" href="index.html#NewConfigReader">&#xb6;</a>
 					
 					
@@ -450,16 +450,18 @@ NewConfigReader creates a new instance of the config reader.
 
 			
 				
-				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=833:895#L18">Configure</a>
+				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=876:959#L21">Configure</a>
 					<a class="permalink" href="index.html#ConfigReader.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
-<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- ctx context.Context
+	- config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -467,7 +469,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1418:1518#L31">Parameterize</a>
+				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1482:1582#L34">Parameterize</a>
 					<a class="permalink" href="index.html#ConfigReader.Parameterize">&#xb6;</a>
 					
 					
@@ -490,7 +492,7 @@ Returns: string, error a parameterized configuration string abd error.
 		
 			
 			
-			<h2 id="FileConfigReader">type <a href="http://localhost:6060/src/config/FileConfigReader.go?s=422:481#L1">FileConfigReader</a>
+			<h2 id="FileConfigReader">type <a href="http://localhost:6060/src/config/FileConfigReader.go?s=438:497#L3">FileConfigReader</a>
 				<a class="permalink" href="index.html#FileConfigReader">&#xb6;</a>
 				
 				
@@ -520,7 +522,7 @@ Child classes add support for config files in their specific format like JSON, Y
 
 			
 				
-				<h3 id="NewEmptyFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=680:729#L10">NewEmptyFileConfigReader</a>
+				<h3 id="NewEmptyFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=696:745#L13">NewEmptyFileConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyFileConfigReader">&#xb6;</a>
 					
 					
@@ -536,7 +538,7 @@ NewEmptyFileConfigReader creates a new instance of the config reader.
 				
 			
 				
-				<h3 id="NewFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=956:1011#L19">NewFileConfigReader</a>
+				<h3 id="NewFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=972:1027#L22">NewFileConfigReader</a>
 					<a class="permalink" href="index.html#NewFileConfigReader">&#xb6;</a>
 					
 					
@@ -555,16 +557,18 @@ Returns: *FileConfigReader
 
 			
 				
-				<h3 id="FileConfigReader.Configure">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1245:1311#L28">Configure</a>
+				<h3 id="FileConfigReader.Configure">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1293:1380#L33">Configure</a>
 					<a class="permalink" href="index.html#FileConfigReader.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#FileConfigReader">FileConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#FileConfigReader">FileConfigReader</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure component by passing configuration parameters.
 </p>
-<pre>Parameters: config *cconfig.ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- ctx context.Context
+	- config *cconfig.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -572,7 +576,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="FileConfigReader.Path">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1520:1560#L35">Path</a>
+				<h3 id="FileConfigReader.Path">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1594:1634#L40">Path</a>
 					<a class="permalink" href="index.html#FileConfigReader.Path">&#xb6;</a>
 					
 					
@@ -589,7 +593,7 @@ Path get the path to configuration file..
 				
 			
 				
-				<h3 id="FileConfigReader.SetPath">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1689:1736#L41">SetPath</a>
+				<h3 id="FileConfigReader.SetPath">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1763:1810#L46">SetPath</a>
 					<a class="permalink" href="index.html#FileConfigReader.SetPath">&#xb6;</a>
 					
 					
@@ -836,16 +840,18 @@ Returns: *MemoryConfigReader
 
 			
 				
-				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1633:1701#L36">Configure</a>
+				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1665:1754#L38">Configure</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure component by passing configuration parameters.
 </p>
-<pre>Parameters: config *cconfig.ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- ctx context.Context
+	- config *cconfig.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -853,7 +859,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2103:2251#L47">ReadConfig</a>
+				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2156:2304#L49">ReadConfig</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.ReadConfig">&#xb6;</a>
 					
 					
@@ -1010,7 +1016,7 @@ Returns: any, error a JSON object with configuration adn error.
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

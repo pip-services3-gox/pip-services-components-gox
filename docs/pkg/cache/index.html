@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -152,7 +152,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCache">func NewMemoryCache[T any]() *MemoryCache[T]</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCacheFromConfig">func NewMemoryCacheFromConfig[T any](cfg *config.ConfigParams) *MemoryCache[T]</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewMemoryCacheFromConfig">func NewMemoryCacheFromConfig[T any](ctx context.Context, cfg *config.ConfigParams) *MemoryCache[T]</a></dd>
 				
 				
 					
@@ -162,13 +162,13 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Clear">func (c *MemoryCache[T]) Clear(ctx context.Context, correlationId string) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Configure">func (c *MemoryCache[T]) Configure(cfg *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Configure">func (c *MemoryCache[T]) Configure(ctx context.Context, cfg *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Contains">func (c *MemoryCache[T]) Contains(ctx context.Context, correlationId string, key string) bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Remove">func (c *MemoryCache[T]) Remove(correlationId string, key string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Remove">func (c *MemoryCache[T]) Remove(ctx context.Context, correlationId string, key string) error</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryCache.Retrieve">func (c *MemoryCache[T]) Retrieve(ctx context.Context, correlationId string, key string) (T, error)</a></dd>
@@ -438,7 +438,7 @@ values to improve performance.
 		
 			
 			
-			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=625:790#L12">MemoryCache</a>
+			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=614:779#L11">MemoryCache</a>
 				<a class="permalink" href="index.html#MemoryCache">&#xb6;</a>
 				
 				
@@ -471,7 +471,7 @@ Example:
 
 			
 				
-				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=872:916#L22">NewMemoryCache</a>
+				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=861:905#L21">NewMemoryCache</a>
 					<a class="permalink" href="index.html#NewMemoryCache">&#xb6;</a>
 					
 					
@@ -487,12 +487,12 @@ NewMemoryCache creates a new instance of the cache.
 				
 			
 				
-				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1291:1369#L35">NewMemoryCacheFromConfig</a>
+				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1280:1379#L34">NewMemoryCacheFromConfig</a>
 					<a class="permalink" href="index.html#NewMemoryCacheFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewMemoryCacheFromConfig[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>](cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCache">MemoryCache</a>[T]</pre>
+				<pre>func NewMemoryCacheFromConfig[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>](ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#MemoryCache">MemoryCache</a>[T]</pre>
 				<p>
 NewMemoryCacheFromConfig creates a new instance of the cache.
 </p>
@@ -506,7 +506,7 @@ Returns: *MemoryCache
 
 			
 				
-				<h3 id="MemoryCache.Cleanup">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1820:1854#L49">Cleanup</a>
+				<h3 id="MemoryCache.Cleanup">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1856:1890#L48">Cleanup</a>
 					<a class="permalink" href="index.html#MemoryCache.Cleanup">&#xb6;</a>
 					
 					
@@ -521,7 +521,7 @@ Cleanup memory cache, public thread save method
 				
 			
 				
-				<h3 id="MemoryCache.Clear">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5661:5740#L215">Clear</a>
+				<h3 id="MemoryCache.Clear">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5584:5663#L209">Clear</a>
 					<a class="permalink" href="index.html#MemoryCache.Clear">&#xb6;</a>
 					
 					
@@ -540,12 +540,12 @@ Parameters:
 				
 			
 				
-				<h3 id="MemoryCache.Configure">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1579:1639#L43">Configure</a>
+				<h3 id="MemoryCache.Configure">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1594:1675#L42">Configure</a>
 					<a class="permalink" href="index.html#MemoryCache.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
@@ -557,7 +557,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryCache.Contains">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5235:5328#L198">Contains</a>
+				<h3 id="MemoryCache.Contains">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5158:5251#L192">Contains</a>
 					<a class="permalink" href="index.html#MemoryCache.Contains">&#xb6;</a>
 					
 					
@@ -578,12 +578,12 @@ Returns: bool
 				
 			
 				
-				<h3 id="MemoryCache.Remove">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4680:4751#L173">Remove</a>
+				<h3 id="MemoryCache.Remove">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4612:4704#L168">Remove</a>
 					<a class="permalink" href="index.html#MemoryCache.Remove">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Remove(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Remove(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
 Remove a value from the cache by its key.
 </p>
@@ -599,7 +599,7 @@ Returns: error
 				
 			
 				
-				<h3 id="MemoryCache.Retrieve">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2710:2809#L86">Retrieve</a>
+				<h3 id="MemoryCache.Retrieve">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2746:2845#L85">Retrieve</a>
 					<a class="permalink" href="index.html#MemoryCache.Retrieve">&#xb6;</a>
 					
 					
@@ -621,7 +621,7 @@ Returns T, error
 				
 			
 				
-				<h3 id="MemoryCache.Store">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3716:3837#L126">Store</a>
+				<h3 id="MemoryCache.Store">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3678:3799#L122">Store</a>
 					<a class="permalink" href="index.html#MemoryCache.Store">&#xb6;</a>
 					
 					
@@ -786,7 +786,7 @@ Returns T, error
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

@@ -93,7 +93,7 @@ func (c *Factory) CanCreate(locator any) any {
 	for _, registration := range c._registrations {
 		thisLocator := registration.locator
 
-		if equatable, ok := thisLocator.(data.IEquatable); ok && equatable.Equals(locator) {
+		if equatable, ok := thisLocator.(data.IEquatable[any]); ok && equatable.Equals(locator) {
 			return thisLocator
 		}
 
@@ -115,7 +115,7 @@ func (c *Factory) Create(locator any) (any, error) {
 	for _, registration := range c._registrations {
 		thisLocator := registration.locator
 
-		if equatable, ok := thisLocator.(data.IEquatable); ok && equatable.Equals(locator) {
+		if equatable, ok := thisLocator.(data.IEquatable[any]); ok && equatable.Equals(locator) {
 			factory = registration.factory
 			break
 		}

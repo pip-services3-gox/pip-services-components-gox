@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -130,7 +130,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Clear">func (c *CachedLogger) Clear(ctx context.Context)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Configure">func (c *CachedLogger) Configure(cfg *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Configure">func (c *CachedLogger) Configure(ctx context.Context, cfg *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedLogger.Dump">func (c *CachedLogger) Dump(ctx context.Context) error</a></dd>
@@ -149,11 +149,11 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeLogger">func NewCompositeLogger() *CompositeLogger</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeLoggerFromReferences">func NewCompositeLoggerFromReferences(references refer.IReferences) *CompositeLogger</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeLoggerFromReferences">func NewCompositeLoggerFromReferences(ctx context.Context, references refer.IReferences) *CompositeLogger</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.SetReferences">func (c *CompositeLogger) SetReferences(references refer.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.SetReferences">func (c *CompositeLogger) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CompositeLogger.Write">func (c *CompositeLogger) Write(ctx context.Context, level LevelType, correlationId string, err error, message string)</a></dd>
@@ -215,7 +215,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.ComposeError">func (c *Logger) ComposeError(err error) string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Configure">func (c *Logger) Configure(cfg *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Configure">func (c *Logger) Configure(ctx context.Context, cfg *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.Debug">func (c *Logger) Debug(ctx context.Context, correlationId string, message string, args ...any)</a></dd>
@@ -242,7 +242,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetLevel">func (c *Logger) SetLevel(value LevelType)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetReferences">func (c *Logger) SetReferences(references refer.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetReferences">func (c *Logger) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Logger.SetSource">func (c *Logger) SetSource(value string)</a></dd>
@@ -432,7 +432,7 @@ Returns: CachedLogger
 
 			
 				
-				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3172:3221#L93">Clear</a>
+				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3230:3279#L95">Clear</a>
 					<a class="permalink" href="index.html#CachedLogger.Clear">&#xb6;</a>
 					
 					
@@ -449,16 +449,18 @@ Clear (removes) all cached log messages.
 				
 			
 				
-				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=1945:2003#L54">Configure</a>
+				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=1977:2056#L56">Configure</a>
 					<a class="permalink" href="index.html#CachedLogger.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#CachedLogger">CachedLogger</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
-<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- ctx context.Context
+	- config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -466,7 +468,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3419:3473#L103">Dump</a>
+				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3477:3531#L105">Dump</a>
 					<a class="permalink" href="index.html#CachedLogger.Dump">&#xb6;</a>
 					
 					
@@ -483,7 +485,7 @@ Dump (writes) the currently cached log messages.
 				
 			
 				
-				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3647:3697#L112">Update</a>
+				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3705:3755#L114">Update</a>
 					<a class="permalink" href="index.html#CachedLogger.Update">&#xb6;</a>
 					
 					
@@ -500,7 +502,7 @@ Update makes message cache as updated and dumps it when timeout expires.
 				
 			
 				
-				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2591:2706#L69">Write</a>
+				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2649:2764#L71">Write</a>
 					<a class="permalink" href="index.html#CachedLogger.Write">&#xb6;</a>
 					
 					
@@ -524,7 +526,7 @@ Parameters:
 		
 			
 			
-			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=981:1039#L23">CompositeLogger</a>
+			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1015:1073#L23">CompositeLogger</a>
 				<a class="permalink" href="index.html#CompositeLogger">&#xb6;</a>
 				
 				
@@ -540,17 +542,17 @@ Example:
 	type MyComponent {
 		_logger CompositeLogger
 	}
-	func (mc* MyComponent) Configure(config: ConfigParams): void {
-		mc._logger.Configure(config);
+	func (mc* MyComponent) Configure(ctx context.Context, config: ConfigParams) {
+		mc._logger.Configure(ctx, config);
 		...
 	}
 
-	func (mc* MyComponent) SetReferences(references: IReferences): void {
-		mc._logger.SetReferences(references);
+	func (mc* MyComponent) SetReferences(ctx context.Context, references: IReferences) {
+		mc._logger.SetReferences(ctx, references);
 		...
 	}
 
-	func (mc* MyComponent) myMethod(ctx context.Context, string correlationId): void {
+	func (mc* MyComponent) myMethod(ctx context.Context, string correlationId) {
 		mc._logger.Debug(ctx context.Context, correlationId, &#34;Called method mycomponent.mymethod&#34;);
 		...
 	}
@@ -574,7 +576,7 @@ Example:
 
 			
 				
-				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1130:1172#L30">NewCompositeLogger</a>
+				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1164:1206#L30">NewCompositeLogger</a>
 					<a class="permalink" href="index.html#NewCompositeLogger">&#xb6;</a>
 					
 					
@@ -590,16 +592,18 @@ NewCompositeLogger creates a new instance of the logger.
 				
 			
 				
-				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1477:1561#L42">NewCompositeLoggerFromReferences</a>
+				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1543:1648#L44">NewCompositeLoggerFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeLoggerFromReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCompositeLoggerFromReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeLogger">CompositeLogger</a></pre>
+				<pre>func NewCompositeLoggerFromReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeLogger">CompositeLogger</a></pre>
 				<p>
 NewCompositeLoggerFromReferences creates a new instance of the logger.
 </p>
-<pre>Parameters: refer.IReferences references to locate the component dependencies.
+<pre>Parameters:
+	- ctx context.Context
+	- refer.IReferences references to locate the component dependencies.
 Returns: CompositeLogger
 </pre>
 
@@ -609,16 +613,18 @@ Returns: CompositeLogger
 
 			
 				
-				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1773:1842#L50">SetReferences</a>
+				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1897:1987#L54">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeLogger.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#CompositeLogger">CompositeLogger</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
 SetReferences sets references to dependent components.
 </p>
-<pre>Parameters: refer.IReferences references to locate the component dependencies.
+<pre>Parameters:
+	- ctx context.Context
+	- refer.IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -626,7 +632,7 @@ SetReferences sets references to dependent components.
 				
 			
 				
-				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2495:2613#L76">Write</a>
+				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2651:2769#L82">Write</a>
 					<a class="permalink" href="index.html#CompositeLogger.Write">&#xb6;</a>
 					
 					
@@ -1025,7 +1031,7 @@ Returns: *Logger
 
 			
 				
-				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2800:2847#L75">ComposeError</a>
+				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2906:2953#L79">ComposeError</a>
 					<a class="permalink" href="index.html#Logger.ComposeError">&#xb6;</a>
 					
 					
@@ -1043,16 +1049,18 @@ Parameters: err error an error to format.
 				
 			
 				
-				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2016:2068#L58">Configure</a>
+				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2048:2121#L60">Configure</a>
 					<a class="permalink" href="index.html#Logger.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
-<pre>Parameters: config ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- ctx context.Context
+	- config ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -1060,7 +1068,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6830:6924#L175">Debug</a>
+				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6936:7030#L179">Debug</a>
 					<a class="permalink" href="index.html#Logger.Debug">&#xb6;</a>
 					
 					
@@ -1081,7 +1089,7 @@ Debug logs a high-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5435:5540#L145">Error</a>
+				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5541:5646#L149">Error</a>
 					<a class="permalink" href="index.html#Logger.Error">&#xb6;</a>
 					
 					
@@ -1103,7 +1111,7 @@ Logs recoverable application error.
 				
 			
 				
-				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4920:5025#L134">Fatal</a>
+				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5026:5131#L138">Fatal</a>
 					<a class="permalink" href="index.html#Logger.Fatal">&#xb6;</a>
 					
 					
@@ -1125,7 +1133,7 @@ Fatal logs fatal (unrecoverable) message that caused the process to crash.
 				
 			
 				
-				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3683:3814#L103">FormatAndWrite</a>
+				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3789:3920#L107">FormatAndWrite</a>
 					<a class="permalink" href="index.html#Logger.FormatAndWrite">&#xb6;</a>
 					
 					
@@ -1149,7 +1157,7 @@ Parameters:
 				
 			
 				
-				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6363:6456#L165">Info</a>
+				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6469:6562#L169">Info</a>
 					<a class="permalink" href="index.html#Logger.Info">&#xb6;</a>
 					
 					
@@ -1187,7 +1195,7 @@ Level gets the maximum log level. Messages with higher log level are filtered ou
 				
 			
 				
-				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4356:4476#L123">Log</a>
+				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4462:4582#L127">Log</a>
 					<a class="permalink" href="index.html#Logger.Log">&#xb6;</a>
 					
 					
@@ -1227,16 +1235,18 @@ SetLevel set the maximum log level.
 				
 			
 				
-				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2363:2423#L65">SetReferences</a>
+				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2448:2529#L69">SetReferences</a>
 					<a class="permalink" href="index.html#Logger.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#Logger">Logger</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
 SetReferences to dependent components.
 </p>
-<pre>Parameters: references IReferences references to locate the component dependencies.
+<pre>Parameters:
+	- ctx context.Context
+	- references IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -1278,7 +1288,7 @@ Source gets the source (context) name.
 				
 			
 				
-				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7298:7392#L185">Trace</a>
+				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7404:7498#L189">Trace</a>
 					<a class="permalink" href="index.html#Logger.Trace">&#xb6;</a>
 					
 					
@@ -1299,7 +1309,7 @@ Trace logs a low-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5916:6009#L155">Warn</a>
+				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6022:6115#L159">Warn</a>
 					<a class="permalink" href="index.html#Logger.Warn">&#xb6;</a>
 					
 					
@@ -1559,7 +1569,7 @@ Warn logs a warning that may or may not have a negative impact.
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

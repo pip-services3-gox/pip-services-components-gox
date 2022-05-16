@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -183,7 +183,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.ClearAll">func (c *CachedCounters) ClearAll(ctx context.Context)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.Configure">func (c *CachedCounters) Configure(config *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.Configure">func (c *CachedCounters) Configure(ctx context.Context, config *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.Dump">func (c *CachedCounters) Dump(ctx context.Context) error</a></dd>
@@ -226,7 +226,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeCounters">func NewCompositeCounters() *CompositeCounters</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeCountersFromReferences">func NewCompositeCountersFromReferences(references refer.IReferences) *CompositeCounters</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeCountersFromReferences">func NewCompositeCountersFromReferences(ctx context.Context, references refer.IReferences) *CompositeCounters</a></dd>
 				
 				
 					
@@ -245,7 +245,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.Last">func (c *CompositeCounters) Last(ctx context.Context, name string, value float64)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.SetReferences">func (c *CompositeCounters) SetReferences(references refer.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.SetReferences">func (c *CompositeCounters) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.Stats">func (c *CompositeCounters) Stats(ctx context.Context, name string, value float64)</a></dd>
@@ -305,7 +305,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#LogCounters.Save">func (c *LogCounters) Save(ctx context.Context, counters []Counter) error</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#LogCounters.SetReferences">func (c *LogCounters) SetReferences(references refer.IReferences)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#LogCounters.SetReferences">func (c *LogCounters) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
 				
 			
 				
@@ -761,7 +761,7 @@ Returns: *CachedCounters
 
 			
 				
-				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5259:5337#L194">BeginTiming</a>
+				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5306:5384#L195">BeginTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -783,7 +783,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2068:2132#L58">Clear</a>
+				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2115:2179#L59">Clear</a>
 					<a class="permalink" href="index.html#CachedCounters.Clear">&#xb6;</a>
 					
 					
@@ -802,7 +802,7 @@ Clear clears (resets) a counter specified by its name.
 				
 			
 				
-				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2275:2329#L67">ClearAll</a>
+				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2322:2376#L68">ClearAll</a>
 					<a class="permalink" href="index.html#CachedCounters.ClearAll">&#xb6;</a>
 					
 					
@@ -819,16 +819,17 @@ ClearAll clears (resets) all counters.
 				
 			
 				
-				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1687:1750#L49">Configure</a>
+				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1713:1797#L50">Configure</a>
 					<a class="permalink" href="index.html#CachedCounters.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedCounters">CachedCounters</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#CachedCounters">CachedCounters</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
 <pre>Parameters:
+	- ctx context.Context
 	- config *config.ConfigParams configuration parameters to be set.
 </pre>
 
@@ -837,7 +838,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2601:2657#L82">Dump</a>
+				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2648:2704#L83">Dump</a>
 					<a class="permalink" href="index.html#CachedCounters.Dump">&#xb6;</a>
 					
 					
@@ -854,7 +855,7 @@ Dump (saves) the current values of counters.
 				
 			
 				
-				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5639:5724#L204">EndTiming</a>
+				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5686:5771#L205">EndTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -875,7 +876,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4559:4661#L168">Get</a>
+				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4606:4708#L169">Get</a>
 					<a class="permalink" href="index.html#CachedCounters.Get">&#xb6;</a>
 					
 					
@@ -897,7 +898,7 @@ Returns: *Counter an existing or newly created counter of the specified type.
 				
 			
 				
-				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3593:3643#L130">GetAll</a>
+				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3640:3690#L131">GetAll</a>
 					<a class="permalink" href="index.html#CachedCounters.GetAll">&#xb6;</a>
 					
 					
@@ -914,7 +915,7 @@ GetAll gets all captured counters.
 				
 			
 				
-				<h3 id="CachedCounters.GetAllCountersStats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3895:3951#L144">GetAllCountersStats</a>
+				<h3 id="CachedCounters.GetAllCountersStats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3942:3998#L145">GetAllCountersStats</a>
 					<a class="permalink" href="index.html#CachedCounters.GetAllCountersStats">&#xb6;</a>
 					
 					
@@ -931,7 +932,7 @@ GetAllCountersStats gets all captured counters stats.
 				
 			
 				
-				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7761:7842#L269">Increment</a>
+				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7808:7889#L270">Increment</a>
 					<a class="permalink" href="index.html#CachedCounters.Increment">&#xb6;</a>
 					
 					
@@ -951,7 +952,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7469:7540#L260">IncrementOne</a>
+				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7516:7587#L261">IncrementOne</a>
 					<a class="permalink" href="index.html#CachedCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -970,7 +971,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6515:6593#L229">Last</a>
+				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6562:6640#L230">Last</a>
 					<a class="permalink" href="index.html#CachedCounters.Last">&#xb6;</a>
 					
 					
@@ -991,7 +992,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6070:6149#L216">Stats</a>
+				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6117:6196#L217">Stats</a>
 					<a class="permalink" href="index.html#CachedCounters.Stats">&#xb6;</a>
 					
 					
@@ -1011,7 +1012,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7143:7228#L249">Timestamp</a>
+				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7190:7275#L250">Timestamp</a>
 					<a class="permalink" href="index.html#CachedCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1031,7 +1032,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6850:6921#L240">TimestampNow</a>
+				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6897:6968#L241">TimestampNow</a>
 					<a class="permalink" href="index.html#CachedCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1113,16 +1114,18 @@ NewCompositeCounters creates a new instance of the counters.
 				
 			
 				
-				<h3 id="NewCompositeCountersFromReferences">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1468:1556#L37">NewCompositeCountersFromReferences</a>
+				<h3 id="NewCompositeCountersFromReferences">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1500:1609#L39">NewCompositeCountersFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeCountersFromReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCompositeCountersFromReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeCounters">CompositeCounters</a></pre>
+				<pre>func NewCompositeCountersFromReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeCounters">CompositeCounters</a></pre>
 				<p>
 NewCompositeCountersFromReferences creates a new instance of the counters.
 </p>
-<pre>Parameters: references is a refer.IReferences to locate the component dependencies.
+<pre>Parameters:
+	- ctx context.Context
+	- references is a refer.IReferences to locate the component dependencies.
 Returns: *CompositeCounters
 </pre>
 
@@ -1132,7 +1135,7 @@ Returns: *CompositeCounters
 
 			
 				
-				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2487:2568#L70">BeginTiming</a>
+				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2604:2685#L76">BeginTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -1154,7 +1157,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2870:2958#L80">EndTiming</a>
+				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2987:3075#L86">EndTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -1175,7 +1178,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5072:5156#L151">Increment</a>
+				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5189:5273#L157">Increment</a>
 					<a class="permalink" href="index.html#CompositeCounters.Increment">&#xb6;</a>
 					
 					
@@ -1195,7 +1198,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4774:4848#L142">IncrementOne</a>
+				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4891:4965#L148">IncrementOne</a>
 					<a class="permalink" href="index.html#CompositeCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -1214,7 +1217,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3806:3887#L109">Last</a>
+				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3923:4004#L115">Last</a>
 					<a class="permalink" href="index.html#CompositeCounters.Last">&#xb6;</a>
 					
 					
@@ -1235,16 +1238,18 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="CompositeCounters.SetReferences">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1776:1847#L45">SetReferences</a>
+				<h3 id="CompositeCounters.SetReferences">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1866:1958#L49">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeCounters.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CompositeCounters">CompositeCounters</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#CompositeCounters">CompositeCounters</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
 SetReferences references to dependent components.
 </p>
-<pre>Parameters: references refer.IReferences references to locate the component dependencies.
+<pre>Parameters:
+	- ctx context.Context
+	- references refer.IReferences references to locate the component dependencies.
 </pre>
 
 				
@@ -1252,7 +1257,7 @@ SetReferences references to dependent components.
 				
 			
 				
-				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3364:3446#L95">Stats</a>
+				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3481:3563#L101">Stats</a>
 					<a class="permalink" href="index.html#CompositeCounters.Stats">&#xb6;</a>
 					
 					
@@ -1272,7 +1277,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4440:4528#L130">Timestamp</a>
+				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4557:4645#L136">Timestamp</a>
 					<a class="permalink" href="index.html#CompositeCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1292,7 +1297,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4144:4218#L121">TimestampNow</a>
+				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4261:4335#L127">TimestampNow</a>
 					<a class="permalink" href="index.html#CompositeCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1615,7 +1620,7 @@ NewLogCounters creates a new instance of the counters.
 
 			
 				
-				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3048:3121#L85">Save</a>
+				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3074:3147#L85">Save</a>
 					<a class="permalink" href="index.html#LogCounters.Save">&#xb6;</a>
 					
 					
@@ -1634,12 +1639,12 @@ Save the current counters measurements.
 				
 			
 				
-				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1694:1759#L43">SetReferences</a>
+				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1694:1780#L43">SetReferences</a>
 					<a class="permalink" href="index.html#LogCounters.SetReferences">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#LogCounters">LogCounters</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<pre>func (c *<a href="index.html#LogCounters">LogCounters</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
 				<p>
 SetReferences sets references to dependent components.
 </p>
@@ -1931,7 +1936,7 @@ elapsed time and updates the associated counter.
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

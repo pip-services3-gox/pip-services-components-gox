@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.1";</script>
+<script>var goVersion = "go1.18.2";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -155,7 +155,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Create">func (c *Factory) Create(locator any) (any, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Register">func (c *Factory) Register(locator any, factory func() any)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Register">func (c *Factory) Register(locator any, factory func(locator any) any)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Factory.RegisterType">func (c *Factory) RegisterType(locator any, factory any)</a></dd>
@@ -243,7 +243,7 @@ Returns: *errors.ApplicationError
 		
 			
 			
-			<h2 id="CompositeFactory">type <a href="http://localhost:6060/src/build/CompositeFactory.go?s=707:762#L5">CompositeFactory</a>
+			<h2 id="CompositeFactory">type <a href="http://localhost:6060/src/build/CompositeFactory.go?s=753:808#L6">CompositeFactory</a>
 				<a class="permalink" href="index.html#CompositeFactory">&#xb6;</a>
 				
 				
@@ -260,8 +260,9 @@ This component is used to conveniently keep all supported factories in a single 
 	factory.Add(NewDefaultCountersFactory());
 
 	loggerLocator := NewDescriptor(&#34;*&#34;, &#34;logger&#34;, &#34;*&#34;, &#34;*&#34;, &#34;1.0&#34;);
-	factory.CanCreate(loggerLocator); // Result: Descriptor(&#34;pip-service&#34;, &#34;logger&#34;, &#34;null&#34;, &#34;default&#34;, &#34;1.0&#34;)
-	factory.Create(loggerLocator);    // Result: created NullLogger
+	factory.CanCreate(context.Background(), loggerLocator);
+		Result: Descriptor(&#34;pip-service&#34;, &#34;logger&#34;, &#34;null&#34;, &#34;default&#34;, &#34;1.0&#34;)
+	factory.Create(context.Background(), loggerLocator);    // Result: created NullLogger
 </pre>
 
 			<pre>type CompositeFactory struct {
@@ -279,7 +280,7 @@ This component is used to conveniently keep all supported factories in a single 
 
 			
 				
-				<h3 id="NewCompositeFactory">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=856:900#L11">NewCompositeFactory</a>
+				<h3 id="NewCompositeFactory">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=902:946#L12">NewCompositeFactory</a>
 					<a class="permalink" href="index.html#NewCompositeFactory">&#xb6;</a>
 					
 					
@@ -295,7 +296,7 @@ NewCompositeFactory creates a new instance of the factory.
 				
 			
 				
-				<h3 id="NewCompositeFactoryFromFactories">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1161:1239#L20">NewCompositeFactoryFromFactories</a>
+				<h3 id="NewCompositeFactoryFromFactories">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1207:1285#L21">NewCompositeFactoryFromFactories</a>
 					<a class="permalink" href="index.html#NewCompositeFactoryFromFactories">&#xb6;</a>
 					
 					
@@ -314,7 +315,7 @@ Returns: *CompositeFactory
 
 			
 				
-				<h3 id="CompositeFactory.Add">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1409:1457#L28">Add</a>
+				<h3 id="CompositeFactory.Add">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1461:1509#L30">Add</a>
 					<a class="permalink" href="index.html#CompositeFactory.Add">&#xb6;</a>
 					
 					
@@ -323,7 +324,8 @@ Returns: *CompositeFactory
 				<p>
 Add a factory into the list of embedded factories.
 </p>
-<pre>Parameters: factory IFactory a factory to be added.
+<pre>Parameters:
+	- factory IFactory a factory to be added.
 </pre>
 
 				
@@ -331,7 +333,7 @@ Add a factory into the list of embedded factories.
 				
 			
 				
-				<h3 id="CompositeFactory.CanCreate">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2443:2496#L57">CanCreate</a>
+				<h3 id="CompositeFactory.CanCreate">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2507:2560#L61">CanCreate</a>
 					<a class="permalink" href="index.html#CompositeFactory.CanCreate">&#xb6;</a>
 					
 					
@@ -343,7 +345,8 @@ This method searches for all registered components and returns a locator for com
 it is able to create that matches the given locator. If the factory is not able
 to create a requested component is returns null.
 </p>
-<pre>Parameters: locator any a locator to identify component to be created.
+<pre>Parameters:
+	- locator any a locator to identify component to be created.
 Returns: any  a locator for a component that the factory is able to create.
 </pre>
 
@@ -352,7 +355,7 @@ Returns: any  a locator for a component that the factory is able to create.
 				
 			
 				
-				<h3 id="CompositeFactory.Create">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=3018:3077#L76">Create</a>
+				<h3 id="CompositeFactory.Create">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=3082:3141#L80">Create</a>
 					<a class="permalink" href="index.html#CompositeFactory.Create">&#xb6;</a>
 					
 					
@@ -371,7 +374,7 @@ Returns: any, error the created component and a
 				
 			
 				
-				<h3 id="CompositeFactory.Remove">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1687:1738#L38">Remove</a>
+				<h3 id="CompositeFactory.Remove">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1745:1796#L41">Remove</a>
 					<a class="permalink" href="index.html#CompositeFactory.Remove">&#xb6;</a>
 					
 					
@@ -380,7 +383,8 @@ Returns: any, error the created component and a
 				<p>
 Remove removes a factory from the list of embedded factories.
 </p>
-<pre>Parameters: factory IFactory the factory to remove.
+<pre>Parameters:
+	- factory IFactory the factory to remove.
 </pre>
 
 				
@@ -390,7 +394,7 @@ Remove removes a factory from the list of embedded factories.
 		
 			
 			
-			<h2 id="Factory">type <a href="http://localhost:6060/src/build/Factory.go?s=831:886#L22">Factory</a>
+			<h2 id="Factory">type <a href="http://localhost:6060/src/build/Factory.go?s=834:889#L22">Factory</a>
 				<a class="permalink" href="index.html#Factory">&#xb6;</a>
 				
 				
@@ -411,7 +415,7 @@ Remove removes a factory from the list of embedded factories.
 
 			
 				
-				<h3 id="NewFactory">func <a href="http://localhost:6060/src/build/Factory.go?s=942:968#L28">NewFactory</a>
+				<h3 id="NewFactory">func <a href="http://localhost:6060/src/build/Factory.go?s=945:971#L28">NewFactory</a>
 					<a class="permalink" href="index.html#NewFactory">&#xb6;</a>
 					
 					
@@ -428,7 +432,7 @@ Returns: *Factory
 
 			
 				
-				<h3 id="Factory.CanCreate">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=2585:2629#L81">CanCreate</a>
+				<h3 id="Factory.CanCreate">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=2627:2671#L82">CanCreate</a>
 					<a class="permalink" href="index.html#Factory.CanCreate">&#xb6;</a>
 					
 					
@@ -440,7 +444,8 @@ This method searches for all registered components and returns a locator for
 component it is able to create that matches the given locator.
 If the factory is not able to create a requested component is returns null.
 </p>
-<pre>Parameters: locator any a locator to identify component to be created.
+<pre>Parameters:
+	- locator any a locator to identify component to be created.
 Returns: any a locator for a component that the factory is able to create.
 </pre>
 
@@ -449,7 +454,7 @@ Returns: any a locator for a component that the factory is able to create.
 				
 			
 				
-				<h3 id="Factory.Create">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=3152:3202#L100">Create</a>
+				<h3 id="Factory.Create">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=3205:3255#L102">Create</a>
 					<a class="permalink" href="index.html#Factory.Create">&#xb6;</a>
 					
 					
@@ -458,7 +463,8 @@ Returns: any a locator for a component that the factory is able to create.
 				<p>
 Create a component identified by given locator.
 </p>
-<pre>Parameters: locator any a locator to identify component to be created.
+<pre>Parameters:
+	- locator any a locator to identify component to be created.
 Returns: any, error the created component and a CreateError if the factory
 	is not able to create the component.
 </pre>
@@ -468,18 +474,18 @@ Returns: any, error the created component and a CreateError if the factory
 				
 			
 				
-				<h3 id="Factory.Register">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1276:1335#L39">Register</a>
+				<h3 id="Factory.Register">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1290:1360#L39">Register</a>
 					<a class="permalink" href="index.html#Factory.Register">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Factory">Factory</a>) Register(locator <a href="http://localhost:6060/pkg/builtin/#any">any</a>, factory func() <a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) Register(locator <a href="http://localhost:6060/pkg/builtin/#any">any</a>, factory func(locator <a href="http://localhost:6060/pkg/builtin/#any">any</a>) <a href="http://localhost:6060/pkg/builtin/#any">any</a>)</pre>
 				<p>
 Register registers a component using a factory method.
 </p>
 <pre>Parameters:
 	- locator any a locator to identify component to be created.
-	- factory func() any a factory function that receives a
+	- factory func(locator any) any a factory function that receives a
 		locator and returns a created component.
 </pre>
 
@@ -488,7 +494,7 @@ Register registers a component using a factory method.
 				
 			
 				
-				<h3 id="Factory.RegisterType">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1748:1804#L57">RegisterType</a>
+				<h3 id="Factory.RegisterType">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1773:1829#L57">RegisterType</a>
 					<a class="permalink" href="index.html#Factory.RegisterType">&#xb6;</a>
 					
 					
@@ -558,7 +564,7 @@ However Pip.Services toolkit most often uses Descriptor objects as component loc
 
 
 <div id="footer">
-Build version go1.18.1.<br>
+Build version go1.18.2.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
