@@ -23,10 +23,10 @@ type CachedCounters struct {
 	mux           sync.RWMutex
 	interval      int64
 	resetTimeout  int64
-	saver         ICountersSaver
+	Overrides     ICachedCountersOverrides
 }
 
-type ICountersSaver interface {
+type ICachedCountersOverrides interface {
 	Save(ctx context.Context, counters []Counter) error
 }
 
@@ -41,7 +41,7 @@ const (
 //	Parameters:
 //		- save ICountersSaver
 //	Returns: *CachedCounters
-func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
+func InheritCacheCounters(overrides ICachedCountersOverrides) *CachedCounters {
 	return &CachedCounters{
 		cache:         make(map[string]*AtomicCounter),
 		updated:       false,
@@ -49,7 +49,7 @@ func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
 		lastResetTime: time.Now(),
 		interval:      DefaultInterval,
 		resetTimeout:  DefaultResetTimeout,
-		saver:         saver,
+		Overrides:     overrides,
 	}
 }
 
@@ -96,7 +96,7 @@ func (c *CachedCounters) Dump(ctx context.Context) error {
 	}
 
 	counters := c.GetAllCountersStats()
-	err := c.saver.Save(ctx, counters)
+	err := c.Overrides.Save(ctx, counters)
 	if err != nil {
 		return err
 	}

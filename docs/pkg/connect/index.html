@@ -120,6 +120,47 @@
 			
 			
 				
+				<dd><a href="index.html#CompositeConnectionResolver">type CompositeConnectionResolver</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritCompositeConnectionResolver">func InheritCompositeConnectionResolver(overrides ICompositeConnectionResolverOverrides) *CompositeConnectionResolver</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.Compose">func (c *CompositeConnectionResolver) Compose(correlationId string, connections []*ConnectionParams, credential *auth.CredentialParams, parameters *config.ConfigParams) (options *config.ConfigParams, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.ComposeOptions">func (c *CompositeConnectionResolver) ComposeOptions(connections []*ConnectionParams, credential *auth.CredentialParams, parameters *config.ConfigParams) *config.ConfigParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.Configure">func (c *CompositeConnectionResolver) Configure(ctx context.Context, config *config.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.FinalizeOptions">func (c *CompositeConnectionResolver) FinalizeOptions(options *config.ConfigParams) *config.ConfigParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.MergeConnection">func (c *CompositeConnectionResolver) MergeConnection(options *config.ConfigParams, connection *ConnectionParams) *config.ConfigParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.MergeCredential">func (c *CompositeConnectionResolver) MergeCredential(options *config.ConfigParams, credential *auth.CredentialParams) *config.ConfigParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.MergeOptional">func (c *CompositeConnectionResolver) MergeOptional(options *config.ConfigParams, parameters *config.ConfigParams) *config.ConfigParams</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.Resolve">func (c *CompositeConnectionResolver) Resolve(correlationId string) (options *config.ConfigParams, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.SetReferences">func (c *CompositeConnectionResolver) SetReferences(ctx context.Context, references refer.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.ValidateConnection">func (c *CompositeConnectionResolver) ValidateConnection(correlationId string, connection *ConnectionParams) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeConnectionResolver.ValidateCredential">func (c *CompositeConnectionResolver) ValidateCredential(correlationId string, credential *auth.CredentialParams) error</a></dd>
+				
+			
+				
 				<dd><a href="index.html#ConnectionParams">type ConnectionParams</a></dd>
 				
 					
@@ -223,6 +264,11 @@
 				
 			
 				
+				<dd><a href="index.html#ICompositeConnectionResolverOverrides">type ICompositeConnectionResolverOverrides</a></dd>
+				
+				
+			
+				
 				<dd><a href="index.html#IDiscovery">type IDiscovery</a></dd>
 				
 				
@@ -264,9 +310,13 @@
 			<p>
 			<span style="font-size:90%">
 			
+				<a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go">CompositeConnectionResolver.go</a>
+			
 				<a href="http://localhost:6060/src/connect/ConnectionParams.go">ConnectionParams.go</a>
 			
 				<a href="http://localhost:6060/src/connect/ConnectionResolver.go">ConnectionResolver.go</a>
+			
+				<a href="http://localhost:6060/src/connect/ConnectionUtils.go">ConnectionUtils.go</a>
 			
 				<a href="http://localhost:6060/src/connect/DefaultDiscoveryFactory.go">DefaultDiscoveryFactory.go</a>
 			
@@ -300,9 +350,15 @@
     <span id="ConnectionParamCluster">ConnectionParamCluster</span>      = &#34;cluster&#34;
 )</pre>
 			
+				
+				<pre>const <span id="ConnectionSectionNameParameter">ConnectionSectionNameParameter</span> = &#34;connections&#34;</pre>
+			
 		
 		
 			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="ConnectionUtils">ConnectionUtils</span> = _TConnectionUtils{}</pre>
 			
 				<p>
 MemoryDiscoveryDescriptor creates IDiscovery components by their descriptors.
@@ -330,6 +386,316 @@ NewDefaultDiscoveryFactory create a new instance of the factory.
 			
 
 		
+		
+			
+			
+			<h2 id="CompositeConnectionResolver">type <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=2033:2563#L35">CompositeConnectionResolver</a>
+				<a class="permalink" href="index.html#CompositeConnectionResolver">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+CompositeConnectionResolver helper class that resolves connection and credential parameters,
+validates them and generates connection options.
+</p>
+<pre>### Configuration parameters ###
+	- connection(s):
+		- discovery_key:               (optional) a key to retrieve the connection from [IDiscovery]]
+		- protocol:                    communication protocol
+		- host:                        host name or IP address
+		- port:                        port number
+		- uri:                         resource URI or connection string with all parameters in it
+	- credential(s):
+		- store_key:                   (optional) a key to retrieve the credentials from [ICredentialStore]]
+		- username:                    user name
+		- password:                    user password
+
+### References ###
+	- *:discovery:*:*:1.0          (optional) [IDiscovery]] services to resolve connections
+	- *:credential-store:*:*:1.0   (optional) Credential stores to resolve credentials
+</pre>
+
+			<pre>type CompositeConnectionResolver struct {
+<span id="CompositeConnectionResolver.Overrides"></span>    Overrides <a href="index.html#ICompositeConnectionResolverOverrides">ICompositeConnectionResolverOverrides</a>
+
+    <span class="comment">// The connection options</span>
+<span id="CompositeConnectionResolver.Options"></span>    Options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+
+    <span class="comment">// The connections resolver.</span>
+<span id="CompositeConnectionResolver.ConnectionResolver"></span>    ConnectionResolver *<a href="index.html#ConnectionResolver">ConnectionResolver</a>
+
+    <span class="comment">// The credentials resolver.</span>
+<span id="CompositeConnectionResolver.CredentialResolver"></span>    CredentialResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialResolver">CredentialResolver</a>
+
+    <span class="comment">// The cluster support (multiple connections)</span>
+<span id="CompositeConnectionResolver.ClusterSupported"></span>    ClusterSupported <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>
+
+    <span class="comment">// The default protocol</span>
+<span id="CompositeConnectionResolver.DefaultProtocol"></span>    DefaultProtocol <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+
+    <span class="comment">// The default port number</span>
+<span id="CompositeConnectionResolver.DefaultPort"></span>    DefaultPort <a href="http://localhost:6060/pkg/builtin/#int">int</a>
+
+    <span class="comment">// The list of supported protocols</span>
+<span id="CompositeConnectionResolver.SupportedProtocols"></span>    SupportedProtocols []<a href="http://localhost:6060/pkg/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritCompositeConnectionResolver">func <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=2766:2883#L64">InheritCompositeConnectionResolver</a>
+					<a class="permalink" href="index.html#InheritCompositeConnectionResolver">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritCompositeConnectionResolver(overrides <a href="index.html#ICompositeConnectionResolverOverrides">ICompositeConnectionResolverOverrides</a>) *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a></pre>
+				<p>
+InheritCompositeConnectionResolver creates new CompositeConnectionResolver
+</p>
+<pre>Parameters:
+	- overrides a child reference with overrides for virtual methods
+return *CompositeConnectionResolver
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CompositeConnectionResolver.Compose">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=5555:5766#L148">Compose</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.Compose">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) Compose(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connections []*<a href="index.html#ConnectionParams">ConnectionParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>,
+    parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) (options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Compose Composite connection options from connection and credential parameters.
+</p>
+<pre>Parameters:
+	- correlationId (optional) transaction id to trace execution through call chain.
+	- connections connection parameters
+	- credential parameters
+	- parameters optional parameters
+Returns: resolved options or error.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.ComposeOptions">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=8286:8460#L228">ComposeOptions</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.ComposeOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) ComposeOptions(connections []*<a href="index.html#ConnectionParams">ConnectionParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a></pre>
+				<p>
+ComposeOptions composes connection and credential parameters into connection options.
+This method can be override in child classes.
+</p>
+<pre>Parameters:
+	- connections a list of connection parameters
+	- credential parameters
+	- parameters optional parameters
+Returns: a composed connection options.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.Configure">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=3286:3383#L78">Configure</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, config *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure configures component by passing configuration parameters.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- config configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.FinalizeOptions">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=10560:10664#L287">FinalizeOptions</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.FinalizeOptions">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) FinalizeOptions(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a></pre>
+				<p>
+FinalizeOptions finalize merged options
+This method can be overriden in child classes.
+</p>
+<pre>Parameters:
+	- options connection options
+Returns: finalized connection options
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.MergeConnection">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=9198:9332#L255">MergeConnection</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.MergeConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) MergeConnection(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a></pre>
+				<p>
+MergeConnection merges connection options with connection parameters
+This method can be override in child classes.
+</p>
+<pre>Parameters:
+	-  options connection options
+	-  connection parameters to be merged
+Returns: merged connection options.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.MergeCredential">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=9677:9816#L266">MergeCredential</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.MergeCredential">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) MergeCredential(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a></pre>
+				<p>
+MergeCredential merges connection options with credential parameters
+This method can be overriden in child classes.
+</p>
+<pre>Parameters:
+	- options connection options
+	- credential parameters to be merged
+Returns: merged connection options.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.MergeOptional">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=10162:10297#L277">MergeOptional</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.MergeOptional">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) MergeOptional(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a></pre>
+				<p>
+MergeOptional merges connection options with optional parameters
+This method can be overriden in child classes.
+</p>
+<pre>Parameters:
+	- options connection options
+	- parameters optional parameters to be merged
+Returns merged connection options.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.Resolve">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=4106:4215#L96">Resolve</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.Resolve">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) Resolve(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Resolve connection options from connection and credential parameters.
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- return 			 resolved options or error.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.SetReferences">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=3686:3788#L88">SetReferences</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) SetReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+SetReferences sets references to dependent components.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- references references to locate the component dependencies.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.ValidateConnection">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=6512:6626#L179">ValidateConnection</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.ValidateConnection">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) ValidateConnection(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+ValidateConnection validates connection parameters.
+This method can be override in child classes.
+</p>
+<pre>Parameters:
+	- correlationId (optional) transaction id to trace execution through call chain.
+	- connection    parameters to be validated
+Returns: error or nil if validation was successful
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeConnectionResolver.ValidateCredential">func (*CompositeConnectionResolver) <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=7838:7957#L217">ValidateCredential</a>
+					<a class="permalink" href="index.html#CompositeConnectionResolver.ValidateCredential">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeConnectionResolver">CompositeConnectionResolver</a>) ValidateCredential(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+ValidateCredential parameters.
+This method can be override in child classes.
+</p>
+<pre>Parameters:
+	- correlationId (optional) transaction id to trace execution through call chain.
+	- credential    parameters to be validated
+Returns: error or nil if validation was successful
+</pre>
+
+				
+				
+				
+			
 		
 			
 			
@@ -1005,6 +1371,42 @@ SetReferences sets references to dependent components.
 		
 			
 			
+			<h2 id="ICompositeConnectionResolverOverrides">type <a href="http://localhost:6060/src/connect/CompositeConnectionResolver.go?s=305:1034#L1">ICompositeConnectionResolverOverrides</a>
+				<a class="permalink" href="index.html#ICompositeConnectionResolverOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ICompositeConnectionResolverOverrides interface {
+    ValidateConnection(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    ValidateCredential(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+
+    ComposeOptions(connections []*<a href="index.html#ConnectionParams">ConnectionParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+
+    MergeConnection(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, connection *<a href="index.html#ConnectionParams">ConnectionParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+
+    MergeCredential(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, credential *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/">auth</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-components-gox/auth/#CredentialParams">CredentialParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+
+    MergeOptional(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+
+    FinalizeOptions(options *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
 			<h2 id="IDiscovery">type <a href="http://localhost:6060/src/connect/IDiscovery.go?s=158:650#L1">IDiscovery</a>
 				<a class="permalink" href="index.html#IDiscovery">&#xb6;</a>
 				
@@ -1042,7 +1444,7 @@ connection parameters to connect to external services.
 		
 			
 			
-			<h2 id="MemoryDiscovery">type <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=736:805#L18">MemoryDiscovery</a>
+			<h2 id="MemoryDiscovery">type <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=764:833#L17">MemoryDiscovery</a>
 				<a class="permalink" href="index.html#MemoryDiscovery">&#xb6;</a>
 				
 				
@@ -1059,17 +1461,18 @@ see IDiscovery
 see ConnectionParams
 Example
 	config := NewConfigParamsFromTuples(
-		&#34;key1.host&#34;, &#34;10.1.1.100&#34;,
-		&#34;key1.port&#34;, &#34;8080&#34;,
-		&#34;key2.host&#34;, &#34;10.1.1.100&#34;,
-		&#34;key2.port&#34;, &#34;8082&#34;
+		&#34;connections.key1.host&#34;, &#34;10.1.1.100&#34;,
+		&#34;connections.key1.port&#34;, &#34;8080&#34;,
+		&#34;connections.key2.host&#34;, &#34;10.1.1.100&#34;,
+		&#34;connections.key2.port&#34;, &#34;8082&#34;
 	);
 	discovery := NewMemoryDiscovery();
 	discovery.ReadConnections(config);
-	discovery.Resolve(&#34;123&#34;, &#34;key1&#34;, (err, connection) =&gt; {
-		// Result: host=10.1.1.100;port=8080
-	});
+	conn, err := discovery.Resolve(&#34;123&#34;, &#34;key1&#34;);
 </pre>
+<p>
+// Result: host=10.1.1.100;port=8080
+</p>
 
 			<pre>type MemoryDiscovery struct {
     <span class="comment">// contains filtered or unexported fields</span>
@@ -1086,7 +1489,7 @@ Example
 
 			
 				
-				<h3 id="NewEmptyMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=908:955#L24">NewEmptyMemoryDiscovery</a>
+				<h3 id="NewEmptyMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=990:1037#L25">NewEmptyMemoryDiscovery</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryDiscovery">&#xb6;</a>
 					
 					
@@ -1102,7 +1505,7 @@ NewEmptyMemoryDiscovery creates a new instance of discovery service.
 				
 			
 				
-				<h3 id="NewMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1246:1336#L35">NewMemoryDiscovery</a>
+				<h3 id="NewMemoryDiscovery">func <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1328:1418#L36">NewMemoryDiscovery</a>
 					<a class="permalink" href="index.html#NewMemoryDiscovery">&#xb6;</a>
 					
 					
@@ -1123,7 +1526,7 @@ Returns: *MemoryDiscovery
 
 			
 				
-				<h3 id="MemoryDiscovery.Configure">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1645:1730#L51">Configure</a>
+				<h3 id="MemoryDiscovery.Configure">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1727:1812#L52">Configure</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.Configure">&#xb6;</a>
 					
 					
@@ -1142,7 +1545,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryDiscovery.ReadConnections">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=1982:2052#L59">ReadConnections</a>
+				<h3 id="MemoryDiscovery.ReadConnections">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=2064:2134#L60">ReadConnections</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ReadConnections">&#xb6;</a>
 					
 					
@@ -1161,7 +1564,7 @@ ReadConnections from configuration parameters. Each section represents an indivi
 				
 			
 				
-				<h3 id="MemoryDiscovery.Register">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=2631:2768#L76">Register</a>
+				<h3 id="MemoryDiscovery.Register">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=2845:2982#L79">Register</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.Register">&#xb6;</a>
 					
 					
@@ -1183,7 +1586,7 @@ Returns: *ConnectionParams, error registered connection or error.
 				
 			
 				
-				<h3 id="MemoryDiscovery.ResolveAll">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3847:3958#L112">ResolveAll</a>
+				<h3 id="MemoryDiscovery.ResolveAll">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=4061:4172#L116">ResolveAll</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ResolveAll">&#xb6;</a>
 					
 					
@@ -1204,7 +1607,7 @@ Returns: *ConnectionParams, error receives found connection or error.
 				
 			
 				
-				<h3 id="MemoryDiscovery.ResolveOne">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3323:3432#L96">ResolveOne</a>
+				<h3 id="MemoryDiscovery.ResolveOne">func (*MemoryDiscovery) <a href="http://localhost:6060/src/connect/MemoryDiscovery.go?s=3537:3646#L100">ResolveOne</a>
 					<a class="permalink" href="index.html#MemoryDiscovery.ResolveOne">&#xb6;</a>
 					
 					

@@ -125,10 +125,15 @@
 				
 			
 				
+				<dd><a href="index.html#ILockOverrides">type ILockOverrides</a></dd>
+				
+				
+			
+				
 				<dd><a href="index.html#Lock">type Lock</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InheritLock">func InheritLock(locker ILock) *Lock</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritLock">func InheritLock(overrides ILockOverrides) *Lock</a></dd>
 				
 				
 					
@@ -279,7 +284,31 @@ The lock allows managing multiple locks identified by unique keys.
 		
 			
 			
-			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=375:435#L5">Lock</a>
+			<h2 id="ILockOverrides">type <a href="http://localhost:6060/src/lock/Lock.go?s=176:216#L1">ILockOverrides</a>
+				<a class="permalink" href="index.html#ILockOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ILockOverrides interface {
+    <a href="index.html#ILock">ILock</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=417:486#L9">Lock</a>
 				<a class="permalink" href="index.html#Lock">&#xb6;</a>
 				
 				
@@ -293,6 +322,7 @@ Lock abstract lock that implements default lock acquisition routine.
 </pre>
 
 			<pre>type Lock struct {
+<span id="Lock.Overrides"></span>    Overrides <a href="index.html#ILockOverrides">ILockOverrides</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -307,14 +337,14 @@ Lock abstract lock that implements default lock acquisition routine.
 
 			
 				
-				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=615:651#L17">InheritLock</a>
+				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=675:723#L21">InheritLock</a>
 					<a class="permalink" href="index.html#InheritLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func InheritLock(locker <a href="index.html#ILock">ILock</a>) *<a href="index.html#Lock">Lock</a></pre>
+				<pre>func InheritLock(overrides <a href="index.html#ILockOverrides">ILockOverrides</a>) *<a href="index.html#Lock">Lock</a></pre>
 				<p>
-InheritLock inherit lock fron ILock
+InheritLock inherit lock from ILockOverrides
 </p>
 <pre>Returns: *Lock
 </pre>
@@ -325,7 +355,7 @@ InheritLock inherit lock fron ILock
 
 			
 				
-				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1473:1587#L40">AcquireLock</a>
+				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1548:1662#L44">AcquireLock</a>
 					<a class="permalink" href="index.html#Lock.AcquireLock">&#xb6;</a>
 					
 					
@@ -351,7 +381,7 @@ Returns error
 				
 			
 				
-				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=907:981#L28">Configure</a>
+				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=982:1056#L32">Configure</a>
 					<a class="permalink" href="index.html#Lock.Configure">&#xb6;</a>
 					
 					

@@ -15,19 +15,20 @@ import (
 //	see ConnectionParams
 //	Example
 //		config := NewConfigParamsFromTuples(
-//			"key1.host", "10.1.1.100",
-//			"key1.port", "8080",
-//			"key2.host", "10.1.1.100",
-//			"key2.port", "8082"
+//			"connections.key1.host", "10.1.1.100",
+//			"connections.key1.port", "8080",
+//			"connections.key2.host", "10.1.1.100",
+//			"connections.key2.port", "8082"
 //		);
 //		discovery := NewMemoryDiscovery();
 //		discovery.ReadConnections(config);
-//		discovery.Resolve("123", "key1", (err, connection) => {
-//			// Result: host=10.1.1.100;port=8080
-//		});
+//		conn, err := discovery.Resolve("123", "key1");
+//// Result: host=10.1.1.100;port=8080
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams
 }
+
+const ConnectionSectionNameParameter = "connections"
 
 // NewEmptyMemoryDiscovery creates a new instance of discovery service.
 //	Returns: *MemoryDiscovery
@@ -68,12 +69,14 @@ func (c *MemoryDiscovery) Configure(ctx context.Context, config *config.ConfigPa
 //		- config *configure.ConfigParams configuration parameters to be read
 func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams) {
 	c.items = make(map[string][]*ConnectionParams)
+	connections := config.GetSection(ConnectionSectionNameParameter)
 
-	keys := config.Keys()
-	for _, key := range keys {
-		value := config.GetAsString(key)
-		connection := NewConnectionParamsFromString(value)
-		c.items[key] = []*ConnectionParams{connection}
+	if connections.Len() > 0 {
+		connectionSections := connections.GetSectionNames()
+		for _, key := range connectionSections {
+			connection := connections.GetSection(key)
+			c.items[key] = []*ConnectionParams{NewConnectionParamsFromValue(connection)}
+		}
 	}
 }
 
@@ -87,12 +90,13 @@ func (c *MemoryDiscovery) Register(correlationId string, key string,
 	connection *ConnectionParams) (result *ConnectionParams, err error) {
 
 	if connection != nil {
-		if connections, ok := c.items[key]; ok && connections == nil {
-			connections = []*ConnectionParams{connection}
-			c.items[key] = connections
-		} else {
+		connections, ok := c.items[key]
+		if ok && connections != nil {
 			connections = append(connections, connection)
+		} else {
+			connections = []*ConnectionParams{connection}
 		}
+		c.items[key] = connections
 	}
 
 	return connection, nil

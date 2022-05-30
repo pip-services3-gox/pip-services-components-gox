@@ -24,6 +24,11 @@ type ICachedLogSaver interface {
 	Save(ctx context.Context, messages []LogMessage) error
 }
 
+type ICachedLoggerOverrides interface {
+	ILoggerOverrides
+	Save(ctx context.Context, messages []LogMessage) error
+}
+
 type CachedLogger struct {
 	Logger
 	Cache        []LogMessage
@@ -32,7 +37,7 @@ type CachedLogger struct {
 	MaxCacheSize int
 	Interval     int
 	mtx          *sync.Mutex
-	saver        ICachedLogSaver
+	Overrides    ICachedLoggerOverrides
 }
 
 const (
@@ -43,9 +48,10 @@ const (
 )
 
 // InheritCachedLogger creates a new instance of the logger from ICachedLogSaver
-//	Parameters: saver ICachedLogSaver
+//	Parameters:
+//		- overrides ICachedLoggerOverrides
 //	Returns: CachedLogger
-func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
+func InheritCachedLogger(overrides ICachedLoggerOverrides) *CachedLogger {
 	c := &CachedLogger{
 		Cache:        make([]LogMessage, 0, DefaultMaxCacheSize),
 		Updated:      false,
@@ -53,9 +59,9 @@ func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 		MaxCacheSize: DefaultMaxCacheSize,
 		Interval:     DefaultInterval,
 		mtx:          &sync.Mutex{},
-		saver:        saver,
+		Overrides:    overrides,
 	}
-	c.Logger = *InheritLogger(c)
+	c.Logger = *InheritLogger(overrides)
 	return c
 }
 
@@ -148,7 +154,7 @@ func (c *CachedLogger) dump(ctx context.Context) error {
 		messages := c.Cache
 		c.Cache = make([]LogMessage, 0, c.MaxCacheSize)
 
-		err := c.saver.Save(ctx, messages)
+		err := c.Overrides.Save(ctx, messages)
 		if err != nil {
 
 			// Put failed messages back to cache

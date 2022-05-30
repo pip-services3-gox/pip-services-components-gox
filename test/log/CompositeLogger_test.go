@@ -13,8 +13,8 @@ func newCompositeLoggerFixture() *LoggerFixture {
 
 	refs := refer.NewReferencesFromTuples(
 		context.Background(),
-		log.ConsoleLoggerDescriptor, log.NewConsoleLogger(),
-		log.CompositeLoggerDescriptor, logger,
+		refer.NewDescriptor("pip-services", "logger", "console", "default", "1.0"), log.NewConsoleLogger(),
+		//log.CompositeLoggerDescriptor, logger,
 	)
 	logger.SetReferences(context.Background(), refs)
 

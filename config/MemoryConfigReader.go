@@ -2,12 +2,13 @@ package config
 
 import (
 	"context"
-	"github.com/aymerick/raymond"
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
+	crun "github.com/pip-services3-gox/pip-services3-commons-gox/run"
+	"github.com/pip-services3-gox/pip-services3-expressions-gox/mustache"
 )
 
 // MemoryConfigReader is a config reader that stores configuration in memory.
-// The reader supports parameterization using Handlebars template engine: https://handlebarsjs.com
+// The reader supports parameterization using Mustache template engine implemented in expressions module.
 // Configuration parameters: The configuration parameters are the configuration template
 //	see IConfigReader
 //	Example
@@ -61,12 +62,32 @@ func (c *MemoryConfigReader) ReadConfig(ctx context.Context, correlationId strin
 
 	if parameters != nil {
 		template := c.config.String()
-		context := parameters.Value()
-		config, err := raymond.Render(template, context)
+		value := parameters.Value()
+
+		mustacheTemplate, err := mustache.NewMustacheTemplateFromString(template)
+		if err != nil {
+			return nil, err
+		}
+
+		config, err := mustacheTemplate.EvaluateWithVariables(value)
+		if err != nil {
+			return nil, err
+		}
+
 		result := cconfig.NewConfigParamsFromString(config)
-		return result, err
+		return result, nil
 	} else {
 		result := cconfig.NewConfigParamsFromValue(c.config.Value())
 		return result, nil
 	}
+}
+
+// AddChangeListener - Adds a listener that will be notified when configuration is changed
+func (c *MemoryConfigReader) AddChangeListener(ctx context.Context, listener crun.INotifiable) {
+	// Do nothing...
+}
+
+// RemoveChangeListener - Remove a previously added change listener.
+func (c *MemoryConfigReader) RemoveChangeListener(ctx context.Context, listener crun.INotifiable) {
+	// Do nothing...
 }

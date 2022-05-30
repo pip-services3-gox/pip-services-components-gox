@@ -139,10 +139,16 @@
 				
 				
 					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.AddChangeListener">func (c *ConfigReader) AddChangeListener(ctx context.Context, listener crun.INotifiable)</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Configure">func (c *ConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.Parameterize">func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigParams) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#ConfigReader.RemoveChangeListener">func (c *ConfigReader) RemoveChangeListener(ctx context.Context, listener crun.INotifiable)</a></dd>
 				
 			
 				
@@ -198,10 +204,16 @@
 				
 				
 					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.AddChangeListener">func (c *MemoryConfigReader) AddChangeListener(ctx context.Context, listener crun.INotifiable)</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.Configure">func (c *MemoryConfigReader) Configure(ctx context.Context, config *cconfig.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.ReadConfig">func (c *MemoryConfigReader) ReadConfig(ctx context.Context, correlationId string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryConfigReader.RemoveChangeListener">func (c *MemoryConfigReader) RemoveChangeListener(ctx context.Context, listener crun.INotifiable)</a></dd>
 				
 			
 				
@@ -405,7 +417,7 @@ Returns: any, error a JSON object with configuration.
 		
 			
 			
-			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=323:385#L2">ConfigReader</a>
+			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=430:492#L3">ConfigReader</a>
 				<a class="permalink" href="index.html#ConfigReader">&#xb6;</a>
 				
 				
@@ -432,7 +444,7 @@ ConfigReader abstract config reader that supports configuration parameterization
 
 			
 				
-				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=580:616#L11">NewConfigReader</a>
+				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=687:723#L12">NewConfigReader</a>
 					<a class="permalink" href="index.html#NewConfigReader">&#xb6;</a>
 					
 					
@@ -450,7 +462,22 @@ NewConfigReader creates a new instance of the config reader.
 
 			
 				
-				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=876:959#L21">Configure</a>
+				<h3 id="ConfigReader.AddChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2138:2226#L54">AddChangeListener</a>
+					<a class="permalink" href="index.html#ConfigReader.AddChangeListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) AddChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)</pre>
+				<p>
+AddChangeListener - Adds a listener that will be notified when configuration is changed
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=983:1066#L22">Configure</a>
 					<a class="permalink" href="index.html#ConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -469,7 +496,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1482:1582#L34">Parameterize</a>
+				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1595:1695#L35">Parameterize</a>
 					<a class="permalink" href="index.html#ConfigReader.Parameterize">&#xb6;</a>
 					
 					
@@ -477,13 +504,28 @@ Configure configures component by passing configuration parameters.
 				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Parameterize(config <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Parameterize configuration template given as string with dynamic parameters.
-The method uses Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+The method uses Mustache template engine implemented in expressions module
 </p>
 <pre>Parameters:
 	- config string a string with configuration template to be parameterized
 	- parameters *config.ConfigParams dynamic parameters to inject into the template
 Returns: string, error a parameterized configuration string abd error.
 </pre>
+
+				
+				
+				
+			
+				
+				<h3 id="ConfigReader.RemoveChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2319:2410#L59">RemoveChangeListener</a>
+					<a class="permalink" href="index.html#ConfigReader.RemoveChangeListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) RemoveChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)</pre>
+				<p>
+RemoveChangeListener - Remove a previously added change listener.
+</p>
 
 				
 				
@@ -612,7 +654,7 @@ SetPath set the path to configuration file.
 		
 			
 			
-			<h2 id="IConfigReader">type <a href="http://localhost:6060/src/config/IConfigReader.go?s=530:757#L3">IConfigReader</a>
+			<h2 id="IConfigReader">type <a href="http://localhost:6060/src/config/IConfigReader.go?s=597:1120#L4">IConfigReader</a>
 				<a class="permalink" href="index.html#IConfigReader">&#xb6;</a>
 				
 				
@@ -629,6 +671,12 @@ The values may come from application command like arguments or environment varia
 
     <span class="comment">// ReadConfig reads configuration and parameterize it with given values.</span>
     ReadConfig(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+
+    <span class="comment">//AddChangeListener adds a listener that will be notified when configuration is changed</span>
+    AddChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)
+
+    <span class="comment">// RemoveChangeListener remove a previously added change listener.</span>
+    RemoveChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)
 }</pre>
 
 			
@@ -767,14 +815,14 @@ Returns: any, error a JSON object with configuration adn error.
 		
 			
 			
-			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=882:946#L13">MemoryConfigReader</a>
+			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=996:1060#L14">MemoryConfigReader</a>
 				<a class="permalink" href="index.html#MemoryConfigReader">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
 MemoryConfigReader is a config reader that stores configuration in memory.
-The reader supports parameterization using Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+The reader supports parameterization using Mustache template engine implemented in expressions module.
 Configuration parameters: The configuration parameters are the configuration template
 </p>
 <pre>see IConfigReader
@@ -805,7 +853,7 @@ Example
 
 			
 				
-				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1051:1104#L19">NewEmptyMemoryConfigReader</a>
+				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1165:1218#L20">NewEmptyMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -821,7 +869,7 @@ NewEmptyMemoryConfigReader creates a new instance of config reader.
 				
 			
 				
-				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1361:1437#L28">NewMemoryConfigReader</a>
+				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1475:1551#L29">NewMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -840,7 +888,22 @@ Returns: *MemoryConfigReader
 
 			
 				
-				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1665:1754#L38">Configure</a>
+				<h3 id="MemoryConfigReader.AddChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2998:3092#L76">AddChangeListener</a>
+					<a class="permalink" href="index.html#MemoryConfigReader.AddChangeListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) AddChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)</pre>
+				<p>
+AddChangeListener - Adds a listener that will be notified when configuration is changed
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1779:1868#L39">Configure</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -859,7 +922,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2156:2304#L49">ReadConfig</a>
+				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2270:2418#L50">ReadConfig</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.ReadConfig">&#xb6;</a>
 					
 					
@@ -876,6 +939,21 @@ ReadConfig reads configuration and parameterize it with given values.
 		the configuration or null to skip parameterization.
 Returns: *cconfig.ConfigParams, error configuration or error.
 </pre>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryConfigReader.RemoveChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=3185:3282#L81">RemoveChangeListener</a>
+					<a class="permalink" href="index.html#MemoryConfigReader.RemoveChangeListener">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryConfigReader">MemoryConfigReader</a>) RemoveChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)</pre>
+				<p>
+RemoveChangeListener - Remove a previously added change listener.
+</p>
 
 				
 				

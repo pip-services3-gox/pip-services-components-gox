@@ -17,6 +17,10 @@ func (c *cachedLoggerSaver) Save(ctx context.Context, messages []log.LogMessage)
 	return nil
 }
 
+func (c *cachedLoggerSaver) Write(ctx context.Context, level log.LevelType, correlationId string, err error, message string) {
+
+}
+
 var saver = &cachedLoggerSaver{}
 
 func newCustomCachedLogger() *log.CachedLogger {

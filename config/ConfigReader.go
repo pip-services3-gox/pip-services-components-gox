@@ -2,8 +2,9 @@ package config
 
 import (
 	"context"
-	"github.com/aymerick/raymond"
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
+	crun "github.com/pip-services3-gox/pip-services3-commons-gox/run"
+	"github.com/pip-services3-gox/pip-services3-expressions-gox/mustache"
 )
 
 // ConfigReader abstract config reader that supports configuration parameterization.
@@ -36,7 +37,7 @@ func (c *ConfigReader) Configure(ctx context.Context, config *cconfig.ConfigPara
 }
 
 // Parameterize configuration template given as string with dynamic parameters.
-// The method uses Handlebars template engine: https://handlebarsjs.com
+// The method uses Mustache template engine implemented in expressions module
 //	Parameters:
 //		- config string a string with configuration template to be parameterized
 //		- parameters *config.ConfigParams dynamic parameters to inject into the template
@@ -48,7 +49,23 @@ func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigPar
 
 	parameters = c.parameters.Override(parameters)
 
-	context := parameters.Value()
-	result, err := raymond.Render(config, context)
+	value := parameters.Value()
+
+	mustacheTemplate, err := mustache.NewMustacheTemplateFromString(config)
+	if err != nil {
+		return "", err
+	}
+
+	result, err := mustacheTemplate.EvaluateWithVariables(value)
 	return result, err
+}
+
+// AddChangeListener - Adds a listener that will be notified when configuration is changed
+func (c *ConfigReader) AddChangeListener(ctx context.Context, listener crun.INotifiable) {
+	// Do nothing...
+}
+
+// RemoveChangeListener - Remove a previously added change listener.
+func (c *ConfigReader) RemoveChangeListener(ctx context.Context, listener crun.INotifiable) {
+	// Do nothing...
 }

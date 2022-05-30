@@ -8,13 +8,17 @@ import (
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 )
 
+type ILockOverrides interface {
+	ILock
+}
+
 // Lock abstract lock that implements default lock acquisition routine.
 //	Configuration parameters:
 //		options:
 //		retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
 type Lock struct {
 	retryTimeout int64
-	locker       ILock
+	Overrides    ILockOverrides
 }
 
 const (
@@ -22,12 +26,12 @@ const (
 	ConfigParamOptionsRetryTimeout string = "options.retry_timeout"
 )
 
-// InheritLock inherit lock fron ILock
+// InheritLock inherit lock from ILockOverrides
 //	Returns: *Lock
-func InheritLock(locker ILock) *Lock {
+func InheritLock(overrides ILockOverrides) *Lock {
 	return &Lock{
 		retryTimeout: DefaultRetryTimeout,
-		locker:       locker,
+		Overrides:    overrides,
 	}
 }
 
@@ -55,7 +59,7 @@ func (c *Lock) AcquireLock(ctx context.Context, correlationId string,
 	// Repeat until time expires
 	for time.Now().Before(expireTime) {
 		// Try to get lock first
-		locked, err := c.locker.TryAcquireLock(ctx, correlationId, key, ttl)
+		locked, err := c.Overrides.TryAcquireLock(ctx, correlationId, key, ttl)
 		if locked || err != nil {
 			return err
 		}

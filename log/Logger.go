@@ -11,31 +11,32 @@ import (
 	"github.com/pip-services3-gox/pip-services3-components-gox/info"
 )
 
-// ILogWriter Abstract logger that captures and formats log messages.
+// ILoggerOverrides abstract logger that captures and formats log messages.
 // Child classes take the captured messages and write them to their specific destinations.
 //	Configuration parameters to pass to the configure method for component configuration:
 //		level: maximum log level to capture
 //		source: source (context) name
 //	References:
 //		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
-type ILogWriter interface {
+type ILoggerOverrides interface {
 	Write(ctx context.Context, level LevelType, correlationId string, err error, message string)
 }
 
 type Logger struct {
-	level  LevelType
-	source string
-	writer ILogWriter
+	level     LevelType
+	source    string
+	Overrides ILoggerOverrides
 }
 
 // InheritLogger creates a new instance of the logger and inherit from ILogWriter.
-//	Parameters: writer ILogWriter inherit from
+//	Parameters:
+//		- overrides ILoggerOverrides
 //	Returns: *Logger
-func InheritLogger(writer ILogWriter) *Logger {
+func InheritLogger(overrides ILoggerOverrides) *Logger {
 	return &Logger{
-		level:  LevelInfo,
-		source: "",
-		writer: writer,
+		level:     LevelInfo,
+		source:    "",
+		Overrides: overrides,
 	}
 }
 
@@ -121,8 +122,8 @@ func (c *Logger) FormatAndWrite(ctx context.Context, level LevelType,
 		message = fmt.Sprintf(message, args...)
 	}
 
-	if c.writer != nil {
-		c.writer.Write(ctx, level, correlationId, err, message)
+	if c.Overrides != nil {
+		c.Overrides.Write(ctx, level, correlationId, err, message)
 	}
 }
 

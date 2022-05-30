@@ -89,7 +89,7 @@ func (c *CompositeFactory) CanCreate(locator any) any {
 //		CreateError if the factory is not able to create the component..
 func (c *CompositeFactory) Create(locator any) (any, error) {
 	if locator == nil {
-		panic("Locator cannot be null")
+		panic("Locator cannot be nil")
 	}
 
 	// Iterate from the latest _factories

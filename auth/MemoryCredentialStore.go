@@ -67,11 +67,11 @@ func (c *MemoryCredentialStore) Configure(ctx context.Context, config *config.Co
 func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams) {
 	c.items = make(map[string]*CredentialParams)
 
-	keys := config.Keys()
-	for _, key := range keys {
-		value := config.GetAsString(key)
-		credential := NewCredentialParamsFromString(value)
-		c.items[key] = credential
+	sections := config.GetSectionNames()
+	for _, section := range sections {
+		value := config.GetSection(section)
+		credential := NewCredentialParams(value.Value())
+		c.items[section] = credential
 	}
 }
 
