@@ -83,8 +83,8 @@ func (c *CompositeCounters) SetReferences(ctx context.Context, references refer.
 //		- ctx context.Context
 //		- name string a counter name of Interval type.
 //	Returns: *Timing a Timing callback object to end timing.
-func (c *CompositeCounters) BeginTiming(ctx context.Context, name string) *Timing {
-	return NewTiming(name, c)
+func (c *CompositeCounters) BeginTiming(ctx context.Context, name string) *CounterTiming {
+	return NewCounterTiming(name, c)
 }
 
 // EndTiming ends measurement of execution elapsed time and updates specified counter.

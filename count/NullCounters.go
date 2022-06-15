@@ -22,8 +22,8 @@ func NewNullCounters() *NullCounters {
 //		- ctx context.Context
 //		- name string a counter name of Interval type.
 //	Returns: *Timing a Timing callback object to end timing.
-func (c *NullCounters) BeginTiming(ctx context.Context, name string) *Timing {
-	return NewEmptyTiming()
+func (c *NullCounters) BeginTiming(ctx context.Context, name string) *CounterTiming {
+	return NewEmptyCounterTiming()
 }
 
 // Stats calculates min/average/max statistics based on the current and previous values.

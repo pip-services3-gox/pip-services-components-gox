@@ -202,8 +202,8 @@ func (c *CachedCounters) Get(ctx context.Context, name string, typ CounterType) 
 //		- ctx context.Context
 //		- name string a counter name of Interval type.
 //	Returns: *Timing a Timing callback object to end timing.
-func (c *CachedCounters) BeginTiming(ctx context.Context, name string) *Timing {
-	return NewTiming(name, c)
+func (c *CachedCounters) BeginTiming(ctx context.Context, name string) *CounterTiming {
+	return NewCounterTiming(name, c)
 }
 
 // EndTiming ends measurement of execution elapsed time and updates specified counter.
