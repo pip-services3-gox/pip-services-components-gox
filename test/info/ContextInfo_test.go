@@ -1,6 +1,7 @@
 package test_info
 
 import (
+	"context"
 	"testing"
 
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
@@ -32,7 +33,7 @@ func TestContextInfoFromConfig(t *testing.T) {
 		info.ContextInfoSectionNameProperties+".store_key", "store key",
 	)
 
-	contextInfo := info.NewContextInfoFromConfig(cfg)
+	contextInfo := info.NewContextInfoFromConfig(context.Background(), cfg)
 	assert.Equal(t, "new name", contextInfo.Name)
 	assert.Equal(t, "new description", contextInfo.Description)
 }

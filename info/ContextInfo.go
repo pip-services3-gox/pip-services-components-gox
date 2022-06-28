@@ -1,6 +1,7 @@
 package info
 
 import (
+	"context"
 	"os"
 	"time"
 
@@ -63,7 +64,7 @@ func (c *ContextInfo) Uptime() int64 {
 
 // Configure configures component by passing configuration parameters.
 //	Parameters: config *config.ConfigParams configuration parameters to be set.
-func (c *ContextInfo) Configure(cfg *config.ConfigParams) {
+func (c *ContextInfo) Configure(ctx context.Context, cfg *config.ConfigParams) {
 	c.Name = cfg.GetAsStringWithDefault(ContextInfoParameterName, c.Name)
 	c.Name = cfg.GetAsStringWithDefault(ContextInfoParameterInfoName, c.Name)
 
@@ -78,8 +79,8 @@ func (c *ContextInfo) Configure(cfg *config.ConfigParams) {
 // NewContextInfoFromConfig creates a new instance of this context info.
 //	Parameters: cfg *config.ConfigParams a context configuration parameters.
 //	Returns: *ContextInfo
-func NewContextInfoFromConfig(cfg *config.ConfigParams) *ContextInfo {
+func NewContextInfoFromConfig(ctx context.Context, cfg *config.ConfigParams) *ContextInfo {
 	result := NewContextInfo()
-	result.Configure(cfg)
+	result.Configure(ctx, cfg)
 	return result
 }
