@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.2";</script>
+<script>var goVersion = "go1.18.3";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -126,11 +126,11 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#NewContextInfo">func NewContextInfo() *ContextInfo</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewContextInfoFromConfig">func NewContextInfoFromConfig(cfg *config.ConfigParams) *ContextInfo</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewContextInfoFromConfig">func NewContextInfoFromConfig(ctx context.Context, cfg *config.ConfigParams) *ContextInfo</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ContextInfo.Configure">func (c *ContextInfo) Configure(cfg *config.ConfigParams)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ContextInfo.Configure">func (c *ContextInfo) Configure(ctx context.Context, cfg *config.ConfigParams)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ContextInfo.Uptime">func (c *ContextInfo) Uptime() int64</a></dd>
@@ -210,7 +210,7 @@ NewDefaultInfoFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=975:1252#L19">ContextInfo</a>
+			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=986:1263#L20">ContextInfo</a>
 				<a class="permalink" href="index.html#ContextInfo">&#xb6;</a>
 				
 				
@@ -257,7 +257,7 @@ Example:
 
 			
 				
-				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1662:1696#L38">NewContextInfo</a>
+				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1673:1707#L39">NewContextInfo</a>
 					<a class="permalink" href="index.html#NewContextInfo">&#xb6;</a>
 					
 					
@@ -273,12 +273,12 @@ NewContextInfo creates a new instance of this context info.
 				
 			
 				
-				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=2935:3003#L71">NewContextInfoFromConfig</a>
+				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=2967:3056#L72">NewContextInfoFromConfig</a>
 					<a class="permalink" href="index.html#NewContextInfoFromConfig">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewContextInfoFromConfig(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ContextInfo">ContextInfo</a></pre>
+				<pre>func NewContextInfoFromConfig(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) *<a href="index.html#ContextInfo">ContextInfo</a></pre>
 				<p>
 NewContextInfoFromConfig creates a new instance of this context info.
 </p>
@@ -292,12 +292,12 @@ Returns: *ContextInfo
 
 			
 				
-				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2239:2296#L56">Configure</a>
+				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2250:2328#L57">Configure</a>
 					<a class="permalink" href="index.html#ContextInfo.Configure">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#ContextInfo">ContextInfo</a>) Configure(cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<pre>func (c *<a href="index.html#ContextInfo">ContextInfo</a>) Configure(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, cfg *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">config</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
@@ -309,7 +309,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2000:2036#L50">Uptime</a>
+				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2011:2047#L51">Uptime</a>
 					<a class="permalink" href="index.html#ContextInfo.Uptime">&#xb6;</a>
 					
 					
@@ -337,7 +337,7 @@ Uptime calculates the context uptime as from the start time.
 
 
 <div id="footer">
-Build version go1.18.2.<br>
+Build version go1.18.3.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

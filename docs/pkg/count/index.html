@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.2";</script>
+<script>var goVersion = "go1.18.3";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -174,7 +174,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.BeginTiming">func (c *CachedCounters) BeginTiming(ctx context.Context, name string) *Timing</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.BeginTiming">func (c *CachedCounters) BeginTiming(ctx context.Context, name string) *CounterTiming</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CachedCounters.Clear">func (c *CachedCounters) Clear(ctx context.Context, name string)</a></dd>
@@ -230,7 +230,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.BeginTiming">func (c *CompositeCounters) BeginTiming(ctx context.Context, name string) *Timing</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.BeginTiming">func (c *CompositeCounters) BeginTiming(ctx context.Context, name string) *CounterTiming</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#CompositeCounters.EndTiming">func (c *CompositeCounters) EndTiming(ctx context.Context, name string, elapsed float64)</a></dd>
@@ -260,6 +260,20 @@
 				
 				<dd><a href="index.html#Counter">type Counter</a></dd>
 				
+				
+			
+				
+				<dd><a href="index.html#CounterTiming">type CounterTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCounterTiming">func NewCounterTiming(counter string, callback ITimingCallback) *CounterTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyCounterTiming">func NewEmptyCounterTiming() *CounterTiming</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CounterTiming.EndTiming">func (c *CounterTiming) EndTiming(ctx context.Context)</a></dd>
 				
 			
 				
@@ -316,7 +330,7 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NullCounters.BeginTiming">func (c *NullCounters) BeginTiming(ctx context.Context, name string) *Timing</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NullCounters.BeginTiming">func (c *NullCounters) BeginTiming(ctx context.Context, name string) *CounterTiming</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#NullCounters.Increment">func (c *NullCounters) Increment(ctx context.Context, name string, value int64)</a></dd>
@@ -335,20 +349,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#NullCounters.TimestampNow">func (c *NullCounters) TimestampNow(ctx context.Context, name string)</a></dd>
-				
-			
-				
-				<dd><a href="index.html#Timing">type Timing</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyTiming">func NewEmptyTiming() *Timing</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewTiming">func NewTiming(counter string, callback ITimingCallback) *Timing</a></dd>
-				
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#Timing.EndTiming">func (c *Timing) EndTiming(ctx context.Context)</a></dd>
 				
 			
 			
@@ -370,6 +370,8 @@
 			
 				<a href="http://localhost:6060/src/count/Counter.go">Counter.go</a>
 			
+				<a href="http://localhost:6060/src/count/CounterTiming.go">CounterTiming.go</a>
+			
 				<a href="http://localhost:6060/src/count/CounterType.go">CounterType.go</a>
 			
 				<a href="http://localhost:6060/src/count/DefaultCountersFactory.go">DefaultCountersFactory.go</a>
@@ -381,8 +383,6 @@
 				<a href="http://localhost:6060/src/count/LogCounters.go">LogCounters.go</a>
 			
 				<a href="http://localhost:6060/src/count/NullCounters.go">NullCounters.go</a>
-			
-				<a href="http://localhost:6060/src/count/Timing.go">Timing.go</a>
 			
 				<a href="http://localhost:6060/src/count/doc.go">doc.go</a>
 			
@@ -762,12 +762,12 @@ Returns: *CachedCounters
 
 			
 				
-				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5348:5426#L195">BeginTiming</a>
+				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5348:5433#L195">BeginTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.BeginTiming">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CachedCounters">CachedCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Timing">Timing</a></pre>
+				<pre>func (c *<a href="index.html#CachedCounters">CachedCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CounterTiming">CounterTiming</a></pre>
 				<p>
 BeginTiming begins measurement of execution time interval.
 It returns Timing object which has to be called at
@@ -856,7 +856,7 @@ Dump (saves) the current values of counters.
 				
 			
 				
-				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5728:5813#L205">EndTiming</a>
+				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5742:5827#L205">EndTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -933,7 +933,7 @@ GetAllCountersStats gets all captured counters stats.
 				
 			
 				
-				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7850:7931#L270">Increment</a>
+				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7864:7945#L270">Increment</a>
 					<a class="permalink" href="index.html#CachedCounters.Increment">&#xb6;</a>
 					
 					
@@ -953,7 +953,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7558:7629#L261">IncrementOne</a>
+				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7572:7643#L261">IncrementOne</a>
 					<a class="permalink" href="index.html#CachedCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -972,7 +972,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6604:6682#L230">Last</a>
+				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6618:6696#L230">Last</a>
 					<a class="permalink" href="index.html#CachedCounters.Last">&#xb6;</a>
 					
 					
@@ -993,7 +993,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6159:6238#L217">Stats</a>
+				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6173:6252#L217">Stats</a>
 					<a class="permalink" href="index.html#CachedCounters.Stats">&#xb6;</a>
 					
 					
@@ -1013,7 +1013,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7232:7317#L250">Timestamp</a>
+				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7246:7331#L250">Timestamp</a>
 					<a class="permalink" href="index.html#CachedCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1033,7 +1033,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6939:7010#L241">TimestampNow</a>
+				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6953:7024#L241">TimestampNow</a>
 					<a class="permalink" href="index.html#CachedCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1136,12 +1136,12 @@ Returns: *CompositeCounters
 
 			
 				
-				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2604:2685#L76">BeginTiming</a>
+				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2604:2692#L76">BeginTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.BeginTiming">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#CompositeCounters">CompositeCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Timing">Timing</a></pre>
+				<pre>func (c *<a href="index.html#CompositeCounters">CompositeCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CounterTiming">CounterTiming</a></pre>
 				<p>
 BeginTiming begins measurement of execution time interval.
 It returns Timing object which has to be called at
@@ -1158,7 +1158,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2987:3075#L86">EndTiming</a>
+				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3001:3089#L86">EndTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -1179,7 +1179,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5189:5273#L157">Increment</a>
+				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5203:5287#L157">Increment</a>
 					<a class="permalink" href="index.html#CompositeCounters.Increment">&#xb6;</a>
 					
 					
@@ -1199,7 +1199,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4891:4965#L148">IncrementOne</a>
+				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4905:4979#L148">IncrementOne</a>
 					<a class="permalink" href="index.html#CompositeCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -1218,7 +1218,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3923:4004#L115">Last</a>
+				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3937:4018#L115">Last</a>
 					<a class="permalink" href="index.html#CompositeCounters.Last">&#xb6;</a>
 					
 					
@@ -1258,7 +1258,7 @@ SetReferences references to dependent components.
 				
 			
 				
-				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3481:3563#L101">Stats</a>
+				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3495:3577#L101">Stats</a>
 					<a class="permalink" href="index.html#CompositeCounters.Stats">&#xb6;</a>
 					
 					
@@ -1278,7 +1278,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4557:4645#L136">Timestamp</a>
+				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4571:4659#L136">Timestamp</a>
 					<a class="permalink" href="index.html#CompositeCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1298,7 +1298,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4261:4335#L127">TimestampNow</a>
+				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4275:4349#L127">TimestampNow</a>
 					<a class="permalink" href="index.html#CompositeCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1351,6 +1351,90 @@ This object is used by CachedCounters to store counters.
 
 			
 
+			
+		
+			
+			
+			<h2 id="CounterTiming">type <a href="http://localhost:6060/src/count/CounterTiming.go?s=285:377#L3">CounterTiming</a>
+				<a class="permalink" href="index.html#CounterTiming">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+CounterTiming callback object returned by ICounters.beginTiming to end timing of
+execution block and update the associated counter.
+</p>
+<pre>Example:
+	timing := counters.BeginTiming(&#34;mymethod.exec_time&#34;);
+	defer  timing.EndTiming();
+</pre>
+
+			<pre>type CounterTiming struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=828:906#L22">NewCounterTiming</a>
+					<a class="permalink" href="index.html#NewCounterTiming">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCounterTiming(counter <a href="http://localhost:6060/pkg/builtin/#string">string</a>, callback <a href="index.html#ITimingCallback">ITimingCallback</a>) *<a href="index.html#CounterTiming">CounterTiming</a></pre>
+				<p>
+NewCounterTiming creates a new instance of the timing callback object.
+</p>
+<pre>Parameters:
+	- counter string an associated counter name
+	- callback ITimingCallback a callback that shall be called when EndTiming is called.
+Returns: *Timing
+</pre>
+
+				
+				
+			
+				
+				<h3 id="NewEmptyCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=485:528#L11">NewEmptyCounterTiming</a>
+					<a class="permalink" href="index.html#NewEmptyCounterTiming">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyCounterTiming() *<a href="index.html#CounterTiming">CounterTiming</a></pre>
+				<p>
+NewEmptyCounterTiming creates a new instance of the timing callback object.
+</p>
+<pre>Returns: *CounterTiming
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CounterTiming.EndTiming">func (*CounterTiming) <a href="http://localhost:6060/src/count/CounterTiming.go?s=1117:1171#L32">EndTiming</a>
+					<a class="permalink" href="index.html#CounterTiming.EndTiming">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CounterTiming">CounterTiming</a>) EndTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>)</pre>
+				<p>
+EndTiming ends timing of an execution block, calculates
+elapsed time and updates the associated counter.
+</p>
+
+				
+				
+				
 			
 		
 			
@@ -1471,7 +1555,7 @@ ToString method converting counter type to string
 		
 			
 			
-			<h2 id="ICounters">type <a href="http://localhost:6060/src/count/ICounters.go?s=425:1431#L2">ICounters</a>
+			<h2 id="ICounters">type <a href="http://localhost:6060/src/count/ICounters.go?s=425:1438#L2">ICounters</a>
 				<a class="permalink" href="index.html#ICounters">&#xb6;</a>
 				
 				
@@ -1487,7 +1571,7 @@ They are critical to monitor and improve performance, scalability and reliabilit
     <span class="comment">// BeginTiming begins measurement of execution time interval.</span>
     <span class="comment">// It returns Timing object which has to be called at</span>
     <span class="comment">// Timing.endTiming to end the measurement and update the counter.</span>
-    BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Timing">Timing</a>
+    BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CounterTiming">CounterTiming</a>
 
     <span class="comment">// Stats calculates min/average/max statistics based on the current and previous values.</span>
     Stats(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value <a href="http://localhost:6060/pkg/builtin/#float64">float64</a>)
@@ -1701,12 +1785,12 @@ NewNullCounters creates a new instance of the counter.
 
 			
 				
-				<h3 id="NullCounters.BeginTiming">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=741:817#L15">BeginTiming</a>
+				<h3 id="NullCounters.BeginTiming">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=741:824#L15">BeginTiming</a>
 					<a class="permalink" href="index.html#NullCounters.BeginTiming">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#NullCounters">NullCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#Timing">Timing</a></pre>
+				<pre>func (c *<a href="index.html#NullCounters">NullCounters</a>) BeginTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CounterTiming">CounterTiming</a></pre>
 				<p>
 BeginTiming begins measurement of execution time interval.
 It returns Timing object which has to be called at Timing.EndTiming
@@ -1723,7 +1807,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="NullCounters.Increment">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2384:2463#L58">Increment</a>
+				<h3 id="NullCounters.Increment">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2398:2477#L58">Increment</a>
 					<a class="permalink" href="index.html#NullCounters.Increment">&#xb6;</a>
 					
 					
@@ -1743,7 +1827,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="NullCounters.IncrementOne">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2120:2189#L51">IncrementOne</a>
+				<h3 id="NullCounters.IncrementOne">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2134:2203#L51">IncrementOne</a>
 					<a class="permalink" href="index.html#NullCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -1762,7 +1846,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="NullCounters.Last">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1413:1489#L32">Last</a>
+				<h3 id="NullCounters.Last">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1427:1503#L32">Last</a>
 					<a class="permalink" href="index.html#NullCounters.Last">&#xb6;</a>
 					
 					
@@ -1783,7 +1867,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="NullCounters.Stats">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1079:1156#L24">Stats</a>
+				<h3 id="NullCounters.Stats">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1093:1170#L24">Stats</a>
 					<a class="permalink" href="index.html#NullCounters.Stats">&#xb6;</a>
 					
 					
@@ -1803,7 +1887,7 @@ Parameters:
 				
 			
 				
-				<h3 id="NullCounters.Timestamp">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1898:1981#L45">Timestamp</a>
+				<h3 id="NullCounters.Timestamp">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1912:1995#L45">Timestamp</a>
 					<a class="permalink" href="index.html#NullCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1823,7 +1907,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="NullCounters.TimestampNow">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1644:1713#L38">TimestampNow</a>
+				<h3 id="NullCounters.TimestampNow">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1658:1727#L38">TimestampNow</a>
 					<a class="permalink" href="index.html#NullCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1842,90 +1926,6 @@ TimestampNow records the current time as a timestamp.
 				
 			
 		
-			
-			
-			<h2 id="Timing">type <a href="http://localhost:6060/src/count/Timing.go?s=278:363#L3">Timing</a>
-				<a class="permalink" href="index.html#Timing">&#xb6;</a>
-				
-				
-			</h2>
-			<p>
-Timing callback object returned by ICounters.beginTiming to end timing of
-execution block and update the associated counter.
-</p>
-<pre>Example:
-	timing := counters.BeginTiming(&#34;mymethod.exec_time&#34;);
-	defer  timing.EndTiming();
-</pre>
-
-			<pre>type Timing struct {
-    <span class="comment">// contains filtered or unexported fields</span>
-}
-</pre>
-
-			
-
-			
-
-			
-			
-			
-
-			
-				
-				<h3 id="NewEmptyTiming">func <a href="http://localhost:6060/src/count/Timing.go?s=457:486#L11">NewEmptyTiming</a>
-					<a class="permalink" href="index.html#NewEmptyTiming">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func NewEmptyTiming() *<a href="index.html#Timing">Timing</a></pre>
-				<p>
-NewEmptyTiming creates a new instance of the timing callback object.
-</p>
-<pre>Returns: *Timing
-</pre>
-
-				
-				
-			
-				
-				<h3 id="NewTiming">func <a href="http://localhost:6060/src/count/Timing.go?s=772:836#L22">NewTiming</a>
-					<a class="permalink" href="index.html#NewTiming">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func NewTiming(counter <a href="http://localhost:6060/pkg/builtin/#string">string</a>, callback <a href="index.html#ITimingCallback">ITimingCallback</a>) *<a href="index.html#Timing">Timing</a></pre>
-				<p>
-NewTiming creates a new instance of the timing callback object.
-</p>
-<pre>Parameters:
-	- counter string an associated counter name
-	- callback ITimingCallback a callback that shall be called when EndTiming is called.
-Returns: *Timing
-</pre>
-
-				
-				
-			
-
-			
-				
-				<h3 id="Timing.EndTiming">func (*Timing) <a href="http://localhost:6060/src/count/Timing.go?s=1040:1087#L32">EndTiming</a>
-					<a class="permalink" href="index.html#Timing.EndTiming">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#Timing">Timing</a>) EndTiming(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>)</pre>
-				<p>
-EndTiming ends timing of an execution block, calculates
-elapsed time and updates the associated counter.
-</p>
-
-				
-				
-				
-			
-		
 	
 
 	
@@ -1937,7 +1937,7 @@ elapsed time and updates the associated counter.
 
 
 <div id="footer">
-Build version go1.18.2.<br>
+Build version go1.18.3.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

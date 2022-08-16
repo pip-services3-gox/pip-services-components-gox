@@ -13,7 +13,7 @@ type ICounters interface {
 	// BeginTiming begins measurement of execution time interval.
 	// It returns Timing object which has to be called at
 	// Timing.endTiming to end the measurement and update the counter.
-	BeginTiming(ctx context.Context, name string) *Timing
+	BeginTiming(ctx context.Context, name string) *CounterTiming
 
 	// Stats calculates min/average/max statistics based on the current and previous values.
 	Stats(ctx context.Context, name string, value float64)
