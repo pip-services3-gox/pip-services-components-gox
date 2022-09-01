@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
@@ -142,8 +143,7 @@ func (c *CredentialResolver) lookupInStores(ctx context.Context, correlationId s
 //	Returns: *CredentialParams? error
 func (c *CredentialResolver) Lookup(ctx context.Context, correlationId string) (*CredentialParams, error) {
 	if len(c.credentials) == 0 {
-		return nil, errors.NewConfigError(
-			correlationId, "MISSING_CREDENTIALS", "missing credential param")
+		return nil, nil
 	}
 
 	lookupCredentials := make([]*CredentialParams, 0)
