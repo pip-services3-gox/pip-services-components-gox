@@ -31,7 +31,7 @@ func TestCredentialResolverLookup(t *testing.T) {
 	credentialResolver := auth.NewEmptyCredentialResolver()
 
 	credential, err := credentialResolver.Lookup(context.Background(), "")
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 	assert.Nil(t, credential)
 
 	restConfigWithoutStoreKey := config.NewConfigParamsFromTuples(
