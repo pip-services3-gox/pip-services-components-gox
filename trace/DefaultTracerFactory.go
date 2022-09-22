@@ -5,11 +5,11 @@ import (
 	cbuild "github.com/pip-services3-gox/pip-services3-components-gox/build"
 )
 
-// DefaultTracerFactory creates [[ITracer]] components by their descriptors.
-//	See [[Factory]]
-//	See [[NullTracer]]
-//	See [[ConsoleTracer]]
-//	See [[CompositeTracer]]
+// DefaultTracerFactory creates ITracer components by their descriptors.
+//	See Factory
+//	See NullTracer
+//	See ConsoleTracer
+//	See CompositeTracer
 type DefaultTracerFactory struct {
 	cbuild.Factory
 	NullTracerDescriptor      *cref.Descriptor

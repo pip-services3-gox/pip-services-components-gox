@@ -18,7 +18,7 @@ type CompositeFactory struct {
 }
 
 // NewCompositeFactory creates a new instance of the factory.
-//	Returns: *CompositeFactory
+// Returns: *CompositeFactory
 func NewCompositeFactory() *CompositeFactory {
 	return &CompositeFactory{
 		_factories: make([]IFactory, 0),
@@ -26,7 +26,8 @@ func NewCompositeFactory() *CompositeFactory {
 }
 
 // NewCompositeFactoryFromFactories creates a new instance of the factory.
-//	Parameters: factories ...IFactory a list of factories to embed into this factory.
+//	Parameters:
+//		- factories ...IFactory a list of factories to embed into this factory.
 //	Returns: *CompositeFactory
 func NewCompositeFactoryFromFactories(factories ...IFactory) *CompositeFactory {
 	return &CompositeFactory{
@@ -84,7 +85,8 @@ func (c *CompositeFactory) CanCreate(locator any) any {
 }
 
 // Create creates a component identified by given locator.
-//	Parameters: locator any a locator to identify component to be created.
+//	Parameters:
+//		- locator any a locator to identify component to be created.
 //	Returns: any, error the created component and a
 //		CreateError if the factory is not able to create the component..
 func (c *CompositeFactory) Create(locator any) (any, error) {

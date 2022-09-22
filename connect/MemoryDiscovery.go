@@ -2,6 +2,7 @@ package connect
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
@@ -23,7 +24,7 @@ import (
 //		discovery := NewMemoryDiscovery();
 //		discovery.ReadConnections(config);
 //		conn, err := discovery.Resolve("123", "key1");
-//// Result: host=10.1.1.100;port=8080
+// Result: host=10.1.1.100;port=8080
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams
 }
@@ -125,7 +126,7 @@ func (c *MemoryDiscovery) ResolveOne(correlationId string,
 //	Returns: *ConnectionParams, error receives found connection or error.
 func (c *MemoryDiscovery) ResolveAll(correlationId string,
 	key string) (result []*ConnectionParams, err error) {
-	connections, _ := c.items[key]
+	connections := c.items[key]
 
 	if connections == nil {
 		connections = []*ConnectionParams{}

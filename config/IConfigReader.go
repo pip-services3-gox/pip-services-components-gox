@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	crun "github.com/pip-services3-gox/pip-services3-commons-gox/run"
 )
@@ -16,7 +17,7 @@ type IConfigReader interface {
 	// ReadConfig reads configuration and parameterize it with given values.
 	ReadConfig(ctx context.Context, correlationId string, parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error)
 
-	//AddChangeListener adds a listener that will be notified when configuration is changed
+	// AddChangeListener adds a listener that will be notified when configuration is changed
 	AddChangeListener(ctx context.Context, listener crun.INotifiable)
 
 	// RemoveChangeListener remove a previously added change listener.

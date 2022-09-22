@@ -18,11 +18,11 @@ import (
 //		access_key: application secret key
 //		client_key: alternative to access_key
 //		secret_key: alternative to access_key
-//	In addition to standard parameters CredentialParams may contain any number of custom parameters
-//	see config.ConfigParams
-//	see ConnectionParams
-//	see CredentialResolver
-//	see ICredentialStore
+// In addition to standard parameters CredentialParams may contain any number of custom parameters
+// see config.ConfigParams
+// see ConnectionParams
+// see CredentialResolver
+// see ICredentialStore
 //	Example:
 //		credential := NewCredentialParamsFromTuples(
 //			"user", "jdoe",
@@ -32,7 +32,7 @@ import (
 //		username := credential.Username();  // Result: "jdoe"
 //		password := credential.Password();  // Result: "pass123"
 type CredentialParams struct {
-	config.ConfigParams
+	*config.ConfigParams
 }
 
 const (
@@ -54,74 +54,81 @@ const (
 //	Returns: *CredentialParams
 func NewEmptyCredentialParams() *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewEmptyConfigParams(),
+		ConfigParams: config.NewEmptyConfigParams(),
 	}
 }
 
 // NewCredentialParams creates a new credential parameters and fills it with values.
-//	Parameters: values map[string]string an object to be converted
+//	Parameters:
+//		- values map[string]string an object to be converted
 //		into key-value pairs to initialize these credentials.
 //	Returns: *CredentialParams
 func NewCredentialParams(values map[string]string) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParams(values),
+		ConfigParams: config.NewConfigParams(values),
 	}
 }
 
 // NewCredentialParamsFromValue method that creates a ConfigParams object
 // based on the values that are stored in the 'value' object's properties.
-//	Parameters: value any configuration parameters in the form of an object with properties.
+//	Parameters:
+//		- value any configuration parameters in the form of an object with properties.
 //	Returns: *ConfigParams generated ConfigParams.
 func NewCredentialParamsFromValue(value any) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParamsFromValue(value),
+		ConfigParams: config.NewConfigParamsFromValue(value),
 	}
 }
 
 // NewCredentialParamsFromTuples creates a new CredentialParams object filled with
 // provided key-value pairs called tuples.
 // Tuples parameters contain a sequence of key1, value1, key2, value2, ... pairs.
-//	Parameters: tuples ...any the tuples to fill a new CredentialParams object.
+//	Parameters:
+//		- tuples ...any the tuples to fill a new CredentialParams object.
 //	Returns: *CredentialParams a new CredentialParams object.
 func NewCredentialParamsFromTuples(tuples ...any) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParamsFromTuplesArray(tuples),
+		ConfigParams: config.NewConfigParamsFromTuplesArray(tuples),
 	}
 }
 
 // NewCredentialParamsFromTuplesArray static method for creating a CredentialParams from an array of tuples.
-//	Parameters: tuples []any the key-value tuples array to initialize the new StringValueMap with.
+//	Parameters:
+//		- tuples []any the key-value tuples array to initialize the new StringValueMap with.
 //	Returns: CredentialParams the CredentialParams created and filled by the 'tuples' array provided.
 func NewCredentialParamsFromTuplesArray(tuples []any) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParamsFromTuplesArray(tuples),
+		ConfigParams: config.NewConfigParamsFromTuplesArray(tuples),
 	}
 }
 
 // NewCredentialParamsFromString creates a new CredentialParams object filled with key-value pairs serialized as a string.
-//	Parameters: line string a string with serialized key-value
+//	Parameters:
+//	- line string a string with serialized key-value
 //		pairs as "key1=value1;key2=value2;..."
 //		Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"
 //	Returns: *CredentialParams a new CredentialParams object.
 func NewCredentialParamsFromString(line string) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParamsFromString(line),
+		ConfigParams: config.NewConfigParamsFromString(line),
 	}
 }
 
 // NewCredentialParamsFromMaps static method for creating a CredentialParams using the maps passed as parameters.
-//	Parameters: maps ...map[string]string the maps passed to this method to create a StringValueMap with.
+//	Parameters:
+//		- maps ...map[string]string the maps passed to this method to create a StringValueMap with.
 //	Returns: *CredentialParams the CredentialParams created.
 func NewCredentialParamsFromMaps(maps ...map[string]string) *CredentialParams {
 	return &CredentialParams{
-		ConfigParams: *config.NewConfigParamsFromMaps(maps...),
+		ConfigParams: config.NewConfigParamsFromMaps(maps...),
 	}
 }
 
 // NewManyCredentialParamsFromConfig retrieves all CredentialParams from configuration parameters
 // from "credentials" section. If "credential" section is present instead,
 // then it returns a list with only one CredentialParams.
-//	Parameters: config *config.ConfigParams a configuration parameters to retrieve credentials
+//	Parameters:
+//		- config *config.ConfigParams a configuration parameters to retrieve credentials
 //	Returns: []*CredentialParams a list of retrieved CredentialParams
 func NewManyCredentialParamsFromConfig(config *config.ConfigParams) []*CredentialParams {
 	result := make([]*CredentialParams, 0)
@@ -146,7 +153,8 @@ func NewManyCredentialParamsFromConfig(config *config.ConfigParams) []*Credentia
 // NewCredentialParamsFromConfig кetrieves a single CredentialParams from
 // configuration parameters from "credential" section. If "credentials"
 // section is present instead, then is returns only the first credential element.
-//	Parameters: config *config.ConfigParams, containing a section named "credential(s)".
+//	Parameters:
+//		- config *config.ConfigParams, containing a section named "credential(s)".
 //	Returns []*CredentialParams the generated CredentialParams object.
 func NewCredentialParamsFromConfig(config *config.ConfigParams) *CredentialParams {
 	credentials := NewManyCredentialParamsFromConfig(config)

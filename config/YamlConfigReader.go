@@ -29,14 +29,14 @@ import (
 //		res, err := configReader.ReadConfig("123", parameters);
 //			// Result: key1=123;key2=ABC
 type YamlConfigReader struct {
-	FileConfigReader
+	*FileConfigReader
 }
 
 // NewEmptyYamlConfigReader сreates a new instance of the config reader.
 //	Returns: *YamlConfigReader
 func NewEmptyYamlConfigReader() *YamlConfigReader {
 	return &YamlConfigReader{
-		FileConfigReader: *NewEmptyFileConfigReader(),
+		FileConfigReader: NewEmptyFileConfigReader(),
 	}
 }
 
@@ -45,7 +45,7 @@ func NewEmptyYamlConfigReader() *YamlConfigReader {
 //	Returns: *YamlConfigReader
 func NewYamlConfigReader(path string) *YamlConfigReader {
 	return &YamlConfigReader{
-		FileConfigReader: *NewFileConfigReader(path),
+		FileConfigReader: NewFileConfigReader(path),
 	}
 }
 

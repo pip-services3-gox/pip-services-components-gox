@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
@@ -27,7 +28,8 @@ func NewEmptyFileConfigReader() *FileConfigReader {
 }
 
 // NewFileConfigReader creates a new instance of the config reader.
-//	Parameters: path string a path to configuration file.
+//	Parameters:
+//		- path string a path to configuration file.
 //	Returns: *FileConfigReader
 func NewFileConfigReader(path string) *FileConfigReader {
 	return &FileConfigReader{
@@ -52,7 +54,8 @@ func (c *FileConfigReader) Path() string {
 }
 
 // SetPath set the path to configuration file.
-//	Parameters: path string a new path to configuration file.
+//	Parameters:
+//		- path string a new path to configuration file.
 func (c *FileConfigReader) SetPath(path string) {
 	c.path = path
 }

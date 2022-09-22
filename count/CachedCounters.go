@@ -12,9 +12,9 @@ import (
 // stores counters in memory. Child classes implement saving of the counters
 // into various destinations.
 //	Configuration parameters:
-//		options:
-//		interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-//		reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+//		- options:
+//			- interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+//			- reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 type CachedCounters struct {
 	cache         map[string]*AtomicCounter
 	updated       bool
@@ -74,7 +74,8 @@ func (c *CachedCounters) Clear(ctx context.Context, name string) {
 }
 
 // ClearAll clears (resets) all counters.
-//	Parameters: ctx context.Context
+//	Parameters:
+//		- ctx context.Context
 func (c *CachedCounters) ClearAll(ctx context.Context) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
@@ -89,7 +90,8 @@ func (c *CachedCounters) isUpdated() bool {
 }
 
 // Dump (saves) the current values of counters.
-//	Parameters: ctx context.Context
+//	Parameters:
+//		- ctx context.Context
 func (c *CachedCounters) Dump(ctx context.Context) error {
 	if !c.isUpdated() {
 		return nil

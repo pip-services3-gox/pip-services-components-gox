@@ -2,6 +2,7 @@ package connect
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	cerr "github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
@@ -27,7 +28,7 @@ type ICompositeConnectionResolverOverrides interface {
 // CompositeConnectionResolver helper class that resolves connection and credential parameters,
 // validates them and generates connection options.
 //
-//	### Configuration parameters ###
+//	Configuration parameters
 //		- connection(s):
 //			- discovery_key:               (optional) a key to retrieve the connection from [IDiscovery]]
 //			- protocol:                    communication protocol
@@ -39,7 +40,7 @@ type ICompositeConnectionResolverOverrides interface {
 //			- username:                    user name
 //			- password:                    user password
 //
-//	### References ###
+//	References
 //		- *:discovery:*:*:1.0          (optional) [IDiscovery]] services to resolve connections
 //		- *:credential-store:*:*:1.0   (optional) Credential stores to resolve credentials
 type CompositeConnectionResolver struct {
@@ -263,7 +264,7 @@ func (c *CompositeConnectionResolver) ComposeOptions(connections []*ConnectionPa
 //		-  connection parameters to be merged
 //	Returns: merged connection options.
 func (c *CompositeConnectionResolver) MergeConnection(options *config.ConfigParams, connection *ConnectionParams) *config.ConfigParams {
-	var mergedOptions = options.SetDefaults(&connection.ConfigParams)
+	var mergedOptions = options.SetDefaults(connection.ConfigParams)
 	return mergedOptions
 }
 
@@ -274,7 +275,7 @@ func (c *CompositeConnectionResolver) MergeConnection(options *config.ConfigPara
 //		- credential parameters to be merged
 //	Returns: merged connection options.
 func (c *CompositeConnectionResolver) MergeCredential(options *config.ConfigParams, credential *auth.CredentialParams) *config.ConfigParams {
-	var mergedOptions = options.Override(&credential.ConfigParams)
+	var mergedOptions = options.Override(credential.ConfigParams)
 	return mergedOptions
 }
 

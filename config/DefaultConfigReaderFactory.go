@@ -5,7 +5,7 @@ import (
 	"github.com/pip-services3-gox/pip-services3-components-gox/build"
 )
 
-//Creates IConfigReader components by their descriptors.
+// Creates IConfigReader components by their descriptors.
 
 var MemoryConfigReaderDescriptor = refer.NewDescriptor("pip-services", "config-reader", "memory", "*", "1.0")
 var JsonConfigReaderDescriptor = refer.NewDescriptor("pip-services", "config-reader", "json", "*", "1.0")

@@ -16,7 +16,7 @@ type CacheEntry[T any] struct {
 //		- key string a unique key to locate the value.
 //		- value T a value to be stored.
 //		- timeout int64 expiration timeout in milliseconds.
-// Returns *CacheEntry
+//	Returns *CacheEntry
 func NewCacheEntry[T any](key string, value T, timeout int64) *CacheEntry[T] {
 	return &CacheEntry[T]{
 		key:        key,
@@ -44,7 +44,7 @@ func (c *CacheEntry[T]) Expiration() time.Time {
 }
 
 // SetValue a new value and extends its expiration.
-// Parameters:
+//	Parameters:
 //		- value any a new cached value.
 //		- timeout int64 an expiration timeout in milliseconds.
 func (c *CacheEntry[T]) SetValue(value T, timeout int64) {

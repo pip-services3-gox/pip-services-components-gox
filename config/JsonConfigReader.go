@@ -27,14 +27,14 @@ import (
 //		parameters := NewConfigParamsFromTuples("KEY1_VALUE", 123, "KEY2_VALUE", "ABC")
 //		res, err := configReader.ReadConfig("123", parameters)
 type JsonConfigReader struct {
-	FileConfigReader
+	*FileConfigReader
 }
 
 // NewEmptyJsonConfigReader creates a new instance of the config reader.
 //	Returns: *JsonConfigReader
 func NewEmptyJsonConfigReader() *JsonConfigReader {
 	return &JsonConfigReader{
-		FileConfigReader: *NewEmptyFileConfigReader(),
+		FileConfigReader: NewEmptyFileConfigReader(),
 	}
 }
 
@@ -43,7 +43,7 @@ func NewEmptyJsonConfigReader() *JsonConfigReader {
 //	Returns: *JsonConfigReader
 func NewJsonConfigReader(path string) *JsonConfigReader {
 	return &JsonConfigReader{
-		FileConfigReader: *NewFileConfigReader(path),
+		FileConfigReader: NewFileConfigReader(path),
 	}
 }
 

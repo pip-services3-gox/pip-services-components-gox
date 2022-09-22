@@ -12,12 +12,15 @@ import (
 
 // ConsoleLogger is a logger that writes log messages to console.
 // Errors are written to standard err stream and all other messages to standard out stream.
+//
 //	Configuration parameters:
-//		level: maximum log level to capture
-//		source: source (context) name
+//		- level: maximum log level to capture
+//		- source: source (context) name
+//
 //	References:
-//		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+//		- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 //	see Logger
+//
 //	Example:
 //		logger = NewConsoleLogger();
 //		logger.SetLevel(LogLevel.Debug);
@@ -78,8 +81,8 @@ func (c *ConsoleLogger) Write(ctx context.Context, level LevelType, correlationI
 	output := build.String()
 
 	if level == LevelFatal || level == LevelError || level == LevelWarn {
-		fmt.Fprintf(os.Stderr, output)
+		fmt.Fprintln(os.Stderr, output)
 	} else {
-		fmt.Printf(output)
+		fmt.Println(output)
 	}
 }

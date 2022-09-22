@@ -58,7 +58,8 @@ func logLevelFromString(value any) LevelType {
 
 // LogLevelToString converts log level to a string.
 //	see LogLevel
-//	Parameters: level LevelType a log level to convert
+//	Parameters:
+//		- level LevelType a log level to convert
 //	Returns string log level name string.
 func logLevelToString(level LevelType) string {
 	switch level {

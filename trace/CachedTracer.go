@@ -23,8 +23,8 @@ import (
 //	References:
 //		- *:context-info:*:*:1.0 (optional) [[ContextInfo]] to detect the context id and specify counters source
 //
-//	See [[ITracer]]
-//	See [[OperationTrace]]
+//	See ITracer
+//	See OperationTrace
 type ICachedTraceSaver interface {
 	Save(ctx context.Context, operations []OperationTrace) error
 }
@@ -166,7 +166,7 @@ func (c *CachedTracer) Dump(ctx context.Context) {
 
 // Update makes trace cache as updated
 // and dumps it when timeout expires.
-//	See [[Dump]]
+//	See Dump
 func (c *CachedTracer) Update(ctx context.Context) {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()

@@ -12,6 +12,7 @@ import (
 // If credentials are configured to be retrieved from ICredentialStore,
 // it automatically locates ICredentialStore in component references and retrieve
 // credentials from there using store_key parameter.
+//
 //	Configuration parameters:
 //		credential:
 //		store_key: (optional) a key to retrieve the credentials from ICredentialStore
@@ -24,8 +25,8 @@ import (
 //			... credential parameters for key N
 //	References:
 //		*:credential-store:*:*:1.0 (optional) Credential stores to resolve credentials
-//	see CredentialParams
-//	see ICredentialStore
+// see CredentialParams
+// see ICredentialStore
 //	Example:
 //		config := NewConfigParamsFromTuples(
 //			"credential.user", "jdoe",
@@ -73,17 +74,16 @@ func NewCredentialResolver(ctx context.Context, config *config.ConfigParams, ref
 }
 
 // Configure configures component by passing configuration parameters.
-// Parameters: config *config.ConfigParams configuration parameters to be set.
+//	Parameters:
+//		- config *config.ConfigParams configuration parameters to be set.
 func (c *CredentialResolver) Configure(ctx context.Context, config *config.ConfigParams) {
 	credentials := NewManyCredentialParamsFromConfig(config)
-
-	for _, credential := range credentials {
-		c.credentials = append(c.credentials, credential)
-	}
+	c.credentials = append(c.credentials, credentials...)
 }
 
 // SetReferences sets references to dependent components.
-// Parameters: references refer.IReferences references to locate the component dependencies.
+//	Parameters:
+//		- references refer.IReferences references to locate the component dependencies.
 func (c *CredentialResolver) SetReferences(ctx context.Context, references refer.IReferences) {
 	c.references = references
 }
@@ -97,7 +97,8 @@ func (c *CredentialResolver) GetAll() []*CredentialParams {
 }
 
 // Add a new credential to component credentials
-// Parameters: credential *CredentialParams new credential parameters to be added
+//	Parameters:
+//		- credential *CredentialParams new credential parameters to be added
 func (c *CredentialResolver) Add(credential *CredentialParams) {
 	c.credentials = append(c.credentials, credential)
 }

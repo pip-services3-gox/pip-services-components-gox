@@ -2,13 +2,15 @@ package log
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 )
 
 // CompositeLogger aggregates all loggers from component references under a single component.
 // It allows logging messages and conveniently send them to multiple destinations.
+//
 //	References:
-//		*:logger:*:*:1.0 (optional) ILogger components to pass log messages
+//		- *:logger:*:*:1.0 (optional) ILogger components to pass log messages
 //	see ILogger
 //	Example:
 //		type MyComponent {

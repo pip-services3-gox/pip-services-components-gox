@@ -22,8 +22,8 @@ type OperationTrace struct {
 	// The duration of the operation in milliseconds
 	Duration int64 `json:"duration"`
 
-	//The description of the captured error
-	//ErrorDescription
-	//ApplicationException
+	// The description of the captured error
+	// ErrorDescription
+	// ApplicationException
 	Error cerr.ErrorDescription `json:"error"`
 }

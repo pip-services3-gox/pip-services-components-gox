@@ -20,7 +20,8 @@ func (c *NullLogger) Level() LevelType {
 }
 
 // SetLevel set the maximum log level.
-//	Parameters: value int a new maximum log level.
+//	Parameters:
+//		- value int a new maximum log level.
 func (c *NullLogger) SetLevel(value LevelType) {
 }
 

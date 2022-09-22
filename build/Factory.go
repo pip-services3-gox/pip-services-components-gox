@@ -34,7 +34,7 @@ type Factory struct {
 }
 
 // NewFactory create new factory
-// Returns: *Factory
+//	Returns: *Factory
 func NewFactory() *Factory {
 	return &Factory{
 		_registrations: []*registration{},
@@ -44,8 +44,7 @@ func NewFactory() *Factory {
 // Register registers a component using a factory method.
 //	Parameters:
 //		- locator any a locator to identify component to be created.
-//		- factory func(locator any) any a factory function that receives a
-//			locator and returns a created component.
+//		- factory func(locator any) any a factory function that receives a locator and returns a created component.
 func (c *Factory) Register(locator any, factory func(locator any) any) {
 	if locator == nil {
 		panic("Locator cannot be nil")

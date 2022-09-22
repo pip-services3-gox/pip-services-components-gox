@@ -2,6 +2,7 @@ package trace
 
 import (
 	"context"
+
 	cconf "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	cconv "github.com/pip-services3-gox/pip-services3-commons-gox/convert"
 	cref "github.com/pip-services3-gox/pip-services3-commons-gox/refer"
@@ -11,14 +12,16 @@ import (
 // LogTracer tracer that dumps recorded traces to logger.
 //	Configuration parameters:
 //		- options:
-//		- log_level: log level to record traces (default: debug)
+//			- log_level: log level to record traces (default: debug)
 //
 //	References:
 //		- *:logger:*:*:1.0       [[ILogger]] components to dump the captured counters
 //		- *:context-info:*:*:1.0 (optional) [[ContextInfo]] to detect the context id and specify counters source
-//	See [[Tracer]]
-//	See [[CachedCounters]]
-//	See [[CompositeLogger]]
+//
+//	See Tracer
+//	See CachedCounters
+//	See CompositeLogger
+//
 //	Example:
 //		tracer = NewLogTracer();
 //		tracer.SetReferences(

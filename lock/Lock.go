@@ -14,8 +14,8 @@ type ILockOverrides interface {
 
 // Lock abstract lock that implements default lock acquisition routine.
 //	Configuration parameters:
-//		options:
-//		retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
+//		- options:
+//			- retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
 type Lock struct {
 	retryTimeout int64
 	Overrides    ILockOverrides

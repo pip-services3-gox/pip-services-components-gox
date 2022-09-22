@@ -2,6 +2,7 @@ package connect
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 )
@@ -9,19 +10,22 @@ import (
 // ConnectionResolver helper class to retrieve component connections.
 // If connections are configured to be retrieved from IDiscovery, it automatically locates
 // IDiscovery in component references and retrieve connections from there using discovery_key parameter.
+//
 //	Configuration parameters
-//		connection:
-//		discovery_key: (optional) a key to retrieve the connection from IDiscovery
-//		... other connection parameters
-//		connections: alternative to connection
-//		[connection params 1]: first connection parameters
-//		... connection parameters for key 1
-//		[connection params N]: Nth connection parameters
-//		... connection parameters for key N
+//		- connection:
+//			- discovery_key: (optional) a key to retrieve the connection from IDiscovery
+//			- ... other connection parameters
+//		- connections: alternative to connection
+//			- [connection params 1]: first connection parameters
+//				- ... connection parameters for key 1
+//			- [connection params N]: Nth connection parameters
+//				- ... connection parameters for key N
 //	References:
-//		*:discovery:*:*:1.0 (optional) IDiscovery services to resolve connections
+//		- *:discovery:*:*:1.0 (optional) IDiscovery services to resolve connections
+//
 //	see ConnectionParams
 //	see IDiscovery
+//
 //	Example:
 //		config = NewConfigParamsFromTuples(
 //			"connection.host", "10.1.1.100",
@@ -31,6 +35,7 @@ import (
 //		connectionResolver.Configure(context.Background(), config);
 //		connectionResolver.SetReferences(references);
 //		res, err := connectionResolver.Resolve("123");
+//
 type ConnectionResolver struct {
 	connections []*ConnectionParams
 	references  refer.IReferences
@@ -70,10 +75,7 @@ func NewConnectionResolver(ctx context.Context, config *config.ConfigParams, ref
 //		- config *config.ConfigParams configuration parameters to be set.
 func (c *ConnectionResolver) Configure(ctx context.Context, config *config.ConfigParams) {
 	connections := NewManyConnectionParamsFromConfig(config)
-
-	for _, connection := range connections {
-		c.connections = append(c.connections, connection)
-	}
+	c.connections = append(c.connections, connections...)
 }
 
 // SetReferences sets references to dependent components.
@@ -93,7 +95,8 @@ func (c *ConnectionResolver) GetAll() []*ConnectionParams {
 }
 
 // Add a new connection to component connections
-//	Parameters: connection *ConnectionParams new connection parameters to be added
+//	Parameters:
+//		- connection *ConnectionParams new connection parameters to be added
 func (c *ConnectionResolver) Add(connection *ConnectionParams) {
 	c.connections = append(c.connections, connection)
 }
@@ -221,9 +224,7 @@ func (c *ConnectionResolver) ResolveAll(correlationId string) ([]*ConnectionPara
 		if err != nil {
 			return nil, err
 		}
-		for _, c := range connections {
-			resolvedConnections = append(resolvedConnections, c)
-		}
+		resolvedConnections = append(resolvedConnections, connections...)
 	}
 
 	return resolvedConnections, nil

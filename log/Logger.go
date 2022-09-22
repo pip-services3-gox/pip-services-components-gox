@@ -85,7 +85,8 @@ func (c *Logger) SetReferences(ctx context.Context, references refer.IReferences
 }
 
 // ComposeError composes an human-readable error description
-// Parameters: err error an error to format.
+//	Parameters:
+//		- err error an error to format.
 //	Returns string a human-readable error description.
 func (c *Logger) ComposeError(err error) string {
 	builder := strings.Builder{}

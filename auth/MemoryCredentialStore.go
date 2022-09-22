@@ -2,19 +2,20 @@ package auth
 
 import (
 	"context"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
 )
 
 // MemoryCredentialStore Credential store that keeps credentials in memory.
-//	Configuration parameters:
-//		[credential key 1]:
-//		... credential parameters for key 1
-//		[credential key 2]:
-//		... credential parameters for key N
-//		...
-//	see ICredentialStore
-//	see CredentialParams
+//		Configuration parameters:
+//			[credential key 1]:
+//			... credential parameters for key 1
+//			[credential key 2]:
+//			... credential parameters for key N
+//			...
+// see ICredentialStore
+// see CredentialParams
 //
 //	Example:
 //		config := NewConfigParamsFromTuples(
@@ -56,14 +57,16 @@ func NewMemoryCredentialStore(ctx context.Context, config *config.ConfigParams) 
 }
 
 // Configure configures component by passing configuration parameters.
-//	Parameters: config *config.ConfigParams configuration parameters to be set.
+//	Parameters:
+//		- config *config.ConfigParams configuration parameters to be set.
 func (c *MemoryCredentialStore) Configure(ctx context.Context, config *config.ConfigParams) {
 	c.ReadCredentials(config)
 }
 
 // ReadCredentials reads credentials from configuration parameters.
 // Each section represents an individual CredentialParams
-//	Parameters: config *config.ConfigParams configuration parameters to be read
+//	Parameters:
+//		- config *config.ConfigParams configuration parameters to be read
 func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams) {
 	c.items = make(map[string]*CredentialParams)
 

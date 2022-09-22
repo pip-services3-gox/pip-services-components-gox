@@ -2,14 +2,16 @@ package trace
 
 import (
 	"context"
+
 	cref "github.com/pip-services3-gox/pip-services3-commons-gox/refer"
 )
 
 // CompositeTracer aggregates all tracers from component references under a single component.
 // It allows to record traces and conveniently send them to multiple destinations.
 //	References:
-//		- *:tracer:*:*:1.0 (optional) [[ITracer]] components to pass operation traces
-//	See [[ITracer]]
+//		- *:tracer:*:*:1.0 (optional) ITracer components to pass operation traces
+//	See ITracer
+
 //	Example:
 //		type MyComponent struct {
 //			tracer CompositeTracer

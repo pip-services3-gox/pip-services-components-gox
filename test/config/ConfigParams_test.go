@@ -3,7 +3,7 @@ package test_config
 import (
 	"testing"
 
-	"github.com/aymerick/raymond"
+	mustache "github.com/pip-services3-gox/pip-services3-expressions-gox/mustache"
 	pconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	"github.com/stretchr/testify/assert"
 )
@@ -77,10 +77,11 @@ func TestConfigFromString(t *testing.T) {
 }
 
 func TestProcessTemplates(t *testing.T) {
-	config := "{{#if A}}{{B}}{{/if}}"
+	template := mustache.NewMustacheTemplate()
+	template.SetTemplate("{{#if A}}{{B}}{{/if}}")
 	params := map[string]string{"A": "true", "B": "XYZ"}
 
-	result, err := raymond.Render(config, params)
+	result, err := template.EvaluateWithVariables(params)
 
 	assert.Nil(t, err)
 	assert.Equal(t, "XYZ", result)

@@ -2,9 +2,10 @@ package cache
 
 import (
 	"context"
+	"sync"
+
 	"github.com/pip-services3-gox/pip-services3-commons-gox/convert"
 	"github.com/pip-services3-gox/pip-services3-commons-gox/errors"
-	"sync"
 
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
@@ -14,7 +15,7 @@ import (
 //		options:
 //		timeout: default caching timeout in milliseconds (default: 1 minute)
 //		max_size: maximum number of values stored in this cache (default: 1000)
-//	see ICache
+// see ICache
 //	Example:
 //		cache := NewMemoryCache[string]();
 //		res, err := cache.Store("123", "key1", "ABC", 10000);
@@ -26,7 +27,7 @@ type MemoryCache[T any] struct {
 	convertor convert.IJSONEngine[T]
 }
 
-// NewMemoryCache creates a new instance of the cache.
+//	NewMemoryCache creates a new instance of the cache.
 //	Returns: *MemoryCache
 func NewMemoryCache[T any]() *MemoryCache[T] {
 	return &MemoryCache[T]{
@@ -87,7 +88,7 @@ func (c *MemoryCache[T]) cleanup() {
 
 // Retrieve cached value from the cache using its key.
 // If value is missing in the cache or expired it returns null.
-// Parameters:
+//	Parameters:
 //		- ctx context.Context
 //		- correlationId string transaction id to trace execution through call chain.
 //		- key string a unique value key.
@@ -213,7 +214,7 @@ func (c *MemoryCache[T]) Contains(ctx context.Context, correlationId string, key
 }
 
 // Clear a value from the cache.
-// Parameters:
+//	Parameters:
 //		- ctx context.Context
 //		- correlationId string transaction id to trace execution through call chain.
 func (c *MemoryCache[T]) Clear(ctx context.Context, correlationId string) error {

@@ -13,13 +13,13 @@ import (
 // in memory and periodically dumps them. Child classes implement
 // saving cached messages to their specified destinations.
 //	Configuration parameters
-//		level: maximum log level to capture
-//		source: source (context) name
-//		options:
-//			interval: interval in milliseconds to save log messages (default: 10 seconds)
-//			max_cache_size: maximum number of messages stored in this cache (default: 100)
+//		- level: maximum log level to capture
+//		- source: source (context) name
+//		- options:
+//			- interval: interval in milliseconds to save log messages (default: 10 seconds)
+//			- max_cache_size: maximum number of messages stored in this cache (default: 100)
 //	References:
-//		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+//		- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 type ICachedLogSaver interface {
 	Save(ctx context.Context, messages []LogMessage) error
 }
@@ -107,7 +107,8 @@ func (c *CachedLogger) Write(ctx context.Context, level LevelType, correlationId
 }
 
 // Clear (removes) all cached log messages.
-//	Parameters: ctx context.Context
+//	Parameters:
+//		- ctx context.Context
 func (c *CachedLogger) Clear(ctx context.Context) {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
@@ -117,7 +118,8 @@ func (c *CachedLogger) Clear(ctx context.Context) {
 }
 
 // Dump (writes) the currently cached log messages.
-//	Parameters: ctx context.Context
+//	Parameters:
+//		- ctx context.Context
 func (c *CachedLogger) Dump(ctx context.Context) error {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
@@ -126,7 +128,8 @@ func (c *CachedLogger) Dump(ctx context.Context) error {
 }
 
 // Update makes message cache as updated and dumps it when timeout expires.
-//	Parameters: ctx context.Context
+//	Parameters:
+//		- ctx context.Context
 func (c *CachedLogger) Update(ctx context.Context) {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()

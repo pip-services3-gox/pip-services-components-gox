@@ -6,7 +6,7 @@ import "context"
 // It can be used in testing or in situations when cache is required but shall be disabled.
 type NullCache[T any] struct{}
 
-// NewNullCache creates a new instance of the cache.
+// 	NewNullCache creates a new instance of the cache.
 //	Returns: *NullCache
 func NewNullCache[T any]() *NullCache[T] {
 	return &NullCache[T]{}
