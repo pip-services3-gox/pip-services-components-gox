@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -228,7 +228,7 @@
 		
 			
 			
-			<h2 id="NewDefaultLockFactory">func <a href="http://localhost:6060/src/lock/DefaultLockFactory.go?s=481:524#L5">NewDefaultLockFactory</a>
+			<h2 id="NewDefaultLockFactory">func <a href="http://localhost:6060/src/lock/DefaultLockFactory.go?s=495:538#L5">NewDefaultLockFactory</a>
 				<a class="permalink" href="index.html#NewDefaultLockFactory">&#xb6;</a>
 				
 				
@@ -247,7 +247,7 @@ NewDefaultLockFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="ILock">type <a href="http://localhost:6060/src/lock/ILock.go?s=200:788#L1">ILock</a>
+			<h2 id="ILock">type <a href="http://localhost:6060/src/lock/ILock.go?s=206:805#L1">ILock</a>
 				<a class="permalink" href="index.html#ILock">&#xb6;</a>
 				
 				
@@ -284,7 +284,7 @@ The lock allows managing multiple locks identified by unique keys.
 		
 			
 			
-			<h2 id="ILockOverrides">type <a href="http://localhost:6060/src/lock/Lock.go?s=176:216#L1">ILockOverrides</a>
+			<h2 id="ILockOverrides">type <a href="http://localhost:6060/src/lock/Lock.go?s=186:228#L1">ILockOverrides</a>
 				<a class="permalink" href="index.html#ILockOverrides">&#xb6;</a>
 				
 				
@@ -308,7 +308,7 @@ The lock allows managing multiple locks identified by unique keys.
 		
 			
 			
-			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=417:486#L9">Lock</a>
+			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=440:512#L9">Lock</a>
 				<a class="permalink" href="index.html#Lock">&#xb6;</a>
 				
 				
@@ -317,8 +317,8 @@ The lock allows managing multiple locks identified by unique keys.
 Lock abstract lock that implements default lock acquisition routine.
 </p>
 <pre>Configuration parameters:
-	options:
-	retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
+	- options:
+		- retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
 </pre>
 
 			<pre>type Lock struct {
@@ -337,7 +337,7 @@ Lock abstract lock that implements default lock acquisition routine.
 
 			
 				
-				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=675:723#L21">InheritLock</a>
+				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=710:758#L21">InheritLock</a>
 					<a class="permalink" href="index.html#InheritLock">&#xb6;</a>
 					
 					
@@ -355,7 +355,7 @@ InheritLock inherit lock from ILockOverrides
 
 			
 				
-				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1548:1662#L44">AcquireLock</a>
+				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1606:1721#L44">AcquireLock</a>
 					<a class="permalink" href="index.html#Lock.AcquireLock">&#xb6;</a>
 					
 					
@@ -381,7 +381,7 @@ Returns error
 				
 			
 				
-				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=982:1056#L32">Configure</a>
+				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1028:1102#L32">Configure</a>
 					<a class="permalink" href="index.html#Lock.Configure">&#xb6;</a>
 					
 					
@@ -402,7 +402,7 @@ Configure component by passing configuration parameters.
 		
 			
 			
-			<h2 id="MemoryLock">type <a href="http://localhost:6060/src/lock/MemoryLock.go?s=470:548#L12">MemoryLock</a>
+			<h2 id="MemoryLock">type <a href="http://localhost:6060/src/lock/MemoryLock.go?s=539:621#L12">MemoryLock</a>
 				<a class="permalink" href="index.html#MemoryLock">&#xb6;</a>
 				
 				
@@ -417,9 +417,9 @@ see ILock
 see Lock
 Example:
 	lock := NewMemoryLock()
-	err = lock.Acquire(&#34;123&#34;, &#34;key1&#34;)
+	err = lock.AcquireLock(context.Background(), &#34;123&#34;, &#34;key1&#34;)
 	if err == nil {
-		 _ = lock.ReleaseLock(&#34;123&#34;, &#34;key1&#34;)
+		 _ = lock.ReleaseLock(context.Background(), &#34;123&#34;, &#34;key1&#34;)
 		// Processing...
 	}
 </pre>
@@ -440,7 +440,7 @@ Example:
 
 			
 				
-				<h3 id="NewMemoryLock">func <a href="http://localhost:6060/src/lock/MemoryLock.go?s=614:646#L20">NewMemoryLock</a>
+				<h3 id="NewMemoryLock">func <a href="http://localhost:6060/src/lock/MemoryLock.go?s=691:723#L20">NewMemoryLock</a>
 					<a class="permalink" href="index.html#NewMemoryLock">&#xb6;</a>
 					
 					
@@ -458,7 +458,7 @@ NewMemoryLock create new memory lock
 
 			
 				
-				<h3 id="MemoryLock.ReleaseLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1745:1839#L62">ReleaseLock</a>
+				<h3 id="MemoryLock.ReleaseLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1864:1959#L62">ReleaseLock</a>
 					<a class="permalink" href="index.html#MemoryLock.ReleaseLock">&#xb6;</a>
 					
 					
@@ -480,7 +480,7 @@ Return: error
 				
 			
 				
-				<h3 id="MemoryLock.TryAcquireLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1156:1272#L37">TryAcquireLock</a>
+				<h3 id="MemoryLock.TryAcquireLock">func (*MemoryLock) <a href="http://localhost:6060/src/lock/MemoryLock.go?s=1250:1367#L37">TryAcquireLock</a>
 					<a class="permalink" href="index.html#MemoryLock.TryAcquireLock">&#xb6;</a>
 					
 					
@@ -506,7 +506,7 @@ Returns bool, error true if locked. Error object
 		
 			
 			
-			<h2 id="NullLock">type <a href="http://localhost:6060/src/lock/NullLock.go?s=186:208#L1">NullLock</a>
+			<h2 id="NullLock">type <a href="http://localhost:6060/src/lock/NullLock.go?s=192:214#L1">NullLock</a>
 				<a class="permalink" href="index.html#NullLock">&#xb6;</a>
 				
 				
@@ -529,7 +529,7 @@ It can be used in testing or in situations when lock is required but shall be di
 
 			
 				
-				<h3 id="NewNullLock">func <a href="http://localhost:6060/src/lock/NullLock.go?s=210:238#L1">NewNullLock</a>
+				<h3 id="NewNullLock">func <a href="http://localhost:6060/src/lock/NullLock.go?s=218:246#L1">NewNullLock</a>
 					<a class="permalink" href="index.html#NewNullLock">&#xb6;</a>
 					
 					
@@ -542,7 +542,7 @@ It can be used in testing or in situations when lock is required but shall be di
 
 			
 				
-				<h3 id="NullLock.AcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1205:1319#L24">AcquireLock</a>
+				<h3 id="NullLock.AcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1238:1353#L24">AcquireLock</a>
 					<a class="permalink" href="index.html#NullLock.AcquireLock">&#xb6;</a>
 					
 					
@@ -566,7 +566,7 @@ Returns: error
 				
 			
 				
-				<h3 id="NullLock.ReleaseLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1546:1638#L35">ReleaseLock</a>
+				<h3 id="NullLock.ReleaseLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=1590:1683#L35">ReleaseLock</a>
 					<a class="permalink" href="index.html#NullLock.ReleaseLock">&#xb6;</a>
 					
 					
@@ -588,7 +588,7 @@ Return: error
 				
 			
 				
-				<h3 id="NullLock.TryAcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=676:788#L11">TryAcquireLock</a>
+				<h3 id="NullLock.TryAcquireLock">func (*NullLock) <a href="http://localhost:6060/src/lock/NullLock.go?s=696:809#L11">TryAcquireLock</a>
 					<a class="permalink" href="index.html#NullLock.TryAcquireLock">&#xb6;</a>
 					
 					
@@ -623,7 +623,7 @@ Returns bool, error true if locked. Error object
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

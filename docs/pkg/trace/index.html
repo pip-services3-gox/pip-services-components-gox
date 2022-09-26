@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -151,7 +151,10 @@
 				<dd><a href="index.html#CompositeTracer">type CompositeTracer</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeTracer">func NewCompositeTracer(ctx context.Context, references cref.IReferences) *CompositeTracer</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeTracer">func NewCompositeTracer() *CompositeTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeTracerFromReferences">func NewCompositeTracerFromReferences(ctx context.Context, references cref.IReferences) *CompositeTracer</a></dd>
 				
 				
 					
@@ -285,7 +288,7 @@
 		
 			
 			
-			<h2 id="CachedTracer">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1062:1281#L22">CachedTracer</a>
+			<h2 id="CachedTracer">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1085:1313#L22">CachedTracer</a>
 				<a class="permalink" href="index.html#CachedTracer">&#xb6;</a>
 				
 				
@@ -307,7 +310,7 @@
 
 			
 				
-				<h3 id="InheritCachedTracer">func <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1344:1407#L34">InheritCachedTracer</a>
+				<h3 id="InheritCachedTracer">func <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1379:1442#L34">InheritCachedTracer</a>
 					<a class="permalink" href="index.html#InheritCachedTracer">&#xb6;</a>
 					
 					
@@ -323,7 +326,7 @@ InheritCachedTracer creates a new instance of the logger.
 
 			
 				
-				<h3 id="CachedTracer.BeginTrace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5038:5163#L135">BeginTrace</a>
+				<h3 id="CachedTracer.BeginTrace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5174:5299#L135">BeginTrace</a>
 					<a class="permalink" href="index.html#CachedTracer.BeginTrace">&#xb6;</a>
 					
 					
@@ -345,7 +348,7 @@ Returns: a trace timing object.
 				
 			
 				
-				<h3 id="CachedTracer.Clear">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5276:5306#L140">Clear</a>
+				<h3 id="CachedTracer.Clear">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5417:5447#L140">Clear</a>
 					<a class="permalink" href="index.html#CachedTracer.Clear">&#xb6;</a>
 					
 					
@@ -360,7 +363,7 @@ Clear (removes) all cached log messages.
 				
 			
 				
-				<h3 id="CachedTracer.Configure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1756:1837#L49">Configure</a>
+				<h3 id="CachedTracer.Configure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1806:1887#L49">Configure</a>
 					<a class="permalink" href="index.html#CachedTracer.Configure">&#xb6;</a>
 					
 					
@@ -379,7 +382,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="CachedTracer.Dump">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5474:5522#L150">Dump</a>
+				<h3 id="CachedTracer.Dump">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5625:5673#L150">Dump</a>
 					<a class="permalink" href="index.html#CachedTracer.Dump">&#xb6;</a>
 					
 					
@@ -396,7 +399,7 @@ Dump (writes) the currently cached log messages.
 				
 			
 				
-				<h3 id="CachedTracer.Failure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4518:4654#L124">Failure</a>
+				<h3 id="CachedTracer.Failure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4643:4779#L124">Failure</a>
 					<a class="permalink" href="index.html#CachedTracer.Failure">&#xb6;</a>
 					
 					
@@ -419,7 +422,7 @@ Failure records an operation failure with its name, duration and error
 				
 			
 				
-				<h3 id="CachedTracer.SetReferences">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=2229:2315#L59">SetReferences</a>
+				<h3 id="CachedTracer.SetReferences">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=2289:2375#L59">SetReferences</a>
 					<a class="permalink" href="index.html#CachedTracer.SetReferences">&#xb6;</a>
 					
 					
@@ -438,7 +441,7 @@ SetReferences references to dependent components.
 				
 			
 				
-				<h3 id="CachedTracer.Trace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=3902:4025#L112">Trace</a>
+				<h3 id="CachedTracer.Trace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4015:4138#L112">Trace</a>
 					<a class="permalink" href="index.html#CachedTracer.Trace">&#xb6;</a>
 					
 					
@@ -460,7 +463,7 @@ Trace records an operation trace with its name and duration
 				
 			
 				
-				<h3 id="CachedTracer.Update">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5671:5721#L160">Update</a>
+				<h3 id="CachedTracer.Update">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5828:5878#L160">Update</a>
 					<a class="permalink" href="index.html#CachedTracer.Update">&#xb6;</a>
 					
 					
@@ -470,7 +473,7 @@ Trace records an operation trace with its name and duration
 Update makes trace cache as updated
 and dumps it when timeout expires.
 </p>
-<pre>See [[Dump]]
+<pre>See Dump
 </pre>
 
 				
@@ -478,7 +481,7 @@ and dumps it when timeout expires.
 				
 			
 				
-				<h3 id="CachedTracer.Write">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=2991:3125#L82">Write</a>
+				<h3 id="CachedTracer.Write">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=3074:3208#L82">Write</a>
 					<a class="permalink" href="index.html#CachedTracer.Write">&#xb6;</a>
 					
 					
@@ -503,39 +506,34 @@ Writes a log message to the logger destination.
 		
 			
 			
-			<h2 id="CompositeTracer">type <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=988:1038#L24">CompositeTracer</a>
+			<h2 id="CompositeTracer">type <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1017:1069#L26">CompositeTracer</a>
 				<a class="permalink" href="index.html#CompositeTracer">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-CompositeTracer aggregates all tracers from component references under a single component.
-It allows to record traces and conveniently send them to multiple destinations.
-</p>
-<pre>References:
-	- *:tracer:*:*:1.0 (optional) [[ITracer]] components to pass operation traces
-See [[ITracer]]
 Example:
-	type MyComponent struct {
-		tracer CompositeTracer
+</p>
+<pre>type MyComponent struct {
+	tracer CompositeTracer
+}
+func NewMyComponent() *MyComponent{
+	return &amp;MyComponent{
+		tracer: NewCompositeTracer(nil);
 	}
-	func NewMyComponent() *MyComponent{
-		return &amp;MyComponent{
-			tracer: NewCompositeTracer(nil);
-		}
+}
+func (c* MyComponent) SetReferences(ctx context.Context, references IReferences) {
+	c.tracer.SetReferences(references)
+	...
+}
+public MyMethod(ctx context.Context, correlatonId string) {
+	timing := c.tracer.BeginTrace(ctx, correlationId, &#34;mycomponent&#34;, &#34;mymethod&#34;);
+	...
+	timing.EndTrace(ctx);
+	if err != nil {
+		timing.EndFailure(ctx, err);
 	}
-	func (c* MyComponent) SetReferences(ctx context.Context, references IReferences) {
-		c.tracer.SetReferences(references)
-		...
-	}
-	public MyMethod(ctx context.Context, correlatonId string) {
-		timing := c.tracer.BeginTrace(ctx, correlationId, &#34;mycomponent&#34;, &#34;mymethod&#34;);
-		...
-		timing.EndTrace(ctx);
-		if err != nil {
-			timing.EndFailure(ctx, err);
-		}
-	}
+}
 </pre>
 
 			<pre>type CompositeTracer struct {
@@ -553,12 +551,12 @@ Example:
 
 			
 				
-				<h3 id="NewCompositeTracer">func <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1170:1260#L31">NewCompositeTracer</a>
+				<h3 id="NewCompositeTracer">func <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1206:1248#L33">NewCompositeTracer</a>
 					<a class="permalink" href="index.html#NewCompositeTracer">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCompositeTracer(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeTracer">CompositeTracer</a></pre>
+				<pre>func NewCompositeTracer() *<a href="index.html#CompositeTracer">CompositeTracer</a></pre>
 				<p>
 NewCompositeTracer creates a new instance of the tracer.
 </p>
@@ -569,10 +567,29 @@ NewCompositeTracer creates a new instance of the tracer.
 				
 				
 			
+				
+				<h3 id="NewCompositeTracerFromReferences">func <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1506:1610#L42">NewCompositeTracerFromReferences</a>
+					<a class="permalink" href="index.html#NewCompositeTracerFromReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCompositeTracerFromReferences(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, references <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeTracer">CompositeTracer</a></pre>
+				<p>
+NewCompositeTracerFromReferences creates a new instance of the tracer.
+</p>
+<pre>Parameters:
+	- ctx context.Context
+	- refer.IReferences references to locate the component dependencies.
+Returns: CompositeLogger
+</pre>
+
+				
+				
+			
 
 			
 				
-				<h3 id="CompositeTracer.BeginTrace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=3472:3600#L96">BeginTrace</a>
+				<h3 id="CompositeTracer.BeginTrace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=3859:3987#L105">BeginTrace</a>
 					<a class="permalink" href="index.html#CompositeTracer.BeginTrace">&#xb6;</a>
 					
 					
@@ -594,7 +611,7 @@ Returns: a trace timing object.
 				
 			
 				
-				<h3 id="CompositeTracer.Failure">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=2902:3041#L83">Failure</a>
+				<h3 id="CompositeTracer.Failure">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=3276:3415#L92">Failure</a>
 					<a class="permalink" href="index.html#CompositeTracer.Failure">&#xb6;</a>
 					
 					
@@ -617,7 +634,7 @@ Failure records an operation failure with its name, duration and error
 				
 			
 				
-				<h3 id="CompositeTracer.SetReferences">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1517:1606#L43">SetReferences</a>
+				<h3 id="CompositeTracer.SetReferences">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1851:1940#L52">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeTracer.SetReferences">&#xb6;</a>
 					
 					
@@ -636,7 +653,7 @@ SetReferences sets references to dependent components.
 				
 			
 				
-				<h3 id="CompositeTracer.Trace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=2243:2369#L69">Trace</a>
+				<h3 id="CompositeTracer.Trace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=2603:2729#L78">Trace</a>
 					<a class="permalink" href="index.html#CompositeTracer.Trace">&#xb6;</a>
 					
 					
@@ -660,18 +677,18 @@ Trace records an operation trace with its name and duration
 		
 			
 			
-			<h2 id="DefaultTracerFactory">type <a href="http://localhost:6060/src/trace/DefaultTracerFactory.go?s=340:524#L3">DefaultTracerFactory</a>
+			<h2 id="DefaultTracerFactory">type <a href="http://localhost:6060/src/trace/DefaultTracerFactory.go?s=332:521#L3">DefaultTracerFactory</a>
 				<a class="permalink" href="index.html#DefaultTracerFactory">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-DefaultTracerFactory creates [[ITracer]] components by their descriptors.
+DefaultTracerFactory creates ITracer components by their descriptors.
 </p>
-<pre>See [[Factory]]
-See [[NullTracer]]
-See [[ConsoleTracer]]
-See [[CompositeTracer]]
+<pre>See Factory
+See NullTracer
+See ConsoleTracer
+See CompositeTracer
 </pre>
 
 			<pre>type DefaultTracerFactory struct {
@@ -710,7 +727,7 @@ NewDefaultTracerFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="ICachedTraceSaver">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=962:1060#L18">ICachedTraceSaver</a>
+			<h2 id="ICachedTraceSaver">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=981:1081#L18">ICachedTraceSaver</a>
 				<a class="permalink" href="index.html#ICachedTraceSaver">&#xb6;</a>
 				
 				
@@ -728,8 +745,8 @@ Child classes implement saving cached traces to their specified destinations.
 References:
 	- *:context-info:*:*:1.0 (optional) [[ContextInfo]] to detect the context id and specify counters source
 
-See [[ITracer]]
-See [[OperationTrace]]
+See ITracer
+See OperationTrace
 </pre>
 
 			<pre>type ICachedTraceSaver interface {
@@ -750,7 +767,7 @@ See [[OperationTrace]]
 		
 			
 			
-			<h2 id="ITracer">type <a href="http://localhost:6060/src/trace/ITracer.go?s=107:1598#L1">ITracer</a>
+			<h2 id="ITracer">type <a href="http://localhost:6060/src/trace/ITracer.go?s=112:1632#L1">ITracer</a>
 				<a class="permalink" href="index.html#ITracer">&#xb6;</a>
 				
 				
@@ -804,7 +821,7 @@ ITracer interface for tracer components that capture operation traces.
 		
 			
 			
-			<h2 id="LogTracer">type <a href="http://localhost:6060/src/trace/LogTracer.go?s=1211:1291#L26">LogTracer</a>
+			<h2 id="LogTracer">type <a href="http://localhost:6060/src/trace/LogTracer.go?s=1245:1328#L29">LogTracer</a>
 				<a class="permalink" href="index.html#LogTracer">&#xb6;</a>
 				
 				
@@ -814,14 +831,16 @@ LogTracer tracer that dumps recorded traces to logger.
 </p>
 <pre>Configuration parameters:
 	- options:
-	- log_level: log level to record traces (default: debug)
+		- log_level: log level to record traces (default: debug)
 
 References:
 	- *:logger:*:*:1.0       [[ILogger]] components to dump the captured counters
 	- *:context-info:*:*:1.0 (optional) [[ContextInfo]] to detect the context id and specify counters source
-See [[Tracer]]
-See [[CachedCounters]]
-See [[CompositeLogger]]
+
+See Tracer
+See CachedCounters
+See CompositeLogger
+
 Example:
 	tracer = NewLogTracer();
 	tracer.SetReferences(
@@ -853,7 +872,7 @@ Example:
 
 			
 				
-				<h3 id="NewLogTracer">func <a href="http://localhost:6060/src/trace/LogTracer.go?s=1347:1377#L32">NewLogTracer</a>
+				<h3 id="NewLogTracer">func <a href="http://localhost:6060/src/trace/LogTracer.go?s=1387:1417#L35">NewLogTracer</a>
 					<a class="permalink" href="index.html#NewLogTracer">&#xb6;</a>
 					
 					
@@ -869,7 +888,7 @@ NewLogTracer creates a new instance of the tracer.
 
 			
 				
-				<h3 id="LogTracer.BeginTrace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=4207:4329#L113">BeginTrace</a>
+				<h3 id="LogTracer.BeginTrace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=4328:4450#L116">BeginTrace</a>
 					<a class="permalink" href="index.html#LogTracer.BeginTrace">&#xb6;</a>
 					
 					
@@ -891,7 +910,7 @@ Returns: a trace timing object.
 				
 			
 				
-				<h3 id="LogTracer.Configure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=1622:1700#L43">Configure</a>
+				<h3 id="LogTracer.Configure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=1673:1751#L46">Configure</a>
 					<a class="permalink" href="index.html#LogTracer.Configure">&#xb6;</a>
 					
 					
@@ -910,7 +929,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="LogTracer.Failure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3687:3820#L102">Failure</a>
+				<h3 id="LogTracer.Failure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3797:3930#L105">Failure</a>
 					<a class="permalink" href="index.html#LogTracer.Failure">&#xb6;</a>
 					
 					
@@ -933,7 +952,7 @@ Failure records an operation failure with its name, duration and error
 				
 			
 				
-				<h3 id="LogTracer.SetReferences">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=2030:2113#L55">SetReferences</a>
+				<h3 id="LogTracer.SetReferences">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=2093:2176#L58">SetReferences</a>
 					<a class="permalink" href="index.html#LogTracer.SetReferences">&#xb6;</a>
 					
 					
@@ -952,7 +971,7 @@ SetReferences sets references to dependent components.
 				
 			
 				
-				<h3 id="LogTracer.Trace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3051:3171#L90">Trace</a>
+				<h3 id="LogTracer.Trace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3149:3269#L93">Trace</a>
 					<a class="permalink" href="index.html#LogTracer.Trace">&#xb6;</a>
 					
 					
@@ -976,7 +995,7 @@ Trace records an operation trace with its name and duration
 		
 			
 			
-			<h2 id="NullTracer">type <a href="http://localhost:6060/src/trace/NullTracer.go?s=216:242#L1">NullTracer</a>
+			<h2 id="NullTracer">type <a href="http://localhost:6060/src/trace/NullTracer.go?s=224:251#L1">NullTracer</a>
 				<a class="permalink" href="index.html#NullTracer">&#xb6;</a>
 				
 				
@@ -1003,7 +1022,7 @@ but shall be disabled.
 
 			
 				
-				<h3 id="NewNullTracer">func <a href="http://localhost:6060/src/trace/NullTracer.go?s=299:331#L3">NewNullTracer</a>
+				<h3 id="NewNullTracer">func <a href="http://localhost:6060/src/trace/NullTracer.go?s=311:343#L3">NewNullTracer</a>
 					<a class="permalink" href="index.html#NewNullTracer">&#xb6;</a>
 					
 					
@@ -1019,7 +1038,7 @@ NewNullTracer creates a new instance of the tracer.
 
 			
 				
-				<h3 id="NullTracer.BeginTrace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1773:1896#L37">BeginTrace</a>
+				<h3 id="NullTracer.BeginTrace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1819:1942#L37">BeginTrace</a>
 					<a class="permalink" href="index.html#NullTracer.BeginTrace">&#xb6;</a>
 					
 					
@@ -1041,7 +1060,7 @@ Returns: a trace timing object.
 				
 			
 				
-				<h3 id="NullTracer.Failure">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1291:1425#L26">Failure</a>
+				<h3 id="NullTracer.Failure">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1326:1460#L26">Failure</a>
 					<a class="permalink" href="index.html#NullTracer.Failure">&#xb6;</a>
 					
 					
@@ -1064,7 +1083,7 @@ Failure records an operation failure with its name, duration and error
 				
 			
 				
-				<h3 id="NullTracer.Trace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=705:826#L14">Trace</a>
+				<h3 id="NullTracer.Trace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=728:849#L14">Trace</a>
 					<a class="permalink" href="index.html#NullTracer.Trace">&#xb6;</a>
 					
 					
@@ -1088,7 +1107,7 @@ Trace records an operation trace with its name and duration
 		
 			
 			
-			<h2 id="OperationTrace">type <a href="http://localhost:6060/src/trace/OperationTrace.go?s=212:821#L1">OperationTrace</a>
+			<h2 id="OperationTrace">type <a href="http://localhost:6060/src/trace/OperationTrace.go?s=222:852#L1">OperationTrace</a>
 				<a class="permalink" href="index.html#OperationTrace">&#xb6;</a>
 				
 				
@@ -1112,9 +1131,9 @@ This object is used by CachedTracer.
     <span class="comment">// The duration of the operation in milliseconds</span>
 <span id="OperationTrace.Duration"></span>    Duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a> `json:&#34;duration&#34;`
 
-    <span class="comment">//The description of the captured error</span>
-    <span class="comment">//ErrorDescription</span>
-    <span class="comment">//ApplicationException</span>
+    <span class="comment">// The description of the captured error</span>
+    <span class="comment">// ErrorDescription</span>
+    <span class="comment">// ApplicationException</span>
 <span id="OperationTrace.Error"></span>    Error <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/">cerr</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/errors/#ErrorDescription">ErrorDescription</a> `json:&#34;error&#34;`
 }
 </pre>
@@ -1133,7 +1152,7 @@ This object is used by CachedTracer.
 		
 			
 			
-			<h2 id="TraceTiming">type <a href="http://localhost:6060/src/trace/TraceTiming.go?s=336:473#L9">TraceTiming</a>
+			<h2 id="TraceTiming">type <a href="http://localhost:6060/src/trace/TraceTiming.go?s=440:583#L9">TraceTiming</a>
 				<a class="permalink" href="index.html#TraceTiming">&#xb6;</a>
 				
 				
@@ -1143,11 +1162,11 @@ TraceTiming timing object returned by {ITracer.BeginTrace} to end timing
 of execution block and record the associated trace.
 </p>
 <pre>Example:
-	timing := tracer.BeginTrace(&#34;mymethod.exec_time&#34;);
+	timing := tracer.BeginTrace(context.Background(), &#34;123&#34;, &#34;my_component&#34;,&#34;mymethod.exec_time&#34;);
 	...
-	timing.EndTrace();
+	timing.EndTrace(context.Background());
 	if err != nil {
-		timing.EndFailure(err);
+		timing.EndFailure(context.Background(), err);
 	}
 </pre>
 
@@ -1166,7 +1185,7 @@ of execution block and record the associated trace.
 
 			
 				
-				<h3 id="NewTraceTiming">func <a href="http://localhost:6060/src/trace/TraceTiming.go?s=814:920#L23">NewTraceTiming</a>
+				<h3 id="NewTraceTiming">func <a href="http://localhost:6060/src/trace/TraceTiming.go?s=932:1038#L23">NewTraceTiming</a>
 					<a class="permalink" href="index.html#NewTraceTiming">&#xb6;</a>
 					
 					
@@ -1188,7 +1207,7 @@ NewTraceTiming creates a new instance of the timing callback object.
 
 			
 				
-				<h3 id="TraceTiming.EndFailure">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1637:1701#L48">EndFailure</a>
+				<h3 id="TraceTiming.EndFailure">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1780:1844#L48">EndFailure</a>
 					<a class="permalink" href="index.html#TraceTiming.EndFailure">&#xb6;</a>
 					
 					
@@ -1207,7 +1226,7 @@ and records the associated trace.
 				
 			
 				
-				<h3 id="TraceTiming.EndTrace">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1259:1310#L37">EndTrace</a>
+				<h3 id="TraceTiming.EndTrace">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1391:1442#L37">EndTrace</a>
 					<a class="permalink" href="index.html#TraceTiming.EndTrace">&#xb6;</a>
 					
 					
@@ -1237,7 +1256,7 @@ and records the associated trace.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

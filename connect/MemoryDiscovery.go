@@ -23,7 +23,7 @@ import (
 //		);
 //		discovery := NewMemoryDiscovery();
 //		discovery.ReadConnections(config);
-//		conn, err := discovery.Resolve("123", "key1");
+//		conn, err := discovery.ResolveOne("123", "key1");
 // Result: host=10.1.1.100;port=8080
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams

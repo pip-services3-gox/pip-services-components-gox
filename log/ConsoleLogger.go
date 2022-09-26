@@ -27,14 +27,14 @@ import (
 //		logger.Error(context.Background(), "123", ex, "Error occured: %s", ex.message);
 //		logger.Debug(context.Background(), "123", "Everything is OK.");
 type ConsoleLogger struct {
-	Logger
+	*Logger
 }
 
 // NewConsoleLogger creates a new instance of the logger.
 //	Returns: ConsoleLogger
 func NewConsoleLogger() *ConsoleLogger {
 	c := &ConsoleLogger{}
-	c.Logger = *InheritLogger(c)
+	c.Logger = InheritLogger(c)
 	return c
 }
 

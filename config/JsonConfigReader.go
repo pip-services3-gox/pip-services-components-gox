@@ -13,9 +13,9 @@ import (
 // JsonConfigReader is a config reader that reads configuration from JSON file.
 // The reader supports parameterization using Handlebar template engine.
 //	Configuration parameters:
-//		path: path to configuration file
-//		parameters: this entire section is used as template parameters
-//		...
+//		- path: path to configuration file
+//		- parameters: this entire section is used as template parameters
+//		- ...
 //	see IConfigReader
 //	see FileConfigReader
 //	Example:
@@ -25,7 +25,7 @@ import (
 //
 //		configReader := NewJsonConfigReader("config.json")
 //		parameters := NewConfigParamsFromTuples("KEY1_VALUE", 123, "KEY2_VALUE", "ABC")
-//		res, err := configReader.ReadConfig("123", parameters)
+//		res, err := configReader.ReadConfig(context.Background(), "123", parameters)
 type JsonConfigReader struct {
 	*FileConfigReader
 }

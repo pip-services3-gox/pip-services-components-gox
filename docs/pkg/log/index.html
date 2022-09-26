@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -372,7 +372,7 @@ LevelConverter Helper class to convert log level values.
 		
 			
 			
-			<h2 id="NewDefaultLoggerFactory">func <a href="http://localhost:6060/src/log/DefaultLoggerFactory.go?s=597:642#L6">NewDefaultLoggerFactory</a>
+			<h2 id="NewDefaultLoggerFactory">func <a href="http://localhost:6060/src/log/DefaultLoggerFactory.go?s=612:657#L6">NewDefaultLoggerFactory</a>
 				<a class="permalink" href="index.html#NewDefaultLoggerFactory">&#xb6;</a>
 				
 				
@@ -391,7 +391,7 @@ NewDefaultLoggerFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="CachedLogger">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=986:1191#L22">CachedLogger</a>
+			<h2 id="CachedLogger">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=1029:1243#L22">CachedLogger</a>
 				<a class="permalink" href="index.html#CachedLogger">&#xb6;</a>
 				
 				
@@ -420,7 +420,7 @@ NewDefaultLoggerFactory create a new instance of the factory.
 
 			
 				
-				<h3 id="InheritCachedLogger">func <a href="http://localhost:6060/src/log/CachedLogger.go?s=1570:1642#L44">InheritCachedLogger</a>
+				<h3 id="InheritCachedLogger">func <a href="http://localhost:6060/src/log/CachedLogger.go?s=1635:1707#L44">InheritCachedLogger</a>
 					<a class="permalink" href="index.html#InheritCachedLogger">&#xb6;</a>
 					
 					
@@ -440,7 +440,7 @@ Returns: CachedLogger
 
 			
 				
-				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3394:3443#L101">Clear</a>
+				<h3 id="CachedLogger.Clear">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3523:3572#L102">Clear</a>
 					<a class="permalink" href="index.html#CachedLogger.Clear">&#xb6;</a>
 					
 					
@@ -449,7 +449,8 @@ Returns: CachedLogger
 				<p>
 Clear (removes) all cached log messages.
 </p>
-<pre>Parameters: ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 </pre>
 
 				
@@ -457,7 +458,7 @@ Clear (removes) all cached log messages.
 				
 			
 				
-				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2141:2220#L62">Configure</a>
+				<h3 id="CachedLogger.Configure">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2224:2303#L62">Configure</a>
 					<a class="permalink" href="index.html#CachedLogger.Configure">&#xb6;</a>
 					
 					
@@ -476,7 +477,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3641:3695#L111">Dump</a>
+				<h3 id="CachedLogger.Dump">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3787:3841#L113">Dump</a>
 					<a class="permalink" href="index.html#CachedLogger.Dump">&#xb6;</a>
 					
 					
@@ -485,7 +486,8 @@ Configure configures component by passing configuration parameters.
 				<p>
 Dump (writes) the currently cached log messages.
 </p>
-<pre>Parameters: ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 </pre>
 
 				
@@ -493,7 +495,7 @@ Dump (writes) the currently cached log messages.
 				
 			
 				
-				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=3869:3919#L120">Update</a>
+				<h3 id="CachedLogger.Update">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=4031:4081#L123">Update</a>
 					<a class="permalink" href="index.html#CachedLogger.Update">&#xb6;</a>
 					
 					
@@ -502,7 +504,8 @@ Dump (writes) the currently cached log messages.
 				<p>
 Update makes message cache as updated and dumps it when timeout expires.
 </p>
-<pre>Parameters: ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 </pre>
 
 				
@@ -510,7 +513,7 @@ Update makes message cache as updated and dumps it when timeout expires.
 				
 			
 				
-				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2813:2928#L77">Write</a>
+				<h3 id="CachedLogger.Write">func (*CachedLogger) <a href="http://localhost:6060/src/log/CachedLogger.go?s=2911:3026#L77">Write</a>
 					<a class="permalink" href="index.html#CachedLogger.Write">&#xb6;</a>
 					
 					
@@ -534,7 +537,7 @@ Parameters:
 		
 			
 			
-			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1015:1073#L23">CompositeLogger</a>
+			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1059:1121#L26">CompositeLogger</a>
 				<a class="permalink" href="index.html#CompositeLogger">&#xb6;</a>
 				
 				
@@ -544,7 +547,8 @@ CompositeLogger aggregates all loggers from component references under a single 
 It allows logging messages and conveniently send them to multiple destinations.
 </p>
 <pre>References:
-	*:logger:*:*:1.0 (optional) ILogger components to pass log messages
+	- *:logger:*:*:1.0 (optional) ILogger components to pass log messages
+
 see ILogger
 Example:
 	type MyComponent {
@@ -569,7 +573,7 @@ Example:
 </pre>
 
 			<pre>type CompositeLogger struct {
-    <a href="index.html#Logger">Logger</a>
+    *<a href="index.html#Logger">Logger</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -584,7 +588,7 @@ Example:
 
 			
 				
-				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1164:1206#L30">NewCompositeLogger</a>
+				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1216:1258#L33">NewCompositeLogger</a>
 					<a class="permalink" href="index.html#NewCompositeLogger">&#xb6;</a>
 					
 					
@@ -600,7 +604,7 @@ NewCompositeLogger creates a new instance of the logger.
 				
 			
 				
-				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1543:1648#L44">NewCompositeLoggerFromReferences</a>
+				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1608:1713#L47">NewCompositeLoggerFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeLoggerFromReferences">&#xb6;</a>
 					
 					
@@ -621,7 +625,7 @@ Returns: CompositeLogger
 
 			
 				
-				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1897:1987#L54">SetReferences</a>
+				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1972:2062#L57">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeLogger.SetReferences">&#xb6;</a>
 					
 					
@@ -640,7 +644,7 @@ SetReferences sets references to dependent components.
 				
 			
 				
-				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2651:2769#L82">Write</a>
+				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2754:2872#L85">Write</a>
 					<a class="permalink" href="index.html#CompositeLogger.Write">&#xb6;</a>
 					
 					
@@ -664,7 +668,7 @@ Parameters:
 		
 			
 			
-			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=762:799#L16">ConsoleLogger</a>
+			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=805:845#L19">ConsoleLogger</a>
 				<a class="permalink" href="index.html#ConsoleLogger">&#xb6;</a>
 				
 				
@@ -674,11 +678,13 @@ ConsoleLogger is a logger that writes log messages to console.
 Errors are written to standard err stream and all other messages to standard out stream.
 </p>
 <pre>Configuration parameters:
-	level: maximum log level to capture
-	source: source (context) name
+	- level: maximum log level to capture
+	- source: source (context) name
+
 References:
-	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+	- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 see Logger
+
 Example:
 	logger = NewConsoleLogger();
 	logger.SetLevel(LogLevel.Debug);
@@ -687,7 +693,7 @@ Example:
 </pre>
 
 			<pre>type ConsoleLogger struct {
-    <a href="index.html#Logger">Logger</a>
+    *<a href="index.html#Logger">Logger</a>
 }
 </pre>
 
@@ -701,7 +707,7 @@ Example:
 
 			
 				
-				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=885:923#L22">NewConsoleLogger</a>
+				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=935:973#L25">NewConsoleLogger</a>
 					<a class="permalink" href="index.html#NewConsoleLogger">&#xb6;</a>
 					
 					
@@ -719,7 +725,7 @@ NewConsoleLogger creates a new instance of the logger.
 
 			
 				
-				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1315:1431#L35">Write</a>
+				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1377:1493#L38">Write</a>
 					<a class="permalink" href="index.html#ConsoleLogger.Write">&#xb6;</a>
 					
 					
@@ -743,7 +749,7 @@ Write a log message to the logger destination.
 		
 			
 			
-			<h2 id="ICachedLogSaver">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=777:867#L13">ICachedLogSaver</a>
+			<h2 id="ICachedLogSaver">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=811:903#L13">ICachedLogSaver</a>
 				<a class="permalink" href="index.html#ICachedLogSaver">&#xb6;</a>
 				
 				
@@ -754,13 +760,13 @@ in memory and periodically dumps them. Child classes implement
 saving cached messages to their specified destinations.
 </p>
 <pre>Configuration parameters
-	level: maximum log level to capture
-	source: source (context) name
-	options:
-		interval: interval in milliseconds to save log messages (default: 10 seconds)
-		max_cache_size: maximum number of messages stored in this cache (default: 100)
+	- level: maximum log level to capture
+	- source: source (context) name
+	- options:
+		- interval: interval in milliseconds to save log messages (default: 10 seconds)
+		- max_cache_size: maximum number of messages stored in this cache (default: 100)
 References:
-	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+	- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 </pre>
 
 			<pre>type ICachedLogSaver interface {
@@ -781,7 +787,7 @@ References:
 		
 			
 			
-			<h2 id="ICachedLoggerOverrides">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=869:984#L17">ICachedLoggerOverrides</a>
+			<h2 id="ICachedLoggerOverrides">type <a href="http://localhost:6060/src/log/CachedLogger.go?s=907:1025#L17">ICachedLoggerOverrides</a>
 				<a class="permalink" href="index.html#ICachedLoggerOverrides">&#xb6;</a>
 				
 				
@@ -806,7 +812,7 @@ References:
 		
 			
 			
-			<h2 id="ILogger">type <a href="http://localhost:6060/src/log/ILogger.go?s=101:1328#L1">ILogger</a>
+			<h2 id="ILogger">type <a href="http://localhost:6060/src/log/ILogger.go?s=106:1361#L1">ILogger</a>
 				<a class="permalink" href="index.html#ILogger">&#xb6;</a>
 				
 				
@@ -859,7 +865,7 @@ ILogger for logger components that capture execution log messages.
 		
 			
 			
-			<h2 id="ILoggerOverrides">type <a href="http://localhost:6060/src/log/Logger.go?s=763:892#L11">ILoggerOverrides</a>
+			<h2 id="ILoggerOverrides">type <a href="http://localhost:6060/src/log/Logger.go?s=789:920#L11">ILoggerOverrides</a>
 				<a class="permalink" href="index.html#ILoggerOverrides">&#xb6;</a>
 				
 				
@@ -869,10 +875,10 @@ ILoggerOverrides abstract logger that captures and formats log messages.
 Child classes take the captured messages and write them to their specific destinations.
 </p>
 <pre>Configuration parameters to pass to the configure method for component configuration:
-	level: maximum log level to capture
-	source: source (context) name
+	- level: maximum log level to capture
+	- source: source (context) name
 References:
-	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+	- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 </pre>
 
 			<pre>type ILoggerOverrides interface {
@@ -893,7 +899,7 @@ References:
 		
 			
 			
-			<h2 id="LevelType">type <a href="http://localhost:6060/src/log/LogLevel.go?s=758:778#L19">LevelType</a>
+			<h2 id="LevelType">type <a href="http://localhost:6060/src/log/LogLevel.go?s=800:820#L19">LevelType</a>
 				<a class="permalink" href="index.html#LevelType">&#xb6;</a>
 				
 				
@@ -911,13 +917,13 @@ Logs at debug and trace levels are usually captured only locally for
 troubleshooting and never sent to consolidated log services.
 </p>
 <pre>Log levels:
-	None  = 0 Nothing to log
-	Fatal = 1 Log only fatal errors that cause processes to crash
-	Error = 2 Log all errors.
-	Warn  = 3 Log errors and warnings
-	Info  = 4 Log errors and important information messages
-	Debug = 5 Log everything except traces
-	Trace = 6 Log everything.
+	- None  = 0 Nothing to log
+	- Fatal = 1 Log only fatal errors that cause processes to crash
+	- Error = 2 Log all errors.
+	- Warn  = 3 Log errors and warnings
+	- Info  = 4 Log errors and important information messages
+	- Debug = 5 Log everything except traces
+	- Trace = 6 Log everything.
 </pre>
 
 				<pre>const (
@@ -941,7 +947,7 @@ troubleshooting and never sent to consolidated log services.
 
 			
 				
-				<h3 id="LevelType.MarshalJSON">func (LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=974:1022#L31">MarshalJSON</a>
+				<h3 id="LevelType.MarshalJSON">func (LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=1028:1076#L31">MarshalJSON</a>
 					<a class="permalink" href="index.html#LevelType.MarshalJSON">&#xb6;</a>
 					
 					
@@ -953,7 +959,7 @@ troubleshooting and never sent to consolidated log services.
 				
 			
 				
-				<h3 id="LevelType.UnmarshalJSON">func (*LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=780:838#L21">UnmarshalJSON</a>
+				<h3 id="LevelType.UnmarshalJSON">func (*LevelType) <a href="http://localhost:6060/src/log/LogLevel.go?s=824:882#L21">UnmarshalJSON</a>
 					<a class="permalink" href="index.html#LevelType.UnmarshalJSON">&#xb6;</a>
 					
 					
@@ -967,7 +973,7 @@ troubleshooting and never sent to consolidated log services.
 		
 			
 			
-			<h2 id="LogMessage">type <a href="http://localhost:6060/src/log/LogMessage.go?s=197:558#L1">LogMessage</a>
+			<h2 id="LogMessage">type <a href="http://localhost:6060/src/log/LogMessage.go?s=207:575#L1">LogMessage</a>
 				<a class="permalink" href="index.html#LogMessage">&#xb6;</a>
 				
 				
@@ -997,7 +1003,7 @@ This object is used by CachedLogger.
 
 			
 				
-				<h3 id="NewLogMessage">func <a href="http://localhost:6060/src/log/LogMessage.go?s=923:1052#L18">NewLogMessage</a>
+				<h3 id="NewLogMessage">func <a href="http://localhost:6060/src/log/LogMessage.go?s=950:1080#L18">NewLogMessage</a>
 					<a class="permalink" href="index.html#NewLogMessage">&#xb6;</a>
 					
 					
@@ -1024,7 +1030,7 @@ Returns: LogMessage
 		
 			
 			
-			<h2 id="Logger">type <a href="http://localhost:6060/src/log/Logger.go?s=894:983#L15">Logger</a>
+			<h2 id="Logger">type <a href="http://localhost:6060/src/log/Logger.go?s=924:1017#L15">Logger</a>
 				<a class="permalink" href="index.html#Logger">&#xb6;</a>
 				
 				
@@ -1046,7 +1052,7 @@ Returns: LogMessage
 
 			
 				
-				<h3 id="InheritLogger">func <a href="http://localhost:6060/src/log/Logger.go?s=1136:1190#L25">InheritLogger</a>
+				<h3 id="InheritLogger">func <a href="http://localhost:6060/src/log/Logger.go?s=1176:1230#L25">InheritLogger</a>
 					<a class="permalink" href="index.html#InheritLogger">&#xb6;</a>
 					
 					
@@ -1066,7 +1072,7 @@ Returns: *Logger
 
 			
 				
-				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2956:3003#L80">ComposeError</a>
+				<h3 id="Logger.ComposeError">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3058:3105#L81">ComposeError</a>
 					<a class="permalink" href="index.html#Logger.ComposeError">&#xb6;</a>
 					
 					
@@ -1074,9 +1080,10 @@ Returns: *Logger
 				<pre>func (c *<a href="index.html#Logger">Logger</a>) ComposeError(err <a href="http://localhost:6060/pkg/builtin/#error">error</a>) <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
 ComposeError composes an human-readable error description
-Parameters: err error an error to format.
 </p>
-<pre>Returns string a human-readable error description.
+<pre>Parameters:
+	- err error an error to format.
+Returns string a human-readable error description.
 </pre>
 
 				
@@ -1084,7 +1091,7 @@ Parameters: err error an error to format.
 				
 			
 				
-				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2098:2171#L61">Configure</a>
+				<h3 id="Logger.Configure">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2174:2247#L61">Configure</a>
 					<a class="permalink" href="index.html#Logger.Configure">&#xb6;</a>
 					
 					
@@ -1103,7 +1110,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6992:7086#L180">Debug</a>
+				<h3 id="Logger.Debug">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7179:7273#L181">Debug</a>
 					<a class="permalink" href="index.html#Logger.Debug">&#xb6;</a>
 					
 					
@@ -1124,7 +1131,7 @@ Debug logs a high-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5597:5702#L150">Error</a>
+				<h3 id="Logger.Error">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5754:5859#L151">Error</a>
 					<a class="permalink" href="index.html#Logger.Error">&#xb6;</a>
 					
 					
@@ -1146,7 +1153,7 @@ Logs recoverable application error.
 				
 			
 				
-				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5082:5187#L139">Fatal</a>
+				<h3 id="Logger.Fatal">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=5228:5333#L140">Fatal</a>
 					<a class="permalink" href="index.html#Logger.Fatal">&#xb6;</a>
 					
 					
@@ -1168,7 +1175,7 @@ Fatal logs fatal (unrecoverable) message that caused the process to crash.
 				
 			
 				
-				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3839:3970#L108">FormatAndWrite</a>
+				<h3 id="Logger.FormatAndWrite">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=3969:4101#L109">FormatAndWrite</a>
 					<a class="permalink" href="index.html#Logger.FormatAndWrite">&#xb6;</a>
 					
 					
@@ -1192,7 +1199,7 @@ Parameters:
 				
 			
 				
-				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6525:6618#L170">Info</a>
+				<h3 id="Logger.Info">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6702:6795#L171">Info</a>
 					<a class="permalink" href="index.html#Logger.Info">&#xb6;</a>
 					
 					
@@ -1213,7 +1220,7 @@ Info logs an important information message
 				
 			
 				
-				<h3 id="Logger.Level">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1405:1439#L35">Level</a>
+				<h3 id="Logger.Level">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1455:1489#L35">Level</a>
 					<a class="permalink" href="index.html#Logger.Level">&#xb6;</a>
 					
 					
@@ -1230,7 +1237,7 @@ Level gets the maximum log level. Messages with higher log level are filtered ou
 				
 			
 				
-				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4518:4638#L128">Log</a>
+				<h3 id="Logger.Log">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=4653:4773#L129">Log</a>
 					<a class="permalink" href="index.html#Logger.Log">&#xb6;</a>
 					
 					
@@ -1253,7 +1260,7 @@ Log a message at specified log level.
 				
 			
 				
-				<h3 id="Logger.SetLevel">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1550:1592#L41">SetLevel</a>
+				<h3 id="Logger.SetLevel">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1606:1648#L41">SetLevel</a>
 					<a class="permalink" href="index.html#Logger.SetLevel">&#xb6;</a>
 					
 					
@@ -1270,7 +1277,7 @@ SetLevel set the maximum log level.
 				
 			
 				
-				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2498:2579#L70">SetReferences</a>
+				<h3 id="Logger.SetReferences">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=2583:2664#L70">SetReferences</a>
 					<a class="permalink" href="index.html#Logger.SetReferences">&#xb6;</a>
 					
 					
@@ -1289,7 +1296,7 @@ SetReferences to dependent components.
 				
 			
 				
-				<h3 id="Logger.SetSource">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1860:1900#L53">SetSource</a>
+				<h3 id="Logger.SetSource">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1928:1968#L53">SetSource</a>
 					<a class="permalink" href="index.html#Logger.SetSource">&#xb6;</a>
 					
 					
@@ -1306,7 +1313,7 @@ SetSource sets the source (context) name.
 				
 			
 				
-				<h3 id="Logger.Source">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1703:1735#L47">Source</a>
+				<h3 id="Logger.Source">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=1765:1797#L47">Source</a>
 					<a class="permalink" href="index.html#Logger.Source">&#xb6;</a>
 					
 					
@@ -1323,7 +1330,7 @@ Source gets the source (context) name.
 				
 			
 				
-				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7460:7554#L190">Trace</a>
+				<h3 id="Logger.Trace">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=7657:7751#L191">Trace</a>
 					<a class="permalink" href="index.html#Logger.Trace">&#xb6;</a>
 					
 					
@@ -1344,7 +1351,7 @@ Trace logs a low-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6078:6171#L160">Warn</a>
+				<h3 id="Logger.Warn">func (*Logger) <a href="http://localhost:6060/src/log/Logger.go?s=6245:6338#L161">Warn</a>
 					<a class="permalink" href="index.html#Logger.Warn">&#xb6;</a>
 					
 					
@@ -1367,7 +1374,7 @@ Warn logs a warning that may or may not have a negative impact.
 		
 			
 			
-			<h2 id="NullLogger">type <a href="http://localhost:6060/src/log/NullLogger.go?s=195:219#L1">NullLogger</a>
+			<h2 id="NullLogger">type <a href="http://localhost:6060/src/log/NullLogger.go?s=201:225#L1">NullLogger</a>
 				<a class="permalink" href="index.html#NullLogger">&#xb6;</a>
 				
 				
@@ -1390,7 +1397,7 @@ It can be used in testing or in situations when logger is required but shall be 
 
 			
 				
-				<h3 id="NewNullLogger">func <a href="http://localhost:6060/src/log/NullLogger.go?s=299:331#L1">NewNullLogger</a>
+				<h3 id="NewNullLogger">func <a href="http://localhost:6060/src/log/NullLogger.go?s=309:341#L1">NewNullLogger</a>
 					<a class="permalink" href="index.html#NewNullLogger">&#xb6;</a>
 					
 					
@@ -1408,7 +1415,7 @@ NewNullLogger creates a new instance of the logger.
 
 			
 				
-				<h3 id="NullLogger.Debug">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3223:3321#L72">Debug</a>
+				<h3 id="NullLogger.Debug">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3311:3409#L73">Debug</a>
 					<a class="permalink" href="index.html#NullLogger.Debug">&#xb6;</a>
 					
 					
@@ -1429,7 +1436,7 @@ Debug logs a high-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="NullLogger.Error">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2024:2133#L45">Error</a>
+				<h3 id="NullLogger.Error">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2085:2194#L46">Error</a>
 					<a class="permalink" href="index.html#NullLogger.Error">&#xb6;</a>
 					
 					
@@ -1451,7 +1458,7 @@ Logs recoverable application error.
 				
 			
 				
-				<h3 id="NullLogger.Fatal">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1575:1684#L35">Fatal</a>
+				<h3 id="NullLogger.Fatal">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1626:1735#L36">Fatal</a>
 					<a class="permalink" href="index.html#NullLogger.Fatal">&#xb6;</a>
 					
 					
@@ -1473,7 +1480,7 @@ Fatal logs fatal (unrecoverable) message that caused the process to crash.
 				
 			
 				
-				<h3 id="NullLogger.Info">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2821:2918#L63">Info</a>
+				<h3 id="NullLogger.Info">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2900:2997#L64">Info</a>
 					<a class="permalink" href="index.html#NullLogger.Info">&#xb6;</a>
 					
 					
@@ -1494,7 +1501,7 @@ Info logs an important information message
 				
 			
 				
-				<h3 id="NullLogger.Level">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=498:536#L8">Level</a>
+				<h3 id="NullLogger.Level">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=515:553#L8">Level</a>
 					<a class="permalink" href="index.html#NullLogger.Level">&#xb6;</a>
 					
 					
@@ -1511,7 +1518,7 @@ Level gets the maximum log level. Messages with higher log level are filtered ou
 				
 			
 				
-				<h3 id="NullLogger.Log">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1072:1196#L25">Log</a>
+				<h3 id="NullLogger.Log">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=1113:1237#L26">Log</a>
 					<a class="permalink" href="index.html#NullLogger.Log">&#xb6;</a>
 					
 					
@@ -1534,7 +1541,7 @@ Log a message at specified log level.
 				
 			
 				
-				<h3 id="NullLogger.SetLevel">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=649:695#L14">SetLevel</a>
+				<h3 id="NullLogger.SetLevel">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=679:725#L15">SetLevel</a>
 					<a class="permalink" href="index.html#NullLogger.SetLevel">&#xb6;</a>
 					
 					
@@ -1543,7 +1550,8 @@ Log a message at specified log level.
 				<p>
 SetLevel set the maximum log level.
 </p>
-<pre>Parameters: value int a new maximum log level.
+<pre>Parameters:
+	- value int a new maximum log level.
 </pre>
 
 				
@@ -1551,7 +1559,7 @@ SetLevel set the maximum log level.
 				
 			
 				
-				<h3 id="NullLogger.Trace">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3625:3723#L81">Trace</a>
+				<h3 id="NullLogger.Trace">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=3722:3820#L82">Trace</a>
 					<a class="permalink" href="index.html#NullLogger.Trace">&#xb6;</a>
 					
 					
@@ -1572,7 +1580,7 @@ Trace logs a low-level debug information for troubleshooting.
 				
 			
 				
-				<h3 id="NullLogger.Warn">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2439:2536#L54">Warn</a>
+				<h3 id="NullLogger.Warn">func (*NullLogger) <a href="http://localhost:6060/src/log/NullLogger.go?s=2509:2606#L55">Warn</a>
 					<a class="permalink" href="index.html#NullLogger.Warn">&#xb6;</a>
 					
 					
@@ -1604,7 +1612,7 @@ Warn logs a warning that may or may not have a negative impact.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

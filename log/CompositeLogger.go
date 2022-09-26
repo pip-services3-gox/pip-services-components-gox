@@ -11,6 +11,7 @@ import (
 //
 //	References:
 //		- *:logger:*:*:1.0 (optional) ILogger components to pass log messages
+//
 //	see ILogger
 //	Example:
 //		type MyComponent {
@@ -33,7 +34,7 @@ import (
 //		var mc MyComponent = MyComponent{}
 //		mc._logger = NewCompositeLogger();
 type CompositeLogger struct {
-	Logger
+	*Logger
 	loggers []ILogger
 }
 
@@ -43,7 +44,7 @@ func NewCompositeLogger() *CompositeLogger {
 	c := &CompositeLogger{
 		loggers: []ILogger{},
 	}
-	c.Logger = *InheritLogger(c)
+	c.Logger = InheritLogger(c)
 	c.SetLevel(LevelTrace)
 	return c
 }

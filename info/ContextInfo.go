@@ -21,7 +21,7 @@ import (
 //
 //	Example:
 //		contextInfo := NewContextInfo();
-//		contextInfo.Configure(NewConfigParamsFromTuples(
+//		contextInfo.Configure(context.Background(), NewConfigParamsFromTuples(
 //			ContextInfoParameterName, "MyMicroservice",
 //			ContextInfoParameterDescription, "My first microservice"
 //		));

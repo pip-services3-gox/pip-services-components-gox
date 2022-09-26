@@ -9,10 +9,10 @@ import (
 // FileConfigReader is an abstract config reader that reads configuration from a file.
 // Child classes add support for config files in their specific format like JSON, YAML or property files.
 //	Configuration parameters:
-//		path: path to configuration file
-//		parameters: this entire section is used as template parameters
+//		- path: path to configuration file
+//		- parameters: this entire section is used as template parameters
 type FileConfigReader struct {
-	ConfigReader
+	*ConfigReader
 	path string
 }
 
@@ -23,7 +23,7 @@ const FileConfigReaderPathKey = "path"
 //	Returns: *FileConfigReader
 func NewEmptyFileConfigReader() *FileConfigReader {
 	return &FileConfigReader{
-		ConfigReader: *NewConfigReader(),
+		ConfigReader: NewConfigReader(),
 	}
 }
 
@@ -33,7 +33,7 @@ func NewEmptyFileConfigReader() *FileConfigReader {
 //	Returns: *FileConfigReader
 func NewFileConfigReader(path string) *FileConfigReader {
 	return &FileConfigReader{
-		ConfigReader: *NewConfigReader(),
+		ConfigReader: NewConfigReader(),
 		path:         path,
 	}
 }

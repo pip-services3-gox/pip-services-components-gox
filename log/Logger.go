@@ -14,10 +14,10 @@ import (
 // ILoggerOverrides abstract logger that captures and formats log messages.
 // Child classes take the captured messages and write them to their specific destinations.
 //	Configuration parameters to pass to the configure method for component configuration:
-//		level: maximum log level to capture
-//		source: source (context) name
+//		- level: maximum log level to capture
+//		- source: source (context) name
 //	References:
-//		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+//		- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 type ILoggerOverrides interface {
 	Write(ctx context.Context, level LevelType, correlationId string, err error, message string)
 }
@@ -119,7 +119,7 @@ func (c *Logger) ComposeError(err error) string {
 func (c *Logger) FormatAndWrite(ctx context.Context, level LevelType,
 	correlationId string, err error, message string, args []any) {
 
-	if args != nil && len(args) > 0 {
+	if len(args) > 0 {
 		message = fmt.Sprintf(message, args...)
 	}
 

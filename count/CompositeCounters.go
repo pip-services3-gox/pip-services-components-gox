@@ -9,15 +9,17 @@ import (
 
 // CompositeCounters aggregates all counters from component references under a single component.
 // It allows capturing metrics and conveniently send them to multiple destinations.
+//
 //	References:
-//		*:counters:*:*:1.0 (optional) ICounters components to pass collected measurements
+//		- *:counters:*:*:1.0 (optional) ICounters components to pass collected measurements
 //	see ICounters
+//
 //	Example:
 //  	type MyComponent {
 //			_counters CompositeCounters = new CompositeCounters();
 //  	}
-//		func (mc *MyConponent) SetReferences(references: IReferences) {
-//			mc._counters.SetReferences(references);
+//		func (mc *MyConponent) SetReferences(ctx context.Context, references refer.IReferences) {
+//			mc._counters.SetReferences(ctx, references);
 //		}
 //
 //		func (mc * MyConponent) myMethod() {

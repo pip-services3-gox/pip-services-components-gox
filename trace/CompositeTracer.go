@@ -40,11 +40,18 @@ type CompositeTracer struct {
 // NewCompositeTracer creates a new instance of the tracer.
 //	Parameters:
 //		- references to locate the component dependencies.
-func NewCompositeTracer(ctx context.Context, references cref.IReferences) *CompositeTracer {
-	c := &CompositeTracer{}
-	if references != nil {
-		c.SetReferences(ctx, references)
-	}
+func NewCompositeTracer() *CompositeTracer {
+	return &CompositeTracer{}
+}
+
+// NewCompositeTracerFromReferences creates a new instance of the tracer.
+//	Parameters:
+//		- ctx context.Context
+//		- refer.IReferences references to locate the component dependencies.
+//	Returns: CompositeLogger
+func NewCompositeTracerFromReferences(ctx context.Context, references cref.IReferences) *CompositeTracer {
+	c := NewCompositeTracer()
+	c.SetReferences(ctx, references)
 	return c
 }
 

@@ -33,7 +33,7 @@ import (
 //		);
 //		connectionResolver := NewConnectionResolver();
 //		connectionResolver.Configure(context.Background(), config);
-//		connectionResolver.SetReferences(references);
+//		connectionResolver.SetReferences(context.Background(), references);
 //		res, err := connectionResolver.Resolve("123");
 //
 type ConnectionResolver struct {

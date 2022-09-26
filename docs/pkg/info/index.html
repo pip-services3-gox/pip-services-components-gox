@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -191,7 +191,7 @@
 		
 			
 			
-			<h2 id="NewDefaultInfoFactory">func <a href="http://localhost:6060/src/info/DefaultInfoFactory.go?s=633:676#L6">NewDefaultInfoFactory</a>
+			<h2 id="NewDefaultInfoFactory">func <a href="http://localhost:6060/src/info/DefaultInfoFactory.go?s=648:691#L6">NewDefaultInfoFactory</a>
 				<a class="permalink" href="index.html#NewDefaultInfoFactory">&#xb6;</a>
 				
 				
@@ -210,7 +210,7 @@ NewDefaultInfoFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=986:1263#L20">ContextInfo</a>
+			<h2 id="ContextInfo">type <a href="http://localhost:6060/src/info/ContextInfo.go?s=1053:1336#L22">ContextInfo</a>
 				<a class="permalink" href="index.html#ContextInfo">&#xb6;</a>
 				
 				
@@ -222,13 +222,14 @@ Most often ContextInfo is used by logging and performance counters to identify
 source of the collected logs and metrics.
 </p>
 <pre>Configuration parameters:
-	name: the context (container or process) name
-	description: human-readable description of the context
-	properties: entire section of additional descriptive properties
-	...
+	- name: the context (container or process) name
+	- description: human-readable description of the context
+	- properties: entire section of additional descriptive properties
+	- ...
+
 Example:
 	contextInfo := NewContextInfo();
-	contextInfo.Configure(NewConfigParamsFromTuples(
+	contextInfo.Configure(context.Background(), NewConfigParamsFromTuples(
 		ContextInfoParameterName, &#34;MyMicroservice&#34;,
 		ContextInfoParameterDescription, &#34;My first microservice&#34;
 	));
@@ -257,7 +258,7 @@ Example:
 
 			
 				
-				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1673:1707#L39">NewContextInfo</a>
+				<h3 id="NewContextInfo">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=1759:1793#L41">NewContextInfo</a>
 					<a class="permalink" href="index.html#NewContextInfo">&#xb6;</a>
 					
 					
@@ -273,7 +274,7 @@ NewContextInfo creates a new instance of this context info.
 				
 			
 				
-				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=2967:3056#L72">NewContextInfoFromConfig</a>
+				<h3 id="NewContextInfoFromConfig">func <a href="http://localhost:6060/src/info/ContextInfo.go?s=3100:3189#L76">NewContextInfoFromConfig</a>
 					<a class="permalink" href="index.html#NewContextInfoFromConfig">&#xb6;</a>
 					
 					
@@ -282,7 +283,8 @@ NewContextInfo creates a new instance of this context info.
 				<p>
 NewContextInfoFromConfig creates a new instance of this context info.
 </p>
-<pre>Parameters: cfg *config.ConfigParams a context configuration parameters.
+<pre>Parameters:
+	- cfg *config.ConfigParams a context configuration parameters.
 Returns: *ContextInfo
 </pre>
 
@@ -292,7 +294,7 @@ Returns: *ContextInfo
 
 			
 				
-				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2250:2328#L57">Configure</a>
+				<h3 id="ContextInfo.Configure">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2361:2439#L60">Configure</a>
 					<a class="permalink" href="index.html#ContextInfo.Configure">&#xb6;</a>
 					
 					
@@ -301,7 +303,8 @@ Returns: *ContextInfo
 				<p>
 Configure configures component by passing configuration parameters.
 </p>
-<pre>Parameters: config *config.ConfigParams configuration parameters to be set.
+<pre>Parameters:
+	- config *config.ConfigParams configuration parameters to be set.
 </pre>
 
 				
@@ -309,7 +312,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2011:2047#L51">Uptime</a>
+				<h3 id="ContextInfo.Uptime">func (*ContextInfo) <a href="http://localhost:6060/src/info/ContextInfo.go?s=2109:2145#L53">Uptime</a>
 					<a class="permalink" href="index.html#ContextInfo.Uptime">&#xb6;</a>
 					
 					
@@ -337,7 +340,7 @@ Uptime calculates the context uptime as from the start time.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

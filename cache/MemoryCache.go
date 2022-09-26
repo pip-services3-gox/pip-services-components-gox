@@ -12,13 +12,13 @@ import (
 
 // MemoryCache that stores values in the process memory.
 //	Configuration parameters:
-//		options:
-//		timeout: default caching timeout in milliseconds (default: 1 minute)
-//		max_size: maximum number of values stored in this cache (default: 1000)
+//		- options:
+//			- timeout: default caching timeout in milliseconds (default: 1 minute)
+//			- max_size: maximum number of values stored in this cache (default: 1000)
 // see ICache
 //	Example:
 //		cache := NewMemoryCache[string]();
-//		res, err := cache.Store("123", "key1", "ABC", 10000);
+//		res, err := cache.Store(contex.Background(), "123", "key1", "ABC", 10000);
 type MemoryCache[T any] struct {
 	cache     map[string]*CacheEntry[string]
 	mtx       *sync.Mutex

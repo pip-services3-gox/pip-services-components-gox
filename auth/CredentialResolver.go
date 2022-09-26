@@ -15,16 +15,17 @@ import (
 //
 //	Configuration parameters:
 //		credential:
-//		store_key: (optional) a key to retrieve the credentials from ICredentialStore
-//			... other credential parameters
+//			- store_key: (optional) a key to retrieve the credentials from ICredentialStore
+//				- ... other credential parameters
 //		credentials: alternative to credential
-//		[credential params 1]: first credential parameters
-//			... credential parameters for key 1
-//			...
-//		[credential params N]: Nth credential parameters
-//			... credential parameters for key N
+//			- [credential params 1]: first credential parameters
+//				- ... credential parameters for key 1
+//				- ...
+//			- [credential params N]: Nth credential parameters
+//				- ... credential parameters for key N
 //	References:
-//		*:credential-store:*:*:1.0 (optional) Credential stores to resolve credentials
+//		- *:credential-store:*:*:1.0 (optional) Credential stores to resolve credentials
+//
 // see CredentialParams
 // see ICredentialStore
 //	Example:
@@ -37,9 +38,8 @@ import (
 //		credentialResolver.Configure(context.Background(), config);
 //		credentialResolver.SetReferences(context.Background(), references);
 //
-//		credentialResolver.Lookup("123", (err, credential) => {
-//			// Now use credential...
-//		});
+//		cred, err := credentialResolver.Lookup(context.Background(), "123");
+//		// Now use credential...
 type CredentialResolver struct {
 	credentials []*CredentialParams
 	references  refer.IReferences

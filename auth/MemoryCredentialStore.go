@@ -9,11 +9,11 @@ import (
 
 // MemoryCredentialStore Credential store that keeps credentials in memory.
 //		Configuration parameters:
-//			[credential key 1]:
-//			... credential parameters for key 1
-//			[credential key 2]:
-//			... credential parameters for key N
-//			...
+//			- [credential key 1]:
+//				- ... credential parameters for key 1
+//			- [credential key 2]:
+//				- ... credential parameters for key N
+//				- ...
 // see ICredentialStore
 // see CredentialParams
 //
@@ -26,7 +26,7 @@ import (
 //		);
 //		credentialStore := NewEmptyMemoryCredentialStore();
 //		credentialStore.ReadCredentials(config);
-//		res, err := credentialStore.Lookup("123", "key1");
+//		res, err := credentialStore.Lookup(context.Backgroudn(), "123", "key1");
 type MemoryCredentialStore struct {
 	items map[string]*CredentialParams
 }

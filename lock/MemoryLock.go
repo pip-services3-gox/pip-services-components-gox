@@ -14,9 +14,9 @@ import (
 //	see Lock
 //	Example:
 //		lock := NewMemoryLock()
-//		err = lock.Acquire("123", "key1")
+//		err = lock.AcquireLock(context.Background(), "123", "key1")
 //		if err == nil {
-//			 _ = lock.ReleaseLock("123", "key1")
+//			 _ = lock.ReleaseLock(context.Background(), "123", "key1")
 //			// Processing...
 //		}
 type MemoryLock struct {

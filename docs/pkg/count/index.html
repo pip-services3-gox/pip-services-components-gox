@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -422,7 +422,7 @@
 		
 			
 			
-			<h2 id="NewDefaultCountersFactory">func <a href="http://localhost:6060/src/count/DefaultCountersFactory.go?s=607:654#L6">NewDefaultCountersFactory</a>
+			<h2 id="NewDefaultCountersFactory">func <a href="http://localhost:6060/src/count/DefaultCountersFactory.go?s=622:669#L6">NewDefaultCountersFactory</a>
 				<a class="permalink" href="index.html#NewDefaultCountersFactory">&#xb6;</a>
 				
 				
@@ -441,7 +441,7 @@ NewDefaultCountersFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="AtomicCounter">type <a href="http://localhost:6060/src/count/AtomicCounter.go?s=188:384#L1">AtomicCounter</a>
+			<h2 id="AtomicCounter">type <a href="http://localhost:6060/src/count/AtomicCounter.go?s=198:405#L1">AtomicCounter</a>
 				<a class="permalink" href="index.html#AtomicCounter">&#xb6;</a>
 				
 				
@@ -466,7 +466,7 @@ This object is used by CachedCounters to store counters.
 
 			
 				
-				<h3 id="NewAtomicCounter">func <a href="http://localhost:6060/src/count/AtomicCounter.go?s=554:620#L19">NewAtomicCounter</a>
+				<h3 id="NewAtomicCounter">func <a href="http://localhost:6060/src/count/AtomicCounter.go?s=582:648#L19">NewAtomicCounter</a>
 					<a class="permalink" href="index.html#NewAtomicCounter">&#xb6;</a>
 					
 					
@@ -487,7 +487,7 @@ Returns: *Counter
 
 			
 				
-				<h3 id="AtomicCounter.Average">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=3069:3110#L144">Average</a>
+				<h3 id="AtomicCounter.Average">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=3222:3263#L144">Average</a>
 					<a class="permalink" href="index.html#AtomicCounter.Average">&#xb6;</a>
 					
 					
@@ -504,7 +504,7 @@ Average gets counter _average
 				
 			
 				
-				<h3 id="AtomicCounter.CalculateStats">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1190:1243#L48">CalculateStats</a>
+				<h3 id="AtomicCounter.CalculateStats">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1247:1300#L48">CalculateStats</a>
 					<a class="permalink" href="index.html#AtomicCounter.CalculateStats">&#xb6;</a>
 					
 					
@@ -521,7 +521,7 @@ CalculateStats set up _last and calculates stats
 				
 			
 				
-				<h3 id="AtomicCounter.Count">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2630:2667#L120">Count</a>
+				<h3 id="AtomicCounter.Count">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2759:2796#L120">Count</a>
 					<a class="permalink" href="index.html#AtomicCounter.Count">&#xb6;</a>
 					
 					
@@ -538,7 +538,7 @@ Count gets counter _count
 				
 			
 				
-				<h3 id="AtomicCounter.GetCounter">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1720:1764#L70">GetCounter</a>
+				<h3 id="AtomicCounter.GetCounter">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1799:1843#L70">GetCounter</a>
 					<a class="permalink" href="index.html#AtomicCounter.GetCounter">&#xb6;</a>
 					
 					
@@ -555,7 +555,7 @@ GetCounter converts AtomicCounter to Counter struct
 				
 			
 				
-				<h3 id="AtomicCounter.Inc">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1541:1581#L61">Inc</a>
+				<h3 id="AtomicCounter.Inc">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1611:1651#L61">Inc</a>
 					<a class="permalink" href="index.html#AtomicCounter.Inc">&#xb6;</a>
 					
 					
@@ -572,7 +572,7 @@ Inc increments _count for the provided value
 				
 			
 				
-				<h3 id="AtomicCounter.Last">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2483:2521#L112">Last</a>
+				<h3 id="AtomicCounter.Last">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2604:2642#L112">Last</a>
 					<a class="permalink" href="index.html#AtomicCounter.Last">&#xb6;</a>
 					
 					
@@ -589,7 +589,7 @@ Last gets counter _last
 				
 			
 				
-				<h3 id="AtomicCounter.Max">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2918:2955#L136">Max</a>
+				<h3 id="AtomicCounter.Max">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=3063:3100#L136">Max</a>
 					<a class="permalink" href="index.html#AtomicCounter.Max">&#xb6;</a>
 					
 					
@@ -606,7 +606,7 @@ Max gets counter _max
 				
 			
 				
-				<h3 id="AtomicCounter.Min">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2775:2812#L128">Min</a>
+				<h3 id="AtomicCounter.Min">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2912:2949#L128">Min</a>
 					<a class="permalink" href="index.html#AtomicCounter.Min">&#xb6;</a>
 					
 					
@@ -623,7 +623,7 @@ Min gets counter _min
 				
 			
 				
-				<h3 id="AtomicCounter.Name">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2039:2076#L88">Name</a>
+				<h3 id="AtomicCounter.Name">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2136:2173#L88">Name</a>
 					<a class="permalink" href="index.html#AtomicCounter.Name">&#xb6;</a>
 					
 					
@@ -640,7 +640,7 @@ Name gets counter _name
 				
 			
 				
-				<h3 id="AtomicCounter.SetLast">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=825:871#L32">SetLast</a>
+				<h3 id="AtomicCounter.SetLast">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=866:912#L32">SetLast</a>
 					<a class="permalink" href="index.html#AtomicCounter.SetLast">&#xb6;</a>
 					
 					
@@ -657,7 +657,7 @@ SetLast is a setter for the _last
 				
 			
 				
-				<h3 id="AtomicCounter.SetTime">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1000:1048#L40">SetTime</a>
+				<h3 id="AtomicCounter.SetTime">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=1049:1097#L40">SetTime</a>
 					<a class="permalink" href="index.html#AtomicCounter.SetTime">&#xb6;</a>
 					
 					
@@ -674,7 +674,7 @@ SetTime is a setter for the _time
 				
 			
 				
-				<h3 id="AtomicCounter.Time">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2334:2374#L104">Time</a>
+				<h3 id="AtomicCounter.Time">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2447:2487#L104">Time</a>
 					<a class="permalink" href="index.html#AtomicCounter.Time">&#xb6;</a>
 					
 					
@@ -691,7 +691,7 @@ Time gets counter _time
 				
 			
 				
-				<h3 id="AtomicCounter.Type">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2181:2223#L96">Type</a>
+				<h3 id="AtomicCounter.Type">func (*AtomicCounter) <a href="http://localhost:6060/src/count/AtomicCounter.go?s=2286:2328#L96">Type</a>
 					<a class="permalink" href="index.html#AtomicCounter.Type">&#xb6;</a>
 					
 					
@@ -710,7 +710,7 @@ Type gets counter _type
 		
 			
 			
-			<h2 id="CachedCounters">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=548:799#L8">CachedCounters</a>
+			<h2 id="CachedCounters">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=573:833#L8">CachedCounters</a>
 				<a class="permalink" href="index.html#CachedCounters">&#xb6;</a>
 				
 				
@@ -721,9 +721,9 @@ stores counters in memory. Child classes implement saving of the counters
 into various destinations.
 </p>
 <pre>Configuration parameters:
-	options:
-	interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-	reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+	- options:
+		- interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+		- reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 </pre>
 
 			<pre>type CachedCounters struct {
@@ -742,7 +742,7 @@ into various destinations.
 
 			
 				
-				<h3 id="InheritCacheCounters">func <a href="http://localhost:6060/src/count/CachedCounters.go?s=1226:1303#L34">InheritCacheCounters</a>
+				<h3 id="InheritCacheCounters">func <a href="http://localhost:6060/src/count/CachedCounters.go?s=1277:1354#L34">InheritCacheCounters</a>
 					<a class="permalink" href="index.html#InheritCacheCounters">&#xb6;</a>
 					
 					
@@ -762,7 +762,7 @@ Returns: *CachedCounters
 
 			
 				
-				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5348:5433#L195">BeginTiming</a>
+				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5574:5659#L197">BeginTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -784,7 +784,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2153:2217#L59">Clear</a>
+				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2229:2293#L59">Clear</a>
 					<a class="permalink" href="index.html#CachedCounters.Clear">&#xb6;</a>
 					
 					
@@ -803,7 +803,7 @@ Clear clears (resets) a counter specified by its name.
 				
 			
 				
-				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2360:2414#L68">ClearAll</a>
+				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2452:2506#L69">ClearAll</a>
 					<a class="permalink" href="index.html#CachedCounters.ClearAll">&#xb6;</a>
 					
 					
@@ -812,7 +812,8 @@ Clear clears (resets) a counter specified by its name.
 				<p>
 ClearAll clears (resets) all counters.
 </p>
-<pre>Parameters: ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 </pre>
 
 				
@@ -820,7 +821,7 @@ ClearAll clears (resets) all counters.
 				
 			
 				
-				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1751:1835#L50">Configure</a>
+				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1818:1902#L50">Configure</a>
 					<a class="permalink" href="index.html#CachedCounters.Configure">&#xb6;</a>
 					
 					
@@ -839,7 +840,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2686:2742#L83">Dump</a>
+				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2800:2856#L85">Dump</a>
 					<a class="permalink" href="index.html#CachedCounters.Dump">&#xb6;</a>
 					
 					
@@ -848,7 +849,8 @@ Configure configures component by passing configuration parameters.
 				<p>
 Dump (saves) the current values of counters.
 </p>
-<pre>Parameters: ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 </pre>
 
 				
@@ -856,7 +858,7 @@ Dump (saves) the current values of counters.
 				
 			
 				
-				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5742:5827#L205">EndTiming</a>
+				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5978:6063#L207">EndTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -877,7 +879,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4648:4750#L169">Get</a>
+				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4848:4950#L171">Get</a>
 					<a class="permalink" href="index.html#CachedCounters.Get">&#xb6;</a>
 					
 					
@@ -899,7 +901,7 @@ Returns: *Counter an existing or newly created counter of the specified type.
 				
 			
 				
-				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3682:3732#L131">GetAll</a>
+				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3844:3894#L133">GetAll</a>
 					<a class="permalink" href="index.html#CachedCounters.GetAll">&#xb6;</a>
 					
 					
@@ -916,7 +918,7 @@ GetAll gets all captured counters.
 				
 			
 				
-				<h3 id="CachedCounters.GetAllCountersStats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3984:4040#L145">GetAllCountersStats</a>
+				<h3 id="CachedCounters.GetAllCountersStats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4160:4216#L147">GetAllCountersStats</a>
 					<a class="permalink" href="index.html#CachedCounters.GetAllCountersStats">&#xb6;</a>
 					
 					
@@ -933,7 +935,7 @@ GetAllCountersStats gets all captured counters stats.
 				
 			
 				
-				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7864:7945#L270">Increment</a>
+				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=8165:8246#L272">Increment</a>
 					<a class="permalink" href="index.html#CachedCounters.Increment">&#xb6;</a>
 					
 					
@@ -953,7 +955,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7572:7643#L261">IncrementOne</a>
+				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7864:7935#L263">IncrementOne</a>
 					<a class="permalink" href="index.html#CachedCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -972,7 +974,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6618:6696#L230">Last</a>
+				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6879:6957#L232">Last</a>
 					<a class="permalink" href="index.html#CachedCounters.Last">&#xb6;</a>
 					
 					
@@ -993,7 +995,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6173:6252#L217">Stats</a>
+				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6421:6500#L219">Stats</a>
 					<a class="permalink" href="index.html#CachedCounters.Stats">&#xb6;</a>
 					
 					
@@ -1013,7 +1015,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7246:7331#L250">Timestamp</a>
+				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7527:7612#L252">Timestamp</a>
 					<a class="permalink" href="index.html#CachedCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1033,7 +1035,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6953:7024#L241">TimestampNow</a>
+				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=7225:7296#L243">TimestampNow</a>
 					<a class="permalink" href="index.html#CachedCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1054,7 +1056,7 @@ TimestampNow records the current time as a timestamp.
 		
 			
 			
-			<h2 id="CompositeCounters">type <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1002:1057#L21">CompositeCounters</a>
+			<h2 id="CompositeCounters">type <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1073:1130#L23">CompositeCounters</a>
 				<a class="permalink" href="index.html#CompositeCounters">&#xb6;</a>
 				
 				
@@ -1064,14 +1066,15 @@ CompositeCounters aggregates all counters from component references under a sing
 It allows capturing metrics and conveniently send them to multiple destinations.
 </p>
 <pre>	References:
-		*:counters:*:*:1.0 (optional) ICounters components to pass collected measurements
+		- *:counters:*:*:1.0 (optional) ICounters components to pass collected measurements
 	see ICounters
+
 	Example:
  	type MyComponent {
 			_counters CompositeCounters = new CompositeCounters();
  	}
-		func (mc *MyConponent) SetReferences(references: IReferences) {
-			mc._counters.SetReferences(references);
+		func (mc *MyConponent) SetReferences(ctx context.Context, references refer.IReferences) {
+			mc._counters.SetReferences(ctx, references);
 		}
 
 		func (mc * MyConponent) myMethod() {
@@ -1099,7 +1102,7 @@ It allows capturing metrics and conveniently send them to multiple destinations.
 
 			
 				
-				<h3 id="NewCompositeCounters">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1154:1200#L27">NewCompositeCounters</a>
+				<h3 id="NewCompositeCounters">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1231:1277#L29">NewCompositeCounters</a>
 					<a class="permalink" href="index.html#NewCompositeCounters">&#xb6;</a>
 					
 					
@@ -1115,7 +1118,7 @@ NewCompositeCounters creates a new instance of the counters.
 				
 			
 				
-				<h3 id="NewCompositeCountersFromReferences">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1500:1609#L39">NewCompositeCountersFromReferences</a>
+				<h3 id="NewCompositeCountersFromReferences">func <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1589:1698#L41">NewCompositeCountersFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeCountersFromReferences">&#xb6;</a>
 					
 					
@@ -1136,7 +1139,7 @@ Returns: *CompositeCounters
 
 			
 				
-				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2604:2692#L76">BeginTiming</a>
+				<h3 id="CompositeCounters.BeginTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=2730:2818#L78">BeginTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -1158,7 +1161,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3001:3089#L86">EndTiming</a>
+				<h3 id="CompositeCounters.EndTiming">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3137:3225#L88">EndTiming</a>
 					<a class="permalink" href="index.html#CompositeCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -1179,7 +1182,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5203:5287#L157">Increment</a>
+				<h3 id="CompositeCounters.Increment">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5410:5494#L159">Increment</a>
 					<a class="permalink" href="index.html#CompositeCounters.Increment">&#xb6;</a>
 					
 					
@@ -1199,7 +1202,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4905:4979#L148">IncrementOne</a>
+				<h3 id="CompositeCounters.IncrementOne">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=5103:5177#L150">IncrementOne</a>
 					<a class="permalink" href="index.html#CompositeCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -1218,7 +1221,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3937:4018#L115">Last</a>
+				<h3 id="CompositeCounters.Last">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4102:4183#L117">Last</a>
 					<a class="permalink" href="index.html#CompositeCounters.Last">&#xb6;</a>
 					
 					
@@ -1239,7 +1242,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="CompositeCounters.SetReferences">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1866:1958#L49">SetReferences</a>
+				<h3 id="CompositeCounters.SetReferences">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=1965:2057#L51">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeCounters.SetReferences">&#xb6;</a>
 					
 					
@@ -1258,7 +1261,7 @@ SetReferences references to dependent components.
 				
 			
 				
-				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3495:3577#L101">Stats</a>
+				<h3 id="CompositeCounters.Stats">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=3646:3728#L103">Stats</a>
 					<a class="permalink" href="index.html#CompositeCounters.Stats">&#xb6;</a>
 					
 					
@@ -1278,7 +1281,7 @@ Stats calculates min/average/max statistics based on the current and previous va
 				
 			
 				
-				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4571:4659#L136">Timestamp</a>
+				<h3 id="CompositeCounters.Timestamp">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4757:4845#L138">Timestamp</a>
 					<a class="permalink" href="index.html#CompositeCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1298,7 +1301,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4275:4349#L127">TimestampNow</a>
+				<h3 id="CompositeCounters.TimestampNow">func (*CompositeCounters) <a href="http://localhost:6060/src/count/CompositeCounters.go?s=4452:4526#L129">TimestampNow</a>
 					<a class="permalink" href="index.html#CompositeCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1319,7 +1322,7 @@ TimestampNow records the current time as a timestamp.
 		
 			
 			
-			<h2 id="Counter">type <a href="http://localhost:6060/src/count/Counter.go?s=166:471#L1">Counter</a>
+			<h2 id="Counter">type <a href="http://localhost:6060/src/count/Counter.go?s=174:488#L1">Counter</a>
 				<a class="permalink" href="index.html#Counter">&#xb6;</a>
 				
 				
@@ -1355,7 +1358,7 @@ This object is used by CachedCounters to store counters.
 		
 			
 			
-			<h2 id="CounterTiming">type <a href="http://localhost:6060/src/count/CounterTiming.go?s=285:377#L3">CounterTiming</a>
+			<h2 id="CounterTiming">type <a href="http://localhost:6060/src/count/CounterTiming.go?s=297:393#L3">CounterTiming</a>
 				<a class="permalink" href="index.html#CounterTiming">&#xb6;</a>
 				
 				
@@ -1384,7 +1387,7 @@ execution block and update the associated counter.
 
 			
 				
-				<h3 id="NewCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=828:906#L22">NewCounterTiming</a>
+				<h3 id="NewCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=859:937#L22">NewCounterTiming</a>
 					<a class="permalink" href="index.html#NewCounterTiming">&#xb6;</a>
 					
 					
@@ -1403,7 +1406,7 @@ Returns: *Timing
 				
 			
 				
-				<h3 id="NewEmptyCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=485:528#L11">NewEmptyCounterTiming</a>
+				<h3 id="NewEmptyCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=505:548#L11">NewEmptyCounterTiming</a>
 					<a class="permalink" href="index.html#NewEmptyCounterTiming">&#xb6;</a>
 					
 					
@@ -1421,7 +1424,7 @@ NewEmptyCounterTiming creates a new instance of the timing callback object.
 
 			
 				
-				<h3 id="CounterTiming.EndTiming">func (*CounterTiming) <a href="http://localhost:6060/src/count/CounterTiming.go?s=1117:1171#L32">EndTiming</a>
+				<h3 id="CounterTiming.EndTiming">func (*CounterTiming) <a href="http://localhost:6060/src/count/CounterTiming.go?s=1158:1212#L32">EndTiming</a>
 					<a class="permalink" href="index.html#CounterTiming.EndTiming">&#xb6;</a>
 					
 					
@@ -1439,7 +1442,7 @@ elapsed time and updates the associated counter.
 		
 			
 			
-			<h2 id="CounterType">type <a href="http://localhost:6060/src/count/CounterType.go?s=39:61#L1">CounterType</a>
+			<h2 id="CounterType">type <a href="http://localhost:6060/src/count/CounterType.go?s=43:65#L1">CounterType</a>
 				<a class="permalink" href="index.html#CounterType">&#xb6;</a>
 				
 				
@@ -1474,7 +1477,7 @@ Increment: = 4 Counter that increment counters
 
 			
 				
-				<h3 id="NewCounterTypeFromString">func <a href="http://localhost:6060/src/count/CounterType.go?s=963:1018#L32">NewCounterTypeFromString</a>
+				<h3 id="NewCounterTypeFromString">func <a href="http://localhost:6060/src/count/CounterType.go?s=1004:1059#L32">NewCounterTypeFromString</a>
 					<a class="permalink" href="index.html#NewCounterTypeFromString">&#xb6;</a>
 					
 					
@@ -1490,7 +1493,7 @@ NewCounterTypeFromString creates new CounterType from string
 
 			
 				
-				<h3 id="CounterType.MarshalJSON">func (CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=1452:1502#L58">MarshalJSON</a>
+				<h3 id="CounterType.MarshalJSON">func (CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=1519:1569#L58">MarshalJSON</a>
 					<a class="permalink" href="index.html#CounterType.MarshalJSON">&#xb6;</a>
 					
 					
@@ -1502,7 +1505,7 @@ NewCounterTypeFromString creates new CounterType from string
 				
 			
 				
-				<h3 id="CounterType.ToString">func (CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=623:661#L12">ToString</a>
+				<h3 id="CounterType.ToString">func (CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=644:682#L12">ToString</a>
 					<a class="permalink" href="index.html#CounterType.ToString">&#xb6;</a>
 					
 					
@@ -1517,7 +1520,7 @@ ToString method converting counter type to string
 				
 			
 				
-				<h3 id="CounterType.UnmarshalJSON">func (*CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=1250:1310#L48">UnmarshalJSON</a>
+				<h3 id="CounterType.UnmarshalJSON">func (*CounterType) <a href="http://localhost:6060/src/count/CounterType.go?s=1307:1367#L48">UnmarshalJSON</a>
 					<a class="permalink" href="index.html#CounterType.UnmarshalJSON">&#xb6;</a>
 					
 					
@@ -1531,7 +1534,7 @@ ToString method converting counter type to string
 		
 			
 			
-			<h2 id="ICachedCountersOverrides">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=801:897#L19">ICachedCountersOverrides</a>
+			<h2 id="ICachedCountersOverrides">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=837:935#L19">ICachedCountersOverrides</a>
 				<a class="permalink" href="index.html#ICachedCountersOverrides">&#xb6;</a>
 				
 				
@@ -1555,7 +1558,7 @@ ToString method converting counter type to string
 		
 			
 			
-			<h2 id="ICounters">type <a href="http://localhost:6060/src/count/ICounters.go?s=425:1438#L2">ICounters</a>
+			<h2 id="ICounters">type <a href="http://localhost:6060/src/count/ICounters.go?s=436:1473#L2">ICounters</a>
 				<a class="permalink" href="index.html#ICounters">&#xb6;</a>
 				
 				
@@ -1607,7 +1610,7 @@ They are critical to monitor and improve performance, scalability and reliabilit
 		
 			
 			
-			<h2 id="ITimingCallback">type <a href="http://localhost:6060/src/count/ITimingCallback.go?s=383:479#L3">ITimingCallback</a>
+			<h2 id="ITimingCallback">type <a href="http://localhost:6060/src/count/ITimingCallback.go?s=395:493#L3">ITimingCallback</a>
 				<a class="permalink" href="index.html#ITimingCallback">&#xb6;</a>
 				
 				
@@ -1640,7 +1643,7 @@ Parameters:
 		
 			
 			
-			<h2 id="LogCounters">type <a href="http://localhost:6060/src/count/LogCounters.go?s=1226:1298#L25">LogCounters</a>
+			<h2 id="LogCounters">type <a href="http://localhost:6060/src/count/LogCounters.go?s=1372:1448#L28">LogCounters</a>
 				<a class="permalink" href="index.html#LogCounters">&#xb6;</a>
 				
 				
@@ -1649,30 +1652,32 @@ Parameters:
 LogCounters performance counters that periodically dumps counters measurements to logger.
 </p>
 <pre>Configuration parameters:
-	options:
-	interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-	reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+	- options:
+		- interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+		- reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 References:
-	*:logger:*:*:1.0 ILogger components to dump the captured counters
-	*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+	- *:logger:*:*:1.0 ILogger components to dump the captured counters
+	- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+
 see Counter
 see CachedCounters
 see CompositeLogger
+
 Example:
 	counters := NewLogCounters();
-	counters.SetReferences(NewReferencesFromTuples(
+	counters.SetReferences(context.Background(), NewReferencesFromTuples(
 		NewDescriptor(&#34;pip-services&#34;, &#34;logger&#34;, &#34;console&#34;, &#34;default&#34;, &#34;1.0&#34;), NewConsoleLogger()
 	));
-	counters.Increment(&#34;mycomponent.mymethod.calls&#34;);
-	timing := counters.BeginTiming(&#34;mycomponent.mymethod.exec_time&#34;);
+	counters.IncrementOne(context.Background(), &#34;mycomponent.mymethod.calls&#34;);
+	timing := counters.BeginTiming(context.Background(),&#34;mycomponent.mymethod.exec_time&#34;);
 	defer timing.EndTiming();
 
 	// do something
-	counters.Dump();
+	counters.Dump(context.Background());
 </pre>
 
 			<pre>type LogCounters struct {
-    <a href="index.html#CachedCounters">CachedCounters</a>
+    *<a href="index.html#CachedCounters">CachedCounters</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -1687,7 +1692,7 @@ Example:
 
 			
 				
-				<h3 id="NewLogCounters">func <a href="http://localhost:6060/src/count/LogCounters.go?s=1383:1417#L32">NewLogCounters</a>
+				<h3 id="NewLogCounters">func <a href="http://localhost:6060/src/count/LogCounters.go?s=1537:1571#L35">NewLogCounters</a>
 					<a class="permalink" href="index.html#NewLogCounters">&#xb6;</a>
 					
 					
@@ -1705,7 +1710,7 @@ NewLogCounters creates a new instance of the counters.
 
 			
 				
-				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3074:3147#L85">Save</a>
+				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3280:3353#L88">Save</a>
 					<a class="permalink" href="index.html#LogCounters.Save">&#xb6;</a>
 					
 					
@@ -1724,7 +1729,7 @@ Save the current counters measurements.
 				
 			
 				
-				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1694:1780#L43">SetReferences</a>
+				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1858:1944#L46">SetReferences</a>
 					<a class="permalink" href="index.html#LogCounters.SetReferences">&#xb6;</a>
 					
 					
@@ -1744,7 +1749,7 @@ SetReferences sets references to dependent components.
 		
 			
 			
-			<h2 id="NullCounters">type <a href="http://localhost:6060/src/count/NullCounters.go?s=228:254#L1">NullCounters</a>
+			<h2 id="NullCounters">type <a href="http://localhost:6060/src/count/NullCounters.go?s=237:263#L1">NullCounters</a>
 				<a class="permalink" href="index.html#NullCounters">&#xb6;</a>
 				
 				
@@ -1767,7 +1772,7 @@ It can be used in testing or in situations when counters is required but shall b
 
 			
 				
-				<h3 id="NewNullCounters">func <a href="http://localhost:6060/src/count/NullCounters.go?s=340:376#L4">NewNullCounters</a>
+				<h3 id="NewNullCounters">func <a href="http://localhost:6060/src/count/NullCounters.go?s=353:389#L4">NewNullCounters</a>
 					<a class="permalink" href="index.html#NewNullCounters">&#xb6;</a>
 					
 					
@@ -1785,7 +1790,7 @@ NewNullCounters creates a new instance of the counter.
 
 			
 				
-				<h3 id="NullCounters.BeginTiming">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=741:824#L15">BeginTiming</a>
+				<h3 id="NullCounters.BeginTiming">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=765:848#L15">BeginTiming</a>
 					<a class="permalink" href="index.html#NullCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -1807,7 +1812,7 @@ Returns: *Timing a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="NullCounters.Increment">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2398:2477#L58">Increment</a>
+				<h3 id="NullCounters.Increment">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2465:2544#L58">Increment</a>
 					<a class="permalink" href="index.html#NullCounters.Increment">&#xb6;</a>
 					
 					
@@ -1827,7 +1832,7 @@ Increment increments counter by given value.
 				
 			
 				
-				<h3 id="NullCounters.IncrementOne">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2134:2203#L51">IncrementOne</a>
+				<h3 id="NullCounters.IncrementOne">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=2194:2263#L51">IncrementOne</a>
 					<a class="permalink" href="index.html#NullCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -1846,7 +1851,7 @@ IncrementOne increments counter by 1.
 				
 			
 				
-				<h3 id="NullCounters.Last">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1427:1503#L32">Last</a>
+				<h3 id="NullCounters.Last">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1468:1544#L32">Last</a>
 					<a class="permalink" href="index.html#NullCounters.Last">&#xb6;</a>
 					
 					
@@ -1867,7 +1872,7 @@ Usually this method is used by metrics calculated externally.
 				
 			
 				
-				<h3 id="NullCounters.Stats">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1093:1170#L24">Stats</a>
+				<h3 id="NullCounters.Stats">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1126:1203#L24">Stats</a>
 					<a class="permalink" href="index.html#NullCounters.Stats">&#xb6;</a>
 					
 					
@@ -1887,7 +1892,7 @@ Parameters:
 				
 			
 				
-				<h3 id="NullCounters.Timestamp">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1912:1995#L45">Timestamp</a>
+				<h3 id="NullCounters.Timestamp">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1966:2049#L45">Timestamp</a>
 					<a class="permalink" href="index.html#NullCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -1907,7 +1912,7 @@ Timestamp records the given timestamp.
 				
 			
 				
-				<h3 id="NullCounters.TimestampNow">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1658:1727#L38">TimestampNow</a>
+				<h3 id="NullCounters.TimestampNow">func (*NullCounters) <a href="http://localhost:6060/src/count/NullCounters.go?s=1705:1774#L38">TimestampNow</a>
 					<a class="permalink" href="index.html#NullCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1937,7 +1942,7 @@ TimestampNow records the current time as a timestamp.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

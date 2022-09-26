@@ -3,7 +3,7 @@ package build
 // Basic component factory that creates components using registered types and factory functions.
 //	Example:
 //		factory := NewFactory();
-//		factory.RegisterAsType(
+//		factory.RegisterType(
 //			NewDescriptor("mygroup", "mycomponent1", "default", "*", "1.0"),
 //			MyComponent1
 //		);
@@ -14,8 +14,8 @@ package build
 //			}
 //		);
 //
-//		factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
-//		factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
+//		res, err := factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
+//		res, err := factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
 
 import (
 	refl "reflect"

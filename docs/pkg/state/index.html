@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -232,7 +232,7 @@
 		
 			
 			
-			<h2 id="NewDefaultStateStoreFactory">func <a href="http://localhost:6060/src/state/DefaultStateStoreFactory.go?s=322:371#L3">NewDefaultStateStoreFactory</a>
+			<h2 id="NewDefaultStateStoreFactory">func <a href="http://localhost:6060/src/state/DefaultStateStoreFactory.go?s=334:383#L3">NewDefaultStateStoreFactory</a>
 				<a class="permalink" href="index.html#NewDefaultStateStoreFactory">&#xb6;</a>
 				
 				
@@ -254,7 +254,7 @@ See NullStateStore
 		
 			
 			
-			<h2 id="IStateStore">type <a href="http://localhost:6060/src/state/IStateStore.go?s=133:1655#L1">IStateStore</a>
+			<h2 id="IStateStore">type <a href="http://localhost:6060/src/state/IStateStore.go?s=138:1695#L1">IStateStore</a>
 				<a class="permalink" href="index.html#IStateStore">&#xb6;</a>
 				
 				
@@ -314,7 +314,7 @@ IStateStore interface for state storages that are used to store and retrieve tra
 		
 			
 			
-			<h2 id="MemoryStateStore">type <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=646:800#L13">MemoryStateStore</a>
+			<h2 id="MemoryStateStore">type <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=668:827#L13">MemoryStateStore</a>
 				<a class="permalink" href="index.html#MemoryStateStore">&#xb6;</a>
 				
 				
@@ -348,7 +348,7 @@ Example:
 
 			
 				
-				<h3 id="NewEmptyMemoryStateStore">func <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=935:994#L23">NewEmptyMemoryStateStore</a>
+				<h3 id="NewEmptyMemoryStateStore">func <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=967:1026#L23">NewEmptyMemoryStateStore</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryStateStore">&#xb6;</a>
 					
 					
@@ -364,7 +364,7 @@ NewEmptyMemoryStateStore creates a new instance of the state store.
 
 			
 				
-				<h3 id="MemoryStateStore.Configure">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=1311:1399#L35">Configure</a>
+				<h3 id="MemoryStateStore.Configure">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=1355:1443#L35">Configure</a>
 					<a class="permalink" href="index.html#MemoryStateStore.Configure">&#xb6;</a>
 					
 					
@@ -383,7 +383,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryStateStore.Delete">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=4644:4737#L152">Delete</a>
+				<h3 id="MemoryStateStore.Delete">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=4805:4898#L152">Delete</a>
 					<a class="permalink" href="index.html#MemoryStateStore.Delete">&#xb6;</a>
 					
 					
@@ -404,7 +404,7 @@ Returns: the state that was deleted in the store.
 				
 			
 				
-				<h3 id="MemoryStateStore.Load">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=2154:2224#L62">Load</a>
+				<h3 id="MemoryStateStore.Load">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=2225:2295#L62">Load</a>
 					<a class="permalink" href="index.html#MemoryStateStore.Load">&#xb6;</a>
 					
 					
@@ -426,7 +426,7 @@ Returns: the state value or nil if value wasn&#39;t found.
 				
 			
 				
-				<h3 id="MemoryStateStore.LoadBulk">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=2899:3011#L87">LoadBulk</a>
+				<h3 id="MemoryStateStore.LoadBulk">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=2995:3107#L87">LoadBulk</a>
 					<a class="permalink" href="index.html#MemoryStateStore.LoadBulk">&#xb6;</a>
 					
 					
@@ -447,7 +447,7 @@ Returns: an array with state values and their corresponding keys.
 				
 			
 				
-				<h3 id="MemoryStateStore.Save">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=3663:3763#L113">Save</a>
+				<h3 id="MemoryStateStore.Save">func (*MemoryStateStore[T]) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=3785:3885#L113">Save</a>
 					<a class="permalink" href="index.html#MemoryStateStore.Save">&#xb6;</a>
 					
 					
@@ -471,7 +471,7 @@ Returns: the state that was stored in the store.
 		
 			
 			
-			<h2 id="NullStateStore">type <a href="http://localhost:6060/src/state/NullStateStore.go?s=220:257#L1">NullStateStore</a>
+			<h2 id="NullStateStore">type <a href="http://localhost:6060/src/state/NullStateStore.go?s=227:265#L1">NullStateStore</a>
 				<a class="permalink" href="index.html#NullStateStore">&#xb6;</a>
 				
 				
@@ -496,7 +496,7 @@ but shall be disabled.
 
 			
 				
-				<h3 id="NewEmptyNullStateStore">func <a href="http://localhost:6060/src/state/NullStateStore.go?s=259:314#L1">NewEmptyNullStateStore</a>
+				<h3 id="NewEmptyNullStateStore">func <a href="http://localhost:6060/src/state/NullStateStore.go?s=269:324#L1">NewEmptyNullStateStore</a>
 					<a class="permalink" href="index.html#NewEmptyNullStateStore">&#xb6;</a>
 					
 					
@@ -509,7 +509,7 @@ but shall be disabled.
 
 			
 				
-				<h3 id="NullStateStore.Delete">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1916:2007#L44">Delete</a>
+				<h3 id="NullStateStore.Delete">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1969:2060#L44">Delete</a>
 					<a class="permalink" href="index.html#NullStateStore.Delete">&#xb6;</a>
 					
 					
@@ -530,7 +530,7 @@ Returns: the state that was deleted in the store.
 				
 			
 				
-				<h3 id="NullStateStore.Load">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=669:758#L12">Load</a>
+				<h3 id="NullStateStore.Load">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=690:779#L12">Load</a>
 					<a class="permalink" href="index.html#NullStateStore.Load">&#xb6;</a>
 					
 					
@@ -552,7 +552,7 @@ Returns: the state value or nil if value wasn&#39;t found.
 				
 			
 				
-				<h3 id="NullStateStore.LoadBulk">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1109:1219#L23">LoadBulk</a>
+				<h3 id="NullStateStore.LoadBulk">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1141:1251#L23">LoadBulk</a>
 					<a class="permalink" href="index.html#NullStateStore.LoadBulk">&#xb6;</a>
 					
 					
@@ -573,7 +573,7 @@ Returns: an array with state values and their corresponding keys.
 				
 			
 				
-				<h3 id="NullStateStore.Save">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1534:1632#L34">Save</a>
+				<h3 id="NullStateStore.Save">func (*NullStateStore[T]) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1577:1675#L34">Save</a>
 					<a class="permalink" href="index.html#NullStateStore.Save">&#xb6;</a>
 					
 					
@@ -597,13 +597,13 @@ Returns: the state that was stored in the store.
 		
 			
 			
-			<h2 id="StateEntry">type <a href="http://localhost:6060/src/state/StateEntry.go?s=123:346#L1">StateEntry</a>
+			<h2 id="StateEntry">type <a href="http://localhost:6060/src/state/StateEntry.go?s=124:351#L1">StateEntry</a>
 				<a class="permalink" href="index.html#StateEntry">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-StateEntry data object to store state values with their keys used by [[MemoryStateEntry]]
+StateEntry data object to store state values with their keys used by MemoryStateEntry
 </p>
 
 			<pre>type StateEntry[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] struct {
@@ -621,7 +621,7 @@ StateEntry data object to store state values with their keys used by [[MemorySta
 
 			
 				
-				<h3 id="NewStateEntry">func <a href="http://localhost:6060/src/state/StateEntry.go?s=533:594#L6">NewStateEntry</a>
+				<h3 id="NewStateEntry">func <a href="http://localhost:6060/src/state/StateEntry.go?s=544:605#L6">NewStateEntry</a>
 					<a class="permalink" href="index.html#NewStateEntry">&#xb6;</a>
 					
 					
@@ -641,7 +641,7 @@ NewStateEntry method creates a new instance of the state entry and assigns its v
 
 			
 				
-				<h3 id="StateEntry.GetKey">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=821:860#L16">GetKey</a>
+				<h3 id="StateEntry.GetKey">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=842:881#L16">GetKey</a>
 					<a class="permalink" href="index.html#StateEntry.GetKey">&#xb6;</a>
 					
 					
@@ -658,7 +658,7 @@ GetKey method gets the key to locate the state value.
 				
 			
 				
-				<h3 id="StateEntry.GetLastUpdateTime">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=1117:1166#L28">GetLastUpdateTime</a>
+				<h3 id="StateEntry.GetLastUpdateTime">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=1150:1199#L28">GetLastUpdateTime</a>
 					<a class="permalink" href="index.html#StateEntry.GetLastUpdateTime">&#xb6;</a>
 					
 					
@@ -675,7 +675,7 @@ GetLastUpdateTime method gets the last update time.
 				
 			
 				
-				<h3 id="StateEntry.GetValue">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=951:987#L22">GetValue</a>
+				<h3 id="StateEntry.GetValue">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=978:1014#L22">GetValue</a>
 					<a class="permalink" href="index.html#StateEntry.GetValue">&#xb6;</a>
 					
 					
@@ -692,7 +692,7 @@ GetValue method gets the sstate value.
 				
 			
 				
-				<h3 id="StateEntry.SetValue">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=1287:1328#L35">SetValue</a>
+				<h3 id="StateEntry.SetValue">func (*StateEntry[T]) <a href="http://localhost:6060/src/state/StateEntry.go?s=1327:1368#L35">SetValue</a>
 					<a class="permalink" href="index.html#StateEntry.SetValue">&#xb6;</a>
 					
 					
@@ -712,7 +712,7 @@ SetValue method sets a new state value.
 		
 			
 			
-			<h2 id="StateValue">type <a href="http://localhost:6060/src/state/StateValue.go?s=92:255#L1">StateValue</a>
+			<h2 id="StateValue">type <a href="http://localhost:6060/src/state/StateValue.go?s=95:261#L1">StateValue</a>
 				<a class="permalink" href="index.html#StateValue">&#xb6;</a>
 				
 				
@@ -750,7 +750,7 @@ StateValue a data object that holds a retrieved state value with its key.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

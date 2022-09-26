@@ -9,11 +9,11 @@ import (
 // of execution block and record the associated trace.
 //
 //	Example:
-//		timing := tracer.BeginTrace("mymethod.exec_time");
+//		timing := tracer.BeginTrace(context.Background(), "123", "my_component","mymethod.exec_time");
 //		...
-//		timing.EndTrace();
+//		timing.EndTrace(context.Background());
 //		if err != nil {
-//			timing.EndFailure(err);
+//			timing.EndFailure(context.Background(), err);
 //		}
 //
 type TraceTiming struct {

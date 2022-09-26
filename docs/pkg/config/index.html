@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -300,7 +300,7 @@ SectionNameParameters is a name of ConfigReader section
 		
 			
 			
-			<h2 id="NewDefaultConfigReaderFactory">func <a href="http://localhost:6060/src/config/DefaultConfigReaderFactory.go?s=638:689#L6">NewDefaultConfigReaderFactory</a>
+			<h2 id="NewDefaultConfigReaderFactory">func <a href="http://localhost:6060/src/config/DefaultConfigReaderFactory.go?s=654:705#L6">NewDefaultConfigReaderFactory</a>
 				<a class="permalink" href="index.html#NewDefaultConfigReaderFactory">&#xb6;</a>
 				
 				
@@ -318,7 +318,7 @@ NewDefaultConfigReaderFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="ReadJsonConfig">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=4387:4528#L124">ReadJsonConfig</a>
+			<h2 id="ReadJsonConfig">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=4547:4689#L124">ReadJsonConfig</a>
 				<a class="permalink" href="index.html#ReadJsonConfig">&#xb6;</a>
 				
 				
@@ -343,7 +343,7 @@ Returns: *cconfig.ConfigParams, error
 		
 			
 			
-			<h2 id="ReadJsonObject">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=3775:3898#L109">ReadJsonObject</a>
+			<h2 id="ReadJsonObject">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=3920:4044#L109">ReadJsonObject</a>
 				<a class="permalink" href="index.html#ReadJsonObject">&#xb6;</a>
 				
 				
@@ -367,7 +367,7 @@ Returns: any, error a JSON object with configuration.
 		
 			
 			
-			<h2 id="ReadYamlConfig">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=4471:4612#L132">ReadYamlConfig</a>
+			<h2 id="ReadYamlConfig">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=4637:4779#L132">ReadYamlConfig</a>
 				<a class="permalink" href="index.html#ReadYamlConfig">&#xb6;</a>
 				
 				
@@ -392,7 +392,7 @@ Returns: *cconfig.ConfigParams, error
 		
 			
 			
-			<h2 id="ReadYamlObject">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=3859:3982#L117">ReadYamlObject</a>
+			<h2 id="ReadYamlObject">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=4010:4134#L117">ReadYamlObject</a>
 				<a class="permalink" href="index.html#ReadYamlObject">&#xb6;</a>
 				
 				
@@ -417,7 +417,7 @@ Returns: any, error a JSON object with configuration.
 		
 			
 			
-			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=430:492#L3">ConfigReader</a>
+			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=442:506#L3">ConfigReader</a>
 				<a class="permalink" href="index.html#ConfigReader">&#xb6;</a>
 				
 				
@@ -444,7 +444,7 @@ ConfigReader abstract config reader that supports configuration parameterization
 
 			
 				
-				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=687:723#L12">NewConfigReader</a>
+				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=708:744#L12">NewConfigReader</a>
 					<a class="permalink" href="index.html#NewConfigReader">&#xb6;</a>
 					
 					
@@ -462,7 +462,7 @@ NewConfigReader creates a new instance of the config reader.
 
 			
 				
-				<h3 id="ConfigReader.AddChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2138:2226#L54">AddChangeListener</a>
+				<h3 id="ConfigReader.AddChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2201:2289#L54">AddChangeListener</a>
 					<a class="permalink" href="index.html#ConfigReader.AddChangeListener">&#xb6;</a>
 					
 					
@@ -477,7 +477,7 @@ AddChangeListener - Adds a listener that will be notified when configuration is 
 				
 			
 				
-				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=983:1066#L22">Configure</a>
+				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1014:1097#L22">Configure</a>
 					<a class="permalink" href="index.html#ConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -496,7 +496,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1595:1695#L35">Parameterize</a>
+				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1639:1739#L35">Parameterize</a>
 					<a class="permalink" href="index.html#ConfigReader.Parameterize">&#xb6;</a>
 					
 					
@@ -517,7 +517,7 @@ Returns: string, error a parameterized configuration string abd error.
 				
 			
 				
-				<h3 id="ConfigReader.RemoveChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2319:2410#L59">RemoveChangeListener</a>
+				<h3 id="ConfigReader.RemoveChangeListener">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=2387:2478#L59">RemoveChangeListener</a>
 					<a class="permalink" href="index.html#ConfigReader.RemoveChangeListener">&#xb6;</a>
 					
 					
@@ -534,7 +534,7 @@ RemoveChangeListener - Remove a previously added change listener.
 		
 			
 			
-			<h2 id="FileConfigReader">type <a href="http://localhost:6060/src/config/FileConfigReader.go?s=438:497#L3">FileConfigReader</a>
+			<h2 id="FileConfigReader">type <a href="http://localhost:6060/src/config/FileConfigReader.go?s=456:519#L4">FileConfigReader</a>
 				<a class="permalink" href="index.html#FileConfigReader">&#xb6;</a>
 				
 				
@@ -544,12 +544,12 @@ FileConfigReader is an abstract config reader that reads configuration from a fi
 Child classes add support for config files in their specific format like JSON, YAML or property files.
 </p>
 <pre>Configuration parameters:
-	path: path to configuration file
-	parameters: this entire section is used as template parameters
+	- path: path to configuration file
+	- parameters: this entire section is used as template parameters
 </pre>
 
 			<pre>type FileConfigReader struct {
-    <a href="index.html#ConfigReader">ConfigReader</a>
+    *<a href="index.html#ConfigReader">ConfigReader</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -564,7 +564,7 @@ Child classes add support for config files in their specific format like JSON, Y
 
 			
 				
-				<h3 id="NewEmptyFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=696:745#L13">NewEmptyFileConfigReader</a>
+				<h3 id="NewEmptyFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=725:774#L14">NewEmptyFileConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyFileConfigReader">&#xb6;</a>
 					
 					
@@ -580,7 +580,7 @@ NewEmptyFileConfigReader creates a new instance of the config reader.
 				
 			
 				
-				<h3 id="NewFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=972:1027#L22">NewFileConfigReader</a>
+				<h3 id="NewFileConfigReader">func <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1016:1071#L24">NewFileConfigReader</a>
 					<a class="permalink" href="index.html#NewFileConfigReader">&#xb6;</a>
 					
 					
@@ -589,7 +589,8 @@ NewEmptyFileConfigReader creates a new instance of the config reader.
 				<p>
 NewFileConfigReader creates a new instance of the config reader.
 </p>
-<pre>Parameters: path string a path to configuration file.
+<pre>Parameters:
+	- path string a path to configuration file.
 Returns: *FileConfigReader
 </pre>
 
@@ -599,7 +600,7 @@ Returns: *FileConfigReader
 
 			
 				
-				<h3 id="FileConfigReader.Configure">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1293:1380#L33">Configure</a>
+				<h3 id="FileConfigReader.Configure">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1347:1434#L35">Configure</a>
 					<a class="permalink" href="index.html#FileConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -618,7 +619,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="FileConfigReader.Path">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1594:1634#L40">Path</a>
+				<h3 id="FileConfigReader.Path">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1655:1695#L42">Path</a>
 					<a class="permalink" href="index.html#FileConfigReader.Path">&#xb6;</a>
 					
 					
@@ -635,7 +636,7 @@ Path get the path to configuration file..
 				
 			
 				
-				<h3 id="FileConfigReader.SetPath">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1763:1810#L46">SetPath</a>
+				<h3 id="FileConfigReader.SetPath">func (*FileConfigReader) <a href="http://localhost:6060/src/config/FileConfigReader.go?s=1837:1884#L49">SetPath</a>
 					<a class="permalink" href="index.html#FileConfigReader.SetPath">&#xb6;</a>
 					
 					
@@ -644,7 +645,8 @@ Path get the path to configuration file..
 				<p>
 SetPath set the path to configuration file.
 </p>
-<pre>Parameters: path string a new path to configuration file.
+<pre>Parameters:
+	- path string a new path to configuration file.
 </pre>
 
 				
@@ -654,7 +656,7 @@ SetPath set the path to configuration file.
 		
 			
 			
-			<h2 id="IConfigReader">type <a href="http://localhost:6060/src/config/IConfigReader.go?s=597:1120#L4">IConfigReader</a>
+			<h2 id="IConfigReader">type <a href="http://localhost:6060/src/config/IConfigReader.go?s=612:1146#L5">IConfigReader</a>
 				<a class="permalink" href="index.html#IConfigReader">&#xb6;</a>
 				
 				
@@ -672,7 +674,7 @@ The values may come from application command like arguments or environment varia
     <span class="comment">// ReadConfig reads configuration and parameterize it with given values.</span>
     ReadConfig(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>) (*<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
 
-    <span class="comment">//AddChangeListener adds a listener that will be notified when configuration is changed</span>
+    <span class="comment">// AddChangeListener adds a listener that will be notified when configuration is changed</span>
     AddChangeListener(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, listener <a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/run/#INotifiable">INotifiable</a>)
 
     <span class="comment">// RemoveChangeListener remove a previously added change listener.</span>
@@ -693,7 +695,7 @@ The values may come from application command like arguments or environment varia
 		
 			
 			
-			<h2 id="JsonConfigReader">type <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=939:989#L19">JsonConfigReader</a>
+			<h2 id="JsonConfigReader">type <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=995:1048#L19">JsonConfigReader</a>
 				<a class="permalink" href="index.html#JsonConfigReader">&#xb6;</a>
 				
 				
@@ -703,9 +705,9 @@ JsonConfigReader is a config reader that reads configuration from JSON file.
 The reader supports parameterization using Handlebar template engine.
 </p>
 <pre>Configuration parameters:
-	path: path to configuration file
-	parameters: this entire section is used as template parameters
-	...
+	- path: path to configuration file
+	- parameters: this entire section is used as template parameters
+	- ...
 see IConfigReader
 see FileConfigReader
 Example:
@@ -715,11 +717,11 @@ Example:
 
 	configReader := NewJsonConfigReader(&#34;config.json&#34;)
 	parameters := NewConfigParamsFromTuples(&#34;KEY1_VALUE&#34;, 123, &#34;KEY2_VALUE&#34;, &#34;ABC&#34;)
-	res, err := configReader.ReadConfig(&#34;123&#34;, parameters)
+	res, err := configReader.ReadConfig(context.Background(), &#34;123&#34;, parameters)
 </pre>
 
 			<pre>type JsonConfigReader struct {
-    <a href="index.html#FileConfigReader">FileConfigReader</a>
+    *<a href="index.html#FileConfigReader">FileConfigReader</a>
 }
 </pre>
 
@@ -733,7 +735,7 @@ Example:
 
 			
 				
-				<h3 id="NewEmptyJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1094:1143#L25">NewEmptyJsonConfigReader</a>
+				<h3 id="NewEmptyJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1157:1206#L25">NewEmptyJsonConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyJsonConfigReader">&#xb6;</a>
 					
 					
@@ -749,7 +751,7 @@ NewEmptyJsonConfigReader creates a new instance of the config reader.
 				
 			
 				
-				<h3 id="NewJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1383:1438#L34">NewJsonConfigReader</a>
+				<h3 id="NewJsonConfigReader">func <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1454:1509#L34">NewJsonConfigReader</a>
 					<a class="permalink" href="index.html#NewJsonConfigReader">&#xb6;</a>
 					
 					
@@ -768,7 +770,7 @@ Returns: *JsonConfigReader
 
 			
 				
-				<h3 id="JsonConfigReader.ReadConfig">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=2913:3070#L80">ReadConfig</a>
+				<h3 id="JsonConfigReader.ReadConfig">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=3029:3187#L80">ReadConfig</a>
 					<a class="permalink" href="index.html#JsonConfigReader.ReadConfig">&#xb6;</a>
 					
 					
@@ -791,7 +793,7 @@ Returns: *cconfig.ConfigParams, error
 				
 			
 				
-				<h3 id="JsonConfigReader.ReadObject">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1890:2018#L46">ReadObject</a>
+				<h3 id="JsonConfigReader.ReadObject">func (*JsonConfigReader) <a href="http://localhost:6060/src/config/JsonConfigReader.go?s=1972:2101#L46">ReadObject</a>
 					<a class="permalink" href="index.html#JsonConfigReader.ReadObject">&#xb6;</a>
 					
 					
@@ -815,7 +817,7 @@ Returns: any, error a JSON object with configuration adn error.
 		
 			
 			
-			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=996:1060#L14">MemoryConfigReader</a>
+			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1065:1131#L15">MemoryConfigReader</a>
 				<a class="permalink" href="index.html#MemoryConfigReader">&#xb6;</a>
 				
 				
@@ -832,9 +834,9 @@ Example
 		&#34;connection.port&#34;, &#34;{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}&#34;
 	);
 	configReader := NewMemoryConfigReader();
-	configReader.Configure(config);
+	configReader.Configure(context.Background(), config);
 	parameters := NewConfigParamsFromValue(process.env);
-	res, err := configReader.ReadConfig(&#34;123&#34;, parameters);
+	res, err := configReader.ReadConfig(context.Background(), &#34;123&#34;, parameters);
 		Possible result: connection.host=10.1.1.100;connection.port=8080
 </pre>
 
@@ -853,7 +855,7 @@ Example
 
 			
 				
-				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1165:1218#L20">NewEmptyMemoryConfigReader</a>
+				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1240:1293#L21">NewEmptyMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -869,7 +871,7 @@ NewEmptyMemoryConfigReader creates a new instance of config reader.
 				
 			
 				
-				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1475:1551#L29">NewMemoryConfigReader</a>
+				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1559:1635#L30">NewMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -888,7 +890,7 @@ Returns: *MemoryConfigReader
 
 			
 				
-				<h3 id="MemoryConfigReader.AddChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2998:3092#L76">AddChangeListener</a>
+				<h3 id="MemoryConfigReader.AddChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=3129:3223#L77">AddChangeListener</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.AddChangeListener">&#xb6;</a>
 					
 					
@@ -903,7 +905,7 @@ AddChangeListener - Adds a listener that will be notified when configuration is 
 				
 			
 				
-				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1779:1868#L39">Configure</a>
+				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1873:1962#L40">Configure</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -922,7 +924,7 @@ Configure component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2270:2418#L50">ReadConfig</a>
+				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2375:2524#L51">ReadConfig</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.ReadConfig">&#xb6;</a>
 					
 					
@@ -945,7 +947,7 @@ Returns: *cconfig.ConfigParams, error configuration or error.
 				
 			
 				
-				<h3 id="MemoryConfigReader.RemoveChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=3185:3282#L81">RemoveChangeListener</a>
+				<h3 id="MemoryConfigReader.RemoveChangeListener">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=3321:3418#L82">RemoveChangeListener</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.RemoveChangeListener">&#xb6;</a>
 					
 					
@@ -962,7 +964,7 @@ RemoveChangeListener - Remove a previously added change listener.
 		
 			
 			
-			<h2 id="YamlConfigReader">type <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=923:973#L21">YamlConfigReader</a>
+			<h2 id="YamlConfigReader">type <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=979:1032#L21">YamlConfigReader</a>
 				<a class="permalink" href="index.html#YamlConfigReader">&#xb6;</a>
 				
 				
@@ -972,8 +974,8 @@ YamlConfigReader is a config reader that reads configuration from YAML file.
 The reader supports parameterization using Handlebars template engine.
 </p>
 <pre>Configuration parameters:
-	path: path to configuration file
-	parameters: this entire section is used as template parameters
+	- path: path to configuration file
+	- parameters: this entire section is used as template parameters
 	...
 see IConfigReader
 see FileConfigReader
@@ -985,12 +987,12 @@ Example:
 
 	configReader := NewYamlConfigReader(&#34;config.yml&#34;)
 	parameters := NewConfigParamsFromTuples(&#34;KEY1_VALUE&#34;, 123, &#34;KEY2_VALUE&#34;, &#34;ABC&#34;);
-	res, err := configReader.ReadConfig(&#34;123&#34;, parameters);
+	res, err := configReader.ReadConfig(context.Background(), &#34;123&#34;, parameters);
 		// Result: key1=123;key2=ABC
 </pre>
 
 			<pre>type YamlConfigReader struct {
-    <a href="index.html#FileConfigReader">FileConfigReader</a>
+    *<a href="index.html#FileConfigReader">FileConfigReader</a>
 }
 </pre>
 
@@ -1004,7 +1006,7 @@ Example:
 
 			
 				
-				<h3 id="NewEmptyYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1079:1128#L27">NewEmptyYamlConfigReader</a>
+				<h3 id="NewEmptyYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1142:1191#L27">NewEmptyYamlConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyYamlConfigReader">&#xb6;</a>
 					
 					
@@ -1020,7 +1022,7 @@ NewEmptyYamlConfigReader сreates a new instance of the config reader.
 				
 			
 				
-				<h3 id="NewYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1368:1423#L36">NewYamlConfigReader</a>
+				<h3 id="NewYamlConfigReader">func <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1439:1494#L36">NewYamlConfigReader</a>
 					<a class="permalink" href="index.html#NewYamlConfigReader">&#xb6;</a>
 					
 					
@@ -1039,7 +1041,7 @@ Returns: *YamlConfigReader
 
 			
 				
-				<h3 id="YamlConfigReader.ReadConfig">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=2997:3154#L88">ReadConfig</a>
+				<h3 id="YamlConfigReader.ReadConfig">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=3119:3277#L88">ReadConfig</a>
 					<a class="permalink" href="index.html#YamlConfigReader.ReadConfig">&#xb6;</a>
 					
 					
@@ -1061,7 +1063,7 @@ Returns: *cconfig.ConfigParams, error
 				
 			
 				
-				<h3 id="YamlConfigReader.ReadObject">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1875:2003#L48">ReadObject</a>
+				<h3 id="YamlConfigReader.ReadObject">func (*YamlConfigReader) <a href="http://localhost:6060/src/config/YamlConfigReader.go?s=1957:2086#L48">ReadObject</a>
 					<a class="permalink" href="index.html#YamlConfigReader.ReadObject">&#xb6;</a>
 					
 					
@@ -1094,7 +1096,7 @@ Returns: any, error a JSON object with configuration adn error.
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,

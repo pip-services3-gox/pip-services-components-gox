@@ -13,13 +13,13 @@ import (
 
 func TestLogCountersSimpleCounters(t *testing.T) {
 	counters := count.NewLogCounters()
-	fixture := NewCountersFixture(&counters.CachedCounters)
+	fixture := NewCountersFixture(counters.CachedCounters)
 	fixture.TestSimpleCounters(t)
 }
 
 func TestLogCountersMeasureElapsedTime(t *testing.T) {
 	counters := count.NewLogCounters()
-	fixture := NewCountersFixture(&counters.CachedCounters)
+	fixture := NewCountersFixture(counters.CachedCounters)
 	fixture.TestMeasureElapsedTime(t)
 }
 

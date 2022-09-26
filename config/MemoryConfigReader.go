@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+
 	cconfig "github.com/pip-services3-gox/pip-services3-commons-gox/config"
 	crun "github.com/pip-services3-gox/pip-services3-commons-gox/run"
 	"github.com/pip-services3-gox/pip-services3-expressions-gox/mustache"
@@ -17,9 +18,9 @@ import (
 //			"connection.port", "{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}"
 //		);
 //		configReader := NewMemoryConfigReader();
-//		configReader.Configure(config);
+//		configReader.Configure(context.Background(), config);
 //		parameters := NewConfigParamsFromValue(process.env);
-//		res, err := configReader.ReadConfig("123", parameters);
+//		res, err := configReader.ReadConfig(context.Background(), "123", parameters);
 //			Possible result: connection.host=10.1.1.100;connection.port=8080
 type MemoryConfigReader struct {
 	config *cconfig.ConfigParams

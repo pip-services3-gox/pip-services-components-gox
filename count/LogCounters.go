@@ -17,8 +17,8 @@ import (
 //			- interval: interval in milliseconds to save current counters measurements (default: 5 mins)
 //			- reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 //	References:
-//		*:logger:*:*:1.0 ILogger components to dump the captured counters
-//		*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+//		- *:logger:*:*:1.0 ILogger components to dump the captured counters
+//		- *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 //
 //	see Counter
 //	see CachedCounters
@@ -26,17 +26,17 @@ import (
 //
 //	Example:
 //		counters := NewLogCounters();
-//		counters.SetReferences(NewReferencesFromTuples(
+//		counters.SetReferences(context.Background(), NewReferencesFromTuples(
 //			NewDescriptor("pip-services", "logger", "console", "default", "1.0"), NewConsoleLogger()
 //		));
-//		counters.Increment("mycomponent.mymethod.calls");
-//		timing := counters.BeginTiming("mycomponent.mymethod.exec_time");
+//		counters.IncrementOne(context.Background(), "mycomponent.mymethod.calls");
+//		timing := counters.BeginTiming(context.Background(),"mycomponent.mymethod.exec_time");
 //		defer timing.EndTiming();
 //
 //		// do something
-//		counters.Dump();
+//		counters.Dump(context.Background());
 type LogCounters struct {
-	CachedCounters
+	*CachedCounters
 	logger *log.CompositeLogger
 }
 
@@ -46,7 +46,7 @@ func NewLogCounters() *LogCounters {
 	c := &LogCounters{
 		logger: log.NewCompositeLogger(),
 	}
-	c.CachedCounters = *InheritCacheCounters(c)
+	c.CachedCounters = InheritCacheCounters(c)
 	return c
 }
 

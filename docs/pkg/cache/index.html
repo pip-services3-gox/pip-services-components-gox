@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.18.3";</script>
+<script>var goVersion = "go1.18.6";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -242,7 +242,7 @@
 		
 			
 			
-			<h2 id="NewDefaultCacheFactory">func <a href="http://localhost:6060/src/cache/DefaultCacheFactory.go?s=488:532#L5">NewDefaultCacheFactory</a>
+			<h2 id="NewDefaultCacheFactory">func <a href="http://localhost:6060/src/cache/DefaultCacheFactory.go?s=502:546#L5">NewDefaultCacheFactory</a>
 				<a class="permalink" href="index.html#NewDefaultCacheFactory">&#xb6;</a>
 				
 				
@@ -261,7 +261,7 @@ NewDefaultCacheFactory create a new instance of the factory.
 		
 			
 			
-			<h2 id="CacheEntry">type <a href="http://localhost:6060/src/cache/CacheEntry.go?s=120:208#L1">CacheEntry</a>
+			<h2 id="CacheEntry">type <a href="http://localhost:6060/src/cache/CacheEntry.go?s=127:219#L1">CacheEntry</a>
 				<a class="permalink" href="index.html#CacheEntry">&#xb6;</a>
 				
 				
@@ -285,7 +285,7 @@ CacheEntry Data object to store cached values with their keys used by MemoryCach
 
 			
 				
-				<h3 id="NewCacheEntry">func <a href="http://localhost:6060/src/cache/CacheEntry.go?s=474:550#L10">NewCacheEntry</a>
+				<h3 id="NewCacheEntry">func <a href="http://localhost:6060/src/cache/CacheEntry.go?s=493:569#L10">NewCacheEntry</a>
 					<a class="permalink" href="index.html#NewCacheEntry">&#xb6;</a>
 					
 					
@@ -298,10 +298,8 @@ NewCacheEntry creates a new instance of the cache entry and assigns its values.
 	- key string a unique key to locate the value.
 	- value T a value to be stored.
 	- timeout int64 expiration timeout in milliseconds.
-</pre>
-<p>
 Returns *CacheEntry
-</p>
+</pre>
 
 				
 				
@@ -309,7 +307,7 @@ Returns *CacheEntry
 
 			
 				
-				<h3 id="CacheEntry.Expiration">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1059:1105#L32">Expiration</a>
+				<h3 id="CacheEntry.Expiration">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1100:1146#L32">Expiration</a>
 					<a class="permalink" href="index.html#CacheEntry.Expiration">&#xb6;</a>
 					
 					
@@ -326,7 +324,7 @@ Expiration gets the expiration timeout.
 				
 			
 				
-				<h3 id="CacheEntry.IsExpired">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1570:1610#L47">IsExpired</a>
+				<h3 id="CacheEntry.IsExpired">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1626:1666#L47">IsExpired</a>
 					<a class="permalink" href="index.html#CacheEntry.IsExpired">&#xb6;</a>
 					
 					
@@ -343,7 +341,7 @@ IsExpired checks if this value already expired.
 				
 			
 				
-				<h3 id="CacheEntry.Key">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=778:814#L20">Key</a>
+				<h3 id="CacheEntry.Key">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=807:843#L20">Key</a>
 					<a class="permalink" href="index.html#CacheEntry.Key">&#xb6;</a>
 					
 					
@@ -360,7 +358,7 @@ Key gets the key to locate the cached value.
 				
 			
 				
-				<h3 id="CacheEntry.SetValue">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1294:1350#L40">SetValue</a>
+				<h3 id="CacheEntry.SetValue">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=1343:1399#L40">SetValue</a>
 					<a class="permalink" href="index.html#CacheEntry.SetValue">&#xb6;</a>
 					
 					
@@ -368,10 +366,10 @@ Key gets the key to locate the cached value.
 				<pre>func (c *<a href="index.html#CacheEntry">CacheEntry</a>[T]) SetValue(value T, timeout <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
 				<p>
 SetValue a new value and extends its expiration.
-Parameters:
 </p>
-<pre>- value any a new cached value.
-- timeout int64 an expiration timeout in milliseconds.
+<pre>Parameters:
+	- value any a new cached value.
+	- timeout int64 an expiration timeout in milliseconds.
 </pre>
 
 				
@@ -379,7 +377,7 @@ Parameters:
 				
 			
 				
-				<h3 id="CacheEntry.Value">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=900:933#L26">Value</a>
+				<h3 id="CacheEntry.Value">func (*CacheEntry[T]) <a href="http://localhost:6060/src/cache/CacheEntry.go?s=935:968#L26">Value</a>
 					<a class="permalink" href="index.html#CacheEntry.Value">&#xb6;</a>
 					
 					
@@ -398,7 +396,7 @@ Value gets the cached value.
 		
 			
 			
-			<h2 id="ICache">type <a href="http://localhost:6060/src/cache/ICache.go?s=121:721#L1">ICache</a>
+			<h2 id="ICache">type <a href="http://localhost:6060/src/cache/ICache.go?s=127:741#L1">ICache</a>
 				<a class="permalink" href="index.html#ICache">&#xb6;</a>
 				
 				
@@ -438,7 +436,7 @@ values to improve performance.
 		
 			
 			
-			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=614:779#L11">MemoryCache</a>
+			<h2 id="MemoryCache">type <a href="http://localhost:6060/src/cache/MemoryCache.go?s=665:836#L12">MemoryCache</a>
 				<a class="permalink" href="index.html#MemoryCache">&#xb6;</a>
 				
 				
@@ -447,13 +445,16 @@ values to improve performance.
 MemoryCache that stores values in the process memory.
 </p>
 <pre>Configuration parameters:
-	options:
-	timeout: default caching timeout in milliseconds (default: 1 minute)
-	max_size: maximum number of values stored in this cache (default: 1000)
+	- options:
+		- timeout: default caching timeout in milliseconds (default: 1 minute)
+		- max_size: maximum number of values stored in this cache (default: 1000)
+</pre>
+<p>
 see ICache
-Example:
+</p>
+<pre>Example:
 	cache := NewMemoryCache[string]();
-	res, err := cache.Store(&#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;, 10000);
+	res, err := cache.Store(contex.Background(), &#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;, 10000);
 </pre>
 
 			<pre>type MemoryCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>] struct {
@@ -471,7 +472,7 @@ Example:
 
 			
 				
-				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=861:905#L21">NewMemoryCache</a>
+				<h3 id="NewMemoryCache">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=922:966#L22">NewMemoryCache</a>
 					<a class="permalink" href="index.html#NewMemoryCache">&#xb6;</a>
 					
 					
@@ -479,15 +480,14 @@ Example:
 				<pre>func NewMemoryCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>]() *<a href="index.html#MemoryCache">MemoryCache</a>[T]</pre>
 				<p>
 NewMemoryCache creates a new instance of the cache.
+Returns: *MemoryCache
 </p>
-<pre>Returns: *MemoryCache
-</pre>
 
 				
 				
 			
 				
-				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1280:1379#L34">NewMemoryCacheFromConfig</a>
+				<h3 id="NewMemoryCacheFromConfig">func <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1354:1453#L35">NewMemoryCacheFromConfig</a>
 					<a class="permalink" href="index.html#NewMemoryCacheFromConfig">&#xb6;</a>
 					
 					
@@ -506,7 +506,7 @@ Returns: *MemoryCache
 
 			
 				
-				<h3 id="MemoryCache.Cleanup">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1856:1890#L48">Cleanup</a>
+				<h3 id="MemoryCache.Cleanup">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1944:1978#L49">Cleanup</a>
 					<a class="permalink" href="index.html#MemoryCache.Cleanup">&#xb6;</a>
 					
 					
@@ -521,7 +521,7 @@ Cleanup memory cache, public thread save method
 				
 			
 				
-				<h3 id="MemoryCache.Clear">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5584:5663#L209">Clear</a>
+				<h3 id="MemoryCache.Clear">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5833:5912#L210">Clear</a>
 					<a class="permalink" href="index.html#MemoryCache.Clear">&#xb6;</a>
 					
 					
@@ -529,10 +529,10 @@ Cleanup memory cache, public thread save method
 				<pre>func (c *<a href="index.html#MemoryCache">MemoryCache</a>[T]) Clear(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
 				<p>
 Clear a value from the cache.
-Parameters:
 </p>
-<pre>- ctx context.Context
-- correlationId string transaction id to trace execution through call chain.
+<pre>Parameters:
+	- ctx context.Context
+	- correlationId string transaction id to trace execution through call chain.
 </pre>
 
 				
@@ -540,7 +540,7 @@ Parameters:
 				
 			
 				
-				<h3 id="MemoryCache.Configure">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1594:1675#L42">Configure</a>
+				<h3 id="MemoryCache.Configure">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=1676:1757#L43">Configure</a>
 					<a class="permalink" href="index.html#MemoryCache.Configure">&#xb6;</a>
 					
 					
@@ -557,7 +557,7 @@ Configure configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="MemoryCache.Contains">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5158:5251#L192">Contains</a>
+				<h3 id="MemoryCache.Contains">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=5390:5483#L193">Contains</a>
 					<a class="permalink" href="index.html#MemoryCache.Contains">&#xb6;</a>
 					
 					
@@ -578,7 +578,7 @@ Returns: bool
 				
 			
 				
-				<h3 id="MemoryCache.Remove">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4612:4704#L168">Remove</a>
+				<h3 id="MemoryCache.Remove">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=4820:4912#L169">Remove</a>
 					<a class="permalink" href="index.html#MemoryCache.Remove">&#xb6;</a>
 					
 					
@@ -599,7 +599,7 @@ Returns: error
 				
 			
 				
-				<h3 id="MemoryCache.Retrieve">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2746:2845#L85">Retrieve</a>
+				<h3 id="MemoryCache.Retrieve">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=2871:2970#L86">Retrieve</a>
 					<a class="permalink" href="index.html#MemoryCache.Retrieve">&#xb6;</a>
 					
 					
@@ -608,9 +608,9 @@ Returns: error
 				<p>
 Retrieve cached value from the cache using its key.
 If value is missing in the cache or expired it returns null.
-Parameters:
 </p>
-<pre>	- ctx context.Context
+<pre>Parameters:
+	- ctx context.Context
 	- correlationId string transaction id to trace execution through call chain.
 	- key string a unique value key.
 Returns T, error
@@ -621,7 +621,7 @@ Returns T, error
 				
 			
 				
-				<h3 id="MemoryCache.Store">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3678:3799#L122">Store</a>
+				<h3 id="MemoryCache.Store">func (*MemoryCache[T]) <a href="http://localhost:6060/src/cache/MemoryCache.go?s=3840:3962#L123">Store</a>
 					<a class="permalink" href="index.html#MemoryCache.Store">&#xb6;</a>
 					
 					
@@ -647,7 +647,7 @@ Returns T, error
 		
 			
 			
-			<h2 id="NullCache">type <a href="http://localhost:6060/src/cache/NullCache.go?s=191:221#L1">NullCache</a>
+			<h2 id="NullCache">type <a href="http://localhost:6060/src/cache/NullCache.go?s=197:227#L1">NullCache</a>
 				<a class="permalink" href="index.html#NullCache">&#xb6;</a>
 				
 				
@@ -670,7 +670,7 @@ It can be used in testing or in situations when cache is required but shall be d
 
 			
 				
-				<h3 id="NewNullCache">func <a href="http://localhost:6060/src/cache/NullCache.go?s=299:339#L1">NewNullCache</a>
+				<h3 id="NewNullCache">func <a href="http://localhost:6060/src/cache/NullCache.go?s=310:350#L1">NewNullCache</a>
 					<a class="permalink" href="index.html#NewNullCache">&#xb6;</a>
 					
 					
@@ -678,9 +678,8 @@ It can be used in testing or in situations when cache is required but shall be d
 				<pre>func NewNullCache[T <a href="http://localhost:6060/pkg/builtin/#any">any</a>]() *<a href="index.html#NullCache">NullCache</a>[T]</pre>
 				<p>
 NewNullCache creates a new instance of the cache.
+Returns: *NullCache
 </p>
-<pre>Returns: *NullCache
-</pre>
 
 				
 				
@@ -688,7 +687,7 @@ NewNullCache creates a new instance of the cache.
 
 			
 				
-				<h3 id="NullCache.Contains">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1893:1984#L45">Contains</a>
+				<h3 id="NullCache.Contains">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1948:2039#L45">Contains</a>
 					<a class="permalink" href="index.html#NullCache.Contains">&#xb6;</a>
 					
 					
@@ -709,7 +708,7 @@ Returns: bool
 				
 			
 				
-				<h3 id="NullCache.Remove">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1542:1632#L35">Remove</a>
+				<h3 id="NullCache.Remove">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1587:1677#L35">Remove</a>
 					<a class="permalink" href="index.html#NullCache.Remove">&#xb6;</a>
 					
 					
@@ -730,7 +729,7 @@ Returns: error
 				
 			
 				
-				<h3 id="NullCache.Retrieve">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=678:775#L12">Retrieve</a>
+				<h3 id="NullCache.Retrieve">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=700:797#L12">Retrieve</a>
 					<a class="permalink" href="index.html#NullCache.Retrieve">&#xb6;</a>
 					
 					
@@ -752,7 +751,7 @@ Returns: T, error
 				
 			
 				
-				<h3 id="NullCache.Store">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1176:1294#L25">Store</a>
+				<h3 id="NullCache.Store">func (*NullCache[T]) <a href="http://localhost:6060/src/cache/NullCache.go?s=1211:1329#L25">Store</a>
 					<a class="permalink" href="index.html#NullCache.Store">&#xb6;</a>
 					
 					
@@ -786,7 +785,7 @@ Returns T, error
 
 
 <div id="footer">
-Build version go1.18.3.<br>
+Build version go1.18.6.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
