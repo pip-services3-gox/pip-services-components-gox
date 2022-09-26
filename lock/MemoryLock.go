@@ -20,7 +20,7 @@ import (
 //			// Processing...
 //		}
 type MemoryLock struct {
-	Lock
+	*Lock
 	mux   sync.Mutex
 	locks map[string]time.Time
 }
@@ -31,7 +31,7 @@ func NewMemoryLock() *MemoryLock {
 	c := &MemoryLock{
 		locks: map[string]time.Time{},
 	}
-	c.Lock = *InheritLock(c)
+	c.Lock = InheritLock(c)
 
 	return c
 }
