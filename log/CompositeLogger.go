@@ -17,22 +17,22 @@ import (
 //		type MyComponent {
 //			_logger CompositeLogger
 //		}
-//		func (mc* MyComponent) Configure(ctx context.Context, config: ConfigParams) {
-//			mc._logger.Configure(ctx, config);
+//		func (mc* MyComponent) Configure(ctx context.Context, config ConfigParams) {
+//			mc._logger.Configure(ctx, config)
 //			...
 //		}
 //
-//		func (mc* MyComponent) SetReferences(ctx context.Context, references: IReferences) {
-//			mc._logger.SetReferences(ctx, references);
+//		func (mc* MyComponent) SetReferences(ctx context.Context, references IReferences) {
+//			mc._logger.SetReferences(ctx, references)
 //			...
 //		}
 //
 //		func (mc* MyComponent) myMethod(ctx context.Context, string correlationId) {
-//			mc._logger.Debug(ctx context.Context, correlationId, "Called method mycomponent.mymethod");
+//			mc._logger.Debug(ctx context.Context, correlationId, "Called method mycomponent.mymethod")
 //			...
 //		}
 //		var mc MyComponent = MyComponent{}
-//		mc._logger = NewCompositeLogger();
+//		mc._logger = NewCompositeLogger()
 type CompositeLogger struct {
 	*Logger
 	loggers []ILogger

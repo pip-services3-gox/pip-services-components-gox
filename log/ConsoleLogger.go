@@ -22,10 +22,10 @@ import (
 //	see Logger
 //
 //	Example:
-//		logger = NewConsoleLogger();
-//		logger.SetLevel(LogLevel.Debug);
-//		logger.Error(context.Background(), "123", ex, "Error occured: %s", ex.message);
-//		logger.Debug(context.Background(), "123", "Everything is OK.");
+//		logger = NewConsoleLogger()
+//		logger.SetLevel(LogLevel.Debug)
+//		logger.Error(context.Background(), "123", ex, "Error occured: %s", ex.message)
+//		logger.Debug(context.Background(), "123", "Everything is OK.")
 type ConsoleLogger struct {
 	*Logger
 }

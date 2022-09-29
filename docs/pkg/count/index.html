@@ -1358,7 +1358,7 @@ This object is used by CachedCounters to store counters.
 		
 			
 			
-			<h2 id="CounterTiming">type <a href="http://localhost:6060/src/count/CounterTiming.go?s=297:393#L3">CounterTiming</a>
+			<h2 id="CounterTiming">type <a href="http://localhost:6060/src/count/CounterTiming.go?s=316:412#L3">CounterTiming</a>
 				<a class="permalink" href="index.html#CounterTiming">&#xb6;</a>
 				
 				
@@ -1368,8 +1368,8 @@ CounterTiming callback object returned by ICounters.beginTiming to end timing of
 execution block and update the associated counter.
 </p>
 <pre>Example:
-	timing := counters.BeginTiming(&#34;mymethod.exec_time&#34;);
-	defer  timing.EndTiming();
+	timing := counters.BeginTiming(contex.Background(), &#34;mymethod.exec_time&#34;)
+	defer  timing.EndTiming()
 </pre>
 
 			<pre>type CounterTiming struct {
@@ -1387,7 +1387,7 @@ execution block and update the associated counter.
 
 			
 				
-				<h3 id="NewCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=859:937#L22">NewCounterTiming</a>
+				<h3 id="NewCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=878:956#L22">NewCounterTiming</a>
 					<a class="permalink" href="index.html#NewCounterTiming">&#xb6;</a>
 					
 					
@@ -1406,7 +1406,7 @@ Returns: *Timing
 				
 			
 				
-				<h3 id="NewEmptyCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=505:548#L11">NewEmptyCounterTiming</a>
+				<h3 id="NewEmptyCounterTiming">func <a href="http://localhost:6060/src/count/CounterTiming.go?s=524:567#L11">NewEmptyCounterTiming</a>
 					<a class="permalink" href="index.html#NewEmptyCounterTiming">&#xb6;</a>
 					
 					
@@ -1424,7 +1424,7 @@ NewEmptyCounterTiming creates a new instance of the timing callback object.
 
 			
 				
-				<h3 id="CounterTiming.EndTiming">func (*CounterTiming) <a href="http://localhost:6060/src/count/CounterTiming.go?s=1158:1212#L32">EndTiming</a>
+				<h3 id="CounterTiming.EndTiming">func (*CounterTiming) <a href="http://localhost:6060/src/count/CounterTiming.go?s=1177:1231#L32">EndTiming</a>
 					<a class="permalink" href="index.html#CounterTiming.EndTiming">&#xb6;</a>
 					
 					
@@ -1643,7 +1643,7 @@ Parameters:
 		
 			
 			
-			<h2 id="LogCounters">type <a href="http://localhost:6060/src/count/LogCounters.go?s=1372:1448#L28">LogCounters</a>
+			<h2 id="LogCounters">type <a href="http://localhost:6060/src/count/LogCounters.go?s=1388:1464#L28">LogCounters</a>
 				<a class="permalink" href="index.html#LogCounters">&#xb6;</a>
 				
 				
@@ -1668,12 +1668,12 @@ Example:
 	counters.SetReferences(context.Background(), NewReferencesFromTuples(
 		NewDescriptor(&#34;pip-services&#34;, &#34;logger&#34;, &#34;console&#34;, &#34;default&#34;, &#34;1.0&#34;), NewConsoleLogger()
 	));
-	counters.IncrementOne(context.Background(), &#34;mycomponent.mymethod.calls&#34;);
-	timing := counters.BeginTiming(context.Background(),&#34;mycomponent.mymethod.exec_time&#34;);
-	defer timing.EndTiming();
+	counters.IncrementOne(context.Background(), &#34;mycomponent.mymethod.calls&#34;)
+	timing := counters.BeginTiming(context.Background(),&#34;mycomponent.mymethod.exec_time&#34;)
+	defer timing.EndTiming(context.Background())
 
 	// do something
-	counters.Dump(context.Background());
+	counters.Dump(context.Background())
 </pre>
 
 			<pre>type LogCounters struct {
@@ -1692,7 +1692,7 @@ Example:
 
 			
 				
-				<h3 id="NewLogCounters">func <a href="http://localhost:6060/src/count/LogCounters.go?s=1537:1571#L35">NewLogCounters</a>
+				<h3 id="NewLogCounters">func <a href="http://localhost:6060/src/count/LogCounters.go?s=1553:1587#L35">NewLogCounters</a>
 					<a class="permalink" href="index.html#NewLogCounters">&#xb6;</a>
 					
 					
@@ -1710,7 +1710,7 @@ NewLogCounters creates a new instance of the counters.
 
 			
 				
-				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3280:3353#L88">Save</a>
+				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=3296:3369#L88">Save</a>
 					<a class="permalink" href="index.html#LogCounters.Save">&#xb6;</a>
 					
 					
@@ -1729,7 +1729,7 @@ Save the current counters measurements.
 				
 			
 				
-				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1858:1944#L46">SetReferences</a>
+				<h3 id="LogCounters.SetReferences">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=1874:1960#L46">SetReferences</a>
 					<a class="permalink" href="index.html#LogCounters.SetReferences">&#xb6;</a>
 					
 					

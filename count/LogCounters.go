@@ -29,12 +29,12 @@ import (
 //		counters.SetReferences(context.Background(), NewReferencesFromTuples(
 //			NewDescriptor("pip-services", "logger", "console", "default", "1.0"), NewConsoleLogger()
 //		));
-//		counters.IncrementOne(context.Background(), "mycomponent.mymethod.calls");
-//		timing := counters.BeginTiming(context.Background(),"mycomponent.mymethod.exec_time");
-//		defer timing.EndTiming();
+//		counters.IncrementOne(context.Background(), "mycomponent.mymethod.calls")
+//		timing := counters.BeginTiming(context.Background(),"mycomponent.mymethod.exec_time")
+//		defer timing.EndTiming(context.Background())
 //
 //		// do something
-//		counters.Dump(context.Background());
+//		counters.Dump(context.Background())
 type LogCounters struct {
 	*CachedCounters
 	logger *log.CompositeLogger

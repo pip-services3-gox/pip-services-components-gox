@@ -8,8 +8,8 @@ import (
 // CounterTiming callback object returned by ICounters.beginTiming to end timing of
 // execution block and update the associated counter.
 //	Example:
-//		timing := counters.BeginTiming("mymethod.exec_time");
-//		defer  timing.EndTiming();
+//		timing := counters.BeginTiming(contex.Background(), "mymethod.exec_time")
+//		defer  timing.EndTiming()
 type CounterTiming struct {
 	start    time.Time
 	callback ITimingCallback

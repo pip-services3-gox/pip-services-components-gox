@@ -537,7 +537,7 @@ Parameters:
 		
 			
 			
-			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1059:1121#L26">CompositeLogger</a>
+			<h2 id="CompositeLogger">type <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1053:1115#L26">CompositeLogger</a>
 				<a class="permalink" href="index.html#CompositeLogger">&#xb6;</a>
 				
 				
@@ -554,22 +554,22 @@ Example:
 	type MyComponent {
 		_logger CompositeLogger
 	}
-	func (mc* MyComponent) Configure(ctx context.Context, config: ConfigParams) {
-		mc._logger.Configure(ctx, config);
+	func (mc* MyComponent) Configure(ctx context.Context, config ConfigParams) {
+		mc._logger.Configure(ctx, config)
 		...
 	}
 
-	func (mc* MyComponent) SetReferences(ctx context.Context, references: IReferences) {
-		mc._logger.SetReferences(ctx, references);
+	func (mc* MyComponent) SetReferences(ctx context.Context, references IReferences) {
+		mc._logger.SetReferences(ctx, references)
 		...
 	}
 
 	func (mc* MyComponent) myMethod(ctx context.Context, string correlationId) {
-		mc._logger.Debug(ctx context.Context, correlationId, &#34;Called method mycomponent.mymethod&#34;);
+		mc._logger.Debug(ctx context.Context, correlationId, &#34;Called method mycomponent.mymethod&#34;)
 		...
 	}
 	var mc MyComponent = MyComponent{}
-	mc._logger = NewCompositeLogger();
+	mc._logger = NewCompositeLogger()
 </pre>
 
 			<pre>type CompositeLogger struct {
@@ -588,7 +588,7 @@ Example:
 
 			
 				
-				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1216:1258#L33">NewCompositeLogger</a>
+				<h3 id="NewCompositeLogger">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1210:1252#L33">NewCompositeLogger</a>
 					<a class="permalink" href="index.html#NewCompositeLogger">&#xb6;</a>
 					
 					
@@ -604,7 +604,7 @@ NewCompositeLogger creates a new instance of the logger.
 				
 			
 				
-				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1608:1713#L47">NewCompositeLoggerFromReferences</a>
+				<h3 id="NewCompositeLoggerFromReferences">func <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1602:1707#L47">NewCompositeLoggerFromReferences</a>
 					<a class="permalink" href="index.html#NewCompositeLoggerFromReferences">&#xb6;</a>
 					
 					
@@ -625,7 +625,7 @@ Returns: CompositeLogger
 
 			
 				
-				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1972:2062#L57">SetReferences</a>
+				<h3 id="CompositeLogger.SetReferences">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=1966:2056#L57">SetReferences</a>
 					<a class="permalink" href="index.html#CompositeLogger.SetReferences">&#xb6;</a>
 					
 					
@@ -644,7 +644,7 @@ SetReferences sets references to dependent components.
 				
 			
 				
-				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2754:2872#L85">Write</a>
+				<h3 id="CompositeLogger.Write">func (*CompositeLogger) <a href="http://localhost:6060/src/log/CompositeLogger.go?s=2748:2866#L85">Write</a>
 					<a class="permalink" href="index.html#CompositeLogger.Write">&#xb6;</a>
 					
 					
@@ -668,7 +668,7 @@ Parameters:
 		
 			
 			
-			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=805:845#L19">ConsoleLogger</a>
+			<h2 id="ConsoleLogger">type <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=801:841#L19">ConsoleLogger</a>
 				<a class="permalink" href="index.html#ConsoleLogger">&#xb6;</a>
 				
 				
@@ -686,10 +686,10 @@ References:
 see Logger
 
 Example:
-	logger = NewConsoleLogger();
-	logger.SetLevel(LogLevel.Debug);
-	logger.Error(context.Background(), &#34;123&#34;, ex, &#34;Error occured: %s&#34;, ex.message);
-	logger.Debug(context.Background(), &#34;123&#34;, &#34;Everything is OK.&#34;);
+	logger = NewConsoleLogger()
+	logger.SetLevel(LogLevel.Debug)
+	logger.Error(context.Background(), &#34;123&#34;, ex, &#34;Error occured: %s&#34;, ex.message)
+	logger.Debug(context.Background(), &#34;123&#34;, &#34;Everything is OK.&#34;)
 </pre>
 
 			<pre>type ConsoleLogger struct {
@@ -707,7 +707,7 @@ Example:
 
 			
 				
-				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=935:973#L25">NewConsoleLogger</a>
+				<h3 id="NewConsoleLogger">func <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=931:969#L25">NewConsoleLogger</a>
 					<a class="permalink" href="index.html#NewConsoleLogger">&#xb6;</a>
 					
 					
@@ -725,7 +725,7 @@ NewConsoleLogger creates a new instance of the logger.
 
 			
 				
-				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1377:1493#L38">Write</a>
+				<h3 id="ConsoleLogger.Write">func (*ConsoleLogger) <a href="http://localhost:6060/src/log/ConsoleLogger.go?s=1373:1489#L38">Write</a>
 					<a class="permalink" href="index.html#ConsoleLogger.Write">&#xb6;</a>
 					
 					
