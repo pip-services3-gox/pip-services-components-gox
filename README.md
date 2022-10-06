@@ -6,17 +6,17 @@ The Components module contains standard component definitions that can be used t
 
 The module contains the following packages:
 
-- [**Auth**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/auth) - authentication credential stores
-- [**Build**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/build) - factories
-- [**Cache**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/cache) - distributed cache
-- [**Component**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/component) - the root package
-- [**Config**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/config) - configuration readers
-- [**Connect**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/connect) - connection discovery services
-- [**Count**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/count) - performance counters
-- [**Info**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/info) - context info
-- [**Lock**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/lock) - distributed locks
-- [**Log**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/log) - logging components
-- [**Test**](https://godoc.org/github.com/pip-services3-gox/pip-services3-components-gox/test) - test components
+- **Auth** - authentication credential stores
+- **Build** - factories
+- **Cache** - distributed cache
+- **Component** - the root package
+- **Config** - configuration readers
+- **Connect** - connection discovery services
+- **Count** - performance counters
+- **Info** - context info
+- **Lock** - distributed locks
+- **Log** - logging components
+- **Test** - test components
 
 <a name="links"></a> Quick links:
 
