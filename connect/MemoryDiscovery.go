@@ -7,6 +7,7 @@ import (
 )
 
 // MemoryDiscovery discovery service that keeps connections in memory.
+//
 //	Configuration parameters
 //		[connection key 1]:
 //		... connection parameters for key 1
@@ -16,22 +17,22 @@ import (
 //	see ConnectionParams
 //	Example
 //		config := NewConfigParamsFromTuples(
-//			"connections.key1.host", "10.1.1.100",
-//			"connections.key1.port", "8080",
-//			"connections.key2.host", "10.1.1.100",
-//			"connections.key2.port", "8082"
+//			"key1.host", "10.1.1.100",
+//			"key1.port", "8080",
+//			"key2.host", "10.1.1.100",
+//			"key2.port", "8082"
 //		);
 //		discovery := NewMemoryDiscovery();
 //		discovery.ReadConnections(config);
 //		conn, err := discovery.ResolveOne("123", "key1");
+//
 // Result: host=10.1.1.100;port=8080
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams
 }
 
-const ConnectionSectionNameParameter = "connections"
-
 // NewEmptyMemoryDiscovery creates a new instance of discovery service.
+//
 //	Returns: *MemoryDiscovery
 func NewEmptyMemoryDiscovery() *MemoryDiscovery {
 	return &MemoryDiscovery{
@@ -40,6 +41,7 @@ func NewEmptyMemoryDiscovery() *MemoryDiscovery {
 }
 
 // NewMemoryDiscovery creates a new instance of discovery service.
+//
 //	Parameters:
 //		- ctx context.Context
 //		- config *config.ConfigParams configuration with connection parameters.
@@ -57,6 +59,7 @@ func NewMemoryDiscovery(ctx context.Context, config *config.ConfigParams) *Memor
 }
 
 // Configure component by passing configuration parameters.
+//
 //	Parameters:
 //		- ctx context.Context
 //		- config *config.ConfigParams configuration parameters to be set.
@@ -65,23 +68,24 @@ func (c *MemoryDiscovery) Configure(ctx context.Context, config *config.ConfigPa
 }
 
 // ReadConnections from configuration parameters. Each section represents an individual Connectionparams
+//
 //	Parameters:
 //		- ctx context.Context
 //		- config *configure.ConfigParams configuration parameters to be read
 func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams) {
 	c.items = make(map[string][]*ConnectionParams)
-	connections := config.GetSection(ConnectionSectionNameParameter)
 
-	if connections.Len() > 0 {
-		connectionSections := connections.GetSectionNames()
+	if config.Len() > 0 {
+		connectionSections := config.GetSectionNames()
 		for _, key := range connectionSections {
-			connection := connections.GetSection(key)
+			connection := config.GetSection(key)
 			c.items[key] = []*ConnectionParams{NewConnectionParamsFromValue(connection)}
 		}
 	}
 }
 
 // Register connection parameters into the discovery service.
+//
 //	Parameters:
 //		- correlationId string transaction id to trace execution through call chain.
 //		- key string a key to uniquely identify the connection parameters.
@@ -104,6 +108,7 @@ func (c *MemoryDiscovery) Register(correlationId string, key string,
 }
 
 // ResolveOne a single connection parameters by its key.
+//
 //	Parameters:
 //		- correlationId: string transaction id to trace execution through call chain.
 //		- key: string a key to uniquely identify the connection.
@@ -120,6 +125,7 @@ func (c *MemoryDiscovery) ResolveOne(correlationId string,
 }
 
 // ResolveAll connection parameters by its key.
+//
 //	Parameters:
 //		- correlationId: string transaction id to trace execution through call chain.
 //		- key: string a key to uniquely identify the connection.
